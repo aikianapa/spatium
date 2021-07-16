@@ -28,17 +28,17 @@
             <thead>
                 <tr>
                     <th>Имя</th>
-                    <th>Роли</th>
+                    <th>Роль</th>
                     <th>Создан</th>
                     <th class="text-right">Действия</th>
                 </tr>
             </thead>
             <tbody id="usersList">
                 <wb-foreach wb="table=users&sort=_created:d&bind=cms.list.users"
-                    wb-filter="{'isgroup':'' }">
+                    wb-filter="{'isgroup':'on' }">
                     <tr>
-                        <td>{{first_name}} {{last_name}}</td>
-                        <td>{{role}}</td>
+                        <td>{{name}}</td>
+                        <td>{{id}}</td>
                         <td>{{_created}}</td>
                         <td class="text-right">
                             <div class="custom-control custom-switch d-inline">
@@ -49,7 +49,7 @@
                                     for="{{_form}}SwitchItemActive{{_idx}}">&nbsp;</label>
                             </div>
                             <a href="javascript:"
-                                data-ajax="{'url':'/cms/ajax/form/users/edit/{{id}}','html':'#yongerSpace modals'}"
+                                data-ajax="{'url':'/cms/ajax/form/users/role/{{id}}','html':'#yongerSpace modals'}"
                                 class="d-inline">
                                 <img src="/module/myicons/content-edit-pen.svg?size=24&stroke=323232">
                             </a>

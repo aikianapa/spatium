@@ -58,7 +58,7 @@
     </li>
 
     <li class="nav-item">
-        <a href="#" data-ajax="{'url':'/cms/ajax/form/users/list/','html':'.content-body'}" class="nav-link">
+        <a href="#" data-ajax="{'url':'/cms/ajax/form/users/list_users/','html':'.content-body'}" class="nav-link">
             <svg class="mi mi-group-user.1" wb-module="myicons"></svg>
             <span>Пользователи</span>
         </a>
