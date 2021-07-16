@@ -20,6 +20,15 @@
                     <input type="checkbox" class="custom-control-input" name="active" id="{{_form}}ValueItemActive">
                     <input type="hidden" name="_id" class="form-control" readonly placeholder="Идентификатор">
 
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Наименование</span>
+                            </div>
+                            <input type="text" name="name" class="form-control" placeholder="Наименование" required>
+                        </div>
+                    </div>
+
                     <div class="form-group row">
                     <div class="input-group col-6">
                             <div class="input-group-prepend">
@@ -29,9 +38,9 @@
                         </div>
                         <div class="input-group col-6">
                             <div class="input-group-prepend">
-                                <span class="input-group-text">Наименование</span>
+                                <span class="input-group-text">Цена ₽</span>
                             </div>
-                            <input type="text" name="name" class="form-control" placeholder="Наименование" required>
+                            <input type="text" name="price" class="form-control" placeholder="Цена ₽" required>
                         </div>
                     </div>
 

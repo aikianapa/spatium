@@ -1,19 +1,39 @@
 <html>
 <div class="m-3" id="yongerSpace">
-        <nav class="nav navbar navbar-expand-md col">
+    <nav class="nav navbar navbar-expand-md col">
         <h3 class="tx-bold tx-spacing--2 order-1">Продукция</h3>
         <div class="ml-auto order-2 float-right">
-        <a href="#" data-ajax="{'url':'/cms/ajax/form/{{_form}}/edit/_new','html':'#yongerSpace modals'}" class="btn btn-primary">
-            <img src="/module/myicons/24/FFFFFF/item-select-plus-add.svg" width="24" height="24" /> Добавить
-        </a>
+            <a href="#" data-ajax="{'url':'/cms/ajax/form/{{_form}}/edit/_new','html':'#yongerSpace modals'}"
+                class="btn btn-primary">
+                <img src="/module/myicons/24/FFFFFF/item-select-plus-add.svg" width="24" height="24" /> Добавить
+            </a>
         </div>
     </nav>
-    
-    <table class="table table-striped table-hover tx-15">
+
+
+    <div class="yonger-nested mb-1">
+        <span class="bg-light">
+            <div class="header p-2">
+                <span clsss="row">
+                    <div class="col-3">
+                    <input class="form-control search-header" type="search" placeholder="Поиск..."
+                    data-ajax="{'target':'#{{_form}}List',
+                    'filter_add':{'$or':[
+                        { 'name': {'$like' : '$value'} }, 
+                        { 'articul': {'$like' : '$value'} }
+                    ]} }">
+                    </div>
+                </span>
+            </div>
+        </span>
+
+
+        <table class="table table-striped table-hover tx-15">
             <thead>
                 <tr>
-                    <td>Артикул</td>
                     <td>Наименование</td>
+                    <td>Артикул</td>
+                    <td>Цена</td>
                     <td class="text-right">Действия</td>
                 </tr>
             </thead>
@@ -26,11 +46,16 @@
                             'filter': {'_site':'{{_sett.site}}'}
                 }">
                     <tr class="bg-transparent">
-                        <td class="w-25">
+
+                        <td class="cursor-pointer tx-medium w-50"
+                            data-ajax="{'url':'/cms/ajax/form/{{_form}}/edit/{{_id}}','html':'#yongerSpace modals'}">
+                            {{name}}
+                        </td>
+                        <td>
                             {{articul}}
                         </td>
-                        <td data-ajax="{'url':'/cms/ajax/form/{{_form}}/edit/{{_id}}','html':'#yongerSpace modals'}">
-                            {{name}}
+                        <td>
+                            {{price}}
                         </td>
                         <td class="text-right">
                             <div class="custom-control custom-switch d-inline">
@@ -53,5 +78,7 @@
                 </wb-foreach>
             </tbody>
         </table>
+    </div>
     <modals></modals>
+
 </html>
