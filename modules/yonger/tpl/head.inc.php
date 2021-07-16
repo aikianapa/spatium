@@ -33,7 +33,7 @@
     <link href="/engine/lib/fonts/roboto/roboto.css" rel="stylesheet">
 		<wb-snippet name="wbapp" />
 
-    <title>Yonger Web Builder</title>
+    <title>{{_sett.header}}</title>
 
   </head>
   </html>
