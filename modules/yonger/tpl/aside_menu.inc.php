@@ -20,17 +20,18 @@
     </li>
 
     <li class="nav-item">
-        <a href="#" data-ajax="{'url':'/cms/ajax/form/users/list/','html':'.content-body'}" class="nav-link">
-            <svg class="mi mi-group-user.1" wb-module="myicons"></svg>
-            <span>Пользователи</span>
+        <a href="#" data-ajax="{'url':'/cms/ajax/form/products/list/','html':'.content-body'}" class="nav-link">
+            <svg class="mi mi-asian-food.1" wb-module="myicons"></svg>
+            <span>Продукция</span>
         </a>
     </li>
     <li class="nav-item">
         <a href="#" data-ajax="{'url':'/cms/ajax/form/quotes/list/','html':'.content-body'}" class="nav-link">
-            <svg class="mi mi-document-contract-edit-pen" wb-module="myicons"></svg>
-            <span>Заявки</span>
+            <svg class="mi mi-credit-card-basket" wb-module="myicons"></svg>
+            <span>Заказы</span>
         </a>
     </li>
+<!--
     <li class="nav-item">
         <a href="#" data-ajax="{'url':'/cms/ajax/form/comments/list/','html':'.content-body'}" class="nav-link">
             <svg class="mi mi-users-message-support-1" wb-module="myicons"></svg>
@@ -44,7 +45,7 @@
             <span>Сообщения</span>
         </a>
     </li>
-
+-->
     <li>
         <div class="mg-y-20">Система</div>
     </li>
@@ -55,6 +56,14 @@
             <span>Настройки</span>
         </a>
     </li>
+
+    <li class="nav-item">
+        <a href="#" data-ajax="{'url':'/cms/ajax/form/users/list/','html':'.content-body'}" class="nav-link">
+            <svg class="mi mi-group-user.1" wb-module="myicons"></svg>
+            <span>Пользователи</span>
+        </a>
+    </li>
+
     <li class="nav-item">
             <a href="#" data-ajax="{'url':'/module/yonger/support','html':'.content-body'}" class="nav-link">
                 <svg class="mi mi-protection-06" wb-module="myicons"></svg>
