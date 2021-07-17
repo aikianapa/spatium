@@ -14,8 +14,8 @@
     <div class="yonger-nested mb-1">
         <span class="bg-light">
             <div class="header p-2">
-                <span clsss="row">
-                    <div class="col-3">
+                <span class="row">
+                    <div class="col-6">
                     <input class="form-control" type="search" placeholder="Поиск..."
                     data-ajax="{'target':'#{{_form}}List',
                     'filter_add':{'$or':[
@@ -23,6 +23,13 @@
                         { 'articul': {'$like' : '$value'} }
                     ]} }">
                     </div>
+                    <div class="col-6">
+                    <select name="category" class="form-control" placeholder="Категория" wb-tree="dict=menu-categories" 
+                    data-ajax="{'target':'#{{_form}}List','filter_add':{ 'category': '$value' } }">
+                    <option value="{{id}}">{{name}}</option>
+                    </select>
+                    </div>
+
                 </span>
             </div>
         </span>
@@ -50,6 +57,9 @@
                         <td class="cursor-pointer tx-medium w-50"
                             data-ajax="{'url':'/cms/ajax/form/{{_form}}/edit/{{_id}}','html':'#yongerSpace modals'}">
                             {{name}}
+                            <div wb-tree="dict=menu-categories&branch={{category}}">
+                                <span class="tx-10">{{name}}</span>
+                            </div>
                         </td>
                         <td>
                             {{articul}}

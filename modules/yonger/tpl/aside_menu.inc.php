@@ -1,4 +1,5 @@
-<div class="divider-text" wb-if='"{{_route.subdomain}}" > ""  AND "{{_sett.modules.yonger.standalone}}" !== "on"'>{{_route.subdomain}}</div>
+<div class="divider-text" wb-if='"{{_route.subdomain}}" > ""  AND "{{_sett.modules.yonger.standalone}}" !== "on"'>
+    {{_route.subdomain}}</div>
 <hr wb-if='"{{_route.subdomain}}" == "" AND "{{_sett.modules.yonger.standalone}}" !== "on"'>
 <ul class="nav nav-aside" wb-if='"{{_route.subdomain}}" > "" OR "{{_sett.modules.yonger.standalone}}" == "on"'>
     <li>
@@ -31,7 +32,13 @@
             <span>Заказы</span>
         </a>
     </li>
-<!--
+    <li class="nav-item">
+        <a href="#" data-ajax="{'url':'/cms/ajax/form/catalogs/list','html':'.content-body'}" class="nav-link">
+            <svg class="mi mi-hierarchy-circle.1" wb-module="myicons"></svg>
+            <span>Справочники</span>
+        </a>
+    </li>
+    <!--
     <li class="nav-item">
         <a href="#" data-ajax="{'url':'/cms/ajax/form/comments/list/','html':'.content-body'}" class="nav-link">
             <svg class="mi mi-users-message-support-1" wb-module="myicons"></svg>
@@ -65,10 +72,10 @@
     </li>
 
     <li class="nav-item">
-            <a href="#" data-ajax="{'url':'/module/yonger/support','html':'.content-body'}" class="nav-link">
-                <svg class="mi mi-protection-06" wb-module="myicons"></svg>
-                <span>Поддержка</span>
-            </a>
+        <a href="#" data-ajax="{'url':'/module/yonger/support','html':'.content-body'}" class="nav-link">
+            <svg class="mi mi-protection-06" wb-module="myicons"></svg>
+            <span>Поддержка</span>
+        </a>
     </li>
 </ul>
 
@@ -97,7 +104,7 @@
         <blockquote class="blockquote mb-0">
             <p>Хочешь больше возможностей?</p>
             <div class="blockquote-footer text-white">
-            Используй Yonger Pro
+                Используй Yonger Pro
             </div>
         </blockquote>
         <a href="#" class="btn btn-secondary mt-3">ПОДКЛЮЧИТЬ</a>

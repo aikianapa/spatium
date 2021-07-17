@@ -30,29 +30,37 @@
                     </div>
 
                     <div class="form-group row">
-                    <div class="input-group col-6">
+                        <div class="input-group col-6">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Категория</span>
+                            </div>
+                            <select name="category" class="form-control" placeholder="Категория" required wb-tree="dict=menu-categories">
+                                <option value="{{id}}">{{name}}</option>
+                            </select>
+                        </div>
+                        <div class="input-group col-6">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Артикул</span>
                             </div>
                             <input type="text" name="articul" class="form-control" placeholder="Артикул" required>
                         </div>
-                        <div class="input-group col-6">
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="input-group col-4">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Цена ₽</span>
                             </div>
                             <input type="text" name="price" class="form-control" placeholder="Цена ₽" required>
                         </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <div class="input-group col-sm-6 col-12">
+                        <div class="input-group col-sm-4">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Вес</span>
                             </div>
                             <input type="number" name="weight" class="form-control" placeholder="Вес (гр.)">
                         </div>
                         <p class="d-block d-sm-none p-1" />
-                        <div class="input-group col-sm-6 col-12">
+                        <div class="input-group col-sm-4">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Калорийность</span>
                             </div>
