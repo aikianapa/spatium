@@ -26,7 +26,7 @@
                     <div class="col-6">
                     <select name="category" class="form-control" placeholder="Категория" wb-tree="dict=menu-categories" 
                     data-ajax="{'target':'#{{_form}}List','filter_add':{ 'category': '$value' } }">
-                    <option value="{{id}}">{{name}}</option>
+                        <option value="{{id}}">{{name}}</option>
                     </select>
                     </div>
 
@@ -57,7 +57,7 @@
                         <td class="cursor-pointer tx-medium w-50"
                             data-ajax="{'url':'/cms/ajax/form/{{_form}}/edit/{{_id}}','html':'#yongerSpace modals'}">
                             {{name}}
-                            <div wb-tree="dict=menu-categories&branch={{category}}">
+                            <div wb-tree="dict=menu-categories&branch={{category}}&children=false">
                                 <span class="tx-10">{{name}}</span>
                             </div>
                         </td>
