@@ -73,56 +73,49 @@
 							<!--=======  Calculate Shipping  =======-->
 
 							<div class="calculate-shipping">
-								<h4>Calculate Shipping</h4>
-								<form action="cart.html#">
+								<h4>Детали доставки</h4>
+								<form action="#">
+                                    <wb-data wb-json="{{_sess.user}}">
 									<div class="row">
-										<div class="col-md-6 col-12 mb-25">
+										<!--div class="col-md-6 col-12 mb-25">
 											<select class="nice-select">
 												<option>Bangladesh</option>
 												<option>China</option>
-												<option>country</option>
-												<option>India</option>
-												<option>Japan</option>
 											</select>
+										</div-->
+
+
+                                        <div class="col-md-6 col-12 mb-25">
+                                            <label>Имя</label>
+                                            <input name="first_name" placeholder="Имя">
+                                        </div>
+
+                                        <div class="col-md-6 col-12 mb-25">
+                                            <label>Фамилия</label>
+                                            <input name="last_name" placeholder="Фамилия">
+                                        </div>
+
+                                        <div class="col-md-6 col-12 mb-25">
+                                            <label>Первая доставка</label>
+                                            <input type="datepicker" wb="module=datetimepicker" name="date" placeholder="Дата первой доставки">
+                                        </div>
+
+                                        <div class="col-md-6 col-12 mb-25">
+                                            <label>Телефон</label>
+                                            <input type="phone" wb-mask="+9 (999) 999-99-99" name="phone" placeholder="Телефон">
+                                        </div>
+
+										<div class="col-12 mb-25">
+                                            <label>Адрес доставки</label>
+											<textarea type="text" name="delivery_address" class="form-control" rows="auto" style="border-radius:15px;" placeholder="Адрес доставки"></textarea>
 										</div>
-										<div class="col-md-6 col-12 mb-25">
-											<select class="nice-select">
-												<option>Dhaka</option>
-												<option>Barisal</option>
-												<option>Khulna</option>
-												<option>Comilla</option>
-												<option>Chittagong</option>
-											</select>
-										</div>
-										<div class="col-md-6 col-12 mb-25">
-											<input type="text" placeholder="Postcode / Zip">
-										</div>
-										<div class="col-md-6 col-12 mb-25">
-											<input type="submit" value="Estimate">
-										</div>
+                                        </wb-data>
 									</div>
 								</form>
 							</div>
 
 							<!--=======  End of Calculate Shipping  =======-->
 
-							<!--=======  Discount Coupon  =======-->
-
-							<div class="discount-coupon">
-								<h4>Discount Coupon Code</h4>
-								<form action="cart.html#">
-									<div class="row">
-										<div class="col-md-6 col-12 mb-25">
-											<input type="text" placeholder="Coupon Code">
-										</div>
-										<div class="col-md-6 col-12 mb-25">
-											<input type="submit" value="Apply Code">
-										</div>
-									</div>
-								</form>
-							</div>
-
-							<!--=======  End of Discount Coupon  =======-->
 
 						</div>
 
@@ -132,14 +125,13 @@
 
 							<div class="cart-summary">
 								<div class="cart-summary-wrap">
-									<h4>Cart Summary</h4>
-									<p>Sub Total <span>$1250.00</span></p>
-									<p>Shipping Cost <span>$00.00</span></p>
-									<h2>Grand Total <span>$1250.00</span></h2>
+									<h4>Калькуляция</h4>
+									<p>Продукция <span><ee class="d-inline mod-cart-total-sum">$1250.00</ee>₽</span></p>
+									<p>Доставка <span>0₽</span></p>
+									<h2>Общий итог <ee class="d-inline mod-cart-total-sum">$1250.00</ee>₽</span></h2>
 								</div>
 								<div class="cart-summary-button">
-									<button class="checkout-btn">Checkout</button>
-									<button class="update-btn">Update Cart</button>
+									<button class="checkout-btn">Оплатить</button>
 								</div>
 							</div>
 
