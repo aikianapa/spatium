@@ -8,7 +8,7 @@
 									<div class="cart-info d-inline-block">
 										<p>Ваша корзина
 											<span>
-												продуктов <span class="mod-cart-count">0</span> = <span class="mod-cart-total-price">0</span>₽
+												продуктов <span class="mod-cart-count">0</span> = <span class="mod-cart-total-sum">0</span>₽
 											</span>
 										</p>
 									</div>
@@ -18,7 +18,7 @@
 								<!-- cart floating box -->
 								<div class="cart-floating-box" id="cart-floating-box">
 									<div class="cart-items">
-									<wb-module wb="module=cart&list=header">
+									<wb-module wb="module=cart&list=header&sum=price*qty*days">
 										<div class="mod-cart-item cart-float-single-item d-flex">
 											<span class="remove-item">
 												<a href="javascript:void(0)" class="mod-cart-remove" data-id="{{id}}"><i class="fa fa-times"></i></a>
@@ -30,18 +30,17 @@
 											</div>
 											<div class="cart-float-single-item-desc">
 												<p class="product-title"> <a href="single-product.html">{{name}} </a></p>
-												<p class="price"><span class="count">{{qty}}x</span> {{price}}₽</p>
+												<p class="price"><span class="count">{{days}}x{{qty}}x</span> {{price}}₽</p>
 											</div>
 										</div>
 									</wb-module>
 									</div>
 									<div class="cart-calculation">
 										<div class="calculation-details">
-											<p class="total">Итого <span class="mod-cart-total-price"></span></p>
+											<p class="total">Итого <span class="mod-cart-total-sum"></span></p>
 										</div>
 										<div class="floating-cart-btn text-center">
-											<a href="/checkout">Оплатить</a>
-											<a href="/cart">Корзина</a>
+											<a href="/cart">Корзина покупок</a>
 										</div>
 									</div>
 								</div>

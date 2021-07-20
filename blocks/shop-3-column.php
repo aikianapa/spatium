@@ -77,6 +77,7 @@
                                                 data-name="{{name}}"
                                                 data-price="{{price}}"
                                                 data-image="{{images.0.img}}"
+                                                data-days="7"
                                                 data-link="/products/{{id}}/{{wbUrlOnly({{name}})}}"
                                                 data-tooltip="В корзину"> <span class="icon_cart_alt"></span>
                                                 </a>
@@ -135,6 +136,7 @@
                                                 data-name="{{name}}"
                                                 data-price="{{price}}"
                                                 data-image="{{images.0.img}}"
+                                                data-days="7"
                                                 data-link="/products/{{id}}/{{wbUrlOnly({{name}})}}"
                                                 data-tooltip="В корзину"> <span class="icon_cart_alt"></span>
                                                 </a>

@@ -41,14 +41,18 @@
 									</tr>
 								</thead>
 								<tbody>
-                                    <wb-module wb="module=cart&list=cart">
+                                    <wb-module wb="module=cart&list=cart&sum=price*qty*days">
                                         <tr>
                                             <td class="pro-thumbnail"><a href="{{link}}"><img data-src="/thumb/359x359/src/{{image}}"
-                                                        class="img-fluid" alt="Product"></a></td>
+                                                        class="img-fluid" alt="{{name}}"></a></td>
                                             <td class="pro-title"><a href="{{link}}">{{name}}</a></td>
                                             <td class="pro-price"><span>{{price}}₽</span></td>
                                             <td class="pro-quantity">
-                                                <div class="pro-qty"><input type="text" value="1"></div>
+                                                <div>Кол-во / Дней</div>
+                                                <div class="pro-qty"><input name="qty" type="text" value="{{qty}}"
+                                                onchange="wbapp.storage('mod.cart.list.{{@index}}.qty',$(this).val());"></div>
+                                                <div class="pro-qty"><input name="days" type="text" value="{{days}}"
+                                                onchange="wbapp.storage('mod.cart.list.{{@index}}.days',$(this).val());"></div>
                                             </td>
                                             <td class="pro-subtotal"><span>{{sum}}₽</span></td>
                                             <td class="pro-remove"><a href="javascript:void(0);" class="mod-cart-remove" data-id="{{id}}"><i class="fa fa-trash-o"></i></a></td>

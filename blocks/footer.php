@@ -228,7 +228,7 @@
 								<span class="separator">|</span>
 								<a href="my-account.html#">Term and conditions</a>
 							</p>
-							<p class="copyright-text">&copy; 2021 <a href="../../index.html">Greenfarm</a>. All Rights Reserved</p>
+							<p class="copyright-text">&copy; {{date("Y")}} <a href="/">Spatium Detox</a>. All Rights Reserved</p>
 						</div>
 
 						<!--=======  End of copyright text	  =======-->
@@ -238,7 +238,7 @@
 						<!--=======  payment info  =======-->
 
 						<div class="payment-info text-center text-md-right">
-							<p>Allow payment base on <img src="assets/images/payment-icon.png" class="img-fluid" alt=""></p>
+							<p>Принимаем к оплате <img src="assets/images/payment-icon.png" class="img-fluid" alt=""></p>
 						</div>
 
 						<!--=======  End of payment info  =======-->
@@ -251,7 +251,7 @@
 		<!--=======  End of copyright section  =======-->
 	</footer>
 	<!-- scroll to top  -->
-	<a href="my-account.html#" class="scroll-top"></a>
+	<a href="javascript:void(0)" class="scroll-top"></a>
 	<!-- end of scroll to top -->
 
 	<!-- JS
