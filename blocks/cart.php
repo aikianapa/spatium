@@ -97,7 +97,7 @@
 
                                         <div class="col-md-6 col-12 mb-25">
                                             <label>Первая доставка</label>
-                                            <input type="datepicker" wb="module=datetimepicker" name="date" placeholder="Дата первой доставки">
+                                            <input type="datepicker" data-date-start="+1day" data-date-end="+30day" wb="module=datetimepicker" name="date" placeholder="Дата первой доставки">
                                         </div>
 
                                         <div class="col-md-6 col-12 mb-25">
