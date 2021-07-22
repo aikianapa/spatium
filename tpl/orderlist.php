@@ -12,7 +12,7 @@
                 </tr>
             </thead>
             <tbody>
-                <wb-foreach wb="from=list">
+                <wb-foreach wb="from=list&size=10">
                     <tr>
                         <td class="pro-thumbnail">
                             <a href="{{link}}">
@@ -28,6 +28,12 @@
                     </wb-module>
             </tbody>
         </table>
+        <div>
+            <wb-foreach wb-from="delivery">
+                {{date}} {{status}}
+
+            </wb-foreach>
+        </div>
     </div>
 
 </wb-data>

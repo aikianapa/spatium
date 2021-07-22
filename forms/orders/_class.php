@@ -26,13 +26,22 @@ class ordersClass extends cmsFormsClass {
         }
         $days = 1;
         foreach($order['list'] as $item) {
-            if ($item['days'] > $days) $days = $item['days'];
+            $item['days'] > $days ? $days = $item['days'] : null;
         }
-        $order['expired'] = date('Y-m-d',strtotime($days + 1 . "days"));
+        $order['delivery'] = [];
+        for ($i=1;$i<=$days;$i++) {
+            $idx = date('Y-m-d',strtotime($i . "days"));
+            $order['delivery'][$idx] = ['date'=>$idx,'status'=>''];
+        }
+        $order['expired'] = $idx;
         $order['user'] = $user['id'];
         $app->itemSave('orders',$order);
         header('Location: /checkout?order='.$order['id']);
         die;
+    }
+
+    function afterItemRead(&$item) {
+        $item['expired'] >= date('Y-m-d') ? $item['active'] = 'on' : $item['active'] = '';
     }
 }
 ?>
