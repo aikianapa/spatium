@@ -4,10 +4,17 @@
 	/*--
     Menu Sticky
     -----------------------------------*/
+
+
     var windows = $(window);
     var screenSize = windows.width();
     var sticky = $('.header-sticky');
     var menubarTop = $('.menubar-top');
+	if (!wbapp._session.user || !wbapp._session.user.id || wbapp._session.user.id < ' ') {
+		var uid = 'unknown';
+	} else { 
+		var uid = wbapp._session.user.id;
+	}
 
 
     windows.on('scroll', function () {
@@ -1041,8 +1048,31 @@
 
 	});
 	
+	$(".checkout-btn").on('click',function(){
+		let form = $('form#Details').serializeJson();
+		let data = wbapp.storage('mod.cart.'+uid);
+		if (form == undefined || data == undefined) return;
+		data['user'] = form;
 
+		$.redirectPost("/orders/checkout", {data: JSON.stringify(data)});	
+	})
 
-
+	// jquery extend function
+	$.extend(
+	{
+		redirectPost: function(location, args)
+		{
+			var form = '';
+			$.each( args, function( key, value ) {
+				value = value.split('"').join('\"')
+				form += '<textarea style="display:none;" name="'+key+'">'+value+'</textarea>';
+			});
+			$('<form action="' + location + '" method="POST">' + form + '</form>').appendTo($(document.body)).submit();
+		},
+		cartSet: function(line,fld,val) {
+			let idx = line+'.'+fld;
+			wbapp.storage('mod.cart.'+uid+'.list.'+idx,val);		
+		}
+	});
 
 })(jQuery);

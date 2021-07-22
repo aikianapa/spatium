@@ -33,9 +33,9 @@
 						<!-- header top menu -->
 						<div class="header-top-menu">
 							<ul>
-								<li><a href="/cabinet">Личный кабинет</a></li>
-								<li><a href="wishlist.html">Wishlist</a></li>
-								<li><a href="checkout.html">Checkout</a></li>
+								<li wb-if="'{{_sess.user.role}}'=='user'"><a href="/cabinet">Личный кабинет</a></li>
+								<li wb-if="'{{_sess.user.role}}'=='admin'"><a href="/workspace">Панель управления</a></li>
+								<li wb-if="'{{_sess.user.role}}' == ''"><a href="/signin">Вход</a></li>
 							</ul>
 						</div>
 						<!-- end of header top menu -->

@@ -20,7 +20,6 @@
 		</div>
 	</div>
 
-
 <div class="page-section section mb-50 mt-100">
 		<div class="container">
 			<div class="row">
@@ -53,10 +52,10 @@
                                             <td class="pro-quantity">
                                                 <div>Кол-во / Дней</div>
                                                 <div class="pro-qty"><input name="qty" type="text" value="{{qty}}"
-                                                onchange="wbapp.storage('mod.cart.list.{{@index}}.qty',$(this).val());"></div>
+                                                onchange="$.cartSet('{{@index}}','qty',$(this).val());"></div>
                                                 <div class="pro-qty">
 												<input name="days" type="text" readonly value="{{days}}" enum="1,3,7,14,30"
-                                                onchange="wbapp.storage('mod.cart.list.{{@index}}.days',$(this).val());"></div>
+                                                onchange="$.cartSet('{{@index}}','days',$(this).val());"></div>
                                             </td>
                                             <td class="pro-subtotal"><span>{{sum}}₽</span></td>
                                             <td class="pro-remove"><a href="javascript:void(0);" class="mod-cart-remove" data-id="{{id}}"><i class="fa fa-trash-o"></i></a></td>
@@ -78,8 +77,9 @@
 
 							<div class="calculate-shipping">
 								<h4>Детали доставки</h4>
-								<form action="#">
-                                    <wb-data wb-json="{{_sess.user}}">
+								<form action="#" id="Details">
+								<input type="hidden" name="id" value="{{_sess.user.id}}">
+								<wb-data wb-json="{{_sess.user}}">
 									<div class="row">
 										<!--div class="col-md-6 col-12 mb-25">
 											<select class="nice-select">
@@ -101,7 +101,7 @@
 
                                         <div class="col-md-6 col-12 mb-25">
                                             <label>Первая доставка</label>
-                                            <input type="datepicker" data-date-start="+1day" data-date-end="+30day" wb="module=datetimepicker" name="date" placeholder="Дата первой доставки">
+                                            <input type="datepicker" data-date-start="+1day" data-date-end="+30day" wb="module=datetimepicker" name="date" placeholder="Дата первой доставки" value='{{ date("Y-m-d",strtotime("+24hours")) }}'>
                                         </div>
 
                                         <div class="col-md-6 col-12 mb-25">
@@ -130,12 +130,12 @@
 							<div class="cart-summary">
 								<div class="cart-summary-wrap">
 									<h4>Калькуляция</h4>
-									<p>Продукция <span><ee class="d-inline mod-cart-total-sum">$1250.00</ee>₽</span></p>
+									<p>Продукция <span><ee class="d-inline mod-cart-total-sum">0</ee>₽</span></p>
 									<p>Доставка <span>0₽</span></p>
-									<h2>Общий итог <ee class="d-inline mod-cart-total-sum">$1250.00</ee>₽</span></h2>
+									<h2>Общий итог <ee class="d-inline mod-cart-total-sum">0</ee>₽</span></h2>
 								</div>
-								<div class="cart-summary-button">
-									<a href="/checkout"><button class="checkout-btn">Оплатить</button></a> 
+								<div class="cart-summary-button" wb-if="'{{_sess.user.role}}' !== 'admin'">
+									<button onclick class="checkout-btn">Оплатить</button>
 								</div>
 							</div>
 

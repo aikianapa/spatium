@@ -38,7 +38,7 @@
 								<a href="#dashboad" class="active" data-toggle="tab"><i class="fa fa-dashboard"></i>
 									Управление</a>
 
-								<a href="#orders" data-toggle="tab"><i class="fa fa-cart-arrow-down"></i> История заказов</a>
+								<a href="#orders" data-toggle="tab"><i class="fa fa-cart-arrow-down"></i> Мои заказы</a>
 
 								<a href="#address-edit" data-toggle="tab"><i class="fa fa-map-marker"></i> Адрес доставки</a>
 
@@ -72,7 +72,7 @@
 								<!-- Single Tab Content Start -->
 								<div class="tab-pane fade" id="orders" role="tabpanel">
 									<div class="myaccount-content">
-										<h3>Orders</h3>
+										<h3>Мои заказы</h3>
 
 										<div class="myaccount-table table-responsive text-center">
 											<table class="table table-bordered">
@@ -88,30 +88,16 @@
 												</thead>
 
 												<tbody>
+													<wb-foreach wb="table=orders&by_created:d&size=2&offset=-170" >
 													<tr>
-														<td>1</td>
+														<td>{{id}}</td>
 														<td>Mostarizing Oil</td>
-														<td>Aug 22, 2018</td>
-														<td>Pending</td>
-														<td>$45</td>
-														<td><a href="cart.html" class="btn">View</a></td>
+														<td>{{wbDate("d.m.Y",{{_created}})}} - {{wbDate("d.m.Y",{{expired}})}}</td>
+														<td>{{total.qty}}</td>
+														<td>{{total.sum}}</td>
+														<td><a data-ajax="{'url':'/cms/ajax/form/orders/view/{{id}}','html':'modal'}" class="btn">Просмотр</a></td>
 													</tr>
-													<tr>
-														<td>2</td>
-														<td>Katopeno Altuni</td>
-														<td>July 22, 2018</td>
-														<td>Approved</td>
-														<td>$100</td>
-														<td><a href="cart.html" class="btn">View</a></td>
-													</tr>
-													<tr>
-														<td>3</td>
-														<td>Murikhete Paris</td>
-														<td>June 12, 2017</td>
-														<td>On Hold</td>
-														<td>$99</td>
-														<td><a href="cart.html" class="btn">View</a></td>
-													</tr>
+													</wb-foreach>
 												</tbody>
 											</table>
 										</div>
@@ -197,7 +183,9 @@
 		</div>
 	</div>
 
+	<modal>
 
+	</modal>
     <wb-module wb="module=yonger&mode=render&view=footer" />
 
 </body>
