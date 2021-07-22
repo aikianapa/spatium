@@ -43,15 +43,19 @@
 								<tbody>
                                     <wb-module wb="module=cart&list=cart&sum=price*qty*days">
                                         <tr>
-                                            <td class="pro-thumbnail"><a href="{{link}}"><img data-src="/thumb/359x359/src/{{image}}"
-                                                        class="img-fluid" alt="{{name}}"></a></td>
+                                            <td class="pro-thumbnail">
+												<a href="{{link}}">
+												<img data-src="/thumb/359x359/src/{{image}}"class="img-fluid" alt="{{name}}">
+												</a>
+											</td>
                                             <td class="pro-title"><a href="{{link}}">{{name}}</a></td>
                                             <td class="pro-price"><span>{{price}}₽</span></td>
                                             <td class="pro-quantity">
                                                 <div>Кол-во / Дней</div>
                                                 <div class="pro-qty"><input name="qty" type="text" value="{{qty}}"
                                                 onchange="wbapp.storage('mod.cart.list.{{@index}}.qty',$(this).val());"></div>
-                                                <div class="pro-qty"><input name="days" type="text" value="{{days}}"
+                                                <div class="pro-qty">
+												<input name="days" type="text" readonly value="{{days}}" enum="1,3,7,14,30"
                                                 onchange="wbapp.storage('mod.cart.list.{{@index}}.days',$(this).val());"></div>
                                             </td>
                                             <td class="pro-subtotal"><span>{{sum}}₽</span></td>
@@ -131,7 +135,7 @@
 									<h2>Общий итог <ee class="d-inline mod-cart-total-sum">$1250.00</ee>₽</span></h2>
 								</div>
 								<div class="cart-summary-button">
-									<button class="checkout-btn">Оплатить</button>
+									<a href="/checkout"><button class="checkout-btn">Оплатить</button></a> 
 								</div>
 							</div>
 

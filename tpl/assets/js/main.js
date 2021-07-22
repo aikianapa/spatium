@@ -765,17 +765,32 @@
 	$('.qty-btn').on('click', function (e) {
 		e.preventDefault();
 		var $button = $(this);
-		var oldValue = $button.parent().find('input').val();
-		if ($button.hasClass('inc')) {
-			var newVal = parseFloat(oldValue) + 1;
-		} else {
-			// Don't allow decrementing below zero
-			if (oldValue > 0) {
-				var newVal = parseFloat(oldValue) - 1;
+		var $inp = $button.parent().find('input');
+		var oldValue = $inp.val();
+
+		if ($inp.attr('name') == 'days') {
+			let vals = $inp.attr('enum').split(',');
+			let indx = parseFloat(array_search($inp.val(),vals));
+			var newVal = vals[indx];
+			if ($button.hasClass('inc')) {
+				if (indx < vals.length-1) newVal = vals[indx + 1];
 			} else {
-				newVal = 0;
+				if (indx > 0) newVal = vals[indx - 1];
+			}
+
+		} else {
+			if ($button.hasClass('inc')) {
+				var newVal = parseFloat(oldValue) + 1;
+			} else {
+				// Don't allow decrementing below zero
+				if (oldValue > 1) {
+					var newVal = parseFloat(oldValue) - 1;
+				} else {
+					newVal = 1;
+				}
 			}
 		}
+		
 		$button.parent().find('input').val(newVal);
 		$button.parent().find('input').trigger('change');
 	});
