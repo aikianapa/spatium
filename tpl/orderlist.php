@@ -47,6 +47,8 @@
         </div>
     </div>
 </wb-data>
-<script>
-    $.deliveryCalendar();
+<script type="wbapp">
+    wbapp.on('main-ready',function(){
+        $.deliveryCalendar();
+    });
 </script>

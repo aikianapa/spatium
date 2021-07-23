@@ -58,11 +58,15 @@ class ordersClass extends cmsFormsClass {
             case 'deny':
                 $delivery[$date]['status'] = 'empty';
                 array_pop($delivery);
+                while($delivery[array_pop(array_keys($delivery))]['status'] == 'deny' && count($delivery) > $order['days']) {
+                    array_pop($delivery);
+                }
                 break;
         }
+
         $app->itemSave('orders',$order);
         $this->beforeItemShow($order);
-        $result = ["error"=>false,"delivery"=>$order['delivery']];
+        $result = ["error"=>false,"delivery"=>$order['delivery'],'days'=>$order['days']];
         echo json_encode($result);
     }
 

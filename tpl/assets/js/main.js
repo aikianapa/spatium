@@ -1080,6 +1080,7 @@
 				var type = null;
 				var $that = $(this);
 				if ($that.hasClass('wait')) return;
+				if ($that.hasClass('past')) return;
 				if ($that.hasClass('empty')) type = 'empty';
 				if ($that.hasClass('deny')) type = 'deny';
 				if (type) {
@@ -1105,5 +1106,4 @@
 			});
 		}
 	});
-
 })(jQuery);
