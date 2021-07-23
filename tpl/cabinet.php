@@ -38,7 +38,9 @@
 								<a href="#dashboad" class="active" data-toggle="tab"><i class="fa fa-dashboard"></i>
 									Управление</a>
 
-								<a href="#orders" data-toggle="tab"><i class="fa fa-cart-arrow-down"></i> Мои заказы</a>
+								<a href="#orders" data-toggle="tab" data-ajax="{'url':'/cms/ajax/form/users/orders','html':'#orders'}"><i class="fa fa-cart-arrow-down"></i> Мои заказы</a>
+
+								<a href="#delivery" data-toggle="tab" data-ajax="{'url':'/cms/ajax/form/users/delivery','html':'#delivery'}"><i class="fa fa-truck"></i> Мои Доставки</a>
 
 								<a href="#address-edit" data-toggle="tab"><i class="fa fa-map-marker"></i> Адрес доставки</a>
 
@@ -68,45 +70,14 @@
 									</div>
 								</div>
 								<!-- Single Tab Content End -->
+								<!-- Single Tab Content Start -->
+								<div class="tab-pane fade" id="delivery" role="tabpanel">
 
+								</div>
+								<!-- Single Tab Content End -->
 								<!-- Single Tab Content Start -->
 								<div class="tab-pane fade" id="orders" role="tabpanel">
-									<div class="myaccount-content">
-										<h3>Мои заказы</h3>
 
-										<div class="myaccount-table table-responsive text-center">
-											<table class="table table-bordered table-hover">
-												<thead class="thead-light">
-													<tr>
-														<th>Номер</th>
-														<th>Name</th>
-														<th>Дата</th>
-														<th>Статус</th>
-														<th>Сумма</th>
-														<th>Действие</th>
-													</tr>
-												</thead>
-
-												<tbody>
-													<wb-foreach wb="table=orders&sort=_created:d&size=10&offset=-170" >
-													<tr>
-														<td>{{id}}</td>
-														<td>Mostarizing Oil</td>
-														<td>{{wbDate("d.m.Y",{{_created}})}} - {{wbDate("d.m.Y",{{expired}})}}</td>
-														<td>
-															<svg wb-if="'{{active}}'=='on'" class="size-35 mi mi-checkmark-circle-1" wb-module="myicons" stroke="28a745"></svg>
-															<svg wb-if="'{{active}}'!=='on'" class="size-35 mi mi-delete-circle" wb-module="myicons" stroke="dc3545"></svg>
-														</td>
-														<td>{{total.sum}}</td>
-														<td><a data-ajax="{'url':'/cms/ajax/form/orders/view/{{id}}','html':'modal','callback':'$.deliveryCalendar'}" class="btn">
-														<svg class="size-35 mi mi-eye-circle" wb-module="myicons" stroke="666666"></svg>
-														</a></td>
-													</tr>
-													</wb-foreach>
-												</tbody>
-											</table>
-										</div>
-									</div>
 								</div>
 								<!-- Single Tab Content End -->
 
@@ -192,7 +163,6 @@
 
 	</modal>
     <wb-module wb="module=yonger&mode=render&view=footer" />
-
 </body>
 
 </html>

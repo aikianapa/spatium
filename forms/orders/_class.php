@@ -63,7 +63,7 @@ class ordersClass extends cmsFormsClass {
                 }
                 break;
         }
-
+        $order['expired'] = array_pop(array_keys($delivery));
         $app->itemSave('orders',$order);
         $this->beforeItemShow($order);
         $result = ["error"=>false,"delivery"=>$order['delivery'],'days'=>$order['days']];

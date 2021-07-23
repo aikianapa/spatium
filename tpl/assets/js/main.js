@@ -1057,6 +1057,32 @@
 		$.redirectPost("/orders/checkout", {data: JSON.stringify(data)});	
 	})
 
+	$(document).undelegate('#deliveryCalendar .day .fa-close','tap click');
+	$(document).delegate('#deliveryCalendar .day .fa-close','tap click',function(ev){
+		var type = null;
+		var $that = $(this).parents('.day');
+		if ($that.hasClass('wait')) return;
+		if ($that.hasClass('past')) return;
+		if ($that.hasClass('empty')) type = 'empty';
+		if ($that.hasClass('deny')) type = 'deny';
+		if (type) {
+			$that.addClass('wait');
+			var date = $that.data('date');
+			var tid = '#deliveryCalendar';
+			wbapp.post('/cms/ajax/form/users/delivery_decline',{
+				type: type,
+				date: date
+			},function(data){
+				$that.removeClass('wait');
+					Ractive({
+						target: tid,
+						template: wbapp.template[tid].html,
+						data: {'result':data}
+					});
+			})
+		}
+		ev.stopPropagation();
+	});
 
 	// jquery extend function
 	$.extend(
@@ -1073,37 +1099,6 @@
 		cartSet: function(line,fld,val) {
 			let idx = line+'.'+fld;
 			wbapp.storage('mod.cart.'+uid+'.list.'+idx,val);		
-		},
-		deliveryCalendar: function() {
-			$('#deliveryCalendar').undelegate('.day','tap click');
-			$('#deliveryCalendar').delegate('.day','tap click',function(){
-				var type = null;
-				var $that = $(this);
-				if ($that.hasClass('wait')) return;
-				if ($that.hasClass('past')) return;
-				if ($that.hasClass('empty')) type = 'empty';
-				if ($that.hasClass('deny')) type = 'deny';
-				if (type) {
-					$that.addClass('wait');
-					var date = $that.data('date');
-					var tid = '#deliveryCalendar';
-					wbapp.post('/orders/deliveryChange',{
-						order: $(tid).data('order'),
-						type: type,
-						date: date
-					},function(data){
-						$that.removeClass('wait');
-						if (!data.error) {
-							Ractive({
-								target: tid,
-								template: wbapp.template[tid].html,
-								data: data
-							});
-						}
-		
-					})
-				}
-			});
 		}
 	});
 })(jQuery);

@@ -28,27 +28,5 @@
                     </wb-module>
             </tbody>
         </table>
-        <div class="p-3">
-            <h3>График доставки</h3>
-            <p>
-                Если в какой-то из дней вы не можете получить заказ, кликните по этой дате на графике и доставка будет перенесена на более позднюю дату.
-            </p>
-        </div>
-        <div class="d-block" id="deliveryCalendar" data-order="{{_var.order_id}}">
-            <wb-foreach wb="from=delivery&render=client">
-                <div class="day {{status}}" data-date="{{date}}">
-                    <p class="text-center">
-                        <b>{{n}}</b>
-                        <br>
-                        <span>{{d}} {{m}}</span>
-                    </p>
-                </div>
-            </wb-foreach>
-        </div>
     </div>
 </wb-data>
-<script type="wbapp">
-    wbapp.on('main-ready',function(){
-        $.deliveryCalendar();
-    });
-</script>
