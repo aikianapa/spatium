@@ -40,37 +40,6 @@ class ordersClass extends cmsFormsClass {
         die;
     }
 
-    function deliveryChange() {
-        header('Content-Type: application/json');
-        $app = &$this->app;
-        if (!$app->checkToken($app->vars('_post.__token'))) echo '{"error":true}';
-        $oid = $app->vars('_post.order');
-        $date = $app->vars('_post.date');
-        $order = $app->itemRead('orders',$oid);
-        $delivery = &$order['delivery'];
-        switch ($app->vars('_post.type')) {
-            case 'empty':
-                $delivery[$date]['status'] = 'deny';
-                $lastdate = array_pop(array_keys($delivery));
-                $newdate = date('Y-m-d',strtotime($lastdate." +1day"));
-                $delivery[$newdate] = ['date'=>$newdate,'status'=>'empty'];
-                break;
-            case 'deny':
-                $delivery[$date]['status'] = 'empty';
-                array_pop($delivery);
-                while($delivery[array_pop(array_keys($delivery))]['status'] == 'deny' && count($delivery) > $order['days']) {
-                    array_pop($delivery);
-                }
-                break;
-        }
-        $order['expired'] = array_pop(array_keys($delivery));
-        $app->itemSave('orders',$order);
-        $this->beforeItemShow($order);
-        $result = ["error"=>false,"delivery"=>$order['delivery'],'days'=>$order['days']];
-        echo json_encode($result);
-    }
-
-
     function afterItemRead(&$item) {
         $item['expired'] >= date('Y-m-d') ? $item['active'] = 'on' : $item['active'] = '';
     }

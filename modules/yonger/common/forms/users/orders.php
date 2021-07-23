@@ -26,7 +26,7 @@
                         <svg wb-if="'{{active}}'!=='on'" class="size-35 mi mi-delete-circle" wb-module="myicons" stroke="dc3545"></svg>
                     </td>
                     <td>{{total.sum}}</td>
-                    <td><a data-ajax="{'url':'/cms/ajax/form/orders/view/{{id}}','html':'modal','callback':'$.deliveryCalendar'}" class="btn">
+                    <td><a data-ajax="{'url':'/cms/ajax/form/orders/view/{{id}}','html':'modal'}" class="btn">
                     <svg class="size-35 mi mi-eye-circle" wb-module="myicons" stroke="666666"></svg>
                     </a></td>
                 </tr>
