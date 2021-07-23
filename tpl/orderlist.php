@@ -28,10 +28,16 @@
                     </wb-module>
             </tbody>
         </table>
-        <div>
-            <wb-foreach wb-from="delivery">
-                {{date}} {{status}}
-
+        <h3>График доставки</h3>
+        <div class="d-block" id="deliveryCalendar" data-order="{{_var.order_id}}">
+            <wb-foreach wb="from=delivery&render=client">
+                <div class="day {{status}}" data-date="{{date}}">
+                    <p class="text-center">
+                        <b>{{n}}</b>
+                        <br>
+                        <span>{{d}} {{m}}</span>
+                    </p>
+                </div>
             </wb-foreach>
         </div>
     </div>

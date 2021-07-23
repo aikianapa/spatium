@@ -40,8 +40,50 @@ class ordersClass extends cmsFormsClass {
         die;
     }
 
+    function deliveryChange() {
+        header('Content-Type: application/json');
+        $app = &$this->app;
+        if (!$app->checkToken($app->vars('_post.__token'))) echo '{"error":true}';
+        $oid = $app->vars('_post.order');
+        $date = $app->vars('_post.date');
+        $order = $app->itemRead('orders',$oid);
+        $delivery = &$order['delivery'];
+        switch ($app->vars('_post.type')) {
+            case 'empty':
+                $delivery[$date]['status'] = 'deny';
+                $lastdate = array_pop(array_keys($delivery));
+                $newdate = date('Y-m-d',strtotime($lastdate." +1day"));
+                $delivery[$newdate] = ['date'=>$newdate,'status'=>'empty'];
+                break;
+            case 'deny':
+                $delivery[$date]['status'] = 'empty';
+                array_pop($delivery);
+                break;
+        }
+        $app->itemSave('orders',$order);
+        $this->beforeItemShow($order);
+        $result = ["error"=>false,"delivery"=>$order['delivery']];
+        echo json_encode($result);
+    }
+
+
     function afterItemRead(&$item) {
         $item['expired'] >= date('Y-m-d') ? $item['active'] = 'on' : $item['active'] = '';
+    }
+
+    function beforeItemShow(&$item) {
+        setlocale(LC_ALL, 'ru_RU.utf8');
+        foreach ($item['delivery'] as $date => &$d) {
+            $time = strtotime($date);
+            $d['date'] = $date;
+            $d['d'] = strftime('%d', $time);
+            $d['m'] = strftime('%b', $time);
+            $d['y'] = strftime('%Y', $time);
+            $d['n'] = strftime('%a', $time);
+            $d['status'] == '' ? $d['status'] = 'empty' : null;
+            if ($date <= date('Y-m-d')) $d['status'] = 'past';
+        }
+
     }
 }
 ?>

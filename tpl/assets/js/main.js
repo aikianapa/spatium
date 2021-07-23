@@ -1057,6 +1057,31 @@
 		$.redirectPost("/orders/checkout", {data: JSON.stringify(data)});	
 	})
 
+
+	$('#deliveryCalendar').delegate('.day','tap click',function(){
+		var type = null;
+		if ($(this).hasClass('empty')) type = 'empty';
+		if ($(this).hasClass('deny')) type = 'deny';
+		if (type) {
+			var date = $(this).data('date');
+			var tid = '#deliveryCalendar';
+			wbapp.post('/orders/deliveryChange',{
+				order: $(tid).data('order'),
+				type: type,
+				date: date
+			},function(data){
+				if (!data.error) {
+					Ractive({
+						target: tid,
+						template: wbapp.template[tid].html,
+						data: data
+					});
+				}
+
+			})
+		}
+	});
+
 	// jquery extend function
 	$.extend(
 	{

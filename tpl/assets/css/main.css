@@ -55,7 +55,7 @@
     20. Blog
     21. Blog Post
     22. Footer
-
+    23. Custom
 
 -----------------------------------------------------------------------------------*/
 /*=============================================
@@ -6234,3 +6234,37 @@ footer {
     color: #80bb01; }
 
 /*=====  End of 22. Footer ======*/
+/*=============================================
+=           23.  Custom           =
+=============================================*/
+
+#deliveryCalendar .day {
+  width: 80px; 
+  height: 80px;
+  display: inline-block;
+  align-items: center;
+  border: 1px #eee solid;
+  border-radius: 10px;
+  margin: 10px;
+  overflow: hidden;
+}
+
+#deliveryCalendar .day > div {
+  vertical-align: middle;
+  line-height: 80px;
+}
+
+#deliveryCalendar .day.past {
+  background-color: #666666;
+  cursor:not-allowed;
+}
+
+#deliveryCalendar .day.empty {
+  background-color: #80bb01;
+  cursor: pointer;
+}
+
+#deliveryCalendar .day.deny {
+  background-color: #a43d21;
+  cursor: pointer;
+}
