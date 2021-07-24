@@ -1057,7 +1057,14 @@
 		$.redirectPost("/orders/checkout", {data: JSON.stringify(data)});	
 	})
 
-	$(document).undelegate('#deliveryCalendar .day .fa-close','tap click');
+
+	$(document).delegate('#deliveryCalendar .day','tap click',function(ev){
+		$('#modalRight').modal('show');
+		ev.stopPropagation();
+	});
+
+
+
 	$(document).delegate('#deliveryCalendar .day .fa-close','tap click',function(ev){
 		var type = null;
 		var $that = $(this).parents('.day');
