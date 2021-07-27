@@ -2,10 +2,30 @@
 <div class="m-3" id="yongerorders">
     <nav class="nav navbar navbar-expand-md col">
         <h3 class="tx-bold tx-spacing--2 order-1">{{_lang.orders}}</h3>
-        <a href="#" data-ajax="{'url':'/cms/ajax/form/orders/edit/_new','html':'#yongerorders modals'}"
-            class="ml-auto order-2 float-right btn btn-primary">
-            <img src="/module/myicons/item-select-plus-add.svg?size=24&stroke=FFFFFF" /> {{_lang.newQuote}}
-        </a>
+
+        <div class="ml-auto order-2 float-right">
+
+            <div class="dropdown dropleft d-inline">
+                <button class="btn btn-secondary dropdown-toggle mr-2" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src="/module/myicons/checklist-tasks-chechmark-square.svg?size=24&stroke=FFFFFF" />
+                    Отчёты
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <h6 class="dropdown-header tx-uppercase tx-12 tx-bold tx-inverse">Отчёты</h6>
+                    <a data-ajax="{'url':'/orders/rep_cook','html':'.content-body'}" class="dropdown-item" href="#">Отчёт по кухне</a>
+                    <a class="dropdown-item" href="#">Отчёт по заказам</a>
+                    <a class="dropdown-item" href="#">Отчёт по клиентам</a>
+                </div>
+            </div>
+
+            <!--a href="#" data-ajax="{'url':'/cms/ajax/form/orders/edit/_new','html':'#yongerorders modals'}"
+                class="btn btn-primary">
+                <img src="/module/myicons/item-select-plus-add.svg?size=24&stroke=FFFFFF" /> {{_lang.newQuote}}
+            </a-->
+
+        </div>
+
     </nav>
 
     <table class="table table-striped table-hover tx-15">

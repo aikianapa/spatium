@@ -1059,6 +1059,15 @@
 
 
 	$(document).delegate('#deliveryCalendar .day','tap click',function(ev){
+		let date = $(this).data('date');
+		let data = wbapp.template['#deliveryCalendar'].params.data[date].products;
+		var tid = '#modalProdList';
+		Ractive({
+			target: tid,
+			template: wbapp.template[tid].html,
+			data: {'result':data}
+		});
+		wbapp.lazyload();
 		$('#modalRight').modal('show');
 		ev.stopPropagation();
 	});

@@ -11,7 +11,7 @@
                     {{ orders.lenth }}
                 </p>
                 <div class="position-absolute" data-tooltip="Отложить доставку" style="bottom:5px;right:5px;">
-                <i class="fa fa-close text-danger"></i>
+                    <i class="fa fa-close text-danger"></i>
                 </div>
             </div>
         </wb-foreach>
@@ -19,22 +19,51 @@
 </div>
 
 <div class="modal" tabindex="-1" id="modalRight">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Заголовок модального окна</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>Тут будет содержимое доставки.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-      </div>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">В этой доставке вы получите</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+
+
+
+                <div class="shop-product-wrap grid row no-gutters mb-35" id="modalProdList">
+                <template>
+                {{#each result}}
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <!--=======  Grid view product  =======-->
+
+                        <div class="gf-product shop-grid-view-product">
+                            <div class="image">
+                                <a href="{{link}}">
+                                    <img data-src="/thumb/359x359/src/{{image}}" class="img-fluid" alt="{{name}}">
+                                </a>
+                            </div>
+                            <div class="product-content">
+                                <h3 class="product-title"><a href="{{link}}">{{name}}</a></h3>
+                                <div class="price-box">
+                                    <span class="sale-price">{{qty}} шт.</span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                {{/each}}
+                </template>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 </html>
