@@ -4,6 +4,9 @@
         <div class="row tx-24">
             <div class="col">
                 <div class="input-group">
+                <div class="input-group-prepend">
+                        <span class="input-group-text tx-18 tx-medium">Отчёт по заказам</span>
+                    </div>
                     <input type="datepicker" name="date" class="form-control d-inline"
                         value='{{date("d.m.Y",strtotime({{date}}))}}' wb-module="module=datetimepicker"
                         data-ajax="{'url':'/orders/rep_orders','form':'#rep_orders','html':'.content-body'}">
