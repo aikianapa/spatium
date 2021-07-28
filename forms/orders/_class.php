@@ -131,15 +131,18 @@ class ordersClass extends cmsFormsClass {
         $list = $app->json($result)->groupBy('user')->get(); // группировка по клиенту
         $result = [];
         foreach($list as $uid => $grp) {
+            if (!isset($result[$uid])) {
+                $result[$uid] = [
+                    'user' => $app->itemRead('users',$uid)
+                    ,'list' => []
+                ];
+            }
             $grp = $app->json($grp)->groupBy('id')->get(); // группировка по товару
             $line = $grp;
             $line = array_pop($line);
             $line['qty'] = $app->json($grp)->sum('qty');
-            $result[$uid] = $line;
+            $result[$uid]['list'][] = $line[0];
         }
-
-
-
         $dom->fetch(['date'=>$date,'result'=>$result]);
         echo $dom->outer();
     }

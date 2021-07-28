@@ -27,17 +27,13 @@
                 <li class="list-group-item d-flex align-items-center">
                     <div class="w-25">
                         <h6 class="tx-13 tx-inverse tx-semibold mg-b-0">
-                            <a href="{{link}}">
-                                Заказ № {{id}}
-                            </a>
-                            <wb-data wb="table=users&item={{user}}">
                                 <p class="tx-12">
-                                    {{first_name}} {{last_name}}
-                                    <nobr>{{wbPhoneFormat({{phone}})}}</nobr>
+                                    {{user.first_name}} {{user.last_name}}
+                                    <nobr>{{wbPhoneFormat({{user.phone}})}}</nobr>
                                     <br>
-                                    {{delivery_address}}
+                                    {{user.delivery_address}}
                                 </p>
-                            </wb-data>
+
                         </h6>
                         <wb-foreach wb="from=list">
                             <img data-src="/thumb/80x80/src/{{image}}" class="img wd-50 ht-50 rounded-circle" alt="">

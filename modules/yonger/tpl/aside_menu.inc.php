@@ -7,7 +7,7 @@
     </li>
 
     <li class="nav-item with-sub">
-        <a href="#" data-ajax="{'url':'/cms/ajax/form/pages/list/','html':'.content-body'}" auto class="nav-link">
+        <a href="#" data-ajax="{'url':'/cms/ajax/form/pages/list/','html':'.content-body'}" class="nav-link">
             <svg class="mi mi-browser-internet-web-network-window-app-icon" wb-module="myicons"></svg>
             <span>Страницы</span>
         </a>
@@ -27,7 +27,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a href="#" data-ajax="{'url':'/cms/ajax/form/orders/list/','html':'.content-body'}" class="nav-link">
+        <a href="#" data-ajax="{'url':'/cms/ajax/form/orders/list/','html':'.content-body'}" auto class="nav-link">
             <svg class="mi mi-credit-card-basket" wb-module="myicons"></svg>
             <span>Заказы</span>
         </a>
