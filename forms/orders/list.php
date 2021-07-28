@@ -39,10 +39,10 @@
             </tr>
         </thead>
         <tbody id="ordersList">
-            <wb-foreach wb="table=orders&sort=_created:d&bind=cms.list.orders&size={{_sett.page_size}}"
+            <wb-foreach wb="table=orders&sort=date:d&bind=cms.list.orders&size={{_sett.page_size}}"
                 wb-filter="{'login':'{{_sess.user.login}}' }">
                 <tr>
-                    <td>{{_created}}</td>
+                    <td>{{date}}</td>
                     <td>{{subject}}</td>
                     <td>{{message}}</td>
                     <td>{{status}}</td>

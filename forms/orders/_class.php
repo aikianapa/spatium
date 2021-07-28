@@ -11,6 +11,8 @@ class ordersClass extends cmsFormsClass {
         $order = json_decode($_POST['data'],true);
         $order['id'] = wbNewId('','z');
         $user = $order['user'];
+        $order['date']  = $user['date'];
+        unset($user['date']);
         if ($user['id'] !== '' && $user['phone'] > '') {
             $phone =  preg_replace('/[^0-9]/','',$user['phone']);
             $filter = ['filter' => [
@@ -30,7 +32,8 @@ class ordersClass extends cmsFormsClass {
         }
         $order['delivery'] = [];
         for ($i=1;$i<=$days;$i++) {
-            $idx = date('Y-m-d',strtotime($i . "days"));
+            date('Y-m-d',strtotime($order['date'])) > date('Y-m-d') ? $j = $i-1 : $j = $i;
+            $idx = date('Y-m-d',strtotime($order['date']. '+' . $j . "days"));
             $order['delivery'][$idx] = ['date'=>$idx,'status'=>''];
         }
         $order['expired'] = $idx;
@@ -56,8 +59,8 @@ class ordersClass extends cmsFormsClass {
         foreach($list['list'] as $order) {
             $this->beforeItemShow($order);
             $delivery = &$order['delivery'][$date];
-            $created = date('Y-m-d',strtotime($order['_created']));
-            if ($created < $date && $delivery['status'] !== 'deny' ) {
+            $start = date('Y-m-d',strtotime($order['date']));
+            if ($delivery['status'] !== 'deny' ) {
                 foreach($order['list'] as $line) $result[] = $line;
             }
         }
@@ -75,9 +78,74 @@ class ordersClass extends cmsFormsClass {
         echo $dom->outer();
     }
 
+    function rep_orders() {
+        $app = &$this->app;
+        $dom = $app->fromFile(__DIR__ . '/rep_orders.php');
+        $result = [];
+        if ($app->vars('_post.formdata.date') > '') {
+            $date = date('Y-m-d',strtotime($app->vars('_post.formdata.date')));    
+        } else {
+            $date = date('Y-m-d',strtotime('now'));
+        }
+        $list = $app->itemList('orders',['filter'=>[
+            'date'=>['$lte'=>$date]
+            ,'expired'=>['$gte'=>$date]
+        ]]);
+        foreach($list['list'] as $order) {
+            $this->beforeItemShow($order);
+            $delivery = &$order['delivery'][$date];
+            $start = date('Y-m-d',strtotime($order['date']));
+            if ($delivery['status'] !== 'deny' ) {
+                $result[] = $order;
+            }
+        }
+        $dom->fetch(['date'=>$date,'result'=>$result]);
+        echo $dom->outer();
+    }
+
+    function rep_clients() {
+        $app = &$this->app;
+        $dom = $app->fromFile(__DIR__ . '/rep_clients.php');
+        $result = [];
+        if ($app->vars('_post.formdata.date') > '') {
+            $date = date('Y-m-d',strtotime($app->vars('_post.formdata.date')));    
+        } else {
+            $date = date('Y-m-d',strtotime('now'));
+        }
+        $list = $app->itemList('orders',['filter'=>[
+            'date'=>['$lte'=>$date]
+            ,'expired'=>['$gte'=>$date]
+        ]]);
+        foreach($list['list'] as $order) {
+            $this->beforeItemShow($order);
+            $delivery = &$order['delivery'][$date];
+            $start = date('Y-m-d',strtotime($order['date']));
+            if ($delivery['status'] !== 'deny' ) {
+                foreach ($order['list'] as $line) {
+                    $line['user'] = $order['user'];
+                    $line['order'] = $order['id'];
+                    $result[] = $line;
+                }
+            }
+        }
+        $list = $app->json($result)->groupBy('user')->get(); // группировка по клиенту
+        $result = [];
+        foreach($list as $uid => $grp) {
+            $grp = $app->json($grp)->groupBy('id')->get(); // группировка по товару
+            $line = $grp;
+            $line = array_pop($line);
+            $line['qty'] = $app->json($grp)->sum('qty');
+            $result[$uid] = $line;
+        }
+
+
+
+        $dom->fetch(['date'=>$date,'result'=>$result]);
+        echo $dom->outer();
+    }
+
     function afterItemRead(&$item) {
         $item['expired'] >= date('Y-m-d') ? $item['active'] = 'on' : $item['active'] = '';
-        $item['date'] = date('Y-m-d',strtotime($item['_created']));
     }
 
     function beforeItemShow(&$item) {

@@ -54,27 +54,27 @@
     </li>
 -->
     <li>
-        <div class="mg-y-20">Система</div>
+        <div class="mg-y-20">Отчёты</div>
     </li>
 
     <li class="nav-item">
-        <a href="#" data-ajax="{'url':'/cms/settings/settings_ui','html':'.content-body'}" class="nav-link">
-            <svg class="mi mi-settings.2" wb-module="myicons"></svg>
-            <span>Настройки</span>
+        <a href="#" data-ajax="{'url':'/orders/rep_cook','html':'.content-body'}" class="nav-link">
+            <svg class="mi mi-knife-fork-restaurant-food" wb-module="myicons"></svg>
+            <span>По кухне</span>
         </a>
     </li>
 
     <li class="nav-item">
-        <a href="#" data-ajax="{'url':'/cms/ajax/form/users/list_users/','html':'.content-body'}" class="nav-link">
+        <a href="#" data-ajax="{'url':'/orders/rep_orders','html':'.content-body'}" class="nav-link">
+            <svg class="mi mi-credit-card-basket" wb-module="myicons"></svg>
+            <span>По заказам</span>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="#" data-ajax="{'url':'/orders/rep_clients','html':'.content-body'}" class="nav-link">
             <svg class="mi mi-group-user.1" wb-module="myicons"></svg>
-            <span>Пользователи</span>
-        </a>
-    </li>
-
-    <li class="nav-item">
-        <a href="#" data-ajax="{'url':'/module/yonger/support','html':'.content-body'}" class="nav-link">
-            <svg class="mi mi-protection-06" wb-module="myicons"></svg>
-            <span>Поддержка</span>
+            <span>По клиентам</span>
         </a>
     </li>
 </ul>
