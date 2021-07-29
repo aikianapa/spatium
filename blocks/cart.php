@@ -4,7 +4,7 @@
 </div>
 </edit>
 <view>
-
+<script src="https://widget.cloudpayments.ru/bundles/cloudpayments"></script>
 <div class="breadcrumb-area mb-50 mt-50">
 		<div class="container">
 			<div class="row">
@@ -136,6 +136,10 @@
 								</div>
 								<div class="cart-summary-button" wb-if="'{{_sess.user.role}}' !== 'admin'">
 									<button onclick class="checkout-btn">Оплатить</button>
+								</div>
+
+								<div class="cart-summary-button">
+									<button onclick class="checkout-btn-test">Тест оплаты</button>
 								</div>
 							</div>
 

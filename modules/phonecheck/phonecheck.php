@@ -1,5 +1,12 @@
 <?php
 
+/*
+targetsms.ru
+sdetox
+aassaDDG3
+*/
+
+
 class modPhonecheck {
     public function __construct($app)
     {

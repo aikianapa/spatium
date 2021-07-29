@@ -1047,15 +1047,67 @@
 		$('[data-method="'+$value+'"]').slideDown();
 
 	});
-	
-	$(".checkout-btn").on('click',function(){
+
+	var getCartData = function() {
 		let form = $('form#Details').serializeJson();
 		let data = wbapp.storage('mod.cart.'+uid);
 		if (form == undefined || data == undefined) return;
 		data['user'] = form;
+		return JSON.stringify(data);
+	}
 
-		$.redirectPost("/orders/checkout", {data: JSON.stringify(data)});	
+	$(".checkout-btn").on('click',function(){
+		let data = getCartData();
+		$.redirectPost("/orders/checkout", {data: data});	
 	})
+
+
+
+
+	$(".checkout-btn-test").on('click',function(){
+		var widget = new cp.CloudPayments();
+		var iid = Object.keys(wbapp.storage('mod.cart'))[0];
+		var sum = wbapp.storage('mod.cart.'+iid+'.total.sum')*1;
+		var data = getCartData();
+		var token = md5(data+uid+time());
+		var options = { //options
+			publicId: 'test_api_00000000000000000000001', //id из личного кабинета
+			description: 'Оплата товаров в Spatium Detox', //назначение
+			amount: sum, //сумма
+			currency: 'RUB', //валюта
+			accountId: uid, //идентификатор плательщика (необязательно)
+			invoiceId: iid, //номер заказа  (необязательно)
+			skin: "mini", //дизайн виджета (необязательно)
+			data: {
+				token: token
+			}
+		};
+		   widget.pay('auth', options,
+			   {
+				   onSuccess: function (options) { // success
+					   //действие при успешной оплате
+						if (options.data.token == token && paymentResult.success == true) {
+							setcookie('carttoken',token,time() + 1000);
+							$.redirectPost("/orders/checkout", {data: data, token: token});
+						}
+				}
+				   },
+				   onFail: function (reason, options) { // fail
+					   //действие при неуспешной оплате
+					   //console.log(reason,options);
+					   $.redirectPost("/cart", {});
+				   },
+				   onComplete: function (paymentResult, options) { //Вызывается как только виджет получает от api.cloudpayments ответ с результатом транзакции.
+//					console.log(paymentResult,options);
+					   //например вызов вашей аналитики Facebook Pixel
+					   if (options.data.token == token && paymentResult.success == true) {
+						   	setcookie('carttoken',token,time() + 1000);
+							$.redirectPost("/orders/checkout", {data: data, token: token});
+					   }
+				   }
+			   }
+		   )
+	   });
 
 
 	$(document).delegate('#deliveryCalendar .day','tap click',function(ev){

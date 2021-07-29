@@ -26,6 +26,14 @@ class ordersClass extends cmsFormsClass {
                 // если нет в системе, то создаём пользователя
             }
         }
+        $uid = $user['id'];
+        $token = md5($_POST['data'].$uid);
+        
+        if ($_COOKIE['carttoken'] !== $_POST['token']) {
+            echo "Что-то пошло не так.";
+            die;
+        }
+
         $days = 1;
         foreach($order['list'] as $item) {
             $item['days'] > $days ? $days = $item['days'] : null;
@@ -113,20 +121,23 @@ class ordersClass extends cmsFormsClass {
             $date = date('Y-m-d',strtotime('now'));
         }
         $list = $app->itemList('orders',['filter'=>[
-            'date'=>['$lte'=>$date]
-            ,'expired'=>['$gte'=>$date]
+            '$and'=>[
+                'expired'=>['$gte'=>$date],
+                'date' => ['$lte'=>$date]
+            ]
         ]]);
+
         foreach($list['list'] as $order) {
-            $this->beforeItemShow($order);
-            $delivery = &$order['delivery'][$date];
-            $start = date('Y-m-d',strtotime($order['date']));
-            if ($delivery['status'] !== 'deny' ) {
-                foreach ($order['list'] as $line) {
-                    $line['user'] = $order['user'];
-                    $line['order'] = $order['id'];
-                    $result[] = $line;
+                $this->beforeItemShow($order);
+                $delivery = &$order['delivery'][$date];
+                $start = date('Y-m-d', strtotime($order['date']));
+                if ($delivery['status'] !== 'deny') {
+                    foreach ($order['list'] as $line) {
+                        $line['user'] = $order['user'];
+                        $line['order'] = $order['id'];
+                        $result[] = $line;
+                    }
                 }
-            }
         }
         $list = $app->json($result)->groupBy('user')->get(); // группировка по клиенту
         $result = [];
@@ -138,10 +149,15 @@ class ordersClass extends cmsFormsClass {
                 ];
             }
             $grp = $app->json($grp)->groupBy('id')->get(); // группировка по товару
-            $line = $grp;
-            $line = array_pop($line);
-            $line['qty'] = $app->json($grp)->sum('qty');
-            $result[$uid]['list'][] = $line[0];
+            $qty = 0;
+            foreach($grp as $g => $gr) {
+                $line = array_pop($gr);
+                foreach($gr as $gl) {
+                    $line['qty'] += $gl['qty']; 
+                }
+                $result[$uid]['list'][$g] = $line;
+               
+            }
         }
         $dom->fetch(['date'=>$date,'result'=>$result]);
         echo $dom->outer();
