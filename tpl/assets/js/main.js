@@ -1090,7 +1090,6 @@
 							setcookie('carttoken',token,time() + 1000);
 							$.redirectPost("/orders/checkout", {data: data, token: token});
 						}
-				}
 				   },
 				   onFail: function (reason, options) { // fail
 					   //действие при неуспешной оплате
