@@ -1066,6 +1066,7 @@
 
 	$(".checkout-btn-test").on('click',function(){
 		var widget = new cp.CloudPayments();
+		var iid = Object.keys(wbapp.storage('mod.cart'))[0];
 		var sum = wbapp.storage('mod.cart.'+uid+'.total.sum')*1;
 		var data = getCartData();
 		var token = md5(data+uid+time());
@@ -1075,7 +1076,7 @@
 			amount: sum, //сумма
 			currency: 'RUB', //валюта
 			accountId: uid, //идентификатор плательщика (необязательно)
-			invoiceId: iid, //номер заказа  (необязательно)
+			invoiceId: uid, //номер заказа  (необязательно)
 			skin: "mini", //дизайн виджета (необязательно)
 			data: {
 				token: token
