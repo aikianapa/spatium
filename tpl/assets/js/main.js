@@ -1066,8 +1066,7 @@
 
 	$(".checkout-btn-test").on('click',function(){
 		var widget = new cp.CloudPayments();
-		var iid = Object.keys(wbapp.storage('mod.cart'))[0];
-		var sum = wbapp.storage('mod.cart.'+iid+'.total.sum')*1;
+		var sum = wbapp.storage('mod.cart.'+uid+'.total.sum')*1;
 		var data = getCartData();
 		var token = md5(data+uid+time());
 		var options = { //options
