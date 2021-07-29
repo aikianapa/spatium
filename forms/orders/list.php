@@ -32,9 +32,10 @@
         <thead>
             <tr>
                 <th>Дата</th>
-                <th>Тема</th>
-                <th>Обращение</th>
-                <th>Статус</th>
+                <th>Клиент</th>
+                <th class="text-right">Кол-во</th>
+                <th class="text-right">Сумма</th>
+                <th class="text-center">Статус</th>
                 <th></th>
             </tr>
         </thead>
@@ -42,10 +43,18 @@
             <wb-foreach wb="table=orders&sort=date:d&bind=cms.list.orders&size={{_sett.page_size}}"
                 wb-filter="{'login':'{{_sess.user.login}}' }">
                 <tr>
-                    <td>{{date}}</td>
-                    <td>{{subject}}</td>
-                    <td>{{message}}</td>
-                    <td>{{status}}</td>
+                    <td>{{wbDate("d.m.Y",{{date}})}} - {{wbDate("d.m.Y",{{expired}})}}</td>
+                    <td><wb-data wb="table=users&item={{user}}">
+                        {{first_name}} {{last_name}}<br>
+                        <span class="tx-11">{{wbPhoneFormat({{phone}})}}</span>
+                        <span class="tx-11">{{delivery_address}}</span>
+                    </wb-data></td>
+                    <td class="text-right">{{total.qty}}</td>
+                    <td class="text-right">{{total.sum}}</td>
+                    <td class="text-center">
+                        <span class="badge badge-danger wd-10 ht-10 rounded-circle" wb-if="'{{active}}'==''"> </span>
+                        <span class="badge badge-success wd-10 ht-10 rounded-circle" wb-if="'{{active}}'=='on'"> </span>
+                    </td>
                     <td>
                         <a href="javascript:"
                             data-ajax="{'url':'/cms/ajax/form/orders/edit/{{id}}','html':'#yongerorders modals'}"

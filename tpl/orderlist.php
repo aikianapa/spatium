@@ -1,5 +1,5 @@
 <wb-data wb="table=orders&item={{_var.order_id}}">
-    <div class="cart-table table-responsive mb-40" wb-if="'{{_sess.user.id}}'=='{{_creator}}'">
+    <div class="cart-table table-responsive mb-40" wb-if="'{{_sess.user.id}}'=='{{_creator}}' OR '{{_sess.user.role}}'=='admin'">
         <table class="table">
             <thead>
                 <tr>
