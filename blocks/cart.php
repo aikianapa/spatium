@@ -69,7 +69,7 @@
 
 
 					</form>
-
+					<wb-var reg />
 					<div class="row">
 
 						<div class="col-lg-6 col-12">
@@ -79,7 +79,7 @@
 								<h4>Детали доставки</h4>
 								<form action="#" id="Details">
 								<input type="hidden" name="id" value="{{_sess.user.id}}">
-								<wb-data wb-json="{{_sess.user}}">
+								<wb-data wb="table=users&item={{_sess.user.id}}">
 									<div class="row">
 										<!--div class="col-md-6 col-12 mb-25">
 											<select class="nice-select">
@@ -113,6 +113,7 @@
                                             <label>Адрес доставки</label>
 											<textarea type="text" name="delivery_address" class="form-control" rows="auto" style="border-radius:15px;" placeholder="Адрес доставки"></textarea>
 										</div>
+										<wb-var wb-if="'{{first_name}}'=='' OR '{{last_name}}'=='' OR '{{delivery_address}}'=='' " reg="false" else="true" />
                                         </wb-data>
 									</div>
 								</form>
@@ -123,7 +124,7 @@
 
 						</div>
 
-
+						
 						<div class="col-lg-6 col-12 d-flex">
 							<!--=======  Cart summery  =======-->
 
@@ -134,12 +135,12 @@
 									<p>Доставка <span>0₽</span></p>
 									<h2>Общий итог <ee class="d-inline mod-cart-total-sum">0</ee>₽</span></h2>
 								</div>
-								<div class="cart-summary-button" wb-if="'{{_sess.user.role}}' !== 'admin'">
+
+								<div class="cart-summary-button" wb-if="'{{_sess.user.role}}' !== 'admin' AND '{{_var.reg}}' == 'true' ">
 									<button onclick class="checkout-btn">Оплатить</button>
 								</div>
-
-								<div class="cart-summary-button">
-									<button onclick class="checkout-btn-test">Тест оплаты</button>
+								<div class='alert alert-warning' wb-if="'{{_var.reg}}' == 'false' ">
+									Пожалуйста, прежде чем сформировать заказ, заполните регистрационные данные в <a href="/cabinet">Личном кабинете</a>
 								</div>
 							</div>
 

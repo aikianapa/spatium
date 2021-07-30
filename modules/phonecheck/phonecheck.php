@@ -5,7 +5,7 @@ targetsms.ru
 sdetox
 aassaDDG3
 */
-
+require_once __DIR__ .'/sms.auth.class.php';
 
 class modPhonecheck {
     public function __construct($app)
@@ -14,7 +14,8 @@ class modPhonecheck {
         $mode = $app->route->mode;
         if (isset(($app->route->params))) $param = $app->route->params[0];
         in_array($mode,['reg','check','getcode','login']) ? null : $app->apikey('module');
-        $this->app = $app;
+        $this->app = &$app;
+        $this->sett = (object)$app->vars('_sett.modules.phonecheck');
         if (method_exists($this, $mode)) {
             echo $this->$mode();
         } else if ($this->isPhone($param)) {
@@ -28,16 +29,25 @@ class modPhonecheck {
 
     private function getcode() {
         header('Content-Type: application/json');
-        $this->code = rand(123,999).'-'.rand(123,999);
         $this->phone = $this->app->vars('_post.phone');
         $this->type = $this->app->vars('_post.type');
         $this->number = preg_replace('/[^0-9]/','',$this->phone);
+        $this->code = $this->sendsms($this->phone);
         $this->check = $this->app->PasswordMake($this->code.$this->number);
+
+        if ($this->code == 0 ) return json_encode([
+            'phone'=>$this->number,
+            'code'=>'',
+            'check'=>false
+        ]);
         $_SESSION['reg'] = ['phone'=>$this->phone, 'control'=>$this->check];
         $this->type == 'login' ? $this->setcode() : null;
+
+        $this->sett->testmode == 'on' ? $code = $this->code : $code = '';
+
         return json_encode([
-            'phone'=>$this->app->vars('_post.phone'),
-            'code'=>$this->code,
+            'phone'=>$this->number,
+            'code'=>$code,
             'check'=>$this->check
         ]);
     }
@@ -74,14 +84,40 @@ class modPhonecheck {
         }
     }
 
+    private function sendsms($phone) {
+        if ($this->sett->testmode == 'on') {
+            $code = rand(123, 999).'-'.rand(123, 999);
+        } else {
+            $code = 0;
+            $authCode = new \TargetSMS\SmsAuth($this->sett->login,$this->sett->pass);
+            try {
+                $result = $authCode->generateCode(
+                    $phone, // номер телефона получателя
+                    $this->sett->sender, // подпись отправителя
+                    6,// длина кода
+                    $this->sett->text. ' {код}'// текст персонификации
+                );
+                $code = $result->success->attributes()['code'];// сгенерированный код
+            $id_sms = $result->success->attributes()['id_sms'];// id смс для проверки статуса доставки
+            $status = $result->success->attributes()['status'];// статус доставки
+            $code = substr($code, 0, 3).'-'.substr($code, 3, 6);
+                //var_dump($result);
+            } catch (Exception $e) {
+                $error = $e->getMessage();//ловим ошибку от сервера
+                var_dump($error);
+            }
+        }
+        return $code;
+    }
+
     private function reg() {
         header('Content-Type: application/json');
         $control = $_SESSION['reg']['control'];
         $phone = $_SESSION['reg']['phone'];
         $number = preg_replace('/[^0-9]/','',$phone);
         $code = $this->app->vars('_post.check');
-        $check = $check = md5($code.$phone);
-        $demo = '79883471188';
+        $check = $this->app->PasswordMake($code.$number);
+        //$demo = '79883471188';
         if ($check == $control) {
             $user = $this->app->checkUser($number, 'phone');
             if ($user && $number !== $demo) {
@@ -90,7 +126,7 @@ class modPhonecheck {
             }
             if ($number !== $demo) {
                 $user = [
-                    'first_name' => 'Пользователь'
+                    'first_name' => ''
                     ,'last_name' => ''
                     ,'active' => 'on'
                     ,'phone' => $phone
@@ -108,7 +144,7 @@ class modPhonecheck {
             }
             echo json_encode(['error' => false, 'msg' => 'Регистрация успешно завершена']);
         } else {
-            echo json_encode(['error' => true,'msg' => 'Неверный проверочный код']);
+            echo json_encode(['error' => true,'msg' => 'Неверный проверочный код','check'=>$check]);
         }
     }
 

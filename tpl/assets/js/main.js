@@ -1057,14 +1057,6 @@
 	}
 
 	$(".checkout-btn").on('click',function(){
-		let data = getCartData();
-		$.redirectPost("/orders/checkout", {data: data});	
-	})
-
-
-
-
-	$(".checkout-btn-test").on('click',function(){
 		var widget = new cp.CloudPayments();
 		var iid = Object.keys(wbapp.storage('mod.cart'))[0];
 		var sum = wbapp.storage('mod.cart.'+uid+'.total.sum')*1;
@@ -1094,7 +1086,7 @@
 				   onFail: function (reason, options) { // fail
 					   //действие при неуспешной оплате
 					   //console.log(reason,options);
-					   $.redirectPost("/cart", {});
+					   //$.redirectPost("/cart", {});
 				   },
 				   onComplete: function (paymentResult, options) { //Вызывается как только виджет получает от api.cloudpayments ответ с результатом транзакции.
 //					console.log(paymentResult,options);

@@ -61,12 +61,21 @@
 										<h3>Кабинет</h3>
 
 										<div class="welcome">
-											<p>Приветствуем вас, <strong>{{_sess.user.first_name}} {{_sess.user.last_name}}</strong>! &nbsp; 
-                                            (если это не вы, <a href="/signout" class="logout"> Выйдите из аккаунта</a>)
+											<p>
+												Приветствуем вас<strong wb-if="'{{_sess.user.first_name}} {{_sess.user.last_name}}' > ' '">
+												, {{_sess.user.first_name}} {{_sess.user.last_name}}</strong>! &nbsp; 
+                                            	<span wb-if="'{{_sess.user.first_name}} {{_sess.user.last_name}}' > ' '">
+												(если это не вы, <a href="/signout" class="logout"> Выйдите из аккаунта</a>)
+												</span>
                                         </p>
 										</div>
 
-										<p class="mb-0">В панели управления кабинетом вы можете просматривать свои заказы, изменять адрест доставки и другую персональную информацию.</p>
+										<p>В панели управления кабинетом вы можете просматривать свои заказы, изменять адрест доставки и другую персональную информацию.</p>
+										<p wb-if="'{{_sess.user.first_name}} {{_sess.user.last_name}}' == ' '">
+											Для начала работы, пожалуйста, заполните информацию о себе в разделах 
+											<a href="#account-info" data-toggle="tab">Детали</a> и 
+											<a href="#address-edit" data-toggle="tab">Адрес доставки</a> и .
+										</p>
 									</div>
 								</div>
 								<!-- Single Tab Content End -->
@@ -91,7 +100,7 @@
 											<textarea class="form-control" name="delivery_address" placeholder="Адрес доставки"></textarea>
 										</address>
 
-										<button class="save-change-btn" wb-save="table=users&item={{_sess.user.id}}">Сохранить</button>
+										<button type="button" class="save-change-btn" wb-save="table=users&item={{_sess.user.id}}">Сохранить</button>
 										</form>
 									</div>
 								</div>
@@ -114,31 +123,15 @@
 													</div>
 
 													<div class="col-12 mb-30">
-														<input name="phone" placeholder="Телефон" wb-mask="+9(999) 999-99-99" disabled>
+														<input name="phone" placeholder="Телефон" wb-mask="+9(999) 999-99-99" required disabled>
 													</div>
 
 													<div class="col-12 mb-30">
 														<input name="email" placeholder="Эл.почта" type="email">
 													</div>
 
-													<div class="col-12 mb-30">
-														<h4>Смена пароля</h4>
-													</div>
-
-													<div class="col-12 mb-30">
-														<input id="current-pwd" placeholder="Current Password" type="password">
-													</div>
-
-													<div class="col-lg-6 col-12 mb-30">
-														<input id="new-pwd" placeholder="New Password" type="password">
-													</div>
-
-													<div class="col-lg-6 col-12 mb-30">
-														<input id="confirm-pwd" placeholder="Confirm Password" type="password">
-													</div>
-
 													<div class="col-12">
-														<button class="save-change-btn" wb-save="table=users&item={{_sess.user.id}}">Сохранить</button>
+														<button type="button" class="save-change-btn" wb-save="table=users&item={{_sess.user.id}}">Сохранить</button>
 													</div>
 
 												</div>
