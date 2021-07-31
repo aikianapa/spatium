@@ -18,10 +18,9 @@
                 let $phone = $('#form input[name=phone]');
                 let phone = $phone.val();
                 if (type == 'reg') $phone.removeClass('is-invalid').attr('readonly',true);
-                wbapp.post('/module/phonecheck/getcode/',{
-                    'phone':phone,
-                    'type':type
-                    },function(data){
+                let form = wbapp.objByForm('#form form');
+                form.type = type;
+                wbapp.post('/module/phonecheck/getcode/',form,function(data){
                     if (data.error) {
                         $('#form .tx-danger').text(data.msg).removeClass('d-none');
                     } else {
@@ -167,7 +166,7 @@
                 color: var(--danger);
             }
         }
-        input.form-control {
+        .form-control {
             font-family: Roboto;
             font-size: 16px;
             font-style: normal;

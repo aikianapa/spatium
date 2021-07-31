@@ -27,6 +27,7 @@
             <thead>
                 <tr>
                     <th>Имя</th>
+                    <th>Контакт</th>
                     <th>Роли</th>
                     <th>Создан</th>
                     <th class="text-right">Действия</th>
@@ -37,6 +38,7 @@
                     wb-filter="{'isgroup':'' }">
                     <tr>
                         <td>{{first_name}} {{last_name}}</td>
+                        <td class="tx-11">{{wbPhoneFormat({{phone}})}}<br>{{email}}</td>
                         <td>{{role}}</td>
                         <td>{{_created}}</td>
                         <td class="text-right">

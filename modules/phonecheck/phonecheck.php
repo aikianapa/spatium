@@ -35,12 +35,24 @@ class modPhonecheck {
         $this->code = $this->sendsms($this->phone);
         $this->check = $this->app->PasswordMake($this->code.$this->number);
 
+        $user = $this->app->checkUser($this->number, 'phone');
+        if ($user) {
+            echo json_encode(['error' => true, 'msg' => 'Пользователь уже зарегистрирван']);    
+            die;
+        }
+
         if ($this->code == 0 ) return json_encode([
             'phone'=>$this->number,
             'code'=>'',
             'check'=>false
         ]);
-        $_SESSION['reg'] = ['phone'=>$this->phone, 'control'=>$this->check];
+
+        $data = $this->app->vars('_post');
+        unset($data['code']);
+        unset($data['type']);
+        unset($data['__token']);
+
+        $_SESSION['reg'] = ['phone'=>$this->phone, 'data'=>$data, 'control'=>$this->check];
         $this->type == 'login' ? $this->setcode() : null;
 
         $this->sett->testmode == 'on' ? $code = $this->code : $code = '';
@@ -104,7 +116,7 @@ class modPhonecheck {
                 //var_dump($result);
             } catch (Exception $e) {
                 $error = $e->getMessage();//ловим ошибку от сервера
-                var_dump($error);
+//                var_dump($error);
             }
         }
         return $code;
@@ -125,15 +137,14 @@ class modPhonecheck {
                 die;
             }
             if ($number !== $demo) {
-                $user = [
-                    'first_name' => ''
-                    ,'last_name' => ''
-                    ,'active' => 'on'
+                $update = [
+                    'active' => 'on'
                     ,'phone' => $phone
                     ,'role' => 'user'
                     ,'password' => wbPasswordMake($code)
                     ,'login' => '_new'
                 ];
+                $user = array_merge($_SESSION['reg']['data'],$update);
                 $user = $_SESSION['user'] = $this->app->itemSave('users',$user);
                 if ($user) {
                     $this->app->login($user);
