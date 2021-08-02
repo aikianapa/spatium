@@ -36,7 +36,7 @@ class modPhonecheck {
         $this->check = $this->app->PasswordMake($this->code.$this->number);
 
         $user = $this->app->checkUser($this->number, 'phone');
-        if ($user) {
+        if ($this->type !== "login" && $user) {
             echo json_encode(['error' => true, 'msg' => 'Пользователь уже зарегистрирван']);    
             die;
         }
