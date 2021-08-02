@@ -5,7 +5,7 @@
             <wb-var order_id="{{id}}" />
             <div class="modal-header">
                 <div class="col-5">
-                    <h5>Заказ № {{id}}</h5>
+                    <h5>Заказ № {{number}}</h5>
                 </div>
                 <i class="fa fa-close r-20 position-absolute cursor-pointer" data-dismiss="modal" aria-label="Close"></i>
             </div>

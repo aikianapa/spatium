@@ -27,7 +27,7 @@
                     <div class="w-25">
                         <h6 class="tx-13 tx-inverse tx-semibold mg-b-0">
                             <a href="{{link}}">
-                                Заказ № {{id}}
+                                Заказ № {{number}}
                             </a>
                             <wb-data wb="table=users&item={{user}}">
                                 <p class="tx-12">

@@ -46,6 +46,8 @@ class ordersClass extends cmsFormsClass {
         }
         $order['expired'] = $idx;
         $order['user'] = $user['id'];
+        $ai = $app->module('autoinc');
+        $order['number'] = $ai->inc('orders','number',1245);
         $app->itemSave('orders',$order);
         header('Location: /checkout?order='.$order['id']);
         die;
@@ -169,6 +171,7 @@ class ordersClass extends cmsFormsClass {
 
     function beforeItemShow(&$item) {
         setlocale(LC_ALL, 'ru_RU.utf8');
+        isset($item['number']) ? null : $item['number'] = $item['id'];
         foreach ($item['delivery'] as $date => &$d) {
             $time = strtotime($date);
             $d['date'] = $date;

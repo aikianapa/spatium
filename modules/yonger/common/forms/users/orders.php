@@ -18,7 +18,7 @@
             <tbody>
                 <wb-foreach wb="table=orders&sort=date:d&size=10&offset=-170" wb-filter="_creator={{_sess.user.id}}">
                 <tr>
-                    <td>{{id}}</td>
+                    <td>{{number}}</td>
                     <td>Заказ</td>
                     <td>{{wbDate("d.m.Y",{{date}})}} - {{wbDate("d.m.Y",{{expired}})}}</td>
                     <td>

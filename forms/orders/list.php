@@ -31,6 +31,7 @@
     <table class="table table-striped table-hover tx-15">
         <thead>
             <tr>
+                <th>Номер</th>
                 <th>Дата</th>
                 <th>Клиент</th>
                 <th class="text-right">Кол-во</th>
@@ -43,6 +44,7 @@
             <wb-foreach wb="table=orders&sort=date:d&bind=cms.list.orders&size={{_sett.page_size}}"
                 wb-filter="{'login':'{{_sess.user.login}}' }">
                 <tr>
+                    <td>{{number}}</td>
                     <td>{{wbDate("d.m.Y",{{date}})}} - {{wbDate("d.m.Y",{{expired}})}}</td>
                     <td><wb-data wb="table=users&item={{user}}">
                         {{first_name}} {{last_name}}<br>
