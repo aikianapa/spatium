@@ -3,7 +3,7 @@
 <wb-include wb="{'src':'/modules/yonger/tpl/head.inc.php'}" />
 
 <body class="app-chat">
-    <div class="app-chat" wb-disallow="admin">
+    <div class="app-chat" wb-disallow="{{_sett.modules.yonger.allow}}">
         <div class="container">
             <div class="alert alert-outline alert-danger d-flex align-items-center t-100" role="alert">
                 <i class="fa fa-info-circle"></i> &nbsp; Ошибка входа в систему!

@@ -20,7 +20,7 @@
                         <div class="row">
                             <div class="col-12 col-md-7">
                                 <label class="form-control-label">Телефон</label>
-                                <input type="phone" wb-mask='+7 (999) 999-99-99' placeholder="" class="form-control"
+                                <input type="tel" wb-mask='+7 (999) 999-99-99' placeholder="" class="form-control"
                                     name="phone" required>
                             </div>
                             <div class="col-12 col-md-5">

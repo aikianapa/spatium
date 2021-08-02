@@ -91,5 +91,23 @@ class usersClass extends cmsFormsClass {
             if ($d['date'] <= date('Y-m-d')) $d['status'] = 'past';
     }
 
+    function profile() {
+        $out = $this->app->getForm('users','profile');
+        $out->find('[name=phone]')->attr('disabled',true);
+        $out->fetch();
+        $out->find('[name=phone]')->removeAttr('name');
+        echo $out;
+    }
+
+    function beforeItemShow(&$item) {
+        $item['phone'] = $this->app->phoneFormat($item['phone']);
+    }
+
+    function afterItemRead(&$item) {
+        isset($item['phone']) ? null : $item['phone'] = '';
+        $item['phone'] = preg_replace('/[^0-9]/','',$item['phone']);
+        return $item;
+    }
+
 }
 ?>
