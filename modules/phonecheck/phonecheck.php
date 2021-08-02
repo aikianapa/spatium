@@ -132,6 +132,7 @@ class modPhonecheck {
         //$demo = '79883471188';
         if ($check == $control) {
             $user = $this->app->checkUser($number, 'phone');
+
             if ($user && $number !== $demo) {
                 echo json_encode(['error' => true, 'msg' => 'Пользователь уже зарегистрирван']);    
                 die;
@@ -139,7 +140,7 @@ class modPhonecheck {
             if ($number !== $demo) {
                 $update = [
                     'active' => 'on'
-                    ,'phone' => $phone
+                    ,'phone' => $number
                     ,'role' => 'user'
                     ,'password' => wbPasswordMake($code)
                     ,'login' => '_new'
