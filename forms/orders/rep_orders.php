@@ -27,7 +27,7 @@
                     <div class="w-25">
                         <h6 class="tx-13 tx-inverse tx-semibold mg-b-0">
                             <a href="{{link}}">
-                                Заказ № {{number}}
+                                Заказ № {{number}} / {{wbDate("d.m.Y",{{date}})}}
                             </a>
                             <wb-data wb="table=users&item={{user}}">
                                 <p class="tx-12">
@@ -46,8 +46,9 @@
                     <div class="w-75">
                         <ul>
                             <wb-var tsum="0" />
-                            <wb-foreach wb="from=list">
-                                <li class="list-group-item d-flex align-items-center tx-11 p-1">
+                            <wb-foreach wb="from=list" __wb-filter="active=on">
+                                <wb-var wb-if="'{{active}}'!=='on'" stroke='tx-danger stroke' else='' />
+                                <li class="list-group-item d-flex align-items-center tx-11 p-1 {{_var.stroke}}">
                                     <span class="d-flex mr-10">{{name}}</span>
                                     <span class="ml-auto w-25 text-right">
                                         <div class="row">

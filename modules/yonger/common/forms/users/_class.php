@@ -18,6 +18,7 @@ class usersClass extends cmsFormsClass {
         ]]);
         $dlvrs = [];
         foreach($orders['list'] as $order) {
+            $count = 0;
             foreach($order['delivery'] as $date => &$d) {
                 $d['date'] = $date;
                 if ($date >= date('Y-m-d')) {
@@ -26,8 +27,10 @@ class usersClass extends cmsFormsClass {
                     $this->delivery_prep($d);
                     $dlvrs[$date] = array_merge($dlvrs[$date],$d);
                     if (in_array($d['status'],['past','empty'])) {
+                        $count++;
                         isset($dlvrs[$date]) ? $dlvrs[$date]['orders'][] = $order['id']  : null;
                         foreach($order['list'] as $p) {
+                            if ($count <= $p['days']) $p['active'] = 'on';
                             $dlvrs[$date]['products'][] = $p;
                         }
                     }

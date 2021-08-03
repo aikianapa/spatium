@@ -35,6 +35,7 @@
                 <div class="shop-product-wrap grid row no-gutters mb-35" id="modalProdList">
                 <template>
                 {{#each result}}
+                    {{#if active == "on"}}
                     <div class="col-lg-4 col-md-6 col-12">
                         <!--=======  Grid view product  =======-->
 
@@ -52,8 +53,8 @@
                             </div>
 
                         </div>
-
                     </div>
+                    {{/if}}
                 {{/each}}
                 </template>
                 </div>

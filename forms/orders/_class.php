@@ -67,20 +67,22 @@ class ordersClass extends cmsFormsClass {
             ,'expired'=>['$gte'=>$date]
         ]]);
         foreach($list['list'] as $order) {
-            $this->beforeItemShow($order);
+            $this->beforeItemShow($order,$date);
             $delivery = &$order['delivery'][$date];
             $start = date('Y-m-d',strtotime($order['date']));
             if ($delivery['status'] !== 'deny' ) {
-                foreach($order['list'] as $line) $result[] = $line;
+                foreach($order['list'] as $line) {
+                    if ($line['active'] == 'on') $result[] = $line;
+                }
             }
         }
         $list = $app->json($result)->groupBy('id')->get();
         $result = [];
         foreach($list as $grp) {
-            $line = $grp;
-            $line = array_pop($line);
-            $line['qty'] = $app->json($grp)->sum('qty');
-            $result[] = $line;
+                $line = $grp;
+                $line = array_pop($line);
+                $line['qty'] = $app->json($grp)->sum('qty');
+                $result[] = $line;
         }
 
 
@@ -102,7 +104,7 @@ class ordersClass extends cmsFormsClass {
             ,'expired'=>['$gte'=>$date]
         ]]);
         foreach($list['list'] as $order) {
-            $this->beforeItemShow($order);
+            $this->beforeItemShow($order,$date);
             $delivery = &$order['delivery'][$date];
             $start = date('Y-m-d',strtotime($order['date']));
             if ($delivery['status'] !== 'deny' ) {
@@ -128,11 +130,12 @@ class ordersClass extends cmsFormsClass {
                 'date' => ['$lte'=>$date]
             ]
         ]]);
-
+        
         foreach($list['list'] as $order) {
-                $this->beforeItemShow($order);
-                $delivery = &$order['delivery'][$date];
-                $start = date('Y-m-d', strtotime($order['date']));
+                $this->beforeItemShow($order,$date);
+                $delist = $order['delivery'];
+                $delivery = $delist[$date];
+                //$start = date('Y-m-d', strtotime($order['date']));
                 if ($delivery['status'] !== 'deny') {
                     foreach ($order['list'] as $line) {
                         $line['user'] = $order['user'];
@@ -154,11 +157,12 @@ class ordersClass extends cmsFormsClass {
             $qty = 0;
             foreach($grp as $g => $gr) {
                 $line = array_pop($gr);
-                foreach($gr as $gl) {
-                    $line['qty'] += $gl['qty']; 
+                if ($line['active'] == 'on') {
+                    foreach ($gr as $gl) {
+                        $line['qty'] += $gl['qty'];
+                    }
+                    $result[$uid]['list'][$g] = $line;
                 }
-                $result[$uid]['list'][$g] = $line;
-               
             }
         }
         $dom->fetch(['date'=>$date,'result'=>$result]);
@@ -169,7 +173,8 @@ class ordersClass extends cmsFormsClass {
         $item['expired'] >= date('Y-m-d') ? $item['active'] = 'on' : $item['active'] = '';
     }
 
-    function beforeItemShow(&$item) {
+    function beforeItemShow(&$item, $date_report = null) {
+        $date_report == null ? $date_report = date('Y-m-d') : null;
         setlocale(LC_ALL, 'ru_RU.utf8');
         isset($item['number']) ? null : $item['number'] = $item['id'];
         foreach ($item['delivery'] as $date => &$d) {
@@ -182,7 +187,18 @@ class ordersClass extends cmsFormsClass {
             $d['status'] == '' ? $d['status'] = 'empty' : null;
             if ($date <= date('Y-m-d')) $d['status'] = 'past';
         }
-
+        foreach($item['list'] as &$line) {
+            if (!isset($line['dlvrs'])) {
+                $count = 0;
+                foreach ($item['delivery'] as $date => $d) {
+                    if ($date_report >= $date && $d['status'] !== 'deny') {
+                        $count++;
+                    }
+                }
+                $line['dlvrs'] = $count;
+                $count > $line['days'] ? $line['active'] = '' : $line['active'] = 'on';
+            }
+        }
     }
 }
 ?>
