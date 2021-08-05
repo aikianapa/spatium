@@ -19,13 +19,24 @@
                 <form id="{{_form}}EditForm" autocomplete="off">
                     <input type="checkbox" class="custom-control-input" name="active" id="{{_form}}ValueItemActive">
                     <input type="hidden" name="_id" class="form-control" readonly placeholder="Идентификатор">
+
+                    <div class="form-group row">
+                        <div class="input-group col-12">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Наименование</span>
+                            </div>
+                            <input type="text" name="name" class="form-control" placeholder="Наименование" required>
+                        </div>
+                    </div>
+
+
                     <!-- required bootstrap js -->
                     <ul class="nav nav-tabs mb-2" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active" data-toggle="tab" href="#main">Описание</a>
                         </li>
                         <wb-foreach wb-json='["пн","вт","ср", "чт","пт","сб","вс"]'>
-                            <li class="nav-item">
+                            <li class="nav-item d-none">
                                 <a class="nav-link" data-toggle="tab" href="#{{wbTranslit({{_val}})}}">{{_val}}</a>
                             </li>
                         </wb-foreach>
@@ -33,23 +44,12 @@
 
                     <div class="tab-content">
                         <div id="main" class="container tab-pane active">
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">Наименование</span>
-                                    </div>
-                                    <input type="text" name="name" class="form-control" placeholder="Наименование"
-                                        required>
-                                </div>
-                            </div>
-
                             <div class="form-group row">
                                 <div class="input-group col-6">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">Категория</span>
                                     </div>
-                                    <select name="category" class="form-control" placeholder="Категория" required
-                                        wb-tree="dict=menu-categories">
+                                    <select name="category" class="form-control" required wb-tree="dict=menu-categories">
                                         <option value="{{id}}">{{name}}</option>
                                     </select>
                                 </div>
@@ -61,7 +61,6 @@
                                         required>
                                 </div>
                             </div>
-
                             <div class="form-group row">
                                 <div class="input-group col-4">
                                     <div class="input-group-prepend">
@@ -149,16 +148,9 @@
                                             <wb-module wb="{'module':'filepicker'}" name="images" />
                                         </div>
                                     </div>
-
-
-
-
                                 </wb-multilang>
-
-
                             </div>
                         </wb-foreach>
-
                     </div>
                 </form>
             </div>
@@ -168,5 +160,16 @@
         </div>
     </div>
 </div>
+<script>
+    var $form = $('#{{_form}}EditForm');
+    $form.find('[name=category]').off('change');
+    $form.find('[name=category]').on('change', function() {
+        if ($(this).val() == 'main') {
+            $form.children('.nav-tabs').find('.nav-item:not(:first-child)').removeClass('d-none');
+        } else {
+            $form.children('.nav-tabs').find('.nav-item:not(:first-child)').addClass('d-none');
+        }
+    }).trigger('change');
+</script>
 
 </html>
