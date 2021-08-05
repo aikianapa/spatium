@@ -39,7 +39,7 @@ $(document).on("wb-save-error", function (e, params) {
     }
 });
 
-$(document).delegate(".modal", "shown.bs.modal", function () {
+$(document).delegate(".modal", "show.bs.modal", function () {
     if (PerfectScrollbar !== undefined)  {
         $('.modal-body').css('overflow','hidden');
         new PerfectScrollbar('.modal-body');
