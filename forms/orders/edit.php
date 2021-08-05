@@ -22,7 +22,7 @@
                 <div class="py-2">
                     <wb-foreach wb="from=delivery&render=client">
                         <wb-var wb-if="'{{status}}'!=='deny'" color='success' else='danger' />
-                        <div class="d-inline badge badge-{{_var.color}} mr-2">
+                        <div class="d-flex-inline badge badge-{{_var.color}} mb-1 mr-2">
                                 {{wbDate("d.m.Y",{{date}})}}
                         </div>
                     </wb-foreach>

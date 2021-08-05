@@ -39,6 +39,13 @@ $(document).on("wb-save-error", function (e, params) {
     }
 });
 
+$(document).delegate(".modal", "shown.bs.modal", function () {
+    if (PerfectScrollbar !== undefined)  {
+        $('.modal-body').css('overflow','hidden');
+        new PerfectScrollbar('.modal-body');
+    }
+});
+
 $(document).delegate(".modal", "hidden.bs.modal", function (event) {
     if ($('body').hasClass('app-chat') && $(document).find('.modal:visible').length) {
         $('body').addClass('modal-open');
