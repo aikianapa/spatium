@@ -38,6 +38,7 @@
         <table class="table table-striped table-hover tx-15">
             <thead>
                 <tr>
+                    <td></td>
                     <td>Наименование</td>
                     <td>Артикул</td>
                     <td>Цена</td>
@@ -53,7 +54,11 @@
                             'filter': {'_site':'{{_sett.site}}'}
                 }">
                     <tr class="bg-transparent">
-
+                        <td>
+                            <div class="avatar">
+                                <img data-src="/thumbc/50x50/src{{images.0.img}}" class="rounded">
+                            </div>
+                        </td>
                         <td class="cursor-pointer tx-medium w-50"
                             data-ajax="{'url':'/cms/ajax/form/{{_form}}/edit/{{_id}}','html':'#yongerSpace modals'}">
                             {{name}}

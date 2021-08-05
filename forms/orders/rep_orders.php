@@ -39,7 +39,7 @@
                             </wb-data>
                         </h6>
                         <wb-foreach wb="from=list">
-                            <img data-src="/thumb/80x80/src/{{image}}" class="img wd-50 ht-50 rounded-circle" alt="">
+                            <img data-src="/thumb/80x80/src/{{image}}" class="img wd-50 ht-50 rounded-circle" alt="" wb-if="'{{active}}'=='on'">
                         </wb-foreach>
 
                     </div>
