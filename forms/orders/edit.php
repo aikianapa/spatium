@@ -1,5 +1,5 @@
 <html>
-<div class="modal effect-scale show removable" id="modalPagesEdit" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal effect-scale show removable" id="modalOrdersEdit" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -19,12 +19,13 @@
                         </p>
                     </wb-data>
                 </div>
-                <div class="py-2">
-                    <wb-foreach wb="from=delivery&render=client">
+                <div class="py-2" id="deliveryCalendar">
+                    <wb-foreach wb="from=delivery&render=server">
                         <wb-var wb-if="'{{status}}'!=='deny'" color='success' else='danger' />
-                        <button type="button" class="btn btn-xs btn-{{_var.color}} mr-2 mb-2">
+                        <wb-var wb-if="'{{status}}'=='past'" color='secondary' />
+                        <button type="button" class="day {{status}} btn btn-xs btn-{{_var.color}} mr-2 mb-2" data-date="{{date}}">
                         {{wbDate("d.m.Y",{{date}})}}
-                        <i class="ml-2 fa fa-close text-danger" wb-if="'{{status}}'!=='deny'"></i>
+                        <i class="ml-2 fa fa-close text-danger" wb-if="'{{status}}'=='empty'"></i>
                         <i class="ml-2 fa fa-check text-success" wb-if="'{{status}}'=='deny'"></i>
                         </button>
                     </wb-foreach>
@@ -62,5 +63,26 @@
         </div>
     </div>
 </div>
+<script>
+    $modal = $('#modalOrdersEdit');
+    $modal.delegate('button.day .fa','click',function(){
+        let date = $(this).parent().data('date');
+		var type = null;
+		var $that = $(this).parents('.day');
+		if ($that.hasClass('wait')) return;
+		if ($that.hasClass('past')) return;
+		if ($that.hasClass('empty')) type = 'empty';
+		if ($that.hasClass('deny')) type = 'deny';
+
+        wbapp.post('/cms/ajax/form/users/delivery_decline',{
+            type: type,
+            uid: '{{user}}',
+            date: date
+        },function(data){
+            $that.removeClass('wait');
+            wbapp.render('#deliveryCalendar',{'delivery':data});
+        })
+    })
+</script>
 
 </html>

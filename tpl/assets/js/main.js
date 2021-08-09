@@ -1133,12 +1133,7 @@
 				date: date
 			},function(data){
 				$that.removeClass('wait');
-					wbapp.template[tid].params.data = data;
-					Ractive({
-						target: tid,
-						template: wbapp.template[tid].html,
-						data: {'result':data}
-					});
+				wbapp.render(tid,{'result':data});
 			})
 		}
 		ev.stopPropagation();
