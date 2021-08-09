@@ -111,7 +111,7 @@ class ordersClass extends cmsFormsClass {
                 $result[] = $order;
             }
         }
-        $dom->fetch($res);
+        $dom->fetch(['result'=>$result]);
         echo $dom->outer();
     }
 
