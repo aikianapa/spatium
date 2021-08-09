@@ -8,10 +8,6 @@ class usersClass extends cmsFormsClass
         // формируем список доставок текущего пользователя
         $app = &$this->app;
         header('Content-Type: application/json');
-        if (!$app->checkToken()) {
-            echo '{"error":true}';
-            die;
-        }
         in_array($app->vars('_sess.user.role'),['admin','manager']) ? $uid = $app->vars('_post.uid') : $uid = $app->vars('_sess.user.id');
         $orders = $app->itemList('orders', ['filter'=>[
             '_creator' => $uid,
@@ -50,10 +46,6 @@ class usersClass extends cmsFormsClass
         // отмена доставки в указаный день
         header('Content-Type: application/json');
         $app = &$this->app;
-        if (!$app->checkToken()) {
-            echo '{"error":true}';
-            die;
-        }
             in_array($app->vars('_sess.user.role'),['admin','manager']) ? $uid = $app->vars('_post.uid') : $uid = $app->vars('_sess.user.id');
             $orders = $app->itemList('orders', ['filter'=>[
             '_creator' => $uid,
@@ -65,6 +57,7 @@ class usersClass extends cmsFormsClass
             }
             $app->tableFlush('orders');
             echo $this->delivery_list();
+
     }
 
     public function delivery_order_decline($oid = null, $date = null)

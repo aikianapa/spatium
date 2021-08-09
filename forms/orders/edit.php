@@ -21,13 +21,35 @@
                 </div>
                 <div class="py-2" id="deliveryCalendar">
                     <wb-foreach wb="from=delivery&render=server">
+                        <div class="dropdown  d-inline">
                         <wb-var wb-if="'{{status}}'!=='deny'" color='success' else='danger' />
-                        <wb-var wb-if="'{{status}}'=='past'" color='secondary' />
-                        <button type="button" class="day {{status}} btn btn-xs btn-{{_var.color}} mr-2 mb-2" data-date="{{date}}">
-                        {{wbDate("d.m.Y",{{date}})}}
-                        <i class="ml-2 fa fa-close text-danger" wb-if="'{{status}}'=='empty'"></i>
-                        <i class="ml-2 fa fa-check text-success" wb-if="'{{status}}'=='deny'"></i>
-                        </button>
+                        <wb-var wb-if="'{{status}}'=='past'" color='outline-secondary' />
+                        <wb-var wb-if="'{{status}}'=='fail'" color='outline-warning' />
+                        <wb-var wb-if="'{{status}}'=='ready'" color='outline-success' />
+                            <button type="button"
+                                class="dropdown-toggle day {{status}} btn btn-xs btn-{{_var.color}} mr-2 mb-2"
+                                data-date="{{date}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{wbDate("d.m.Y",{{date}})}}
+                            </button>
+                            <div class="dropdown-menu"  wb-if="'{{status}}'!=='past'">
+                                <a class="dropdown-item" wb-if="'{{status}}'=='empty'" href="#empty">
+                                    <img src="/module/myicons/delivery-17.svg?size=24&stroke=dc3545">
+                                    Сдвинуть доставку</a>
+                                <a class="dropdown-item" wb-if="'{{status}}'=='deny'" href="#deny">
+                                    <img src="/module/myicons/delivery-truck-fast.svg?size=24&stroke=10b759">
+                                    Вернуть доставку</a>
+                                <a class="dropdown-item" wb-if="'{{status}}'=='ready' OR '{{status}}'=='fail'" href="#toempty">
+                                    <img src="/module/myicons/delivery-truck-fast.svg?size=24&stroke=10b759">
+                                    Вернуть доставку</a>
+                                <a class="dropdown-item"  wb-if="'{{status}}'=='empty'" href="#ready">
+                                    <img src="/module/myicons/delivery-truck-checkmark.svg?size=24&stroke=10b759">
+                                    Доставлено</a>
+                                <a class="dropdown-item"  wb-if="'{{status}}'=='empty'" href="#fail">
+                                    <img src="/module/myicons/delivery-truck-cancel.svg?size=24&stroke=ffc107">
+                                    Срыв доставки</a>
+
+                            </div>
+                        </div>
                     </wb-foreach>
                 </div>
 
@@ -63,26 +85,35 @@
         </div>
     </div>
 </div>
-<script>
-    $modal = $('#modalOrdersEdit');
-    $modal.delegate('button.day .fa','click',function(){
-        let date = $(this).parent().data('date');
-		var type = null;
-		var $that = $(this).parents('.day');
-		if ($that.hasClass('wait')) return;
-		if ($that.hasClass('past')) return;
-		if ($that.hasClass('empty')) type = 'empty';
-		if ($that.hasClass('deny')) type = 'deny';
-
-        wbapp.post('/cms/ajax/form/users/delivery_decline',{
-            type: type,
-            uid: '{{user}}',
-            date: date
-        },function(data){
-            $that.removeClass('wait');
-            wbapp.render('#deliveryCalendar',{'delivery':data});
-        })
+<script wbapp>
+var $modal = $('#modalOrdersEdit');
+$modal.find('button.day.past').removeClass('dropdown-toggle').removeAttr('data-toggle');
+$modal.undelegate('button.day + .dropdown-menu a', wbapp.evClick);
+$modal.delegate('button.day + .dropdown-menu a', wbapp.evClick, function() {
+    let $btn = $(this).parent('.dropdown-menu').prev('button.day');
+    let $that = $(this);
+    let date = $btn.data('date');
+    let type = substr($(this).attr('href'),1);
+    let url;
+    if (type == 'deny' || type == 'empty') {
+        url = '/cms/ajax/form/users/delivery_decline';
+    } else {
+        if (type == 'toempty') type = 'empty';
+        url = '/orders/set_status';
+    }
+    $that.addClass('wait');
+    wbapp.post(url, {
+        type: type,
+        uid: '{{user}}',
+        oid: '{{id}}',
+        date: date
+    }, function(data) {
+        $that.removeClass('wait');
+        wbapp.render('#deliveryCalendar', {
+            'delivery': data
+        });
     })
+})
 </script>
 
 </html>

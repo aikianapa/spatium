@@ -169,6 +169,21 @@ class ordersClass extends cmsFormsClass {
         echo $dom->outer();
     }
 
+
+    function set_status() {
+        $app = &$this->app;
+        header('Content-Type: application/json');
+        $order = $app->itemRead('orders',$app->vars('_post.oid'));
+        if ($order && isset($order['delivery'][$app->vars('_post.date')])) {
+            $order['delivery'][$app->vars('_post.date')]['status'] = $app->vars('_post.type');
+            $res = $app->itemSave('orders',$order);
+            echo json_encode(['error'=>false,'order'=>$res]);
+        } else {
+            echo json_encode(['error'=>true]);
+        }
+        die;
+    }
+
     function get_date_dlvrs() {
         header('Content-Type: application/json');
         $app = &$this->app;
@@ -227,7 +242,12 @@ class ordersClass extends cmsFormsClass {
             $d['y'] = strftime('%Y', $time);
             $d['n'] = strftime('%a', $time);
             $d['status'] == '' ? $d['status'] = 'empty' : null;
-            if ($date <= date('Y-m-d')) $d['status'] = 'past';
+            if ($this->app->vars('_sess.user.role') > '' && $this->app->vars('_sess.user.role')!== 'user')  {
+                if ($date < date('Y-m-d')) $d['status'] = 'past';
+            } else {
+                if ($date <= date('Y-m-d')) $d['status'] = 'past';
+            }
+            
             $item['delivery'][$date] = $d;
         }
         foreach($item['list'] as &$line) {
