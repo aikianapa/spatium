@@ -14,7 +14,7 @@ class usersClass extends cmsFormsClass {
         $orders = $app->itemList('orders',['filter'=>[
             '_creator' => $app->vars('_sess.user.id'),
             'expired' => ['$gte'=>date('Y-m-d')],
-            'date' => ['$gte'=>date('Y-m-d')]
+            'date' => ['$lte'=>date('Y-m-d')]
         ]]);
         $dlvrs = [];
         foreach($orders['list'] as $order) {
@@ -49,7 +49,7 @@ class usersClass extends cmsFormsClass {
         $orders = $app->itemList('orders',['filter'=>[
             '_creator' => $app->vars('_sess.user.id'),
             'expired' => ['$gte'=>date('Y-m-d')],
-            'date' => ['$gte'=>date('Y-m-d')]
+            'date' => ['$lte'=>date('Y-m-d')]
         ]]);
         foreach($orders['list'] as $order) {
             $this->delivery_order_decline($order['id'], $app->vars('_post.date'));

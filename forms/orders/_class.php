@@ -90,15 +90,12 @@ class ordersClass extends cmsFormsClass {
         echo $dom->outer();
     }
 
-    function rep_orders($date = null) {
+    function rep_orders() {
         $app = &$this->app;
         $dom = $app->fromFile(__DIR__ . '/rep_orders.php');
         $result = [];
-        $date == null ? $type = 'html' : $type = 'json';
         if ($app->vars('_post.formdata.date') > '') {
             $date = date('Y-m-d', strtotime($app->vars('_post.formdata.date')));
-        } else if ($type == 'json') {
-            $date = date('Y-m-d',strtotime($date));
         } else {
             $date = date('Y-m-d',strtotime('now'));
         }
@@ -114,13 +111,8 @@ class ordersClass extends cmsFormsClass {
                 $result[] = $order;
             }
         }
-        $res = ['date'=>$date,'result'=>$result];
-        if ($type == 'json') {
-            return $res;
-        } else {
-            $dom->fetch($res);
-            echo $dom->outer();
-        }
+        $dom->fetch(['date'=>$date,'result'=>$result]);
+        echo $dom->outer();
     }
 
     function rep_clients() {

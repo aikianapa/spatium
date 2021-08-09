@@ -4,7 +4,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <div class="col-5">
-                    <h5>Заказ № {{id}}</h5>
+                    <h5>Заказ № {{number}}</h5>
                 </div>
                 <i class="fa fa-close r-20 position-absolute cursor-pointer" data-dismiss="modal"
                     aria-label="Close"></i>
@@ -22,9 +22,11 @@
                 <div class="py-2">
                     <wb-foreach wb="from=delivery&render=client">
                         <wb-var wb-if="'{{status}}'!=='deny'" color='success' else='danger' />
-                        <div class="d-flex-inline badge badge-{{_var.color}} mb-1 mr-2">
-                                {{wbDate("d.m.Y",{{date}})}}
-                        </div>
+                        <button type="button" class="btn btn-xs btn-{{_var.color}} mr-2 mb-2">
+                        {{wbDate("d.m.Y",{{date}})}}
+                        <i class="ml-2 fa fa-close text-danger" wb-if="'{{status}}'!=='deny'"></i>
+                        <i class="ml-2 fa fa-check text-success" wb-if="'{{status}}'=='deny'"></i>
+                        </button>
                     </wb-foreach>
                 </div>
 
