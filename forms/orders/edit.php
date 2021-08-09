@@ -21,16 +21,21 @@
                 </div>
                 <div class="py-2" id="deliveryCalendar">
                     <wb-foreach wb="from=delivery&render=server">
-                        <div class="dropdown  d-inline">
-                        <wb-var wb-if="'{{status}}'!=='deny'" color='success' else='danger' />
+                    <wb-var wb-if="'{{status}}'!=='deny'" color='success' else='danger' />
                         <wb-var wb-if="'{{status}}'=='past'" color='outline-secondary' />
                         <wb-var wb-if="'{{status}}'=='fail'" color='outline-warning' />
                         <wb-var wb-if="'{{status}}'=='ready'" color='outline-success' />
-                            <button type="button"
+                    <div class="dropdown  d-inline">
+                            <button type="button" wb-if="'{{status}}'!=='past'"
                                 class="dropdown-toggle day {{status}} btn btn-xs btn-{{_var.color}} mr-2 mb-2"
                                 data-date="{{date}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 {{wbDate("d.m.Y",{{date}})}}
                             </button>
+                            <button type="button" wb-if="'{{status}}'=='past'"
+                                class="day {{status}} btn btn-xs btn-{{_var.color}} mr-2 mb-2" data-date="{{date}}">
+                                {{wbDate("d.m.Y",{{date}})}}
+                            </button>
+
                             <div class="dropdown-menu"  wb-if="'{{status}}'!=='past'">
                                 <a class="dropdown-item" wb-if="'{{status}}'=='empty'" href="#empty">
                                     <img src="/module/myicons/delivery-17.svg?size=24&stroke=dc3545">
@@ -87,7 +92,6 @@
 </div>
 <script wbapp>
 var $modal = $('#modalOrdersEdit');
-$modal.find('button.day.past').removeClass('dropdown-toggle').removeAttr('data-toggle');
 $modal.undelegate('button.day + .dropdown-menu a', wbapp.evClick);
 $modal.delegate('button.day + .dropdown-menu a', wbapp.evClick, function() {
     let $btn = $(this).parent('.dropdown-menu').prev('button.day');
@@ -114,6 +118,7 @@ $modal.delegate('button.day + .dropdown-menu a', wbapp.evClick, function() {
         });
     })
 })
+
 </script>
 
 </html>
