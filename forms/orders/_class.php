@@ -90,12 +90,15 @@ class ordersClass extends cmsFormsClass {
         echo $dom->outer();
     }
 
-    function rep_orders() {
+    function rep_orders($date = null) {
         $app = &$this->app;
         $dom = $app->fromFile(__DIR__ . '/rep_orders.php');
         $result = [];
+        $date == null ? $type = 'html' : $type = 'json';
         if ($app->vars('_post.formdata.date') > '') {
-            $date = date('Y-m-d',strtotime($app->vars('_post.formdata.date')));    
+            $date = date('Y-m-d', strtotime($app->vars('_post.formdata.date')));
+        } else if ($type == 'json') {
+            $date = date('Y-m-d',strtotime($date));
         } else {
             $date = date('Y-m-d',strtotime('now'));
         }
@@ -111,8 +114,13 @@ class ordersClass extends cmsFormsClass {
                 $result[] = $order;
             }
         }
-        $dom->fetch(['date'=>$date,'result'=>$result]);
-        echo $dom->outer();
+        $res = ['date'=>$date,'result'=>$result];
+        if ($type == 'json') {
+            return $res;
+        } else {
+            $dom->fetch($res);
+            echo $dom->outer();
+        }
     }
 
     function rep_clients() {
@@ -169,6 +177,43 @@ class ordersClass extends cmsFormsClass {
         echo $dom->outer();
     }
 
+    function get_date_dlvrs() {
+        header('Content-Type: application/json');
+        $app = &$this->app;
+        $date = $app->vars('_post.date');
+        if (!$app->checkToken()) {
+            echo json_encode(null);
+            die;
+        } else {
+
+        $result = [];
+
+        $list = $app->itemList('orders',['filter'=>[
+            'date'=>['$lte'=>$date]
+            ,'expired'=>['$gte'=>$date]
+        ]]);
+
+        foreach($list['list'] as $order) {
+            $this->beforeItemShow($order,$date);
+            $delivery = &$order['delivery'][$date];
+            $start = date('Y-m-d',strtotime($order['date']));
+            $result[] = $order;
+        }
+        $res = ['date'=>$date,'result'=>$result];
+        
+            $res['freedate'] = null;
+            if (count($res['result'])) {
+                foreach($res['result'] as &$line) {
+                    $line['expired'] > $res['freedate'] ? $res['freedate'] = $line['expired'] : null;
+                    $line['date'] = date('d.m.Y',strtotime($line['date']));
+                    $line['expired'] = date('d.m.Y',strtotime($line['expired']));
+                }
+                $res['freedate'] = date('d.m.Y',strtotime($res['freedate'] . ' +1day'));
+            }
+            echo json_encode($res);
+        }
+    }
+
     function afterItemRead(&$item) {
         $item['expired'] >= date('Y-m-d') ? $item['active'] = 'on' : $item['active'] = '';
     }
@@ -177,7 +222,7 @@ class ordersClass extends cmsFormsClass {
         $date_report == null ? $date_report = date('Y-m-d') : null;
         setlocale(LC_ALL, 'ru_RU.utf8');
         isset($item['number']) ? null : $item['number'] = $item['id'];
-        foreach ($item['delivery'] as $date => &$d) {
+        foreach ($item['delivery'] as $date => $d) {
             $time = strtotime($date);
             $d['date'] = $date;
             $d['d'] = strftime('%d', $time);
@@ -186,6 +231,7 @@ class ordersClass extends cmsFormsClass {
             $d['n'] = strftime('%a', $time);
             $d['status'] == '' ? $d['status'] = 'empty' : null;
             if ($date <= date('Y-m-d')) $d['status'] = 'past';
+            $item['delivery'][$date] = $d;
         }
         foreach($item['list'] as &$line) {
             if (!isset($line['dlvrs'])) {

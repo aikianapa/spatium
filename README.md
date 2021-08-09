@@ -1,2 +1,0 @@
-# spatium
-spatium-detox.ru
