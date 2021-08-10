@@ -1,0 +1,23 @@
+body {
+    overflow-x: hidden;
+}
+
+header {
+    width: 100vw;
+}
+
+main {
+    width: 100vw;
+}
+
+.object-cover {
+    object-fit: cover;
+}
+
+.object-contain {
+    object-fit: contain;
+}
+
+.filter-invert {
+    filter: invert();
+}
