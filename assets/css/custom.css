@@ -21,3 +21,23 @@ main {
 .filter-invert {
     filter: invert();
 }
+
+section#menu .nav-link {
+    border: 0;
+    background: transparent;
+    padding-bottom: 20px;
+    font-weight: 600;
+    text-transform: capitalize;
+    width: 60px;
+}
+
+section#menu .nav-link.active {
+    color: #44c473 !important;
+    border-bottom: 1px #333 solid;
+}
+
+.columns-4 {
+    column-count: 4;
+}
+
+
