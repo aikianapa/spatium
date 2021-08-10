@@ -28,6 +28,26 @@
 
     </nav>
 
+
+    <div class="yonger-nested mb-1">
+        <span class="bg-light">
+            <div class="header p-2">
+                <span class="row">
+                    <div class="col-sm-6">
+                    <input class="form-control" type="search" placeholder="Поиск..."
+                    data-ajax="{'target':'#{{_form}}List',
+                    'filter_add':{'$or':[
+                        { 'number': {'$like' : '$value'} }, 
+                        { 'phone': {'$like' : '$value'} }, 
+                        { 'address': {'$like' : '$value'} }, 
+                        { 'name': {'$like' : '$value'} }
+                    ]} }">
+                    </div>
+                </span>
+            </div>
+        </span>
+
+
     <table class="table table-striped table-hover tx-15">
         <thead>
             <tr>
@@ -46,11 +66,11 @@
                 <tr>
                     <td>{{number}}</td>
                     <td>{{wbDate("d.m.Y",{{date}})}} - {{wbDate("d.m.Y",{{expired}})}}</td>
-                    <td><wb-data wb="table=users&item={{user}}">
-                        {{first_name}} {{last_name}}<br>
+                    <td>
+                        {{name}}<br>
                         <span class="tx-11">{{wbPhoneFormat({{phone}})}}</span>
                         <span class="tx-11">{{delivery_address}}</span>
-                    </wb-data></td>
+                    </td>
                     <td class="text-right">{{total.qty}}</td>
                     <td class="text-right">{{total.sum}}</td>
                     <td class="text-center">

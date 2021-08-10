@@ -111,7 +111,7 @@ class ordersClass extends cmsFormsClass {
                 $result[] = $order;
             }
         }
-        $dom->fetch(['result'=>$result]);
+        $dom->fetch(['date'=>$date,'result'=>$result]);
         echo $dom->outer();
     }
 
@@ -223,6 +223,10 @@ class ordersClass extends cmsFormsClass {
 
     function afterItemRead(&$item) {
         $item['expired'] >= date('Y-m-d') ? $item['active'] = 'on' : $item['active'] = '';
+        $user = $this->app->itemRead('users',$item['_creator']);
+        $item['name'] = $user['first_name'] . ' ' . $user['last_name'];
+        $item['phone'] = wbPhoneFormat($user['phone']);
+        $item['address'] = $user['delivery_address'];
     }
 
     function beforeItemEdit(&$item)
