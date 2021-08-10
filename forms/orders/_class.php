@@ -198,6 +198,7 @@ class ordersClass extends cmsFormsClass {
         $list = $app->itemList('orders',['filter'=>[
             'date'=>['$lte'=>$date]
             ,'expired'=>['$gte'=>$date]
+            ,'_creator'=>$app->vars('_sess.user.id')
         ]]);
 
         foreach($list['list'] as $order) {
