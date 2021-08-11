@@ -8,8 +8,8 @@
     rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.0.1/dist/alpine.js" defer></script>
   <script src="/engine/js/wbapp.js"></script>
-  <script wbapp remove>
-    wbapp.loadStyles(["/modules/yonger/tpl/assets/css/dashforge.min.css", "/assets/css/custom.css"]);
+  <script type="wbapp" remove>
+    wbapp.loadStyles(["/modules/yonger/tpl/assets/css/dashforge.min.css","/assets/css/custom.less"]);
     wbapp.loadScripts(["/engine/lib/bootstrap/js/bootstrap.bundle.min.js"])
   </script>
 </head>
@@ -457,8 +457,121 @@
       </div>
     </section>
 
+    <section id="faq">
+      <div class="bg-gray-100">
+        <div class="content container">
+          <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center px-5 pb-5">
+              <h2 class="tx-semibold py-4 tx-40">
+                Часто задаваемые вопросы
+              </h2>
+              <p class="tx-16">Для вашего удобства мы собрали здесь наиболее частые вопросы.</p>
+            </div>
+
+            <div class="col-lg-10 offset-lg-1 text-center px-5">
+              <div id="faq-accordion" class="collapsed">
+                <h6 class="tx-20 tx-semibold py-4">Нужны ли разгрузочные дни и cheat meal?</h6>
+                <div>Полезное питание обязано быть вкусным! Ежедневно мы готовим для Вас блюда ресторанного качества, а для любителей необычных и редких блюд были разработаны линейки питания PREMIUM и SEA. Мы понимаем что соблюдать режим правильного питание сложно, несмотря на то что оно очень вкусное нужно баловать себя и сладостями - которые так же могут быть полезными для режима ПП!</div>
+                <h6 class="tx-20 tx-semibold py-4">Как рассчитать количество калорий необходимых для похудения?</h6>
+                <div>Для того чтобы рассчитать количество калорий рекомендуемого для ежедневного потребления, а так же узнать на сколько можно похудеть без вреда для здоровья воспользуйтесь нашим сервисом "подбор питания"</div>
+                <h6 class="tx-20 tx-semibold py-4">Если присутствует молочка то какая?</h6>
+                <div>Исключительно фермерского производства, с небольшой долей жира. Молоко не более 2,5%, творог не более 5%, йогурты не более 2%</div>
+                <h6 class="tx-20 tx-semibold py-4">Какое мясо используется в приготовлении?</h6>
+                <div>Мы работаем только с проверенными поставщиками. В рационах используется мясо и птица высшего сорта.</div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
-  <script wbapp remove>
+
+  <footer class="section bg-dark">
+    <div class="container py-3">
+      <div class="row align-self-center">
+        <div class="col-md-auto">
+
+          <!-- Brand -->
+          <p>
+            <a href="#" class="position-absolute footer-brand text-white">
+              <img class="ht-70 w-auto" src="./assets/img/logo.svg" alt="">
+            </a>
+          </p>
+      
+        </div>
+        <div class="col-md">
+      
+          <!-- Links -->
+          <ul class="list-unstyled list-inline text-md-right">
+            <li class="list-inline-item mr-2">
+              <a href="#" class="text-white">
+                Правила
+              </a>
+            </li>
+            <li class="list-inline-item mr-2">
+              <a href="#" class="text-white">
+                Политика 
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" class="text-white">
+                Контакты
+              </a>
+            </li>
+          </ul>
+
+        </div>
+      </div> <!-- / .row -->
+      <div class="row align-items-center">
+
+        <div class="col-md">
+&nbsp;
+        </div>
+
+        <div class="col-md">
+     
+          <p class="tx-white">
+            <small>
+              <span class="current-year">2021</span> Создано для Spatium Detox. 
+            </small>
+          </p>
+
+        </div>
+        <div class="col-md">
+      
+          <!-- Social links -->
+          <ul class="list-inline list-unstyled text-md-right">
+            <li class="list-inline-item">
+              <a href="#">
+                <img src="/module/myicons/facebook-circle.svg?size=30&stroke=ffffff">
+              </a>
+            </li>
+            <li class="list-inline-item ml-2">
+              <a href="#">
+                <img src="/module/myicons/vk-vkontakte.svg?size=30&stroke=ffffff">
+              </a>
+            </li>
+            <li class="list-inline-item ml-2">
+              <a href="#">
+                <img src="/module/myicons/instagram-circle.svg?size=30&stroke=ffffff">
+              </a>
+            </li>
+            <li class="list-inline-item ml-2">
+              <a href="#">
+                <img src="/module/myicons/youtube-circle.svg?size=30&stroke=ffffff">
+              </a>
+            </li>
+          </ul>
+
+        </div>
+      </div> <!-- / .row -->
+    </div> <!-- / .container -->
+
+  </footer>
+
+  <script type="wbapp" remove>
     $('.parallax').each(function () {
       let img = $(this).attr('data-img');
       if (img !== undefined) $(this).css("background-image", "url(" + img + ")").removeAttr('data-img');
@@ -466,6 +579,12 @@
 
     $('.img-caption').on('mouseover mouseout', function () {
       $(this).find('figcaption').toggleClass('op-0');
+    });
+
+    $('#faq-accordion').accordion({
+      heightStyle: 'content'
+      ,collapsible: true
+      ,active: false
     });
 
   </script>
