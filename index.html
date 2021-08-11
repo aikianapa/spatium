@@ -4,13 +4,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="./modules/yonger/tpl/assets/css/dashforge.min.css" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;500;600;700&amp;subset=latin,cyrillic" rel="stylesheet">
-  <link href="./assets/css/custom.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;500;600;700&amp;subset=latin,cyrillic"
+    rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.0.1/dist/alpine.js" defer></script>
-  <script src="./engine/js/jquery.min.js"></script>
-  <script src="./engine/lib/bootstrap/js/bootstrap.bundle.min.js" defer></script>
-
+  <script src="/engine/js/wbapp.js"></script>
+  <script wbapp remove>
+    wbapp.loadStyles(["/modules/yonger/tpl/assets/css/dashforge.min.css", "/assets/css/custom.css"]);
+    wbapp.loadScripts(["/engine/lib/bootstrap/js/bootstrap.bundle.min.js"])
+  </script>
 </head>
 <style>
   * {
@@ -52,30 +53,28 @@
         </div>
       </div>
     </nav>
-    <div class="position-relative">
-      <div class="row m-0">
-        <div class="wd-100v ht-100v">
-          <img class="position-absolute object-cover ht-100v w-100" src="./assets/img/topscreen.webp"
-            alt="Spatium Detox">
-          <div class="position-absolute d-block wd-100v ht-100v op-7 bg-black-8">&nbsp;</div>
-          <div class="col-sm-8 offset-sm-2 text-center pd-t-200 text-center text-white">
-            <img src="./assets/img/logo.svg" class="wd-300 px-3 img-fluid">
-            <h1 class="text-white tx-semibold py-5 tx-50">
-              Доставка здоровой еды
-            </h1>
-            <p class="pb-5 tx-20">
-              Правильно приготовленная еда с грамотным соотношением КБЖУ — для хорошей формы, удобства и экономии
-              времени
-            </p>
-            <a href="#" class="btn btn-success rounded-30 tx-semibold pd-x-40 pd-y-15 ">
-              Попробовать
-            </a>
-          </div>
+
+    <div class="parallax d-flex" data-img="./assets/img/topscreen.webp">
+      <div class="position-absolute d-block wd-100v ht-100v op-7 bg-black-8">&nbsp;</div>
+      <div class="parallax-overlay row justify-content-center">
+        <div class="col-sm-8 text-center text-center text-white">
+          <img src="./assets/img/logo.svg" class="wd-300 px-3 img-fluid">
+          <h1 class="text-white tx-semibold py-4 tx-50">
+            Доставка здоровой еды
+          </h1>
+          <p class="pb-5 tx-20">
+            Правильно приготовленная еда с грамотным соотношением КБЖУ — для хорошей формы, удобства и экономии
+            времени
+          </p>
+          <a href="#" class="btn btn-success rounded-30 tx-semibold pd-x-40 pd-y-15 ">
+            Попробовать
+          </a>
         </div>
       </div>
+    </div>
   </header>
 
-  <main>
+  <main class="position-relative">
     <section class="bg-success">
       <div class="content container">
         <div class="row text-white tx-semibold tx-18">
@@ -93,11 +92,12 @@
           </div>
         </div>
     </section>
+
     <section class="bg-white" id="team">
       <div class="content container">
         <div class="row pb-5">
           <div class="col-lg-8 offset-lg-2 text-center px-5">
-            <h2 class="tx-semibold py-5 tx-40">
+            <h2 class="tx-semibold py-4 tx-40">
               Медицинский подход
             </h2>
             <p class="tx-16">Программами здорового питания и снижения массы тела занимается более 25 лет. Авторская
@@ -126,7 +126,7 @@
             <h5 class="pt-3 tx-semibold tx-20">Николай Лотов</h5>
             <p class="tx-12 tx-gray-600">Нутрициолог</p>
           </div>
-  
+
         </div>
       </div>
     </section>
@@ -135,12 +135,13 @@
       <div class="content container">
         <div class="row">
           <div class="col-lg-8 offset-lg-2 text-center px-5">
-            <h2 class="tx-semibold pb-5 tx-40">
+            <h2 class="tx-semibold pb-4 tx-40">
               Программы питания
             </h2>
+            <p class="tx-16">Тут бы неплохо придумать небольшой текст, для единообразия заголовок-подзаголовок.</p>
           </div>
         </div>
-        <div class="card-columns">
+        <div class="card-columns pt-4">
           <div class="card bd-0">
             <figure class="img-caption pos-relative mg-b-0">
               <img src="tpl/assets/img/menu1.webp" class="card-img-top object-cover" height="300"
@@ -194,7 +195,7 @@
       <div class="content container">
         <div class="row">
           <div class="col-lg-8 offset-lg-2 text-center px-5">
-            <h2 class="tx-semibold pb-4 tx-40">
+            <h2 class="tx-semibold py-4 tx-40">
               Ежедневное меню
             </h2>
             <p class="tx-16">Четырехразовое питание на ~1 400 ккал/день для тех, кто не занимается спортом, но заботится
@@ -205,7 +206,7 @@
         <!-- required bootstrap js -->
         <ul class="nav nav-tabs bd-0 justify-content-center tx-16" role="tablist">
           <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#home">пн</a>
+            <a class="nav-link active" data-toggle="tab" href="#menu0">пн</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" data-toggle="tab" href="#menu1">вт</a>
@@ -227,10 +228,10 @@
           </li>
         </ul>
 
-        <div class="tab-content mt-5">
-          <div id="home" class="container tab-pane active">
+        <div class="tab-content mt-5 pb-4">
+          <div id="menu0" class="container tab-pane active">
 
-            <div class="card-columns columns-4">
+            <div class="card-columns columns-4 columns-sm-2 columns-xs-1 ">
               <div class="card bd-0">
                 <img src="/tpl/assets/img/day1.webp" class="card-img-top" alt="...">
                 <div class="card-body">
@@ -302,21 +303,171 @@
             <p>3</p>
           </div>
         </div>
+      </div>
+    </section>
 
+    <section id="detoxtest">
+      <div class="parallax d-flex ht-sm-50v" data-img="/tpl/assets/img/pic2.webp">
+        <div class="position-absolute d-block wd-100v ht-100v op-7 bg-black-8">&nbsp;</div>
+        <div class="parallax-overlay row justify-content-center">
+          <div class="col-sm-8 text-center text-center text-white">
+            <h1 class="text-white tx-semibold py-4 tx-50">
+              Хотите попробовать?
+            </h1>
+            <p class="pb-4 tx-20">
+              Если вы впервые обращаетесь в наш сервис, то мы с радостью сделаем скидку на ваш первый заказ! 2 дня DETOX
+              — 3000 рублей
+            </p>
 
+            <a href="#" class="btn btn-success rounded-30 tx-semibold pd-x-40 pd-y-15 ">
+              Заказать
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="content container">
+        <div class="row">
+          <div class="col-lg-8 offset-lg-2 text-center px-5">
+            <h2 class="tx-semibold py-4 tx-40">
+              Зачем нужен детокс?
+            </h2>
+            <p class="pb-4 tx-16">Тут бы неплохо придумать небольшой текст, для единообразия заголовок-подзаголовок.</p>
+          </div>
+        </div>
+          <div class="row">
+            <div class="col-md-5">
+          <ul class="nav nav-tabs nav-vertical" role="tablist">
+            <li class="nav-item d-none"></li>
+            <li class="nav-item mb-2 b-0">
+              <a class="nav-link d-block ht-auto bg-white active p-3" data-toggle="tab" href="#ahome">
+                <div class="tx-semibold tx-20 tx-black pb-3">«Генеральная уборка» организма</div>
+                <p class="tx-gray-500 tx-12 text-justify pb-0">
+                  Это быстрый и вкусный способ «встряхнуть» свой обмен веществ и вывести накопившиеся токсины. Наш организм - самоочищающаяся система, но в сегодняшних условиях она быстро устает, а детокс день перезапускает процессы очищения.
+                </p>
+              </a>
+            </li>
+            <li class="nav-item mb-2">
+              <a class="nav-link d-block ht-auto bg-white p-3" data-toggle="tab" href="#amenu1">
+                <div class="tx-semibold tx-20 tx-black pb-3">Энергия и иммунитет</div>
+                <p class="tx-gray-500 tx-12 text-justify pb-0">
+                  Периодические детокс-дни усиливают иммунитет и дают огромный заряд сил и энергии. Вы начинаете легко просыпаться без будильника и с хорошим настроением, перестаете болеть и испытывать хроническую усталость.
+                </p>
+              </a>
+            </li>
+            <li class="nav-item mb-2">
+              <a class="nav-link d-block ht-auto bg-white p-3" data-toggle="tab" href="#amenu2">
+                <div class="tx-semibold tx-20 tx-black pb-3">Чистая кожа</div>
+                <p class="tx-gray-500 tx-12 text-justify pb-0">
+                  Пропадают отеки, выводится лишняя жидкость, разглаживаются мелкие морщинки, проходят воспаления и другие кожные заболевания. За счет очищения кожа начинает как будто светиться изнутри, а вы выглядите моложе
+                </p>
+              </a>
+            </li>
+          </ul>
+          </div>
+          <div class="col-md-7">
+          <div class="tab-content">
+            <div id="ahome" class="container tab-pane active">
+              <img src="/tpl/assets/img/why1.webp" class="img-fluid" />
+            </div>
+            <div id="amenu1" class="container tab-pane fade">
+              <img src="/tpl/assets/img/why2.webp" class="img-fluid" />
+            </div>
+            <div id="amenu2" class="container tab-pane fade">
+              <img src="/tpl/assets/img/why3.webp" class="img-fluid" />
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="testimonials">
+      <div class="bg-success pb-5">
+      <div class="content container">
+        <div class="row">
+          <div class="col-lg-8 offset-lg-2 text-center px-5">
+            <h2 class="tx-white tx-semibold py-4 tx-40">
+              Отзывы клиентов
+            </h2>
+            <p class="tx-white pb-4 tx-16">Отзывы реальных клиентов о доставке правильного питания на неделю, вкусе самой еды, ее качестве и сервисе компании Spatim Detox. Узнай почему у нас так вкусно!</p>
+          </div>
+        </div>
+        <div class="card-columns columns-6 columns-sm-3 pt-4">
+          <div class="card bd-0">
+            <img src="/tpl/assets/img/tm1.webp" class="img-fluid">
+          </div>
+
+          <div class="card bd-0">
+            <img src="/tpl/assets/img/tm2.webp" class="img-fluid">
+          </div>
+
+          <div class="card bd-0">
+            <img src="/tpl/assets/img/tm3.webp" class="img-fluid">
+          </div>
+          <div class="card bd-0">
+            <img src="/tpl/assets/img/tm4.webp" class="img-fluid">
+          </div>
+          <div class="card bd-0">
+            <img src="/tpl/assets/img/tm5.webp" class="img-fluid">
+          </div>
+          <div class="card bd-0">
+            <img src="/tpl/assets/img/tm6.webp" class="img-fluid">
+          </div>
+        </div>
+      </div>
+    </div>
+    </section>
+
+    <section>
+      <div class="content container pb-5">
+        <div class="row">
+          <div class="col-lg-8 offset-lg-2 text-center px-5">
+            <h2 class="tx-semibold py-4 tx-40">
+              Как это работает?
+            </h2>
+            <p class="pb-4 tx-16">Всё просто - последовательно выполните три шага и вы достигните цели!</p>
+          </div>
+        </div>
+          <div class="row  tx-center justify-content-center  align-items-stretch">
+          <div class="col-sm-4 mb-2">
+            <div class="bd bd-success pd-20 ht-100p">
+            <img src="./tpl/assets/img/icon01.webp">
+            <div class="pt-3 tx-22 tx-success tx-semibold">Выберите тариф</div>
+            <div class="pt-3 tx-16 tx-gray-500">Мы составляем меню каждую неделю, считаем БЖУ, выбираем только свежие продукты</div>
+           </div>
+          </div>
+          <div class="col-sm-4 mb-2">
+            <div class="bd bd-success pd-20 ht-100p">
+            <img src="./tpl/assets/img/icon02.webp">
+            <div class="pt-3 tx-22 tx-success tx-semibold">Получите продукты</div>
+            <div class="pt-3 tx-16 tx-gray-500">Регулярно наш курьер привозит Вам пакет с набором блюд на весь день</div>
+          </div>
+          </div>
+          <div class="col-sm-4 mb-2">
+            <div class="bd bd-success pd-20 ht-100p">
+            <img src="./tpl/assets/img/icon03.webp">
+            <div class="pt-3 tx-22 tx-success tx-semibold">Вы питаетесь правильно!</div>
+            <div class="pt-3 tx-16 tx-gray-500">Без лишних усилий, потери времени на кухне и в магазине за покупкой продуктов</div>
+          </div>
+          </div>
+        </div>
       </div>
     </section>
 
   </main>
-  <script>
-    $(function () {
-      'use strict'
+  <script wbapp remove>
+    $('.parallax').each(function () {
+      let img = $(this).attr('data-img');
+      if (img !== undefined) $(this).css("background-image", "url(" + img + ")").removeAttr('data-img');
+    })
 
-      $('.img-caption').on('mouseover mouseout', function () {
-        $(this).find('figcaption').toggleClass('op-0');
-      });
-
+    $('.img-caption').on('mouseover mouseout', function () {
+      $(this).find('figcaption').toggleClass('op-0');
     });
+
   </script>
 </body>
 
