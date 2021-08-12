@@ -1,0 +1,163 @@
+body {
+    overflow-x: hidden;
+}
+
+header {
+    width: 100vw;
+}
+
+main {
+    width: 100vw;
+}
+
+.object-cover {
+    object-fit: cover;
+}
+
+.object-contain {
+    object-fit: contain;
+}
+
+.filter-invert {
+    filter: invert();
+}
+
+section#menu .nav-link {
+    border: 0;
+    background: transparent;
+    padding-bottom: 20px;
+    font-weight: 600;
+    text-transform: capitalize;
+    width: 60px;
+}
+
+section#menu .nav-link.active {
+    color: #44c473 !important;
+    border-bottom: 1px #333 solid;
+}
+
+.columns-4 {
+    column-count: 4;
+}
+
+.columns-6 {
+    column-count: 6;
+}
+
+.parallax {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+    overflow-y:hidden;
+}
+
+.parallax-overlay {
+    width: 100vw;
+    margin: auto;
+}
+
+.ht-auto {
+    height: auto!important;
+}
+
+.pd-t-20v {
+    padding-top: 20vh;
+}
+
+    @media (min-height: 768px) {
+    .ht-sm-50v {
+        height: 50vh;
+        overflow-y: hidden;
+    }
+    }
+
+    @media (max-width: 767px) {
+        .columns-sm-2 {
+            columns: 2;
+        }
+        .columns-sm-3 {
+            columns: 3;
+        }
+    }
+    @media (max-width: 575px) {
+        .columns-xs-1 {
+            columns: 1;
+        }
+    }
+
+
+.nav-vertical {
+    .nav-link {
+        border: 1px transparent solid;
+        &.active {
+            border: 1px #bbb solid !important;
+            border-radius: 3px;
+        }
+    }
+    .nav-link:hover:not(.active) {
+        border: 1px #eee solid !important;
+        border-radius: 3px;
+    }
+}
+
+#faq-accordion {
+    text-align: left;
+    .ui-accordion-header {
+        border: 0;
+        border-radius:0;
+        border-top: 1px #10b759 solid;
+        background-color: transparent;
+        &.ui-state-active {
+            color: inherit;
+            .ui-accordion-header-icon::before {
+                transform: rotate(-45deg);
+                transition-duration: .3s;
+            }
+
+        }
+        .ui-accordion-header-icon {
+            position: absolute;
+            left:auto;
+            right:0;
+            &::before {
+                transition-duration: .3s;
+                content:'';
+                width: 40px;
+                height: 40px;
+                background-image: url(/module/myicons/interface-essential-228.svg?size=40&stroke=10b759);
+            }
+        }
+
+    }
+    .ui-accordion-content {
+        border: 0;
+        border-radius:0;
+    }
+}
+
+.lg-backdrop.in {
+    background: #fff;
+}
+
+.lg-item {
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+.lg-toolbar {
+    background-color: transparent;
+    .lg-icon {
+        color: #444;
+        &:hover {
+            color: #000;
+        }
+    }
+} 

@@ -4,13 +4,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;500;600;700&amp;subset=latin,cyrillic"
-    rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.0.1/dist/alpine.js" defer></script>
+  <meta name="description" content="Spatium Detox">
+  <title>Spatium Detox</title>
+  <!--script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.0.1/dist/alpine.js" defer></script-->
   <script src="/engine/js/wbapp.js"></script>
   <script type="wbapp" remove>
-    wbapp.loadStyles(["/modules/yonger/tpl/assets/css/dashforge.min.css","/assets/css/custom.less"]);
-    wbapp.loadScripts(["/engine/lib/bootstrap/js/bootstrap.bundle.min.js"])
+    wbapp.loadStyles([
+     "/modules/yonger/tpl/assets/css/dashforge.min.css",
+     "/assets/js/lightgallery/css/lightgallery.min.css",
+     "/assets/css/custom.less",
+     "https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;500;600;700&subset=latin,cyrillic"
+    ]);
+    wbapp.loadScripts([
+    "/engine/lib/bootstrap/js/bootstrap.bundle.min.js",
+    "/assets/js/lightgallery/js/lightgallery.min.js"
+    ],'ready')
   </script>
 </head>
 <style>
@@ -23,11 +31,11 @@
   <header>
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow t-0 position-fixed w-100 z-index-10">
       <a class="navbar-brand" href="/">
-        <img class="ht-30 w-auto filter-invert" src="./assets/img/logo.svg" alt="">
+        <img class="ht-30 w-auto filter-invert" data-src="./assets/img/logo.svg" alt="">
       </a>
       <button class="navbar-toggler order-2" type="button" data-toggle="collapse" data-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <i data-feather="menu" class="wd-20 ht-20">menu</i>
+        <img data-src="/module/myicons/menu-burger.svg?size=30&stroke=333333">
       </button>
       <div class="collapse navbar-collapse order-2" id="navbarNav">
         <ul class="navbar-nav tx-bold tx-uppercase mx-auto">
@@ -58,7 +66,7 @@
       <div class="position-absolute d-block wd-100v ht-100v op-7 bg-black-8">&nbsp;</div>
       <div class="parallax-overlay row justify-content-center">
         <div class="col-sm-8 text-center text-center text-white">
-          <img src="./assets/img/logo.svg" class="wd-300 px-3 img-fluid">
+          <img data-src="./assets/img/logo.svg" class="wd-300 px-3 img-fluid">
           <h1 class="text-white tx-semibold py-4 tx-50">
             Доставка здоровой еды
           </h1>
@@ -79,15 +87,15 @@
       <div class="content container">
         <div class="row text-white tx-semibold tx-18">
           <div class="col-sm-4">
-            <img src="./tpl/assets/img/icon1.png">
+            <img data-src="./assets/img/icon1.png">
             <p class="pt-3">Уменьшение объемов<br>и - 2 кг за 3 дня</p>
           </div>
           <div class="col-sm-4">
-            <img src="./tpl/assets/img/icon2.png">
+            <img data-src="./assets/img/icon2.png">
             <p class="pt-3">Продуманный рацион<br>на весь день</p>
           </div>
           <div class="col-sm-4">
-            <img src="./tpl/assets/img/icon3.png">
+            <img data-src="./assets/img/icon3.png">
             <p class="pt-3">Холодный отжим:<br>на 80% больше витаминов и минералов</p>
           </div>
         </div>
@@ -107,22 +115,22 @@
         </div>
         <div class="row">
           <div class="col-sm-6 col-lg-3">
-            <img src="./tpl/assets/img/people1.jpg" width="600" class="rounded img-fluid" alt="">
+            <img data-src="./assets/img/people1.jpg" width="600" class="rounded img-fluid" alt="">
             <h5 class="pt-3 tx-semibold tx-20">Илья Макаров</h5>
             <p class="tx-12 tx-gray-600">Руководитель проекта</p>
           </div>
           <div class="col-sm-6 col-lg-3">
-            <img src="./tpl/assets/img/people2.webp" width="600" class="rounded img-fluid" alt="">
+            <img data-src="./assets/img/people2.webp" width="600" class="rounded img-fluid" alt="">
             <h5 class="pt-3 tx-semibold tx-20">Ольга Перова</h5>
             <p class="tx-12 tx-gray-600">Диетолог</p>
           </div>
           <div class="col-sm-6 col-lg-3">
-            <img src="./tpl/assets/img/people3.webp" width="600" class="rounded img-fluid" alt="">
+            <img data-src="./assets/img/people3.webp" width="600" class="rounded img-fluid" alt="">
             <h5 class="pt-3 tx-semibold tx-20">Юлия Дербышева</h5>
             <p class="tx-12 tx-gray-600">Диетолог</p>
           </div>
           <div class="col-sm-6 col-lg-3">
-            <img src="./tpl/assets/img/people4.webp" width="600" class="rounded img-fluid" alt="">
+            <img data-src="./assets/img/people4.webp" width="600" class="rounded img-fluid" alt="">
             <h5 class="pt-3 tx-semibold tx-20">Николай Лотов</h5>
             <p class="tx-12 tx-gray-600">Нутрициолог</p>
           </div>
@@ -143,8 +151,8 @@
         </div>
         <div class="card-columns pt-4">
           <div class="card bd-0">
-            <figure class="img-caption pos-relative mg-b-0">
-              <img src="tpl/assets/img/menu1.webp" class="card-img-top object-cover" height="300"
+            <figure class="img-caption pos-relative mg-b-0" data-iframe="true" data-src="/test/ert">
+              <img data-src="assets/img/menu1.webp" class="card-img-top object-cover" height="300"
                 alt="Responsive image">
               <figcaption
                 class="pos-absolute a-0 wd-100p pd-20 d-flex flex-column justify-content-center bg-white-9 transition-base op-0">
@@ -158,8 +166,8 @@
             </div>
           </div>
           <div class="card bd-0">
-            <figure class="img-caption pos-relative mg-b-0">
-              <img src="tpl/assets/img/menu2.webp" class="card-img-top object-cover" height="300"
+            <figure class="img-caption pos-relative mg-b-0" data-iframe="true" data-src="/test/ert">
+              <img data-src="assets/img/menu2.webp" class="card-img-top object-cover" height="300"
                 alt="Responsive image">
               <figcaption
                 class="pos-absolute a-0 wd-100p pd-20 d-flex flex-column justify-content-center bg-white-9 transition-base op-0">
@@ -173,8 +181,8 @@
             </div>
           </div>
           <div class="card bd-0">
-            <figure class="img-caption pos-relative mg-b-0">
-              <img src="tpl/assets/img/menu3.webp" class="card-img-top object-cover" height="300"
+            <figure class="img-caption pos-relative mg-b-0" data-iframe="true" data-src="/test/ert">
+              <img data-src="assets/img/menu3.webp" class="card-img-top object-cover" height="300"
                 alt="Responsive image">
               <figcaption
                 class="pos-absolute a-0 wd-100p pd-20 d-flex flex-column justify-content-center bg-white-9 transition-base op-0">
@@ -233,7 +241,7 @@
 
             <div class="card-columns columns-4 columns-sm-2 columns-xs-1 ">
               <div class="card bd-0">
-                <img src="/tpl/assets/img/day1.webp" class="card-img-top" alt="...">
+                <img data-src="/assets/img/day1.webp" class="card-img-top" alt="...">
                 <div class="card-body">
                   <div class="tx-12 tx-success tx-semibold tx-spacing-4 pb-2">Завтрак</div>
                   <h6 class="card-title tx-semibold">Омлет-пицца с курицей и моцареллой</h6>
@@ -243,7 +251,7 @@
               </div>
 
               <div class="card bd-0">
-                <img src="/tpl/assets/img/day2.webp" class="card-img-top" alt="...">
+                <img data-src="/assets/img/day2.webp" class="card-img-top" alt="...">
                 <div class="card-body">
                   <div class="tx-12 tx-success tx-semibold tx-spacing-4 pb-2">Обед</div>
                   <h6 class="card-title tx-semibold">Бефстроганов из говядины с гречкой</h6>
@@ -253,7 +261,7 @@
               </div>
 
               <div class="card bd-0">
-                <img src="/tpl/assets/img/day3.webp" class="card-img-top" alt="...">
+                <img data-src="/assets/img/day3.webp" class="card-img-top" alt="...">
                 <div class="card-body">
                   <div class="tx-12 tx-success tx-semibold tx-spacing-4 pb-2">Полдник</div>
                   <h6 class="card-title tx-semibold">Шаверма с курицей</h6>
@@ -263,7 +271,7 @@
               </div>
 
               <div class="card bd-0">
-                <img src="/tpl/assets/img/day4.webp" class="card-img-top" alt="...">
+                <img data-src="/assets/img/day4.webp" class="card-img-top" alt="...">
                 <div class="card-body">
                   <div class="tx-12 tx-success tx-semibold tx-spacing-4 pb-2">Ужин</div>
                   <h6 class="card-title tx-semibold">Курица в нежном чили соусе с пряной свеклой</h6>
@@ -307,7 +315,7 @@
     </section>
 
     <section id="detoxtest">
-      <div class="parallax d-flex ht-sm-50v" data-img="/tpl/assets/img/pic2.webp">
+      <div class="parallax d-flex ht-sm-50v" data-img="/assets/img/pic2.webp">
         <div class="position-absolute d-block wd-100v ht-100v op-7 bg-black-8">&nbsp;</div>
         <div class="parallax-overlay row justify-content-center">
           <div class="col-sm-8 text-center text-center text-white">
@@ -368,15 +376,15 @@
           </ul>
           </div>
           <div class="col-md-7">
-          <div class="tab-content">
+          <div class="tab-content ">
             <div id="ahome" class="container tab-pane active">
-              <img src="/tpl/assets/img/why1.webp" class="img-fluid" />
+              <img data-src="/assets/img/why1.webp" class="img-fluid" />
             </div>
             <div id="amenu1" class="container tab-pane fade">
-              <img src="/tpl/assets/img/why2.webp" class="img-fluid" />
+              <img data-src="/assets/img/why2.webp" class="img-fluid" />
             </div>
             <div id="amenu2" class="container tab-pane fade">
-              <img src="/tpl/assets/img/why3.webp" class="img-fluid" />
+              <img data-src="/assets/img/why3.webp" class="img-fluid" />
             </div>
           </div>
           </div>
@@ -395,26 +403,26 @@
             <p class="tx-white pb-4 tx-16">Отзывы реальных клиентов о доставке правильного питания на неделю, вкусе самой еды, ее качестве и сервисе компании Spatim Detox. Узнай почему у нас так вкусно!</p>
           </div>
         </div>
-        <div class="card-columns columns-6 columns-sm-3 pt-4">
-          <div class="card bd-0">
-            <img src="/tpl/assets/img/tm1.webp" class="img-fluid">
+        <div class="card-columns columns-6 columns-sm-3 pt-4 gallery">
+          <div class="card bd-0" data-src="/assets/img/tm1.webp">
+            <img data-src="/assets/img/tm1.webp" class="img-fluid">
           </div>
 
-          <div class="card bd-0">
-            <img src="/tpl/assets/img/tm2.webp" class="img-fluid">
+          <div class="card bd-0" data-src="/assets/img/tm2.webp">
+            <img data-src="/assets/img/tm2.webp" class="img-fluid">
           </div>
 
-          <div class="card bd-0">
-            <img src="/tpl/assets/img/tm3.webp" class="img-fluid">
+          <div class="card bd-0" data-src="/assets/img/tm3.webp">
+            <img data-src="/assets/img/tm3.webp" class="img-fluid">
           </div>
-          <div class="card bd-0">
-            <img src="/tpl/assets/img/tm4.webp" class="img-fluid">
+          <div class="card bd-0" data-src="/assets/img/tm4.webp">
+            <img data-src="/assets/img/tm4.webp" class="img-fluid">
           </div>
-          <div class="card bd-0">
-            <img src="/tpl/assets/img/tm5.webp" class="img-fluid">
+          <div class="card bd-0" data-src="/assets/img/tm5.webp">
+            <img data-src="/assets/img/tm5.webp" class="img-fluid">
           </div>
-          <div class="card bd-0">
-            <img src="/tpl/assets/img/tm6.webp" class="img-fluid">
+          <div class="card bd-0" data-src="/assets/img/tm6.webp">
+            <img data-src="/assets/img/tm6.webp" class="img-fluid">
           </div>
         </div>
       </div>
@@ -434,21 +442,21 @@
           <div class="row  tx-center justify-content-center  align-items-stretch">
           <div class="col-sm-4 mb-2">
             <div class="bd bd-success rounded pd-20 ht-100p">
-            <img src="./tpl/assets/img/icon01.webp">
+            <img data-src="./assets/img/icon01.webp">
             <div class="pt-3 tx-22 tx-success tx-semibold">Выберите тариф</div>
             <div class="pt-3 tx-16 tx-gray-500">Мы составляем меню каждую неделю, считаем БЖУ, выбираем только свежие продукты</div>
            </div>
           </div>
           <div class="col-sm-4 mb-2">
             <div class="bd bd-success rounded pd-20 ht-100p">
-            <img src="./tpl/assets/img/icon02.webp">
+            <img data-src="./assets/img/icon02.webp">
             <div class="pt-3 tx-22 tx-success tx-semibold">Получите продукты</div>
             <div class="pt-3 tx-16 tx-gray-500">Регулярно наш курьер привозит Вам пакет с набором блюд на весь день</div>
           </div>
           </div>
           <div class="col-sm-4 mb-2">
             <div class="bd bd-success rounded pd-20 ht-100p">
-            <img src="./tpl/assets/img/icon03.webp">
+            <img data-src="./assets/img/icon03.webp">
             <div class="pt-3 tx-22 tx-success tx-semibold">Вы питаетесь правильно!</div>
             <div class="pt-3 tx-16 tx-gray-500">Без лишних усилий, потери времени на кухне и в магазине за покупкой продуктов</div>
           </div>
@@ -470,13 +478,13 @@
 
             <div class="col-lg-10 offset-lg-1 text-center px-5">
               <div id="faq-accordion" class="collapsed">
-                <h6 class="tx-20 tx-semibold py-4">Нужны ли разгрузочные дни и cheat meal?</h6>
+                <h6 class="tx-20 tx-semibold py-4 pr-5">Нужны ли разгрузочные дни и cheat meal?</h6>
                 <div>Полезное питание обязано быть вкусным! Ежедневно мы готовим для Вас блюда ресторанного качества, а для любителей необычных и редких блюд были разработаны линейки питания PREMIUM и SEA. Мы понимаем что соблюдать режим правильного питание сложно, несмотря на то что оно очень вкусное нужно баловать себя и сладостями - которые так же могут быть полезными для режима ПП!</div>
-                <h6 class="tx-20 tx-semibold py-4">Как рассчитать количество калорий необходимых для похудения?</h6>
+                <h6 class="tx-20 tx-semibold py-4 pr-5">Как рассчитать количество калорий необходимых для похудения?</h6>
                 <div>Для того чтобы рассчитать количество калорий рекомендуемого для ежедневного потребления, а так же узнать на сколько можно похудеть без вреда для здоровья воспользуйтесь нашим сервисом "подбор питания"</div>
-                <h6 class="tx-20 tx-semibold py-4">Если присутствует молочка то какая?</h6>
+                <h6 class="tx-20 tx-semibold py-4 pr-5">Если присутствует молочка то какая?</h6>
                 <div>Исключительно фермерского производства, с небольшой долей жира. Молоко не более 2,5%, творог не более 5%, йогурты не более 2%</div>
-                <h6 class="tx-20 tx-semibold py-4">Какое мясо используется в приготовлении?</h6>
+                <h6 class="tx-20 tx-semibold py-4 pr-5">Какое мясо используется в приготовлении?</h6>
                 <div>Мы работаем только с проверенными поставщиками. В рационах используется мясо и птица высшего сорта.</div>
               </div>
 
@@ -545,22 +553,22 @@
           <ul class="list-inline list-unstyled text-md-right">
             <li class="list-inline-item">
               <a href="#">
-                <img src="/module/myicons/facebook-circle.svg?size=30&stroke=ffffff">
+                <img data-src="/module/myicons/facebook-circle.svg?size=30&stroke=ffffff">
               </a>
             </li>
             <li class="list-inline-item ml-2">
               <a href="#">
-                <img src="/module/myicons/vk-vkontakte.svg?size=30&stroke=ffffff">
+                <img data-src="/module/myicons/vk-vkontakte.svg?size=30&stroke=ffffff">
               </a>
             </li>
             <li class="list-inline-item ml-2">
               <a href="#">
-                <img src="/module/myicons/instagram-circle.svg?size=30&stroke=ffffff">
+                <img data-src="/module/myicons/instagram-circle.svg?size=30&stroke=ffffff">
               </a>
             </li>
             <li class="list-inline-item ml-2">
               <a href="#">
-                <img src="/module/myicons/youtube-circle.svg?size=30&stroke=ffffff">
+                <img data-src="/module/myicons/youtube-circle.svg?size=30&stroke=ffffff">
               </a>
             </li>
           </ul>
@@ -572,6 +580,7 @@
   </footer>
 
   <script type="wbapp" remove>
+    setTimeout(function(){
     $('.parallax').each(function () {
       let img = $(this).attr('data-img');
       if (img !== undefined) $(this).css("background-image", "url(" + img + ")").removeAttr('data-img');
@@ -586,6 +595,42 @@
       ,collapsible: true
       ,active: false
     });
+  },10)
+
+  $.fn.lightGallery = function (options) {
+    if (!this.length) return;
+    $(this).each(function(){
+      let lg = lightGallery(this, options);
+    })
+  }
+
+    wbapp.on('ready',function(){
+      
+      $('#programs').lightGallery({
+        'selector': '[data-iframe]',
+        'download': false,
+        'counter': false
+      });
+
+      $('.gallery').lightGallery({
+        'selector': 'div[data-src]',
+        'download': false,
+        'counter': false,
+        'zoom':true
+      });
+  
+      $(document).delegate('.lg-outer','mousewheel', function(e){
+        if(e.originalEvent.wheelDelta /120 > 0) {
+            $(this).find('.lg-prev').trigger('click');
+        }
+        else{
+            $(this).find('.lg-next').trigger('click');
+        }
+        e.stopPropagation();
+      });
+
+    })
+
 
   </script>
 </body>
