@@ -1,5 +1,7 @@
 <edit header="Витрина 3 колонки">
-
+    <div>
+        <wb-include wb-src="/modules/yonger/common/blocks/common.inc.php" />
+    </div>
 </edit>
 <view>
 <div class="shop-page-container mb-50">

@@ -27,7 +27,7 @@ class modYonger
             $form = $app->controller('form');
             echo $form->get404();
         }
-        if (!$this->dom) die;
+        if (!isset($this->dom)) die;
     }
 
     public function workspace()
@@ -87,7 +87,11 @@ class modYonger
     }
 
     private function blockform() {
-        $ypg = new yongerPage($this->dom);
+        if (!isset($this->dom)) {
+            $ypg = new yongerPage("");    
+        } else {
+            $ypg = new yongerPage($this->dom);
+        }
         return $ypg->blockform($this->app->vars('_post.item'));
         
     }

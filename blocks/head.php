@@ -4,34 +4,36 @@
     </div>
 </edit>
 <view head>
-    <meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Greenfarm - Organic Food eCommerce Bootstrap 4 Template</title>
-	<meta name="description" content="">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- Favicon -->
-	<link rel="icon" href="assets/images/favicon.ico">
-    <base href="/tpl/">
-	<!-- CSS
-	============================================ -->
-	<!-- Bootstrap CSS -->
-	<wb-include wb="snippet=wbapp" />
-	<wb-include wb="snippet=bootstrap" />
-	<wb-include wb="snippet=fontawesome4" />
+  <meta charset="UTF-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Spatium Detox">
+  <title>Spatium Detox</title>
+  <!--script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.0.1/dist/alpine.js" defer></script-->
 
-	<!-- Elegent CSS -->
-	<link href="assets/css/elegent.min.css" rel="stylesheet">
+  <link rel="preload" as="style" href="/assets/css/loader.scss" />
+  <link rel="preload" as="style" href="/modules/yonger/tpl/assets/css/dashforge.min.css" />
+  <link rel="preload" as="style" href="/assets/js/lightgallery/css/lightgallery.min.css" />
+  <link rel="preload" as="style" href="/assets/css/custom.less" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;500;600;700&subset=latin,cyrillic" />
 
-	<!-- Plugins CSS -->
-	<link href="assets/css/plugins.css" rel="stylesheet">
+  <link rel="preload" as="script" href="/engine/lib/bootstrap/js/bootstrap.bundle.min.js" />
+  <link rel="preload" as="script" href="/assets/js/lightgallery/js/lightgallery.min.js" />
+  <link rel="preload" as="script" href="/assets/js/spatium.js" />
 
-	<!-- Helper CSS -->
-	<link href="assets/css/helper.css" rel="stylesheet">
+  <link href="/assets/css/loader.scss" rel="stylesheet" />
 
-	<!-- Main CSS -->
-	<link href="assets/css/main.css" rel="stylesheet">
-
-	<!-- Modernizer JS -->
-	<script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
-
+  <script src="/engine/js/wbapp.js"></script>
+  <script type="wbapp" remove>
+    wbapp.loadStyles([
+     "/modules/yonger/tpl/assets/css/dashforge.min.css",
+     "/assets/js/lightgallery/css/lightgallery.min.css",
+     "/assets/css/custom.less",
+    ]);
+    wbapp.loadScripts([
+    "/engine/lib/bootstrap/js/bootstrap.bundle.min.js",
+    "/assets/js/lightgallery/js/lightgallery.min.js",
+    "/assets/js/spatium.js"
+    ],'ready')
+  </script>
 </view>

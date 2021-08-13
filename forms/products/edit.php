@@ -49,7 +49,8 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">Категория</span>
                                     </div>
-                                    <select name="category" class="form-control" required wb-tree="dict=menu-categories">
+                                    <select name="category" class="form-control" required
+                                        wb-tree="dict=menu-categories">
                                         <option value="{{id}}">{{name}}</option>
                                     </select>
                                 </div>
@@ -109,10 +110,17 @@
                         <wb-foreach wb-json='["пн","вт","ср", "чт","пт","сб","вс"]'>
                             <wb-var day="{{wbTranslit({{_val}})}}" />
                             <div id="{{_var.day}}" class="container tab-pane fade">
-                                <wb-multilang wb-lang="Завтрак,Обед,Ужин" wb-flags="false" name="{{_var.day}}">
+                                <wb-multilang wb-lang="Завтрак,Обед,Полдник,Ужин" wb-flags="false" name="{{_var.day}}">
+                                <div class="form-group row">
+                                        <div class="input-group col-12">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Наименование</span>
+                                            </div>
+                                            <input type="text" name="food" class="form-control" placeholder="Наименование">
+                                        </div>
+</div>
 
                                     <div class="form-group row">
-
                                         <div class="input-group col-sm-6">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">Вес</span>
@@ -129,6 +137,29 @@
                                                 placeholder="Калорийность (ккал.)">
                                         </div>
                                     </div>
+                                    <div class="form-group row">
+                                        <div class="input-group col-4">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Белки</span>
+                                            </div>
+                                            <input type="text" name="proteins" class="form-control" placeholder="Белки">
+                                        </div>
+                                        <div class="input-group col-sm-4">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Жиры</span>
+                                            </div>
+                                            <input type="number" name="fats" class="form-control" placeholder="Жиры">
+                                        </div>
+                                        <p class="d-block d-sm-none p-1"></p>
+                                        <div class="input-group col-sm-4">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Углеводы</span>
+                                            </div>
+                                            <input type="number" name="carbs" class="form-control"
+                                                placeholder="Углеводы">
+                                        </div>
+                                    </div>
+
                                     <div class="divider-text">Состав</div>
                                     <wb-multiinput name="components">
                                         <div class="col-md-9">
@@ -159,15 +190,15 @@
     </div>
 </div>
 <script>
-    var $form = $('#{{_form}}EditForm');
-    $form.find('[name=category]').off('change');
-    $form.find('[name=category]').on('change', function() {
-        if ($(this).val() == 'main') {
-            $form.children('.nav-tabs').find('.nav-item:not(:first-child)').removeClass('d-none');
-        } else {
-            $form.children('.nav-tabs').find('.nav-item:not(:first-child)').addClass('d-none');
-        }
-    }).trigger('change');
+var $form = $('#{{_form}}EditForm');
+$form.find('[name=category]').off('change');
+$form.find('[name=category]').on('change', function() {
+    if ($(this).val() == 'main') {
+        $form.children('.nav-tabs').find('.nav-item:not(:first-child)').removeClass('d-none');
+    } else {
+        $form.children('.nav-tabs').find('.nav-item:not(:first-child)').addClass('d-none');
+    }
+}).trigger('change');
 </script>
 
 </html>

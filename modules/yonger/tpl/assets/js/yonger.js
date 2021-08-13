@@ -41,8 +41,10 @@ $(document).on("wb-save-error", function (e, params) {
 
 $(document).delegate(".modal", "show.bs.modal", function () {
     if (PerfectScrollbar !== undefined)  {
-        $('.modal-body').css('overflow','hidden');
-        new PerfectScrollbar('.modal-body');
+        this.psb == undefined ? null : this.psb.destroy();
+        this.psb = new PerfectScrollbar(this);
+        $(this).children('.modal-body').css('overflow','hidden');
+        yonger.plugins();
     }
 });
 
@@ -50,6 +52,7 @@ $(document).delegate(".modal", "hidden.bs.modal", function (event) {
     if ($('body').hasClass('app-chat') && $(document).find('.modal:visible').length) {
         $('body').addClass('modal-open');
     }
+    this.psb == undefined ? null : this.psb.destroy();
 });
 
 $(document).on("wb-save-done", function (e, params) {
@@ -98,23 +101,21 @@ yonger.workspace = function() {
 };
 
 yonger.plugins = function(){
+    if (PerfectScrollbar !== undefined)  {
     $(document).find('.modal-body').addClass('scroll-y');
-    
     $('.scroll-x').each(function(){
-        if (this.done) return;
-        this.done = true;
-        new PerfectScrollbar(this, {suppressScrollY: true});
+        this.psb == undefined ? null : this.psb.destroy();
+        this.psb = new PerfectScrollbar(this, {suppressScrollY: true});
     });
     $('.scroll-y').each(function(){
-        if (this.done) return;
-        this.done = true;
-        new PerfectScrollbar(this, {suppressScrollX: true});
+        this.psb == undefined ? null : this.psb.destroy();
+        this.psb = new PerfectScrollbar(this, {suppressScrollX: true});
     });
     $('.scroll').each(function(){
-        if (this.done) return;
-        this.done = true;
-        new PerfectScrollbar(this, {suppressScrollY: false,suppressScrollX: false});
+        this.psb == undefined ? null : this.psb.destroy();
+        this.psb = new PerfectScrollbar(this, {suppressScrollY: false,suppressScrollX: false});
     });
+    }
 }
 
 yonger.siteCreator = function(){
