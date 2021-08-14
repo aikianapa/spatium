@@ -89,7 +89,10 @@
     </div> <!-- / .container -->
 
   </footer>
-	<!-- scroll to top  -->
+
+  <wb-module wb="module=yonger&mode=render&view=cart" />
+
+  <!-- scroll to top  -->
 	<a href="javascript:void(0)" class="scroll-top"></a>
 	<!-- end of scroll to top -->
 </view>

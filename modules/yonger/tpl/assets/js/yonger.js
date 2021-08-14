@@ -2,32 +2,59 @@
 
 var yonger = {};
 
-$(document).delegate(".nav-link:not([data-toggle=tab])", "tap click",function() {
+
+$('.off-canvas-menu').on('click', function (e) {
+    e.preventDefault();
+    var target = $(this).attr('href');
+    $(target).addClass('show');
+});
+
+
+$('.off-canvas .close').on('click', function (e) {
+    e.preventDefault();
+    $(this).closest('.off-canvas').removeClass('show');
+})
+
+$(document).on('click touchstart', function (e) {
+    e.stopPropagation();
+
+    // closing of sidebar menu when clicking outside of it
+    if (!$(e.target).closest('.off-canvas-menu').length) {
+        var offCanvas = $(e.target).closest('.off-canvas').length;
+        if (!offCanvas) {
+            $('.off-canvas.show').removeClass('show');
+        }
+    }
+});
+
+
+
+$(document).delegate(".nav-link:not([data-toggle=tab])", "tap click", function () {
     $(this).parents("ul,nav").find(".nav-link").removeClass("active");
     $(this).addClass("active");
 })
 
-$(document).delegate("aside .nav-link", "tap click",function() {
-    $(".content-header .content-search input").prop("disabled",true);
+$(document).delegate("aside .nav-link", "tap click", function () {
+    $(".content-header .content-search input").prop("disabled", true);
     $("body").removeClass("show-aside");
     $("body").addClass("chat-content-show");
 });
 
-$(document).delegate(".chat-sidebar .nav-link", "tap click",function() {
+$(document).delegate(".chat-sidebar .nav-link", "tap click", function () {
     $("body").addClass("chat-content-show");
 });
 
-$(document).on("wb-save-start",function(e,params) {
-  if ($(e.target).is("button.cms") && !$(e.target).find(".spinner-border").length) {
-      var spinner = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> ';
-      $(e.target).find("i").addClass("d-none");
-      $(e.target).prepend(spinner).prop("disabled",true);
-  }
+$(document).on("wb-save-start", function (e, params) {
+    if ($(e.target).is("button.cms") && !$(e.target).find(".spinner-border").length) {
+        var spinner = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> ';
+        $(e.target).find("i").addClass("d-none");
+        $(e.target).prepend(spinner).prop("disabled", true);
+    }
 })
 
-$(document).on('wb-verify-false',function(e,el,err){
+$(document).on('wb-verify-false', function (e, el, err) {
     if (err !== undefined) {
-        wbapp.toast(wbapp._settings.sysmsg.error,err,{target:'.content-toasts','bgcolor':'warning','txcolor':'white'});
+        wbapp.toast(wbapp._settings.sysmsg.error, err, { target: '.content-toasts', 'bgcolor': 'warning', 'txcolor': 'white' });
     }
 });
 
@@ -40,10 +67,10 @@ $(document).on("wb-save-error", function (e, params) {
 });
 
 $(document).delegate(".modal", "show.bs.modal", function () {
-    if (PerfectScrollbar !== undefined)  {
+    if (PerfectScrollbar !== undefined) {
         this.psb == undefined ? null : this.psb.destroy();
         this.psb = new PerfectScrollbar(this);
-        $(this).children('.modal-body').css('overflow','hidden');
+        $(this).children('.modal-body').css('overflow', 'hidden');
         yonger.plugins();
     }
 });
@@ -68,80 +95,80 @@ $(document).on("wb-save-done", function (e, params) {
         wbapp.lazyload();
     }
     if (params.params.silent == undefined || (params.params.silent !== "true" && params.params.silent !== true)) {
-        wbapp.toast("Сохранение","Данные успешно сохранены",{target:'.content-toasts','bgcolor':'success','txcolor':'white'});
+        wbapp.toast("Сохранение", "Данные успешно сохранены", { target: '.content-toasts', 'bgcolor': 'success', 'txcolor': 'white' });
     }
 })
 
 
-$(document).on("data-ajax",function(e,params) {
+$(document).on("data-ajax", function (e, params) {
 
 });
 
-$(document).on("wb-ajax-done",function(e,params) {
-    $(document).find(".content-body [type=search][data-ajax].search-header").each(function() {
-        $(".content-header .content-search [type=search]").attr("data-ajax",$(this).attr("data-ajax")).prop("disabled",false);
+$(document).on("wb-ajax-done", function (e, params) {
+    $(document).find(".content-body [type=search][data-ajax].search-header").each(function () {
+        $(".content-header .content-search [type=search]").attr("data-ajax", $(this).attr("data-ajax")).prop("disabled", false);
         $(this).remove();
     });
     if ($(document).find(".chat-sidebar").length == 0) $("body").removeClass("chat-content-show");
     yonger.plugins();
 });
 
-yonger.workspace = function() {
+yonger.workspace = function () {
     if ($("#userProfileMenu").length) {
-        wbapp.storage('cms.profile.user',wbapp._session.user);
+        wbapp.storage('cms.profile.user', wbapp._session.user);
         var profileMenu = Ractive({
-        target: "#userProfileMenu",
-        template: wbapp.template["#userProfileMenu"].html,
-        data: () => {return wbapp.storage('cms.profile.user');}
+            target: "#userProfileMenu",
+            template: wbapp.template["#userProfileMenu"].html,
+            data: () => { return wbapp.storage('cms.profile.user'); }
         });
-        $("#userProfileMenu").data("ractive",profileMenu);
+        $("#userProfileMenu").data("ractive", profileMenu);
     }
     wbapp.lazyload();
     yonger.plugins();
 };
 
-yonger.plugins = function(){
-    if (PerfectScrollbar !== undefined)  {
-    $(document).find('.modal-body').addClass('scroll-y');
-    $('.scroll-x').each(function(){
-        this.psb == undefined ? null : this.psb.destroy();
-        this.psb = new PerfectScrollbar(this, {suppressScrollY: true});
-    });
-    $('.scroll-y').each(function(){
-        this.psb == undefined ? null : this.psb.destroy();
-        this.psb = new PerfectScrollbar(this, {suppressScrollX: true});
-    });
-    $('.scroll').each(function(){
-        this.psb == undefined ? null : this.psb.destroy();
-        this.psb = new PerfectScrollbar(this, {suppressScrollY: false,suppressScrollX: false});
-    });
+yonger.plugins = function () {
+    if (PerfectScrollbar !== undefined) {
+        $(document).find('.modal-body').addClass('scroll-y');
+        $('.scroll-x').each(function () {
+            this.psb == undefined ? null : this.psb.destroy();
+            this.psb = new PerfectScrollbar(this, { suppressScrollY: true });
+        });
+        $('.scroll-y').each(function () {
+            this.psb == undefined ? null : this.psb.destroy();
+            this.psb = new PerfectScrollbar(this, { suppressScrollX: true });
+        });
+        $('.scroll').each(function () {
+            this.psb == undefined ? null : this.psb.destroy();
+            this.psb = new PerfectScrollbar(this, { suppressScrollY: false, suppressScrollX: false });
+        });
     }
 }
 
-yonger.siteCreator = function(){
+yonger.siteCreator = function () {
     if ($('#yongerSiteCreator form').verify()) {
         let form = $('#yongerSiteCreator form').serializeJson();
         let domain = document.location.host.split('.');
-        let scheme = document.location.protocol; 
-        domain = array_slice(domain,-2).join('.');
-        let data = wbapp.postSync(scheme+'//'+domain+'/module/yonger/createSite',form);
+        let scheme = document.location.protocol;
+        domain = array_slice(domain, -2).join('.');
+        let data = wbapp.postSync(scheme + '//' + domain + '/module/yonger/createSite', form);
         //let data = wbapp.postSync('/module/yonger/createSite',form);
         if (data.error == true) {
-            wbapp.toast('Ошибка',data.msg);
+            wbapp.toast('Ошибка', data.msg);
         } else {
-            $('#yongerSiteCreator').modal('hide').on('hidden.bs.modal',function(){
+            $('#yongerSiteCreator').modal('hide').on('hidden.bs.modal', function () {
                 $('.content-header nav a[href="#sites"]').trigger('click');
             });
         }
     }
 }
 
-yonger.siteRemove = function(sid) {
+yonger.siteRemove = function (sid) {
     let confirm = window.confirm("Удалить сайт?");
     if (confirm) {
-        let res = wbapp.postSync('/module/yonger/removeSite/'+sid);
+        let res = wbapp.postSync('/module/yonger/removeSite/' + sid);
         if (res.error == false) {
-            $('#yongerListSites tr[data-id="'+sid+'"]').remove();
+            $('#yongerListSites tr[data-id="' + sid + '"]').remove();
             if (res.self == true) {
                 document.location.href = $('aside a.aside-logo').attr('href');
             }
@@ -149,12 +176,12 @@ yonger.siteRemove = function(sid) {
     }
 }
 
-yonger.siteWorkspace = function(sid) {
-    let res = wbapp.postSync('/module/yonger/goto/'+sid);
+yonger.siteWorkspace = function (sid) {
+    let res = wbapp.postSync('/module/yonger/goto/' + sid);
     if (res.goto == undefined) return;
-    let $form = $('<form class="d-none" method="post" action="'+res.goto+'" />');
-    $form.append('<input name="token" value="'+res.token+'">');
-    $form.append('<input name="login" value="'+wbapp._session.user.login+'">');
+    let $form = $('<form class="d-none" method="post" action="' + res.goto + '" />');
+    $form.append('<input name="token" value="' + res.token + '">');
+    $form.append('<input name="login" value="' + wbapp._session.user.login + '">');
     $form.appendTo('body');
     $form.submit();
 }

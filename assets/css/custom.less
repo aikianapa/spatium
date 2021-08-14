@@ -5,10 +5,12 @@ body {
 
 header {
     width: 100vw;
+    overflow-x: hidden;
 }
 
-main {
+section {
     width: 100vw;
+    overflow-x: hidden;
 }
 
 .object-cover {
@@ -162,3 +164,38 @@ section#products .nav-link.active {
         }
     }
 } 
+
+.carousel {
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    user-select: none;      
+    .carousel-control-prev-icon {
+        width: 50px;
+        height: 50px;
+        background-image: url(/module/myicons/interface-essential-181.svg?size=30&stroke=10b759);
+    }
+    .carousel-control-next-icon {
+        width: 50px;
+        height: 50px;
+        background-image: url(/module/myicons/interface-essential-35.svg?size=30&stroke=10b759);
+    }
+}
+
+
+
+#products {
+    .carousel {
+        .carousel-control-prev, .carousel-control-next {
+            height: 100px;
+        }
+        .carousel-indicators li {
+            border: 1px #10b759 solid;
+            &.active {
+                background-color: #10b759;
+            }
+        }
+    }
+}
+

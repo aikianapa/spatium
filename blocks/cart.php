@@ -4,6 +4,84 @@
     </div>
 </edit>
 <view>
+
+    <div>
+
+        <wb-module wb="module=cart" />
+
+        <div id="cart" class="off-canvas off-canvas-overlay off-canvas-right off-canvas-push wd-300">
+        <div class="off-canvas-header tx-20 tx-success"><span><img src="/module/myicons/shopping-cart.svg?size=26&stroke=10b759"> Корзина</span></div>
+            <a href="#" class="close"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="feather feather-x">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg></a>
+
+            <div class="pd-25 ht-100p tx-13">
+                <h6 class="tx-inverse mg-t-50 mg-b-25">Корзина</h6>
+                <div class="shopping-cart" id="shopping-cart">
+								<a href="/cart">
+									<div class="cart-icon d-inline-block">
+										<span class="icon_bag_alt"></span>
+									</div>
+									<div class="cart-info d-inline-block">
+										<p>Ваша корзина
+											<span>
+												продуктов <span class="mod-cart-count">0</span> = <span class="mod-cart-total-sum">0</span>₽
+											</span>
+										</p>
+									</div>
+								</a>
+								<!-- end of shopping cart -->
+
+								<!-- cart floating box -->
+								<div class="cart-floating-box" id="cart-floating-box">
+									<div class="cart-items">
+									<wb-module wb="module=cart&list=header&sum=price*qty*days">
+										<div class="mod-cart-item cart-float-single-item d-flex">
+											<span class="remove-item">
+												<a href="javascript:void(0)" class="mod-cart-remove" data-id="{{id}}"><i class="fa fa-times"></i></a>
+											</span>
+											<div class="cart-float-single-item-image">
+												<a href="{{link}}">
+													<img data-src="/thumb/359x359/src/{{image}}" class="img-fluid" alt="{{name}}">
+												</a>
+											</div>
+											<div class="cart-float-single-item-desc">
+												<p class="product-title"> <a href="single-product.html">{{name}} </a></p>
+												<p class="price"><span class="count">{{days}}x{{qty}}x</span> {{price}}₽</p>
+											</div>
+										</div>
+									</wb-module>
+									</div>
+									<div class="cart-calculation">
+										<div class="calculation-details">
+											<p class="total">Итого <span class="mod-cart-total-sum"></span></p>
+										</div>
+										<div class="floating-cart-btn text-center">
+											<a href="/cart">Корзина покупок</a>
+										</div>
+									</div>
+								</div>
+								<!-- end of cart floating box -->
+							</div>
+                <a href="" class="btn btn-primary btn-block">Learn More</a>
+            </div>
+        </div>
+        <div class="backdrop"></div>
+
+
+
+    </div>
+
+
+
+
+
+
+
+
     <script src="https://widget.cloudpayments.ru/bundles/cloudpayments"></script>
     <div class="breadcrumb-area mb-50 mt-50">
         <div class="container">
@@ -117,18 +195,20 @@
                                                     placeholder="Телефон">
                                             </div>
 
-											<div class="cross-delivery d-none alert alert-warning">
-												<p>
-													Доставка заказа пересекается с более ранними заказами. Если вы не желаете
-													объединить доставки, выберите другую дату доставки: 
-													<span class='cursor-pointer' style="text-decoration:underline;">&nbsp;</span>.
-												</p>
-												<ul>
-												<wb-foreach wb="bind=tmp.crossdelivery&render=client">
-													<li>Заказ № {{number}} от {{date}} - {{expired}}</li>
-												</wb-foreach>
-												</ul>
-											</div>
+                                            <div class="cross-delivery d-none alert alert-warning">
+                                                <p>
+                                                    Доставка заказа пересекается с более ранними заказами. Если вы не
+                                                    желаете
+                                                    объединить доставки, выберите другую дату доставки:
+                                                    <span class='cursor-pointer'
+                                                        style="text-decoration:underline;">&nbsp;</span>.
+                                                </p>
+                                                <ul>
+                                                    <wb-foreach wb="bind=tmp.crossdelivery&render=client">
+                                                        <li>Заказ № {{number}} от {{date}} - {{expired}}</li>
+                                                    </wb-foreach>
+                                                </ul>
+                                            </div>
 
 
                                             <div class="col-12 mb-25">

@@ -53,5 +53,30 @@ setTimeout(function(){
         }
         e.stopPropagation();
       });
-
     })
+
+        $('.off-canvas-menu').on('click', function(e){
+          e.preventDefault();
+          var target = $(this).attr('href');
+          $(target).addClass('show');
+        });
+
+
+        $('.off-canvas .close').on('click', function(e){
+          e.preventDefault();
+          $(this).closest('.off-canvas').removeClass('show');
+        })
+
+        $(document).on('click touchstart', function(e){
+            if($(e.target).parents('.off-canvas.show').length) return;
+            var offCanvas = $(e.target).closest('.off-canvas.show').length;
+            if(!offCanvas) {
+              $('.off-canvas.show').removeClass('show');
+              e.stopPropagation();
+            }
+        });
+
+        wbapp.on('mod-cart-add',function(){
+          setTimeout(()=>{$('#cart').addClass('show')});
+        })
+    

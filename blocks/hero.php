@@ -37,6 +37,7 @@
 </edit>
 
 <view header>
+<section>
     <div class="parallax d-flex" data-img="{{bkg.0.img}}">
         <div class="position-absolute d-block wd-100v ht-100v op-7 bg-black-8">&nbsp;</div>
         <div class="parallax-overlay row justify-content-center">
@@ -54,4 +55,5 @@
             </div>
         </div>
     </div>
+</section>
 </view>
