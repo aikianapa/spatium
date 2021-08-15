@@ -22,7 +22,6 @@
                 <div class="carousel-inner">
                     <wb-foreach wb="table=products&sort=_created" wb-filter="category=main&active=on">
                         <wb-var product="{{_val}}" />
-                        {{_var.product.name}}
                         <wb-var wb-if="'{{_idx}}'=='0'" active="active" else="" />
                         <div class="carousel-item {{_var.active}}">
                             <wb-var wid="{{wbNewId()}}" />
@@ -84,11 +83,11 @@
                                                         <div class="tx-30 tx-success">
                                                             {{_var.total_kcal}} Ккал
                                                         </div>
-                                                        <a href="javascript:void(0);" data-id="{{id}}"
-                                                            data-name="{{name}}" data-price="{{price}}"
-                                                            data-image="{{images.0.img}}" data-days="7"
-                                                            data-link="/products/{{id}}/{{wbUrlOnly({{name}})}}"
-                                                            class="mod-cart-add btn btn-success tx-20 px-4 my-3 rounded-30">В
+                                                        <a href="javascript:void(0);" data-id="{{_var.product.id}}"
+                                                            data-name="{{_var.product.name}}" data-price="{{_var.product.price}}"
+                                                            data-image="{{_var.product.images.0.img}}" data-days="7"
+                                                            data-link="/products/{{_var.product.id}}/{{wbUrlOnly({{_var.product.name}})}}"
+                                                            class="mod-cart-add mod-cart-data btn btn-success tx-20 px-4 my-3 rounded-30">В
                                                             корзину <img
                                                                 src="/module/myicons/shopping-cart.svg?size=26&stroke=FFFFFF"></a>
                                                         <div class="row tx-normal">
