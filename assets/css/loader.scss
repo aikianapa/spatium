@@ -12,18 +12,25 @@ $amount: 18px;
 
 // custom translation for each shape in an animation
 @mixin customTranslate ($shape, $tx, $ty) {
-  @if  $shape == 1 {
+  @if $shape==1 {
     transform: translate($tx, $ty);
-  } @else if $shape == 2 {
+  }
+
+  @else if $shape==2 {
     transform: translate(-$ty, $tx);
-  } @else if $shape == 3 {
+  }
+
+  @else if $shape==3 {
     transform: translate($ty, -$tx);
-  } @else if $shape == 4 {
+  }
+
+  @else if $shape==4 {
     transform: translate(-$tx, -$ty);
   }
 }
 
-html, body {
+html,
+body {
   margin: 0;
 }
 
@@ -36,60 +43,83 @@ loader {
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
+
   p {
-    position:absolute;
-    padding-top:100px;
+    position: absolute;
+    padding-top: 100px;
     font-family: sans-serif;
     font-size: 24px;
-    color:#34A853;
+    color: #34A853;
   }
-.loader {
-  position: relative;
-  width: $containerDimentions;
-  height: $containerDimentions;
-  animation: rotation 1s infinite;
-  
-  .shape {
-    position: absolute;
-    width: $shapeDimentions;
-    height: $shapeDimentions;
-    border-radius: 2px;
-    &.shape-1 {
-      left: 0;
-      background-color: $primary;
+
+  .loader {
+    position: relative;
+    width: $containerDimentions;
+    height: $containerDimentions;
+    animation: rotation 1s infinite;
+
+    .shape {
+      position: absolute;
+      width: $shapeDimentions;
+      height: $shapeDimentions;
+      border-radius: 2px;
+
+      &.shape-1 {
+        left: 0;
+        background-color: $primary;
+      }
+
+      &.shape-2 {
+        right: 0;
+        background-color: $success;
+      }
+
+      &.shape-3 {
+        bottom: 0;
+        background-color: $warning;
+      }
+
+      &.shape-4 {
+        bottom: 0;
+        right: 0;
+        background-color: $danger;
+      }
     }
-    &.shape-2 {
-      right: 0;
-      background-color: $success;
-    }
-    &.shape-3 {
-      bottom: 0;
-      background-color: $warning;
-    }
-    &.shape-4 {
-      bottom: 0;
-      right: 0;
-      background-color: $danger;
+
+    @for $i from 1 through 4 {
+      .shape-#{$i} {
+        animation: shape#{$i} 2s linear infinite;
+      }
     }
   }
-  @for $i from 1 through 4 {
-    .shape-#{$i} {
-      animation: shape#{$i} 2s linear infinite;
-    }
-  }
-}
 }
 
 @keyframes rotation {
-  from { transform: rotate(0deg) }
-  to { transform: rotate(360deg) }
+  from {
+    transform: rotate(0deg)
+  }
+
+  to {
+    transform: rotate(360deg)
+  }
 }
 
 @for $i from 1 through 4 {
   @keyframes shape#{$i} {
-    0% { transform: translate(0, 0) }
-    25% { @include customTranslate($i, 0, $amount) }
-    50% { @include customTranslate($i, $amount, $amount) }
-    75% { @include customTranslate($i, $amount, 0) }
+    0% {
+      transform: translate(0, 0)
+    }
+
+    25% {
+      @include customTranslate($i, 0, $amount)
+    }
+
+    50% {
+      @include customTranslate($i, $amount, $amount)
+    }
+
+    75% {
+      @include customTranslate($i, $amount, 0)
+    }
   }
 }
