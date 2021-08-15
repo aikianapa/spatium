@@ -144,6 +144,7 @@ yonger.pageBlocks = function() {
     }
 
     $('#yongerPageBlocks').delegate('.dd-active', wbapp.evClick, function() {
+        if (!$current) $('#yongerPageBlocks').find('li.dd-item:first .dd-edit').trigger('click');
         let $line = $(this).parents('.dd-item');
         let id = $(this).parents('.dd-item').attr('data-id');
         if ($current.attr('data-id') == id) {
