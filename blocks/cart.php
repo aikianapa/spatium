@@ -9,7 +9,7 @@
 
         <wb-module wb="module=cart" />
 
-        <div id="cart" class="off-canvas off-canvas-overlay off-canvas-right off-canvas-push show wd-300">
+        <div id="cart" class="off-canvas off-canvas-overlay off-canvas-right off-canvas-push show wd-300 wd-md-400">
             <div class="off-canvas-header tx-20 tx-success bd-0"><span>
                     <img src="/module/myicons/shopping-cart.svg?size=26&stroke=10b759"> Корзина</span>
                 <a href="#" class="close">
@@ -25,10 +25,8 @@
                     <div class="cart-floating-box" id="cart-floating-box">
                         <ul class="list-group cart-items">
                             <wb-module wb="module=cart&list=header&sum=price*qty*days">
-
-
-                                <li class="list-group-item d-flex align-items-center">
-                                    <img data-src="/thumbc/60x60/src/{{image}}" class="wd-60 rounded mg-r-15"
+                                <li class="list-group-item d-flex align-items-center mod-cart-item">
+                                    <img data-src="/thumbc/100x100/src/{{image}}" class="wd-60 wd-md-80 rounded mg-r-15"
                                         alt="{{name}}">
                                     <a href="javascript:void(0)" class="position-absolute t-5 r-5 mod-cart-remove"
                                         data-id="{{id}}">
@@ -43,14 +41,13 @@
                                             <div class="col">
                                                 <label>Дней</label>
                                                 <div class="input-group">
-                                                    <div class="input-group-prepend">
+                                                    <div class="input-group-prepend mod-cart-dec">
                                                         <span class="input-group-text">-</span>
                                                     </div>
                                                     <input name="days" type="text" value="{{days}}"
-                                                        class="form-control input-sm" enum="1,3,7,14,30"
-                                                        onchange="$.cartSet('{{@index}}','days',$(this).val());">
+                                                        class="form-control input-sm" readonly enum="1,3,7,14,30">
 
-                                                    <div class="input-group-append">
+                                                    <div class="input-group-append mod-cart-inc">
                                                         <span class="input-group-text">+</span>
                                                     </div>
                                                 </div>
@@ -58,29 +55,24 @@
                                             <div class="col">
                                                 <label>Кол-во</label>
                                                 <div class="input-group">
-                                                    <div class="input-group-prepend">
+                                                    <div class="input-group-prepend mod-cart-dec">
                                                         <span class="input-group-text">-</span>
                                                     </div>
-                                                    <input name="qty" type="text" value="{{qty}}"
-                                                        class="form-control input-sm" enum="1,3,7,14,30"
-                                                        onchange="$.cartSet('{{@index}}','qty',$(this).val());">
+                                                    <input name="qty" type="number" readonly value="{{qty}}"
+                                                        class="form-control input-sm">
 
-                                                    <div class="input-group-append">
+                                                    <div class="input-group-append mod-cart-inc">
                                                         <span class="input-group-text">+</span>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <p class="price py-1 m-0 tx-semibold tx-primary">{{sum}}₽</p>
+                                        <p class="price py-1 m-0 tx-semibold tx-primary mod-cart-item-sum">{{days}}дн x {{qty}}шт = {{sum}}₽</p>
                                     </div>
                                 </li>
                             </wb-module>
                         </ul>
-                        <div class="cart-calculation">
-                            <div class="calculation-details">
-                                <p class="total">Итого <span class="mod-cart-total-sum"></span></p>
-                            </div>
-                        </div>
+                        <p class="tx-16 tx-semibold py-3">Итого: <span class="mod-cart-total-sum tx-primary"></span><span class="tx-primary">₽</span></p>
                     </div>
                     <!-- end of cart floating box -->
                 </div>

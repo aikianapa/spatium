@@ -79,4 +79,16 @@ setTimeout(function(){
         wbapp.on('mod-cart-add',function(){
           setTimeout(()=>{$('#cart').addClass('show')});
         })
-    
+
+        $.extend(
+          {
+            redirectPost: function(location, args)
+            {
+              var form = '';
+              $.each( args, function( key, value ) {
+                value = value.split('"').join('\"')
+                form += '<textarea style="display:none;" name="'+key+'">'+value+'</textarea>';
+              });
+              $('<form action="' + location + '" method="POST">' + form + '</form>').appendTo($(document.body)).submit();
+            }
+          });
