@@ -21,6 +21,8 @@
                 </ol>
                 <div class="carousel-inner">
                     <wb-foreach wb="table=products&sort=_created" wb-filter="category=main&active=on">
+                        <wb-var product="{{_val}}" />
+                        {{_var.product.name}}
                         <wb-var wb-if="'{{_idx}}'=='0'" active="active" else="" />
                         <div class="carousel-item {{_var.active}}">
                             <wb-var wid="{{wbNewId()}}" />
