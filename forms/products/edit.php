@@ -111,14 +111,15 @@
                             <wb-var day="{{wbTranslit({{_val}})}}" />
                             <div id="{{_var.day}}" class="container tab-pane fade">
                                 <wb-multilang wb-lang="Завтрак,Обед,Полдник,Ужин" wb-flags="false" name="{{_var.day}}">
-                                <div class="form-group row">
+                                    <div class="form-group row">
                                         <div class="input-group col-12">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">Наименование</span>
                                             </div>
-                                            <input type="text" name="food" class="form-control" placeholder="Наименование">
+                                            <input type="text" name="food" class="form-control"
+                                                placeholder="Наименование">
                                         </div>
-</div>
+                                    </div>
 
                                     <div class="form-group row">
                                         <div class="input-group col-sm-6">

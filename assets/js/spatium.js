@@ -22,6 +22,19 @@ setTimeout(function(){
     $('loader').hide();
   },1)
 
+	if (!wbapp._session.user || !wbapp._session.user.id || wbapp._session.user.id < ' ') {
+		var uid = 'unknown';
+	} else { 
+		var uid = wbapp._session.user.id;
+	}
+
+  
+  $('.scroll-top').on('click', function () {
+		$('html,body').animate({
+			scrollTop: 0
+		}, 2000);
+	});
+
   $.fn.lightGallery = function (options) {
     if (!this.length) return;
     $(this).each(function(){
@@ -53,32 +66,96 @@ setTimeout(function(){
         }
         e.stopPropagation();
       });
+
+      $('#shopping-cart .accordion').accordion({
+        heightStyle: 'content'
+      });
+      
     })
 
-        $('.off-canvas-menu').on('click', function(e){
-          e.preventDefault();
-          var target = $(this).attr('href');
-          $(target).addClass('show');
-        });
+
+        var getCartData = function() {
+          let form = $('form#Details').serializeJson();
+          let data = wbapp.storage('mod.cart.'+uid);
+          if (form == undefined || data == undefined) return;
+          data['user'] = form;
+          return JSON.stringify(data);
+        }
+
+        $(document).delegate(".checkout-btn",wbapp.evClick,function(e){
+          e.stopPropagation();
+          wbapp.loadScripts(["https://widget.cloudpayments.ru/bundles/cloudpayments"],'cloudpayment',function(){
 
 
-        $('.off-canvas .close').on('click', function(e){
-          e.preventDefault();
-          $(this).closest('.off-canvas').removeClass('show');
-        })
 
-        $(document).on('click touchstart', function(e){
-            if($(e.target).parents('.off-canvas.show').length) return;
-            var offCanvas = $(e.target).closest('.off-canvas.show').length;
-            if(!offCanvas) {
-              $('.off-canvas.show').removeClass('show');
-              e.stopPropagation();
-            }
-        });
+            var widget = new cp.CloudPayments();
+            var iid = Object.keys(wbapp.storage('mod.cart'))[0];
+            var sum = wbapp.storage('mod.cart.'+uid+'.total.sum')*1;
+            var data = getCartData();
+            var token = md5(data+uid+time());
+            var options = { //options
+              publicId: 'test_api_00000000000000000000001', //id из личного кабинета
+              description: 'Оплата товаров в Spatium Detox', //назначение
+              amount: sum, //сумма
+              currency: 'RUB', //валюта
+              accountId: uid, //идентификатор плательщика (необязательно)
+              invoiceId: uid, //номер заказа  (необязательно)
+              skin: "modern", //дизайн виджета (необязательно)
+              data: {
+                token: token
+              }
+            };
+               widget.pay('auth', options,
+                 {
+                   onSuccess: function (options) { // success
+                     //действие при успешной оплате
+                    if (options.data.token == token && paymentResult.success == true) {
+                      setcookie('carttoken',token,time() + 1000);
+                      $.redirectPost("/orders/checkout", {data: data, token: token});
+                    }
+                   },
+                   onFail: function (reason, options) { // fail
+                     //действие при неуспешной оплате
+                     //console.log(reason,options);
+                     //$.redirectPost("/cart", {});
+                   },
+                   onComplete: function (paymentResult, options) { //Вызывается как только виджет получает от api.cloudpayments ответ с результатом транзакции.
+        //					console.log(paymentResult,options);
+                     //например вызов вашей аналитики Facebook Pixel
+                     if (options.data.token == token && paymentResult.success == true) {
+                         setcookie('carttoken',token,time() + 1000);
+                      $.redirectPost("/orders/checkout", {data: data, token: token});
+                     }
+                   }
+                 }
+               )
+          })
+           });
+
 
         wbapp.on('mod-cart-add',function(){
           setTimeout(()=>{$('#cart').addClass('show')});
         })
+
+        $(document).delegate('#Details [name=date][type=hidden]','change',function(e){
+          e.stopPropagation();
+          if (wbapp._session.user.id == undefined) return;
+          let data = wbapp.postSync('/orders/get_date_dlvrs',{date: $(this).val()});
+          if (data == null || data.result == undefined) return;
+          if (data.result.length) {
+            wbapp.storage('tmp.crossdelivery',data.result);
+            $('#Details .cross-delivery p > span').html(data.freedate);
+            $('#Details .cross-delivery').removeClass('d-none');
+            $('#Details .cross-delivery p > span').off(wbapp.evClick);
+            $('#Details .cross-delivery p > span').on(wbapp.evClick,function(){
+              $('#Details [name=date]:not([type=hidden])').val(data.freedate);
+              $('#Details [name=date][type=hidden]').trigger('change');
+            });
+          } else {
+            $('#Details .cross-delivery').addClass('d-none');
+          }
+        })
+        $('#Details [name=date][type=hidden]').trigger('change');
 
         $.extend(
           {

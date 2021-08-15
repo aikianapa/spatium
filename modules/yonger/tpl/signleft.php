@@ -11,7 +11,7 @@
                 Yonger - экономьте время на приготовлении пищи и оставайтесь в тонусе с нишими наборами для
                 сбалансированного здорового питания.
             </p>
-            <a class="btn btn-secondary btn-rounded">Подробнее</a>
+            <a href="/" class="btn btn-success btn-rounded">Подробнее</a>
         </div>
     </div>
 </div>

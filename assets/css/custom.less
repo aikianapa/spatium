@@ -200,16 +200,49 @@ section#products .nav-link.active {
 }
 
 #cart {
-    .form-control {
-        padding:3px;
-        text-align: center;
-        height: 26px;
+    .mod-cart-item {
+    
+        .form-control {
+            padding:3px;
+            text-align: center;
+            height: 26px;
+        }
+        .input-group-text {
+            height: 26px;
+            cursor: pointer;
+        }
+        label {
+            height: 1px;
+        }
     }
-    .input-group-text {
-        height: 26px;
-        cursor: pointer;
+
+    .accordion {
+        h6.ui-accordion-header {
+            color: #10b759;
+            font-weight: 600;
+            .ui-accordion-header-icon:before {
+                content: '';
+                width:18px;
+                height:18px;
+            }
+            &.cart .ui-accordion-header-icon:before {
+                background-image: url(/module/myicons/shopping-cart.svg?size=18&stroke=10b759);
+        }
+        &.delivery .ui-accordion-header-icon:before {
+            background-image: url(/module/myicons/delivery-truck-fast.svg?size=18&stroke=10b759);
+        }
+            &.ui-state-active {
+                color: #001737;
+                &.cart .ui-accordion-header-icon:before {
+                    background-image: url(/module/myicons/shopping-cart.svg?size=18&stroke=001737);
+                }
+                &.delivery .ui-accordion-header-icon:before {
+                    background-image: url(/module/myicons/delivery-truck-fast.svg?size=18&stroke=001737);
+                }
+            }
+        }
+        
+
     }
-    label {
-        height: 1px;
-    }
+
 }

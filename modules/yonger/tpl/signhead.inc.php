@@ -138,7 +138,6 @@
             padding: 24px 53px;
             width: 207px;
             height: 60px;
-            background: #FFFFFF;
         }
     }
 

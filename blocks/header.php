@@ -43,7 +43,13 @@
                             Контакты
                         </a></li>
                 </ul>
+                
                 <div class="d-inline my-2 my-lg-0">
+                    <a href="javascript:$('#cart').addClass('show');" class="my-2 my-sm-0">
+
+                    <img data-src="/module/myicons/shopping-cart.svg?size=26&stroke=10b759" alt="Мои покупки">
+
+                    </a>
                     <a href="/signin" class="btn btn-outline-success rounded-20 my-2 my-sm-0">Вход</a>
                 </div>
             </div>

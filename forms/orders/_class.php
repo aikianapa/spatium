@@ -187,7 +187,7 @@ class ordersClass extends cmsFormsClass {
     function get_date_dlvrs() {
         header('Content-Type: application/json');
         $app = &$this->app;
-        $date = $app->vars('_post.date');
+        $date = date('Y-m-d',strtotime($app->vars('_post.date')));
         if (!$app->checkToken()) {
             echo json_encode(null);
             die;
