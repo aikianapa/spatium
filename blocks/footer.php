@@ -15,7 +15,7 @@
           <!-- Brand -->
           <p>
             <a href="#" class="position-absolute footer-brand text-white">
-              <img class="ht-70 w-auto" src="./assets/img/logo.svg" alt="">
+              <img class="ht-70 w-auto" src="/assets/img/logo.svg" alt="">
             </a>
           </p>
       

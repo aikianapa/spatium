@@ -195,8 +195,9 @@ yonger.yongerPageBlockAdd = function(bid) {
     let id = wbapp.newId();
     let block = wbapp.storage('yonger.blocks.' + bid);
     $('#modalPagesEditBlocks').modal('hide');
-    if (block.file == 'seo.php' && substr(block.path,0,10) == '/_yonger_/') id = name = 'seo';
-    if (block.file == 'code.php' && substr(block.path,0,10) == '/_yonger_/') id = name = 'code';
+    if (block.file !== undefined && block.file == 'seo.php' && substr(block.path,0,10) == '/_yonger_/') id = name = 'seo';
+    if (block.file !== undefined && block.file == 'code.php' && substr(block.path,0,10) == '/_yonger_/') id = name = 'code';
+
     if ($('#yongerPageBlocks').find('li.dd-item[data-id="'+id+'"]').length) {
         $('#yongerPageBlocks').find('li.dd-item[data-id="'+id+'"] .dd-edit').trigger('click');
         return;

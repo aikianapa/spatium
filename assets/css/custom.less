@@ -25,18 +25,24 @@ section {
     filter: invert();
 }
 
-section#products .nav-link {
+.product-item {
+.nav-link {
     border: 0;
     background: transparent;
     padding-bottom: 20px;
     font-weight: 600;
     text-transform: capitalize;
     width: 60px;
+    &.active {
+        color: #44c473 !important;
+        border-bottom: 1px #333 solid;
+        background-color: transparent;
+    }
+    &:hover {
+        background-color: transparent;
+        border-bottom: 1px #333 solid;
+    }
 }
-
-section#products .nav-link.active {
-    color: #44c473 !important;
-    border-bottom: 1px #333 solid;
 }
 
 .columns-4 {

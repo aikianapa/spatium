@@ -1,6 +1,6 @@
 <edit header="Программа питания">
     <div class="alert alert-info">
-        Смотри в /programs.php
+        Смотри в /blocks/programs.php
     </div>
     <div>
         <wb-include wb-src="/modules/yonger/common/blocks/common.inc.php" />

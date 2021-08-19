@@ -27,7 +27,7 @@
             <div class="collapse navbar-collapse order-2" id="navbarNav">
                 <ul class="navbar-nav tx-bold tx-uppercase mx-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Ежедневное меню</a>
+                        <a class="nav-link" href="/shop">Ежедневное меню</a>
                     </li>
 
                     <li class="nav-item"><a class="nav-link" href="#">

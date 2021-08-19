@@ -8,18 +8,9 @@
 <body>
 
     <wb-module wb="module=yonger&mode=render&view=header" />
-    <nav aria-label="breadcrumb" class="container">
-        <ol class="breadcrumb mg-b-0 mg-t-70 bg-white">
-            <li class="breadcrumb-item"><a href="/"><i class="fa fa-home"></i> Главная</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Кабинет</li>
-        </ol>
-    </nav>
-
-    <div class="my-account-section section position-relative mb-50 fix">
+    <div class="my-account-section section position-relative mb-50 mg-t-80">
         <div class="container">
-
                     <div class="row">
-
                         <!-- My Account Tab Menu Start -->
                         <div class="col-lg-3 col-12">
                             <div id="sidebarMenu" class="sidebar sidebar-components bg-white z-index-10">
