@@ -8,7 +8,7 @@
 
         <wb-module wb="module=cart" />
 
-        <div id="cart" class="off-canvas off-canvas-overlay off-canvas-right off-canvas-push show wd-300 wd-md-400">
+        <div id="cart" class="off-canvas off-canvas-overlay off-canvas-right wd-300 wd-md-400">
             <div class="off-canvas-header tx-20 tx-success bd-0"><span>
                     <img src="/module/myicons/shopping-cart.svg?size=26&stroke=10b759"> Мои покупки</span>
                 <a href="#" class="close">

@@ -133,6 +133,46 @@ setTimeout(function(){
            });
 
 
+
+           $(document).delegate('#deliveryCalendar .day',wbapp.evClick,function(ev){
+            let date = $(this).data('date');
+            let data = wbapp.template['#deliveryCalendar'].params.data[date].products;
+            var tid = '#modalProdList';
+            Ractive({
+              target: tid,
+              template: wbapp.template[tid].html,
+              data: {'result':data}
+            });
+            wbapp.lazyload();
+            $('#modalRight').modal('show');
+            ev.stopPropagation();
+          });
+        
+        
+        
+          $(document).delegate('#deliveryCalendar .day .fa-close',wbapp.evClick,function(ev){
+            var type = null;
+            var $that = $(this).parents('.day');
+            if ($that.hasClass('wait')) return;
+            if ($that.hasClass('past')) return;
+            if ($that.hasClass('empty')) type = 'empty';
+            if ($that.hasClass('deny')) type = 'deny';
+            if (type) {
+              $that.addClass('wait');
+              var date = $that.data('date');
+              var tid = '#deliveryCalendar';
+              wbapp.post('/cms/ajax/form/users/delivery_decline',{
+                type: type,
+                date: date
+              },function(data){
+                $that.removeClass('wait');
+                wbapp.render(tid,{'result':data});
+              })
+            }
+            ev.stopPropagation();
+          });
+
+
         wbapp.on('mod-cart-add',function(){
           setTimeout(()=>{$('#cart').addClass('show')});
         })

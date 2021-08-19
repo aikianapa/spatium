@@ -11,15 +11,15 @@ class usersClass extends cmsFormsClass
         in_array($app->vars('_sess.user.role'),['admin','manager']) ? $uid = $app->vars('_post.uid') : $uid = $app->vars('_sess.user.id');
         $orders = $app->itemList('orders', ['filter'=>[
             '_creator' => $uid,
-            'expired' => ['$gte'=>date('Y-m-d')],
-            'date' => ['$lte'=>date('Y-m-d')]
+            'expired' => ['$gte'=>date('Y-m-d')]
         ]]);
         $dlvrs = [];
         foreach ($orders['list'] as $order) {
             $count = 0;
-            foreach ($order['delivery'] as $date => &$d) {
+            foreach ($order['delivery'] as $date => $d) {
+                $date = date('Y-m-d',strtotime($date));
                 $d['date'] = $date;
-                if ($date >= date('Y-m-d')) {
+                //if (strtotime($date) >= strtotime(date('Y-m-d'))) {
                     !isset($dlvrs[$date]['orders']) ?  $dlvrs[$date]['orders'] = [] : null;
                     !isset($dlvrs[$date]['products']) ?  $dlvrs[$date]['products'] = [] : null;
                     $this->delivery_prep($d);
@@ -34,7 +34,7 @@ class usersClass extends cmsFormsClass
                             $dlvrs[$date]['products'][] = $p;
                         }
                     }
-                }
+                //}
             }
         }
         $dlvrs = $app->arraySort($dlvrs, "date");
@@ -49,8 +49,7 @@ class usersClass extends cmsFormsClass
             in_array($app->vars('_sess.user.role'),['admin','manager']) ? $uid = $app->vars('_post.uid') : $uid = $app->vars('_sess.user.id');
             $orders = $app->itemList('orders', ['filter'=>[
             '_creator' => $uid,
-            'expired' => ['$gte'=>date('Y-m-d')],
-            'date' => ['$lte'=>date('Y-m-d')]
+            'expired' => ['$gte'=>date('Y-m-d')]
             ]]);
             foreach ($orders['list'] as $order) {
                 $this->delivery_order_decline($order['id'], $app->vars('_post.date'));
@@ -67,7 +66,7 @@ class usersClass extends cmsFormsClass
         }
         $app = &$this->app;
         $order = $app->itemRead('orders', $oid);
-        $delivery = &$order['delivery'];
+        $delivery = $order['delivery'];
         if (!isset($delivery[$date])) {
             return;
         }
@@ -86,8 +85,18 @@ class usersClass extends cmsFormsClass
                 }
                 break;
         }
+
+                // если вдруг в результате оштбки количество доставок меньше, чем дней
+
+                $nodeny =  $app->json($delivery)->where('status','!=','deny')->count() - 1;
+                
+                for($i=$nodeny;$i<=$order['days'];$i++) {
+                    $newdate = date('Y-m-d', strtotime($newdate." +1day"));
+                    $delivery[$newdate] = ['date'=>$newdate,'status'=>'empty'];
+                }
         $order['expired'] = array_pop(array_keys($delivery));
-        $app->itemSave('orders', $order, false);
+        $order['delivery'] = $delivery;
+        $app->itemSave('orders', $order, true);
     }
 
     public function delivery_prep(&$d)
@@ -99,6 +108,7 @@ class usersClass extends cmsFormsClass
         $d['y'] = strftime('%Y', $time);
         $d['n'] = strftime('%a', $time);
         $d['status'] == '' ? $d['status'] = 'empty' : null;
+        if ($d['status'] == 'deny') $d['deny'] = 'deny';
         if ($d['date'] <= date('Y-m-d')) {
             $d['status'] = 'past';
         }

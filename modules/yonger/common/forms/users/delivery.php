@@ -8,7 +8,7 @@
                     <b>{{n}}</b>
                     <br>
                     <span>{{d}} {{m}}</span>
-                    {{ orders.lenth }}
+                    {{ __orders.length }}
                 </p>
                 <div class="position-absolute" data-tooltip="Отложить доставку" style="bottom:5px;right:5px;">
                     <i class="fa fa-close text-danger"></i>

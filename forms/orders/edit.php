@@ -20,11 +20,12 @@
                     </wb-data>
                 </div>
                 <div class="py-2" id="deliveryCalendar">
-                    <wb-foreach wb="from=delivery&render=server">
+                    <wb-foreach wb="from=delivery&render=server&tpl=true">
                     <wb-var wb-if="'{{status}}'!=='deny'" color='success' else='danger' />
                         <wb-var wb-if="'{{status}}'=='past'" color='outline-secondary' />
                         <wb-var wb-if="'{{status}}'=='fail'" color='outline-warning' />
                         <wb-var wb-if="'{{status}}'=='ready'" color='outline-success' />
+                        <wb-var wb-if="'{{deny}}'=='deny'" color='outline-danger' />
                     <div class="dropdown  d-inline">
                             <button type="button" wb-if="'{{status}}'!=='past'"
                                 class="dropdown-toggle day {{status}} btn btn-xs btn-{{_var.color}} mr-2 mb-2"
@@ -69,7 +70,7 @@
                             <th class="pro-subtotal">Всего</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="orderList">
                         <wb-foreach wb="from=list&size=10">
                             <tr>
                                 <td class="pro-thumbnail">

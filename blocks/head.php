@@ -22,11 +22,10 @@
   <link rel="preload" as="script" href="/assets/js/lightgallery/js/lightgallery.min.js" />
   <link rel="preload" as="script" href="/assets/js/spatium.js" />
 
-  <link href="/assets/css/loader.scss" rel="stylesheet" />
-
   <script src="/engine/js/wbapp.js"></script>
   <script type="wbapp" remove>
     wbapp.loadStyles([
+     "/assets/css/loader.scss",
      "/modules/yonger/tpl/assets/css/dashforge.min.css",
      "/assets/js/lightgallery/css/lightgallery.min.css",
      "/assets/css/custom.less",

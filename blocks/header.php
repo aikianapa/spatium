@@ -50,7 +50,8 @@
                     <img data-src="/module/myicons/shopping-cart.svg?size=26&stroke=10b759" alt="Мои покупки">
 
                     </a>
-                    <a href="/signin" class="btn btn-outline-success rounded-20 my-2 my-sm-0">Вход</a>
+                    <a href="/signin" class="btn btn-outline-success rounded-20 my-2 my-sm-0" wb-if="'{{_sett.user.id}}'==''">Вход</a>
+                    <a href="/cabinet" class="btn btn-outline-success rounded-20 my-2 my-sm-0" wb-if="'{{_sett.user.role}}'=='user'">Кабинет</a>
                 </div>
             </div>
         </nav>

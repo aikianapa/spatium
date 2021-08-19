@@ -16,7 +16,7 @@
                     <tr>
                         <td class="pro-thumbnail">
                             <a href="{{link}}">
-                                <img data-src="/thumb/359x359/src/{{image}}" class="img-fluid" alt="{{name}}">
+                                <img data-src="/thumb/359x359/src/{{image}}" class="wd-100 img-fluid" alt="{{name}}">
                             </a>
                         </td>
                         <td class="pro-title"><a href="{{link}}">{{name}}</a></td>

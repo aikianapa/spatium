@@ -56,7 +56,7 @@ section#products .nav-link.active {
     background-repeat: no-repeat;
     background-position-x: center;
     background-position-y: center;
-    overflow-y:hidden;
+    overflow-y: hidden;
 }
 
 .parallax-overlay {
@@ -65,43 +65,51 @@ section#products .nav-link.active {
 }
 
 .ht-auto {
-    height: auto!important;
+    height: auto !important;
+}
+
+.mn-ht-50v {
+    min-height: 50vh;
 }
 
 .pd-t-20v {
     padding-top: 20vh;
 }
 
-    @media (min-height: 768px) {
+@media (min-height: 768px) {
     .ht-sm-50v {
         height: 50vh;
         overflow-y: hidden;
     }
+}
+
+@media (max-width: 767px) {
+    .columns-sm-2 {
+        columns: 2;
     }
 
-    @media (max-width: 767px) {
-        .columns-sm-2 {
-            columns: 2;
-        }
-        .columns-sm-3 {
-            columns: 3;
-        }
+    .columns-sm-3 {
+        columns: 3;
     }
-    @media (max-width: 575px) {
-        .columns-xs-1 {
-            columns: 1;
-        }
+}
+
+@media (max-width: 575px) {
+    .columns-xs-1 {
+        columns: 1;
     }
+}
 
 
 .nav-vertical {
     .nav-link {
         border: 1px transparent solid;
+
         &.active {
             border: 1px #bbb solid !important;
             border-radius: 3px;
         }
     }
+
     .nav-link:hover:not(.active) {
         border: 1px #eee solid !important;
         border-radius: 3px;
@@ -110,26 +118,31 @@ section#products .nav-link.active {
 
 #faq-accordion {
     text-align: left;
+
     .ui-accordion-header {
         border: 0;
-        border-radius:0;
+        border-radius: 0;
         border-top: 1px #10b759 solid;
         background-color: transparent;
+
         &.ui-state-active {
             color: inherit;
+
             .ui-accordion-header-icon::before {
                 transform: rotate(-45deg);
                 transition-duration: .3s;
             }
 
         }
+
         .ui-accordion-header-icon {
             position: absolute;
-            left:auto;
-            right:0;
+            left: auto;
+            right: 0;
+
             &::before {
                 transition-duration: .3s;
-                content:'';
+                content: '';
                 width: 40px;
                 height: 40px;
                 background-image: url(/module/myicons/interface-essential-228.svg?size=40&stroke=10b759);
@@ -137,9 +150,10 @@ section#products .nav-link.active {
         }
 
     }
+
     .ui-accordion-content {
         border: 0;
-        border-radius:0;
+        border-radius: 0;
     }
 }
 
@@ -157,25 +171,29 @@ section#products .nav-link.active {
 
 .lg-toolbar {
     background-color: transparent;
+
     .lg-icon {
         color: #444;
+
         &:hover {
             color: #000;
         }
     }
-} 
+}
 
 .carousel {
     -moz-user-select: -moz-none;
     -khtml-user-select: none;
     -webkit-user-select: none;
     -o-user-select: none;
-    user-select: none;      
+    user-select: none;
+
     .carousel-control-prev-icon {
         width: 50px;
         height: 50px;
         background-image: url(/module/myicons/interface-essential-181.svg?size=30&stroke=10b759);
     }
+
     .carousel-control-next-icon {
         width: 50px;
         height: 50px;
@@ -187,11 +205,15 @@ section#products .nav-link.active {
 
 #products {
     .carousel {
-        .carousel-control-prev, .carousel-control-next {
+
+        .carousel-control-prev,
+        .carousel-control-next {
             height: 100px;
         }
+
         .carousel-indicators li {
             border: 1px #10b759 solid;
+
             &.active {
                 background-color: #10b759;
             }
@@ -201,18 +223,20 @@ section#products .nav-link.active {
 
 #cart {
     .mod-cart-item {
-    
+
         .form-control {
-            padding:3px;
+            padding: 3px;
             text-align: center;
             height: 26px;
         }
+
         .input-group-text {
             height: 26px;
             cursor: pointer;
         }
+
         label {
-            height: 1px;
+            line-height: 1;
         }
     }
 
@@ -220,29 +244,75 @@ section#products .nav-link.active {
         h6.ui-accordion-header {
             color: #10b759;
             font-weight: 600;
+
             .ui-accordion-header-icon:before {
                 content: '';
-                width:18px;
-                height:18px;
+                width: 18px;
+                height: 18px;
             }
+
             &.cart .ui-accordion-header-icon:before {
                 background-image: url(/module/myicons/shopping-cart.svg?size=18&stroke=10b759);
-        }
-        &.delivery .ui-accordion-header-icon:before {
-            background-image: url(/module/myicons/delivery-truck-fast.svg?size=18&stroke=10b759);
-        }
+            }
+
+            &.delivery .ui-accordion-header-icon:before {
+                background-image: url(/module/myicons/delivery-truck-fast.svg?size=18&stroke=10b759);
+            }
+
             &.ui-state-active {
                 color: #001737;
+
                 &.cart .ui-accordion-header-icon:before {
                     background-image: url(/module/myicons/shopping-cart.svg?size=18&stroke=001737);
                 }
+
                 &.delivery .ui-accordion-header-icon:before {
                     background-image: url(/module/myicons/delivery-truck-fast.svg?size=18&stroke=001737);
                 }
             }
         }
-        
+
 
     }
 
+}
+
+
+#deliveryCalendar {
+    .day {
+        width: 80px;
+        height: 80px;
+        display: inline-grid;
+        align-items: center;
+        border: 1px #eee solid;
+        border-radius: 10px;
+        margin: 10px;
+        overflow: hidden;
+        color: white;
+
+        >div {
+            vertical-align: middle;
+            line-height: 80px;
+        }
+
+        &.wait {
+            opacity: 0.5;
+            cursor: wait;
+        }
+
+        &.past {
+            background-color: #666666;
+            cursor: not-allowed;
+        }
+
+        &.empty {
+            background-color: #80bb01;
+            cursor: pointer;
+        }
+
+        &.deny {
+            background-color: #a43d21;
+            cursor: pointer;
+        }
+    }
 }
