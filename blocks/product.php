@@ -20,7 +20,7 @@
         </div>
 
         
-        <div wb-if="'{{category}}'=='main'">
+        <div wb-if="'{{_var.product.category}}'=='main'">
 
         <ul class="nav nav-tabs bd-0 justify-content-center tx-16" role="tablist">
             <wb-foreach wb-json='["пн","вт","ср", "чт","пт","сб","вс"]' wb-render="server">
@@ -98,7 +98,7 @@
             </wb-foreach>
         </div>
         </div>
-        <div wb-if="'{{category}}'!=='main'" class="d-block text-center mg-b-50">
+        <div wb-if="'{{_var.product.category}}'!=='main'" class="d-block text-center mg-b-50">
         <a href="javascript:void(0);" data-id="{{_var.product.id}}"
                                         data-name="{{_var.product.name}}" data-price="{{_var.product.price}}"
                                         data-image="{{_var.product.images.0.img}}" data-days="7"
