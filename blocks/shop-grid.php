@@ -89,7 +89,7 @@
                             <form class="form-inline mg-l-auto">
                                 <select name="category" class="mr-5 rounded-20 form-control" placeholder="Категория"
                                     wb-tree="dict=menu-categories"
-                                    data-ajax="{'target':'#productsList','filter_add':{ 'category': '$value' } }">
+                                    data-ajax="{'target':'#productsList','filter_add':{ 'category': '$value' }, 'filter_clear':{'category': ''} }">
                                     <option value="{{id}}">{{name}}</option>
                                 </select>
 
@@ -109,10 +109,10 @@
                             'sort':'category:d',
                             'size':'24',
                             'filter': {'active':'on'}
-                }">
+                              }">
                                 <div class="col-sm-6 col-md-4 mg-b-20">
                                     <div class="card card-profile bd-0 shadow">
-                                        <img data-src="/thumbc/500x450/src/{{images.0.img}}"
+                                        <img data-src="/thumbc/500x450/src/{{images.0.img}}" width="500" height="450"
                                             class="img-fluid rounded-top" alt="">
                                         <div class="card-body bd-b-0-f bd-r-0-f bd-l-0-f tx-13">
                                             <div>
