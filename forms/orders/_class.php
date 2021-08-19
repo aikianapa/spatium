@@ -107,9 +107,7 @@ class ordersClass extends cmsFormsClass {
             $this->beforeItemShow($order,$date);
             $delivery = &$order['delivery'][$date];
             $start = date('Y-m-d',strtotime($order['date']));
-            if ($delivery['status'] !== 'deny' ) {
-                $result[] = $order;
-            }
+            $delivery['status'] !== 'deny' ? $result[] = $order : null;
         }
         $dom->fetch(['date'=>$date,'result'=>$result]);
         echo $dom->outer();
@@ -260,7 +258,7 @@ class ordersClass extends cmsFormsClass {
             if (!isset($line['dlvrs'])) {
                 $count = 0;
                 foreach ($item['delivery'] as $date => $d) {
-                    if ($date_report >= $date && $d['status'] !== 'deny') {
+                    if ($date_report >= $date && $d['deny'] !== 'deny') {
                         $count++;
                     }
                 }
