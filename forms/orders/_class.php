@@ -245,7 +245,7 @@ class ordersClass extends cmsFormsClass {
             $d['y'] = strftime('%Y', $time);
             $d['n'] = strftime('%a', $time);
             $d['status'] == '' ? $d['status'] = 'empty' : null;
-            if ($d['status'] == 'deny') $d['deny'] = 'deny';
+            $d['status'] == 'deny' ? $d['deny'] = 'deny' : $d['deny'] = '';
             if ($this->app->vars('_sess.user.role') > '' && $this->app->vars('_sess.user.role')!== 'user')  {
                 if ($date < date('Y-m-d')) $d['status'] = 'past';
             } else {

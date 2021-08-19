@@ -9,10 +9,16 @@ class usersClass extends cmsFormsClass
         $app = &$this->app;
         header('Content-Type: application/json');
         in_array($app->vars('_sess.user.role'),['admin','manager']) ? $uid = $app->vars('_post.uid') : $uid = $app->vars('_sess.user.id');
-        $orders = $app->itemList('orders', ['filter'=>[
+
+        $filter = [
             '_creator' => $uid,
             'expired' => ['$gte'=>date('Y-m-d')]
-        ]]);
+        ];
+        
+        $app->vars('_sess.user.role') == 'user' ? $filter['date'] = ['$gte'=>date('Y-m-d')] : null;
+
+
+        $orders = $app->itemList('orders', ['filter'=>$filter]);
         $dlvrs = [];
         foreach ($orders['list'] as $order) {
             $count = 0;
@@ -108,7 +114,7 @@ class usersClass extends cmsFormsClass
         $d['y'] = strftime('%Y', $time);
         $d['n'] = strftime('%a', $time);
         $d['status'] == '' ? $d['status'] = 'empty' : null;
-        if ($d['status'] == 'deny') $d['deny'] = 'deny';
+        $d['status'] == 'deny' ? $d['deny'] = 'deny' : $d['deny'] = '';
         if ($d['date'] <= date('Y-m-d')) {
             $d['status'] = 'past';
         }

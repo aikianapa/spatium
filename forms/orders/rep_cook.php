@@ -25,7 +25,7 @@
     <ul class="pt-3">
         <wb-foreach wb="from=result">
             <li class="list-group-item d-flex align-items-center">
-                <img data-src="/thumb/80x80/src/{{image}}" class="wd-80 rounded-circle mg-r-15" alt="">
+                <img data-src="/thumbc/80x80/src/{{image}}" class="wd-80 rounded-circle mg-r-15" alt="">
                 <div>
                     <h6 class="tx-13 tx-inverse tx-semibold mg-b-0">
                         <a href="{{link}}">

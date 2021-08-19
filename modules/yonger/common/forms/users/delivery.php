@@ -28,10 +28,6 @@
                 </button>
             </div>
             <div class="modal-body">
-
-
-
-
                 <div class="shop-product-wrap grid row no-gutters mb-35" id="modalProdList">
                 <template>
                 {{#each result}}
