@@ -16,7 +16,7 @@
                         <div class="mg-b-0 tx-center">{{text}}</div>
 
                         <div class="row">
-                            <div class="col-12 col-lg-8 offset-lg-2">
+                            <div class="col-12 col-lg-10 offset-lg-1">
 
                                 <div id="carouselProd" class="carousel slide" data-ride="carousel">
                                     <ol class="carousel-indicators">
