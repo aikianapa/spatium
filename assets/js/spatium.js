@@ -73,7 +73,6 @@ setTimeout(function(){
       
     })
 
-
         var getCartData = function() {
           let form = $('form#Details').serializeJson();
           let data = wbapp.storage('mod.cart.'+uid);

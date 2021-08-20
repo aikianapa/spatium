@@ -25,6 +25,10 @@ section {
     filter: invert();
 }
 
+.tx-shadow {
+    text-shadow: black 0 0 5px;
+}
+
 .product-item {
 .nav-link {
     border: 0;
@@ -205,6 +209,13 @@ section {
         height: 50px;
         background-image: url(/module/myicons/interface-essential-35.svg?size=30&stroke=10b759);
     }
+    .carousel-indicators li {
+        border: 1px #10b759 solid;
+
+        &.active {
+            background-color: #10b759;
+        }
+    }
 }
 
 
@@ -215,14 +226,6 @@ section {
         .carousel-control-prev,
         .carousel-control-next {
             height: 100px;
-        }
-
-        .carousel-indicators li {
-            border: 1px #10b759 solid;
-
-            &.active {
-                background-color: #10b759;
-            }
         }
     }
 }

@@ -89,7 +89,7 @@
     </div> <!-- / .container -->
 
   </footer>
-
+  <modal></modal>
   <wb-module wb="module=yonger&mode=render&view=cart" />
 
   <!-- scroll to top  -->
