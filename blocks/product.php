@@ -10,7 +10,7 @@
 
 <view>
     <div class="product-item">
-        <div class="row">
+        <div class="row" wb-if="'{{_route.form}}' == 'pages'">
             <div class="col-lg-8 offset-lg-2 text-center px-5">
                 <h2 class="tx-semibold py-4 tx-40">
                     {{_var.product.name}}
@@ -18,6 +18,25 @@
                 <div class="tx-16 pb-3">{{_var.product.text}}</div>
             </div>
         </div>
+
+        <div class="parallax d-flex ht-sm-50v mg-b-50" data-img="{{_var.product.images.0.img}}"  wb-if="'{{_route.form}}' == 'products'">
+            <div class="position-absolute d-block wd-100v ht-100v op-7 bg-black-8">&nbsp;</div>
+            <div class="parallax-overlay row justify-content-center">
+                <div class="col-sm-8 text-center text-center text-white">
+                    <h1 class="text-white tx-semibold py-4 tx-50">
+                    {{_var.product.name}}
+                    </h1>
+                    <p class="pb-4 tx-20">
+                        {{strip_tags({{_var.product.text}})}}
+                    </p>
+
+                    <a href="{{link}}" class="btn btn-{{color}} rounded-30 tx-semibold pd-x-40 pd-y-15 ">
+                        {{button}}
+                    </a>
+                </div>
+            </div>
+        </div>
+
 
         
         <div wb-if="'{{_var.product.category}}'=='main'">
@@ -99,12 +118,26 @@
         </div>
         </div>
         <div wb-if="'{{_var.product.category}}'!=='main'" class="d-block text-center mg-b-50">
-        <a href="javascript:void(0);" data-id="{{_var.product.id}}"
+                    <a href="javascript:void(0);" data-id="{{_var.product.id}}"
                                         data-name="{{_var.product.name}}" data-price="{{_var.product.price}}"
                                         data-image="{{_var.product.images.0.img}}" data-days="7"
                                         data-link="/products/{{_var.product.id}}/{{wbUrlOnly({{_var.product.name}})}}"
                                         class="mod-cart-add mod-cart-data btn btn-success tx-20 px-4 my-3 rounded-30">В
                                         корзину <img src="/module/myicons/shopping-cart.svg?size=26&stroke=FFFFFF"></a>
+                                        <div class="row tx-normal">
+                                        <div class="col-4 col-sm-2 offset-sm-3">
+                                            <div class="tx-22">{{_var.product.proteins*1}}</div>
+                                            <div class="tx-14 tx-gray-600">белки</div>
+                                        </div>
+                                        <div class="col-4 col-sm-2">
+                                            <div class="tx-22">{{_var.product.fats*1}}</div>
+                                            <div class="tx-14 tx-gray-600">жиры</div>
+                                        </div>
+                                        <div class="col-4 col-sm-2">
+                                            <div class="tx-22">{{_var.product.carbs*1}}</div>
+                                            <div class="tx-14 tx-gray-600">углеводы</div>
+                                        </div>
+                                    </div>
         </div>
     </div>
 </view>

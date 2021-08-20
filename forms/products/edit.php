@@ -86,6 +86,28 @@
                             </div>
 
                             <div class="form-group row">
+                                <div class="input-group col-4">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Белки</span>
+                                    </div>
+                                    <input type="text" name="proteins" class="form-control" placeholder="Белки">
+                                </div>
+                                <div class="input-group col-sm-4">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Жиры</span>
+                                    </div>
+                                    <input type="number" name="fats" class="form-control" placeholder="Жиры">
+                                </div>
+                                <p class="d-block d-sm-none p-1"></p>
+                                <div class="input-group col-sm-4">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Углеводы</span>
+                                    </div>
+                                    <input type="number" name="carbs" class="form-control" placeholder="Углеводы">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
                                 <div class="col-12">
                                     <wb-module wb="{'module':'jodit'}" name="text" />
                                 </div>

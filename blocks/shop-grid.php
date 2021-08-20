@@ -6,101 +6,75 @@
     <div>
         <wb-include wb-src="/modules/yonger/common/blocks/common.inc.php" />
     </div>
+    <div class="form-group row">
+        <label class="col-lg-3 form-control-label">Текст</label>
+        <div class="col-lg-9">
+            <wb-module wb="{'module':'jodit'}" name="text" />
+        </div>
+    </div>
+
 </edit>
 <view>
     <section>
         <div class="content">
-            <div class="container pd-x-0 pd-lg-x-10 pd-xl-x-0 mg-y-80">
+            <div class="container pd-x-0 pd-lg-x-10 pd-xl-x-0 mg-y-50">
                 <div class="row">
                     <div class="col-lg-3 mg-t-40 mg-lg-t-0">
-                        <div class="d-flex align-items-center justify-content-between mg-b-20">
-                            <h6 class="tx-uppercase tx-semibold mg-b-0">Popular Groups</h6>
+                        <div class=" d-none d-lg-block">
+                        <div class="divider-text">Поиск</div>
+
+                        <form class="">
+                            <input class="form-control rounded-20 mn-wd-100p" type="search" placeholder="Поиск"
+                                aria-label="Search" data-ajax="{'target':'#productsList',
+                                'filter_add':{'$or':[
+                                    { 'name': {'$like' : '$value'} }, 
+                                    { 'articul': {'$like' : '$value'} }
+                                ]} }">
+                            <div class="divider-text">Категории</div>
+                            <ul class="list-unstyled text-center mg-t-20" wb-tree="dict=menu-categories">
+                                <li class="py-2" wb-if="'{{_idx}}'=='0'">
+                                    <a href="#"
+                                        data-ajax="{'target':'#productsList','filter_add':{ 'category': '' }, 'filter_clear':{'category': ''} }"
+                                        class="tx-20 tx-gray-700">Все</a>
+                                </li>
+
+                                <li class="py-2">
+                                    <a href="#"
+                                        data-ajax="{'target':'#productsList','filter_add':{ 'category': '{{id}}' } }"
+                                        class="tx-20 tx-gray-700">{{name}}</a>
+                                </li>
+                            </ul>
+
+                        </form>
+
+                        <div class="divider-text">{{header}}</div>
                         </div>
-                        <ul class="list-unstyled media-list mg-b-15">
-                            <li class="media align-items-center">
-                                <a href="">
-                                    <div class="avatar"><img src="https://via.placeholder.com/500"
-                                            class="rounded-circle" alt=""></div>
-                                </a>
-                                <div class="media-body pd-l-15">
-                                    <h6 class="mg-b-2"><a href="" class="link-01">Human Resources</a></h6>
-                                    <span class="tx-13 tx-color-03">1,232,099 Members</span>
-                                </div>
-                            </li>
-                            <li class="media align-items-center mg-t-15">
-                                <a href="">
-                                    <div class="avatar"><span class="avatar-initial rounded-circle bg-dark">ui</span>
-                                    </div>
-                                </a>
-                                <div class="media-body pd-l-15">
-                                    <h6 class="mg-b-2"><a href="" class="link-01">UI Designers World</a></h6>
-                                    <span class="tx-13 tx-color-03">1,055,767 Members</span>
-                                </div>
-                            </li>
-                            <li class="media align-items-center mg-t-15">
-                                <a href="">
-                                    <div class="avatar"><span class="avatar-initial rounded-circle bg-gray-500">b</span>
-                                    </div>
-                                </a>
-                                <div class="media-body pd-l-15">
-                                    <h6 class="mg-b-2"><a href="" class="link-01">Backend Developers</a></h6>
-                                    <span class="tx-13 tx-color-03">1,002,005 Members</span>
-                                </div>
-                            </li>
-                            <li class="media align-items-center mg-t-15">
-                                <a href="">
-                                    <div class="avatar"><span class="avatar-initial rounded-circle bg-indigo">b</span>
-                                    </div>
-                                </a>
-                                <div class="media-body pd-l-15">
-                                    <h6 class="mg-b-2"><a href="" class="link-01">Bootstrap Wizards</a></h6>
-                                    <span class="tx-13 tx-color-03">1,032,292 Members</span>
-                                </div>
-                            </li>
-                            <li class="media align-items-center mg-t-15">
-                                <a href="">
-                                    <div class="avatar"><span class="avatar-initial rounded-circle bg-pink">s</span>
-                                    </div>
-                                </a>
-                                <div class="media-body pd-l-15">
-                                    <h6 class="mg-b-2"><a href="" class="link-01">SASS Gurus</a></h6>
-                                    <span class="tx-13 tx-color-03">990,010 Members</span>
-                                </div>
-                            </li>
-                        </ul>
-
-                        <h6 class="tx-uppercase tx-semibold mg-t-50 mg-b-15">Groups By Position</h6>
-
-                        <nav class="nav nav-classic tx-13">
-                            <a href="" class="nav-link"><span>Software Engineer</span> <span class="badge">20</span></a>
-                            <a href="" class="nav-link"><span>UI/UX Designer</span> <span class="badge">18</span></a>
-                            <a href="" class="nav-link"><span>Sales Representative</span> <span
-                                    class="badge">14</span></a>
-                            <a href="" class="nav-link"><span>Product Representative</span> <span
-                                    class="badge">12</span></a>
-                            <a href="" class="nav-link"><span>Full-Stack Developer</span> <span
-                                    class="badge">10</span></a>
-                        </nav>
+                        <p>
+                            {{text}}
+                        </p>
 
                     </div>
                     <div class="col-lg-9">
 
-                        <nav class="navbar navbar-light bg-light rounded mb-3">
-                            <form class="form-inline mg-l-auto">
-                                <select name="category" class="mr-5 rounded-20 form-control" placeholder="Категория"
+
+                        <form class="form-inline row d-lg-none">
+                            <div class="col-12 col-sm-6">
+                                <select name="category" class="mb-2 rounded-20 w-100 form-control" placeholder="Категория"
                                     wb-tree="dict=menu-categories"
                                     data-ajax="{'target':'#productsList','filter_add':{ 'category': '$value' }, 'filter_clear':{'category': ''} }">
                                     <option value="{{id}}">{{name}}</option>
                                 </select>
-
-                                <input class="form-control rounded-20" type="search" placeholder="Поиск"
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <input class="form-control w-100 rounded-20" type="search" placeholder="Поиск"
                                     aria-label="Search" data-ajax="{'target':'#productsList',
                                                                     'filter_add':{'$or':[
                                                                         { 'name': {'$like' : '$value'} }, 
                                                                         { 'articul': {'$like' : '$value'} }
                                                                     ]} }">
-                            </form>
-                        </nav>
+                            </div>
+                        </form>
+
 
                         <div class="row row-xs mg-b-25" id="productsList">
                             <wb-foreach wb="{'ajax':'/api/query/products/',
@@ -110,7 +84,7 @@
                             'size':'24',
                             'filter': {'active':'on'}
                               }">
-                                <div class="col-sm-6 col-md-4 mg-b-20">
+                                <div class="col-sm-6 col-md-4 mg-y-20">
                                     <div class="card card-profile bd-0 shadow">
                                         <img data-src="/thumbc/500x450/src/{{images.0.img}}" width="500" height="450"
                                             class="img-fluid rounded-top" alt="">
@@ -118,8 +92,8 @@
                                             <div>
                                                 <a href="/products/{{id}}/{{wbUrlOnly({{name}})}}">
                                                     <div class="avatar avatar-lg">
-                                                        <img class="avatar-initial p-2 rounded-circle bg-success"
-                                                            src="/module/myicons/search-arrow-circle.svg?size=26&stroke=FFFFFF">
+                                                        <img class="avatar-initial p-1 rounded-circle bg-white"
+                                                            src="/module/myicons/search-arrow-circle.svg?size=26&stroke=10b759">
                                                     </div>
                                                 </a>
 
