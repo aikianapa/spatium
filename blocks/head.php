@@ -11,7 +11,6 @@
   <title>Spatium Detox</title>
   <!--script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.0.1/dist/alpine.js" defer></script-->
 
-  <link rel="preload" as="style" href="/assets/css/loader.scss" />
   <link rel="preload" as="style" href="/modules/yonger/tpl/assets/css/dashforge.min.css" />
   <link rel="preload" as="style" href="/assets/js/lightgallery/css/lightgallery.min.css" />
   <link rel="preload" as="style" href="/assets/css/custom.less" />
@@ -25,7 +24,6 @@
   <script src="/engine/js/wbapp.js"></script>
   <script type="wbapp" remove>
     wbapp.loadStyles([
-     "/assets/css/loader.scss",
      "/modules/yonger/tpl/assets/css/dashforge.min.css",
      "/assets/js/lightgallery/css/lightgallery.min.css",
      "/assets/css/custom.less",

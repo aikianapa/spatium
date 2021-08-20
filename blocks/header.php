@@ -4,6 +4,7 @@
     </div>
 </edit>
 <view>
+    <link rel="stylesheet" href="/assets/css/loader.scss" />
   <loader class="fade out">
     <div class="loader">
         <div class="shape shape-1"></div>
