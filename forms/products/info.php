@@ -59,26 +59,26 @@
                         <div class="row mg-t-20">
                             <div class="col-sm-6 offset-sm-3">
                                 <div class="row tx-normal tx-center">
-                                    <div class="col">
+                                    <div class="col" wb-if="'{{_var.prod.weight}}'>''">
                                         <div class="tx-22">{{_var.prod.weight*1}}</div>
                                         <div class="tx-14 tx-gray-600">Вес</div>
                                     </div>
 
-                                    <div class="col">
+                                    <div class="col" wb-if="'{{_var.prod.kcal}}'>''">
                                         <div class="tx-22">{{_var.prod.kcal*1}}</div>
                                         <div class="tx-14 tx-gray-600">Ккал</div>
                                     </div>
 
 
-                                    <div class="col">
+                                    <div class="col" wb-if="'{{_var.prod.proteins}}'>''">
                                         <div class="tx-22">{{_var.prod.proteins*1}}</div>
                                         <div class="tx-14 tx-gray-600">белки</div>
                                     </div>
-                                    <div class="col">
+                                    <div class="col" wb-if="'{{_var.prod.fats}}'>''">
                                         <div class="tx-22">{{_var.prod.fats*1}}</div>
                                         <div class="tx-14 tx-gray-600">жиры</div>
                                     </div>
-                                    <div class="col">
+                                    <div class="col" wb-if="'{{_var.prod.carbs}}'>''">
                                         <div class="tx-22">{{_var.prod.carbs*1}}</div>
                                         <div class="tx-14 tx-gray-600">углеводы</div>
                                     </div>

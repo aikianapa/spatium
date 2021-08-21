@@ -9,7 +9,7 @@
 
 
 <view>
-    <div class="product-item mg-b-50">
+    <div class="product-item mg-b-50" >
         <div class="row" wb-if="'{{_route.form}}' == 'pages'">
             <div class="col-lg-8 offset-lg-2 text-center px-5">
                 <h2 class="tx-semibold py-4 tx-40">
@@ -85,7 +85,9 @@
                             <div class="col-12">
                                 <div class="row text-center tx-semibold py-4">
                                     <div class="col-sm-4 offset-sm-4">
-                                        <div class="tx-18">Всего в понедельник {{_var.product.name}}</div>
+                                        <wb-var week="{'пн':'в понедельник','вт':'во вторник','ср':'в среду','чт':'в четверг','пт':'в пятницу','сб':'в субботу','вс':'в воскресенье'}" />
+                                        <div class="tx-18">Всего {{_var.week.{{_val}}}}
+                                        </div>
                                         <div class="tx-30 tx-success">
                                             {{_var.total_kcal}} Ккал
                                         </div>
