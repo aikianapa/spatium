@@ -89,9 +89,9 @@
     </div> <!-- / .container -->
 
   </footer>
+  
   <modal></modal>
   <wb-module wb="module=yonger&mode=render&view=cart" />
-
   <!-- scroll to top  -->
 	<a href="javascript:void(0)" class="scroll-top bg-white rounded-circle">
     <img data-src="/module/myicons/arrows-diagrams-03.svg?size=50&stroke=10b759">

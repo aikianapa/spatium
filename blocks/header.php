@@ -4,7 +4,6 @@
     </div>
 </edit>
 <view>
-    <link rel="stylesheet" href="/assets/css/loader.scss" />
   <loader class="fade out">
     <div class="loader">
         <div class="shape shape-1"></div>
@@ -14,7 +13,7 @@
     </div>
     <p>Загрузка...</p>
   </loader>
-
+  <link rel="stylesheet" href="/assets/css/loader.scss" />
 
     <header>
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow t-0 position-fixed w-100 z-index-10">
