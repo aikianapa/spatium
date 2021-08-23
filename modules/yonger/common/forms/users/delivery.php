@@ -9,9 +9,16 @@
                     <br>
                     <span>{{d}} {{m}}</span>
                 </p>
-                <div class="position-absolute" data-tooltip="Отложить доставку" style="bottom:5px;right:5px;">
-                    <i class="fa fa-close text-danger"></i>
-                </div>
+                {{#if status == 'empty'}}
+                    <div class="position-absolute" title="Отложить доставку" style="bottom:5px;right:5px;">
+                        <i class="fa fa-close tx-danger"></i>
+                    </div>
+                {{/if}}
+                {{#if status == 'deny'}}
+                    <div class="position-absolute" title="Вернуть доставку" style="bottom:5px;right:5px;">
+                        <i class="fa fa-check tx-white"></i>
+                    </div>
+                {{/if}}
             </div>
         </wb-foreach>
     </div>

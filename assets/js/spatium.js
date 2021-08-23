@@ -152,9 +152,12 @@ $(document).delegate('#deliveryCalendar .day', wbapp.evClick, function (ev) {
   ev.stopPropagation();
 });
 
+$(document).on('mod-cart-add',function(){
+  $('#cart #ui-id-1.cart').trigger('click');
+})
 
 
-$(document).delegate('#deliveryCalendar .day .fa-close', wbapp.evClick, function (ev) {
+$(document).delegate('#deliveryCalendar .day .fa-close, #deliveryCalendar .day .fa-check', wbapp.evClick, function (ev) {
   var type = null;
   var $that = $(this).parents('.day');
   if ($that.hasClass('wait')) return;
