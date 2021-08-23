@@ -112,8 +112,19 @@ class modYonger
         return $result;
     }
 
+    private function block() {
+        $app = &$_ENV['app'];
+        $this->app = $app;
+        $this->dom = &$app->fromString('<html></html>');
+        $this->dom->params = (object)['view'=>$app->vars('_route.params.0')]; 
+        $this->dom->item = $app->vars('_post.item');
+        $this->render();
+        echo ($this->dom->outer());
+        die;
+    }
+
     private function render() {
-        $dom = &$this->dom;
+        $dom = $this->dom;
         $app = &$dom->app;
         $item = null;
 
@@ -123,7 +134,7 @@ class modYonger
             $ypg = new yongerPage($this->dom);
             $form = $ypg->blockfind($dom->params('view'));
             $id = wbNewId();
-            $item = $dom->item;
+            $item = (array)$dom->item;
             $item['blocks'] = [];
             $item['blocks'][$id] = ['id'=>$id,'form'=>$form,'active'=>'on'];
         } else if ($item === null) {
@@ -146,13 +157,13 @@ class modYonger
                 $res = $this->blockview($block);
                 if (isset($res->head)) {
                     $head->append($res->result);
-                } else {
-
+                } else if ($dom->parent()->length && $dom->parent()->tagName !== null) {
                     $dom->parent()->append($res->result);
+                } else {
+                    $dom->append($res->result);
                 }
             }
         }
-
     }
 
     private function logo() {
