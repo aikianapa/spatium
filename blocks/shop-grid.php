@@ -85,7 +85,7 @@
                             'filter': {'active':'on'}
                               }">
                                 <div class="col-sm-6 col-md-4 mg-y-20">
-                                    <div class="card card-profile bd-0 shadow">
+                                    <div class="card card-profile bd-1 shadow">
                                         <img data-src="/thumbc/500x450/src/{{images.0.img}}" width="500" height="450"
                                             class="img-fluid rounded-top" alt="">
                                         <div class="card-body bd-b-0-f bd-r-0-f bd-l-0-f tx-13">
