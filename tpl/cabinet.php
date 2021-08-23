@@ -6,7 +6,6 @@
 </head>
 
 <body>
-
     <wb-module wb="module=yonger&mode=render&view=header" />
     <div class="my-account-section section position-relative mb-50 mg-t-80">
         <div class="container">
@@ -85,13 +84,9 @@
 
                 <!-- My Account Tab Content Start -->
                 <div class="col-lg-9 col-12 mn-ht-50v pl-3">
-                    <a href="#" id="sidebarMenuOpen" class="d-lg-none burger-menu pb-2"><svg
-                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="feather feather-arrow-left">
-                            <line x1="19" y1="12" x2="5" y2="12"></line>
-                            <polyline points="12 19 5 12 12 5"></polyline>
-                        </svg> Меню</a>
+                    <a href="#" id="sidebarMenuOpen" class="d-lg-none burger-menu pb-2 tx-semibold tx-gray-700 tx-uppercase">
+                        <img data-src="/module/myicons/menu-burger.1.svg?size=30&stroke=596882">
+                    Меню</a>
 
 
                     <div class="tab-content mt-3" id="myaccountContent">
