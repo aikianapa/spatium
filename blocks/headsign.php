@@ -10,6 +10,6 @@
 
                     <a href="/signin" class="btn btn-outline-success rounded-20 my-2 my-sm-0" wb-if="'{{_sett.user.id}}'==''">Вход</a>
                     <a href="/cabinet" class="btn btn-outline-success rounded-20 my-2 my-sm-0" wb-if="'{{_sett.user.role}}'=='user'">Кабинет</a>
-                    <a href="/workspace" class="btn btn-outline-success rounded-20 my-2 my-sm-0" wb-if="'{{_sett.user.role}}'=='admin'">Кабинет</a>
-                    <a href="/workspace" class="btn btn-outline-success rounded-20 my-2 my-sm-0" wb-if="'{{_sett.user.role}}'=='manager'">Кабинет</a>
+                    <a href="/workspace" class="btn btn-outline-primary rounded-20 my-2 my-sm-0" wb-if="'{{_sett.user.role}}'=='admin'">Кабинет</a>
+                    <a href="/workspace" class="btn btn-outline-primary rounded-20 my-2 my-sm-0" wb-if="'{{_sett.user.role}}'=='manager'">Кабинет</a>
 </view>
