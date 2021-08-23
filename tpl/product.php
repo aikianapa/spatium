@@ -1,10 +1,9 @@
-
 <html lang="ru">
 <head>
-
+    <title>{{name}}</title>
 </head>
 
-<body>
+<body></body>
     <wb-module wb="module=yonger&mode=render&view=header" />
     <wb-var wid="{{wbNewId()}}" />
     <wb-var product="{{_current}}" />
@@ -15,4 +14,3 @@
 </body>
 
 </html>
-
