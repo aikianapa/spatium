@@ -193,7 +193,15 @@
                                             </span></p>
                                         <p>Доставка <span>0₽</span></p>
                                         <h2>Общий итог <ee class="d-inline mod-cart-total-sum">0</ee>₽</span></h2>
-                                        <a href="javascript:void(0)" class="checkout-btn btn btn-success rounded-20">Оплатить</a>
+                                        <div class="row">
+                                            <div class="col-sm-6 py-1">
+                                                <a href="javascript:void(0)" class="wd-100p checkout-btn btn btn-success rounded-20">Оплата картой</a>
+                                            </div>
+                                            <div class="col-sm-6 py-1">
+                                                <a href="javascript:void(0)" class="wd-100p checkin-btn btn btn-primary rounded-20">Оплата курьеру</a>
+                                            </div>
+                                        
+                                        </div>
                                     </div>
 
 
@@ -364,7 +372,8 @@
 
                                 <div class="cart-summary-button"
                                     wb-if="'{{_sess.user.role}}' !== 'admin' AND '{{_var.reg}}' == 'true' ">
-                                    <button onclick class="checkout-btn">Оплатить</button>
+                                    <button onclick class="checkout-btn">Оплатить картой</button>
+                                    <button onclick class="checkout-btn">Оплата курьеру</button>
                                 </div>
                                 <div class='alert alert-warning' wb-if="'{{_var.reg}}' == 'false' ">
                                     Пожалуйста, прежде чем сформировать заказ, заполните регистрационные данные в <a

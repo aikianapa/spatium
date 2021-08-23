@@ -15,7 +15,7 @@ class usersClass extends cmsFormsClass
             'expired' => ['$gte'=>date('Y-m-d')]
         ];
         
-        $app->vars('_sess.user.role') == 'user' ? $filter['date'] = ['$gte'=>date('Y-m-d')] : null;
+        //$app->vars('_sess.user.role') == 'user' ? $filter['date'] = ['$gte'=>date('Y-m-d')] : null;
 
 
         $orders = $app->itemList('orders', ['filter'=>$filter]);
@@ -25,7 +25,9 @@ class usersClass extends cmsFormsClass
             foreach ($order['delivery'] as $date => $d) {
                 $date = date('Y-m-d',strtotime($date));
                 $d['date'] = $date;
-                //if (strtotime($date) >= strtotime(date('Y-m-d'))) {
+                if ($app->vars('_sess.user.role') !== 'user' OR 
+                    ($app->vars('_sess.user.role') == 'user' && strtotime($date) >= strtotime(date('Y-m-d')))
+                    ) {
                     !isset($dlvrs[$date]['orders']) ?  $dlvrs[$date]['orders'] = [] : null;
                     !isset($dlvrs[$date]['products']) ?  $dlvrs[$date]['products'] = [] : null;
                     $this->delivery_prep($d);
@@ -40,7 +42,7 @@ class usersClass extends cmsFormsClass
                             $dlvrs[$date]['products'][] = $p;
                         }
                     }
-                //}
+                }
             }
         }
         $dlvrs = $app->arraySort($dlvrs, "date");

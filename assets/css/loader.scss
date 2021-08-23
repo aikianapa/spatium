@@ -34,6 +34,12 @@ body {
   margin: 0;
 }
 
+body.loading {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
 //colors
 loader {
   position:absolute;
@@ -46,6 +52,7 @@ loader {
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
+  z-index:1000;
 
   p {
     position: absolute;
