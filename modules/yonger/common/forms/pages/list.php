@@ -27,7 +27,7 @@
             
         </span>
         <ol id="pagesList" class="dd-list">
-            <wb-foreach wb="from=list&form=pages&bind=cms.list.pages&render=server" wb-filter="{'_site':'{{_sett.site}}'}">
+            <wb-foreach wb="from=list&form=pages&bind=cms.list.pages&render=server&tpl=true" wb-filter="{'_site':'{{_sett.site}}'}">
                 <li class="dd-item row" data-item="{{id}}" data-name="{{name}}">
                     <span class="dd-handle"><img src="/module/myicons/20/000000/dots-2.svg"  width="20" height="20"/></span>
                     <span class="dd-text col-3">
