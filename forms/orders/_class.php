@@ -6,7 +6,6 @@ class ordersClass extends cmsFormsClass {
         2. создать пользователя, если нужно
         3. сформировать запись заказа
         */
-
         $app = $this->app;
         $order = json_decode($_POST['data'],true);
         $order['id'] = wbNewId('','z');
@@ -27,13 +26,17 @@ class ordersClass extends cmsFormsClass {
             }
         }
         $uid = $user['id'];
-        $token = md5($_POST['data'].$uid);
         
         if ($_COOKIE['carttoken'] !== $_POST['token']) {
             echo "Что-то пошло не так.";
             die;
         }
 
+        if ($app->vars('_post.token') == 'courier') {
+            $order['payed'] = false;
+        } else {
+            $order['payed'] = true;
+        }
         $days = 1;
         foreach($order['list'] as $item) {
             $item['days'] > $days ? $days = $item['days'] : null;

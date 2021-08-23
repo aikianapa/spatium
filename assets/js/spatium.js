@@ -81,12 +81,17 @@ var getCartData = function () {
   return JSON.stringify(data);
 }
 
+$(document).delegate(".checkin-btn", wbapp.evClick, function (e) {
+  e.stopPropagation();
+  var data = getCartData();
+  var token = "courier";
+  setcookie('carttoken', token, time() + 1000);
+  $.redirectPost("/orders/checkout", { data: data, token: token });
+})
+
 $(document).delegate(".checkout-btn", wbapp.evClick, function (e) {
   e.stopPropagation();
   wbapp.loadScripts(["https://widget.cloudpayments.ru/bundles/cloudpayments"], 'cloudpayment', function () {
-
-
-
     var widget = new cp.CloudPayments();
     var iid = Object.keys(wbapp.storage('mod.cart'))[0];
     var sum = wbapp.storage('mod.cart.' + uid + '.total.sum') * 1;

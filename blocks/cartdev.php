@@ -21,8 +21,7 @@
                                     </div>
                                 </div>
 
-                            </div>
-                            
+                            </div>                          
 <form action="#" id="Details" wb-if="'{{_sess.user.id}}' > ''">
                                 <input type="hidden" name="id" value="{{_sess.user.id}}">
                                 <wb-data wb="table=users&item={{_sess.user.id}}">

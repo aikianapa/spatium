@@ -91,6 +91,7 @@
   </footer>
   
   <modal></modal>
+  <wb-module wb="module=cart" />
   <wb-module wb="module=yonger&mode=render&view=cart" />
   <!-- scroll to top  -->
 	<a href="javascript:void(0)" class="scroll-top bg-white rounded-circle">
