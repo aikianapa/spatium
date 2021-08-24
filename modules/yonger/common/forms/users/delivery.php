@@ -6,7 +6,7 @@
 
 
 
-            <li class="list-group-item d-flex align-items-center day {{status}}" data-date="{{date}}">
+            <li class="list-group-item d-flex day {{status}}" data-date="{{date}}">
 
             {{#if status == 'empty'}}
                         <div class="position-absolute t-5 r-5 btn-delivery z-index-10" title="Отложить доставку" style="bottom:5px;right:5px;">
