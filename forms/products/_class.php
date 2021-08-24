@@ -18,10 +18,12 @@ class productsClass extends cmsFormsClass
         } else {
             $app = &$this->app;
             $tree = $app->treeRead('discount');
-            $tree = $tree['tree']['data'];
             $discount = [];
-            foreach ($tree as $d) {
-                $discount[$d['id'].''] = 1 - $d['data']['percent']/100;
+            if ($tree['active'] == 'on') {
+                $tree = $tree['tree']['data'];
+                foreach ($tree as $d) {
+                    $d['active'] == 'on' ? $discount[$d['id'].''] = 1 - $d['data']['percent']/100 : null;
+                }
             }
             $_ENV['tmp']['discount'] = $discount;
         }
