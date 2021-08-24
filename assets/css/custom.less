@@ -319,38 +319,24 @@ section {
 
 #deliveryCalendar {
     .day {
-        width: 80px;
-        height: 50px;
-        display: inline-grid;
-        align-items: center;
         border: 1px #eee solid;
-        border-radius: 5px;
-        margin: 5px;
-        overflow: hidden;
-        color: white;
-
-        >div {
-            vertical-align: middle;
-            line-height: 80px;
-        }
-
         &.wait {
             opacity: 0.5;
             cursor: wait;
         }
 
         &.past {
-            background-color: #666666;
+            background-color: #ffffff;
             cursor: not-allowed;
         }
 
         &.empty {
-            background-color: #80bb01;
+            background-color: #f5ffdf;
             cursor: pointer;
         }
 
         &.deny {
-            background-color: #a43d21;
+            background-color: #ffd4d4;
             cursor: pointer;
         }
     }

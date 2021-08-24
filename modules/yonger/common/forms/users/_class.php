@@ -34,12 +34,15 @@ class usersClass extends cmsFormsClass
                     $dlvrs[$date] = array_merge($dlvrs[$date], $d);
                     if (in_array($d['status'], ['past','empty'])) {
                         $count++;
-                        isset($dlvrs[$date]) ? $dlvrs[$date]['orders'][] = $order['id']  : null;
+                        isset($dlvrs[$date]) ? $dlvrs[$date]['orders'][] = $order  : null;
                         foreach ($order['list'] as $p) {
                             if ($count <= $p['days']) {
                                 $p['active'] = 'on';
                             }
-                            $dlvrs[$date]['products'][] = $p;
+                            if (isset($dlvrs[$date]['products'][$p['id']])) {
+                                $p['qty'] += $dlvrs[$date]['products'][$p['id']]['qty']*1;
+                            }
+                            $dlvrs[$date]['products'][$p['id']] = $p;
                         }
                     }
                 }

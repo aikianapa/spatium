@@ -137,27 +137,12 @@ $(document).delegate(".checkout-btn", wbapp.evClick, function (e) {
 });
 
 
-
-$(document).delegate('#deliveryCalendar .day', wbapp.evClick, function (ev) {
-  let date = $(this).data('date');
-  let data = wbapp.template['#deliveryCalendar'].params.data[date].products;
-  var tid = '#modalProdList';
-  Ractive({
-    target: tid,
-    template: wbapp.template[tid].html,
-    data: { 'result': data }
-  });
-  wbapp.lazyload();
-  $('#modalRight').modal('show');
-  ev.stopPropagation();
-});
-
 $(document).on('mod-cart-add',function(){
   $('#cart #ui-id-1.cart').trigger('click');
 })
 
 
-$(document).delegate('#deliveryCalendar .day .fa-close, #deliveryCalendar .day .fa-check', wbapp.evClick, function (ev) {
+$(document).delegate('#deliveryCalendar .day .btn-delivery', wbapp.evClick, function (ev) {
   var type = null;
   var $that = $(this).parents('.day');
   if ($that.hasClass('wait')) return;
