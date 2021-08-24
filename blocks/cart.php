@@ -23,7 +23,7 @@
                         <!-- cart floating box -->
                         <div class="cart-floating-box p-0" id="cart-floating-box">
                             <ul class="list-group cart-items">
-                                <wb-module wb="module=cart&sum=price*discounts[days]*qty*days">
+                                <wb-module wb="module=cart&list=header&sum=price*discounts[days]*qty*days">
                                     <li
                                         class="list-group-item bd-r-0 bd-l-0 d-flex px-1 align-items-center mod-cart-item">
                                         <img data-src="/thumbc/100x100/src/{{image}}"
