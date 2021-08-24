@@ -338,3 +338,36 @@ section {
         }
     }
 }
+
+#hero {
+    p {
+        a {
+            &:hover {
+                color: white;
+                border-bottom: 1px #fff solid;
+            }
+        }
+    }
+}
+
+#team {
+    .card-columns {
+        column-gap: 1rem;
+        text-align: center;
+    }
+    @media (min-width: 576px) {
+        .card-columns {
+            column-count: 2;
+        }
+    }
+    @media (min-width: 768px) {
+        .card-columns {
+            column-count: 3;
+        }
+    }
+    @media (min-width: 992px) {
+        .card-columns {
+            column-count: 5;
+        }
+    }
+}

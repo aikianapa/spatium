@@ -51,7 +51,14 @@ wbapp.on('ready', function () {
   });
 
   $('.gallery').lightGallery({
-    'selector': 'div[data-src]',
+    'selector': 'img[data-src]',
+    'download': false,
+    'counter': false,
+    'zoom': true
+  });
+
+  $('.teamgal').lightGallery({
+    'selector': 'a[href]',
     'download': false,
     'counter': false,
     'zoom': true

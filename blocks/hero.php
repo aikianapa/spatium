@@ -49,7 +49,7 @@
                 <p class="pb-5 tx-20">
                 {{text}}
                 </p>
-                <a href="#" class="btn btn-success rounded-30 tx-semibold pd-x-40 pd-y-15 ">
+                <a href="{{link}}" wb-if="button > ''" class="btn btn-{{color}} rounded-30 tx-semibold pd-x-40 pd-y-15 ">
                 {{button}}
                 </a>
             </div>

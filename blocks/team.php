@@ -42,15 +42,20 @@
                     <p class="tx-16">{{text}}</p>
                 </div>
             </div>
-            <div class="row">
-                <wb-foreach wb-from="team">
-                <div class="col-sm-6 col-lg-3">
-                    <img data-src="/thumb/600x600/src/{{image.0.img}}" width="600" class="rounded img-fluid" alt="">
-                    <h5 class="pt-3 tx-semibold tx-20">{{fullname}}</h5>
-                    <p class="tx-12 tx-gray-600">{{vocation}}</p>
-                </div>
-                </wb-foreach>
-            </div>
+
+
+
+        <div class="card-columns teamgal">
+            <wb-foreach wb-from="team">
+            <a class="card bd-0 mx-1" href="{{image.0.img}}">
+            <img data-src="/thumbc/600x600/src/{{image.0.img}}" width="600" class="rounded img-fluid" alt="{{fullname}}">
+              <div class="card-body">
+                <h5 class="card-title tx-20">{{fullname}}</h5>
+                <p class="card-text tx-12 tx-gray-600">{{vocation}}</p>
+              </div>
+            </a>
+            </wb-foreach>
+          </div>
         </div>
     </section>
 
