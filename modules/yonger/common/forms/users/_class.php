@@ -97,9 +97,9 @@ class usersClass extends cmsFormsClass
                 break;
         }
 
-                // если вдруг в результате оштбки количество доставок меньше, чем дней
+                // если вдруг в результате ошибки количество доставок меньше, чем дней
 
-                $nodeny =  $app->json($delivery)->where('status','!=','deny')->count() - 1;
+                $nodeny =  $app->json($delivery)->where('status','!=','deny')->count();
                 
                 for($i=$nodeny;$i<=$order['days'];$i++) {
                     $newdate = date('Y-m-d', strtotime($newdate." +1day"));

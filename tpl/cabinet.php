@@ -34,33 +34,33 @@
                                 <wb-var size="26" />
                                 <wb-var color="596882" />
                                 <li class="nav-label mg-b-15">Кабинет</li>
-                                <li class="nav-item">
+                                <li class="nav-item mb-4">
                                     <a href="#dashboad" onclick="$('body').removeClass('sidebar-show');"
                                         class=" tx-gray-700 active" data-toggle="tab">
                                         <img data-src="/module/myicons/dashboard-1.1.svg?size={{_var.size}}&stroke={{_var.color}}">
                                         Управление</a>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item mb-4">
                                     <a class="tx-gray-700" onclick="$('body').removeClass('sidebar-show');"
                                         href="javascript:$('#cart').addClass('show');">
                                         <img data-src="/module/myicons/basket.svg?size={{_var.size}}&stroke={{_var.color}}">
                                         Моя корзина</a>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item mb-4">
                                     <a class="tx-gray-700" onclick="$('body').removeClass('sidebar-show');"
                                         href="#orders" data-toggle="tab"
                                         data-ajax="{'url':'/cms/ajax/form/users/orders','html':'#orders'}">
                                         <img data-src="/module/myicons/bag-shopping-cart-smiely.svg?size={{_var.size}}&stroke={{_var.color}}">
                                         Мои заказы</a>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item mb-4">
                                     <a class="tx-gray-700" onclick="$('body').removeClass('sidebar-show');"
                                         href="#delivery" data-toggle="tab"
                                         data-ajax="{'url':'/cms/ajax/form/users/delivery','html':'#delivery'}">
                                         <img data-src="/module/myicons/delivery-truck-fast.svg?size={{_var.size}}&stroke={{_var.color}}">
                                         Мои доставки</a>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item mb-4">
                                     <a class="tx-gray-700" onclick="$('body').removeClass('sidebar-show');"
                                         href="#account-info" data-toggle="tab">
                                         <img data-src="/module/myicons/users-13.svg?size={{_var.size}}&stroke={{_var.color}}">

@@ -27,16 +27,16 @@
                 </div>
                 <div class="row wd-100p">
                     {{#if status != 'deny'}}
-                    <div class="col-sm-4">
+                    <div class="col-sm-3 col-md-2">
                         <h6 class="tx-13 tx-inverse tx-semibold mg-b-0">Заказы:</h6>
                         {{#each orders, @index as i }}
-                        <a href="javascript:void(0)" class="d-block tx-13 text-muted"
+                        <a href="javascript:void(0)" class="d-inline d-sm-block tx-13 text-muted"
                             data-ajax="{'url':'/cms/ajax/form/orders/view/{{id}}','html':'modal'}">
                             № {{number}}
                         </a>
                         {{/each}}
                     </div>
-                    <div class="col-sm-8">
+                    <div class="col-sm-9 col-md-10">
                         <h6 class="tx-13 tx-inverse tx-semibold mg-b-0">Продукты:</h6>
                         {{#each products, @index as i }}
                         <span class="d-block-inline tx-13 text-muted">
