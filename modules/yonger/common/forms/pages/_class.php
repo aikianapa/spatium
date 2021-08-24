@@ -18,6 +18,10 @@ function afterItemRead(&$item) {
     $item['url'] == '/home' ? $item['url'] = '/' : null;
 }
 
+function afterItemSave($item) {
+    $this->app->shadow($item['url']);
+}
+
 function list() {
     $app = &$this->app;
     $this->jq = new Jsonq();
