@@ -94,6 +94,7 @@
                                         <a href="javascript:void(0);" data-id="{{_var.product.id}}"
                                             data-name="{{_var.product.name}}" data-price="{{_var.product.price}}"
                                             data-image="{{_var.product.images.0.img}}" data-days="7"
+                                            data-discounts="{{json_encode({{_var.product.discounts}})}}"
                                             data-link="/products/{{_var.product.id}}/{{wbUrlOnly({{_var.product.name}})}}"
                                             class="mod-cart-add mod-cart-data btn btn-success tx-20 px-4 my-3 rounded-30">В
                                             корзину <img
@@ -125,6 +126,7 @@
                 <div class="col-sm-4 offset-sm-4">
                     <a href="javascript:void(0);" data-id="{{_var.product.id}}" data-name="{{_var.product.name}}"
                         data-price="{{_var.product.price}}" data-image="{{_var.product.images.0.img}}" data-days="7"
+                        data-discounts="{{_var.product.discounts}}"
                         data-link="/products/{{_var.product.id}}/{{wbUrlOnly({{_var.product.name}})}}"
                         class="mod-cart-add mod-cart-data btn btn-success tx-20 px-4 my-3 rounded-30">В
                         корзину <img src="/module/myicons/shopping-cart.svg?size=26&stroke=FFFFFF"></a>
