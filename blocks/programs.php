@@ -43,7 +43,7 @@
                         <figcaption
                             class="pos-absolute a-0 wd-100p pd-20 d-flex flex-column justify-content-center bg-white-9 transition-base op-0">
                             <h6 class="tx-inverse tx-semibold mg-b-20">{{name}}</h6>
-                            <p class="mg-b-0"> qlkjq whreqwjke rh qwhjkqw erlkjqwher lqkw jehr qrj</p>
+                            <p class="mg-b-0">{{text}}</p>
                         </figcaption>
                     </figure>
                     <div class="card-body text-center">
