@@ -8,7 +8,7 @@
         <div id="cart" class="off-canvas off-canvas-overlay off-canvas-right wd-300 wd-md-400">
             <div class="off-canvas-header tx-20 tx-success bd-0"><span>
                     <img src="/module/myicons/shopping-cart.svg?size=26&stroke=10b759"> Мои покупки</span>
-                <a href="#" class="close">
+                <a href="javascript:void(0)" class="close">
                     <img src="/module/myicons/32/323232/interface-essential-109.svg" width="32" height="32"
                         class="dd-remove">
                 </a>

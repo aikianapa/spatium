@@ -63,16 +63,18 @@
                             <wb-foreach wb="from=_parent._var.product.{{wbTranslit({{_val}})}}"
                                 wb-filter="{'food':{'$gt':''}}">
                                 <div class="col-md-3 bd-0">
-                                    <div class="card bd-0">
+                                    <div class="card ht-100p bd-0">
                                         <img data-src="/thumb/400x300/src{{images.0.img}}" class="img-fluid rounded-top"
                                             width="400" height="300" alt="{{food}}">
-                                        <div class="card-body">
+                                        <div class="card-body pb-0">
                                             <div class="tx-12 tx-success tx-semibold tx-spacing-4 pb-2">
                                                 {{_var.tmp.{{_key}}}}</div>
                                             <h6 class="card-title tx-semibold">{{food}}</h6>
                                             <p class="card-text tx-gray-400 tx-12">{{kcal}} Ккал,
                                                 {{weight}} г.</p>
-                                            <a href="javascript:void(0)" class="btn btn-success tx-semibold rounded-20"
+                                        </div>
+                                        <div class="card-footer bd-0">
+                                        <a href="javascript:void(0)" class="btn btn-success tx-semibold rounded-20"
                                             data-ajax="{'url':'/products/info/{{_var.product.id}}/{{wbTranslit({{_parent._val}})}}/{{_key}}','html':'modal'}">Подробнее</a>
                                         </div>
                                     </div>

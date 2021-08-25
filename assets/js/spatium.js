@@ -22,13 +22,6 @@ setTimeout(function () {
   $('loader').hide();
 }, 1)
 
-if (!wbapp._session.user || !wbapp._session.user.id || wbapp._session.user.id < ' ') {
-  var uid = 'unknown';
-} else {
-  var uid = wbapp._session.user.id;
-}
-
-
 $('.scroll-top').on('click', function () {
   $('html,body').animate({
     scrollTop: 0
@@ -44,6 +37,12 @@ $.fn.lightGallery = function (options) {
 
 wbapp.on('ready', function () {
 
+  if (!wbapp._session.user || !wbapp._session.user.id || wbapp._session.user.id < ' ') {
+    var uid = 'unknown';
+  } else {
+    var uid = wbapp._session.user.id;
+  }
+  
   $('#programs').lightGallery({
     'selector': '[data-iframe]',
     'download': false,

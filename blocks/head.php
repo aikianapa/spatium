@@ -16,11 +16,6 @@
   <link rel="preload" as="style" href="/assets/css/custom.less" />
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;500;600;700&subset=latin,cyrillic" />
 
-  <link rel="preload" as="script" href="/modules/yonger/tpl/assets/lib/perfect-scrollbar/perfect-scrollbar.min.js" />
-  <link rel="preload" as="script" href="/engine/lib/bootstrap/js/bootstrap.bundle.min.js" />
-  <link rel="preload" as="script" href="/assets/js/lightgallery/js/lightgallery.min.js" />
-  <link rel="preload" as="script" href="/assets/js/spatium.js" />
-
   <script src="/engine/js/wbapp.js"></script>
   <script type="wbapp" remove>
     wbapp.loadStyles([
