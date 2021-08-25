@@ -7,8 +7,8 @@
         <wb-include wb-src="/modules/yonger/common/blocks/common.inc.php" />
     </div>
     <div class="form-group row">
-        <label class="col-lg-3 form-control-label">Текст</label>
-        <div class="col-lg-9">
+        <div class="col-12">
+            <label class="form-control-label">Текст</label>
             <wb-module wb="{'module':'jodit'}" name="text" />
         </div>
     </div>

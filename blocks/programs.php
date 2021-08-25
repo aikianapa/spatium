@@ -4,6 +4,12 @@
     </div>
     <div>
         <wb-include wb-src="/modules/yonger/common/blocks/common.inc.php" />
+        <div class="form-group row">
+            <div class="col-12">
+                <label class="form-control-label">Текст</label>
+                <textarea name="text" class="form-control" rows="auto" placeholder="Текст"></textarea>
+            </div>
+        </div>
     </div>
 </edit>
 
@@ -14,59 +20,41 @@
             <div class="row">
                 <div class="col-lg-8 offset-lg-2 text-center px-5">
                     <h2 class="tx-semibold pb-4 tx-40">
-                        Программы питания
+                        {{header}}
                     </h2>
-                    <p class="tx-16">Наша команда разработала для вас сбалансированные программы питания на удобные вам
-                        периоды.
+                    <p class="tx-16">
+                        {{text}}
                     </p>
                 </div>
             </div>
+            <div id="programsList">
             <div class="card-columns pt-4">
+            <wb-var prog="{'0':{'count':1,'name':'Дневной'},'1':{'count':7,'name':'Недельный'},'2':{'count':30,'name':'Месячный'}}" />
+            <wb-foreach wb="{'table':'products',
+                            'render':'server',
+                            'limit':'3',
+                            'rand':true,
+                            'filter': {'category':'main'}
+                }">
                 <div class="card bd-0">
-                    <figure class="img-caption pos-relative mg-b-0" data-iframe="true" data-src="/test/ert">
-                        <img data-src="assets/img/menu1.webp" class="card-img-top object-cover" height="300"
+                    <figure class="img-caption pos-relative mg-b-0" data-iframe="true" data-src="{{images.0.img}}">
+                        <img data-src="{{images.0.img}}" class="card-img-top object-cover" height="300"
                             alt="Responsive image">
                         <figcaption
                             class="pos-absolute a-0 wd-100p pd-20 d-flex flex-column justify-content-center bg-white-9 transition-base op-0">
-                            <h6 class="tx-inverse tx-semibold mg-b-20">What Does Royalty-Free Mean?</h6>
+                            <h6 class="tx-inverse tx-semibold mg-b-20">{{name}}</h6>
                             <p class="mg-b-0"> qlkjq whreqwjke rh qwhjkqw erlkjqwher lqkw jehr qrj</p>
                         </figcaption>
                     </figure>
                     <div class="card-body text-center">
-                        <h5 class="tx-semibold">Дневной</h5>
-                        <p>1 900 р.</p>
+                        <wb-var days="{{_var.prog.{{_idx}}.count}}" />
+                        <wb-var discount="{{discounts.{{_var.days}}}}" wb-if="'{{discounts.{{_var.days}}}}'>'0'" else="1" />
+                        <h5 class="tx-semibold">{{_var.prog.{{_idx}}.name}}</h5>
+                        <p>{{price * {{_var.days}} * {{_var.discount}} }} р.</p>
                     </div>
                 </div>
-                <div class="card bd-0">
-                    <figure class="img-caption pos-relative mg-b-0" data-iframe="true" data-src="/test/ert">
-                        <img data-src="assets/img/menu2.webp" class="card-img-top object-cover" height="300"
-                            alt="Responsive image">
-                        <figcaption
-                            class="pos-absolute a-0 wd-100p pd-20 d-flex flex-column justify-content-center bg-white-9 transition-base op-0">
-                            <h6 class="tx-inverse tx-semibold mg-b-20">What Does Royalty-Free Mean?</h6>
-                            <p class="mg-b-0"> qlkjq whreqwjke rh qwhjkqw erlkjqwher lqkw jehr qrj</p>
-                        </figcaption>
-                    </figure>
-                    <div class="card-body text-center">
-                        <h5 class="tx-semibold">Недельный</h5>
-                        <p>12 600 р.</p>
-                    </div>
-                </div>
-                <div class="card bd-0">
-                    <figure class="img-caption pos-relative mg-b-0" data-iframe="true" data-src="/test/ert">
-                        <img data-src="assets/img/menu3.webp" class="card-img-top object-cover" height="300"
-                            alt="Responsive image">
-                        <figcaption
-                            class="pos-absolute a-0 wd-100p pd-20 d-flex flex-column justify-content-center bg-white-9 transition-base op-0">
-                            <h6 class="tx-inverse tx-semibold mg-b-20">What Does Royalty-Free Mean?</h6>
-                            <p class="mg-b-0"> qlkjq whreqwjke rh qwhjkqw erlkjqwher lqkw jehr qrj</p>
-                        </figcaption>
-                    </figure>
-                    <div class="card-body text-center">
-                        <h5 class="tx-semibold">Месячный</h5>
-                        <p>49 000 р.</p>
-                    </div>
-                </div>
+                </wb-foreach>
+            </div>
             </div>
         </div>
     </section>
