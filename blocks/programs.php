@@ -46,11 +46,20 @@
                             <p class="mg-b-0">{{text}}</p>
                         </figcaption>
                     </figure>
+                    <wb-var days="{{_var.prog.{{_idx}}.count}}" />
+                    <wb-var discount="{{discounts.{{_var.days}}}}" wb-if="'{{discounts.{{_var.days}}}}'>'0'" else="1" />
                     <div class="card-body text-center">
-                        <wb-var days="{{_var.prog.{{_idx}}.count}}" />
-                        <wb-var discount="{{discounts.{{_var.days}}}}" wb-if="'{{discounts.{{_var.days}}}}'>'0'" else="1" />
                         <h5 class="tx-semibold">{{_var.prog.{{_idx}}.name}}</h5>
                         <p>{{price * {{_var.days}} * {{_var.discount}} }} р.</p>
+                    </div>
+                    <div class="card-footer text-center bd-0 pd-t-0">
+                    <a href="javascript:void(0);" data-id="{{id}}"
+                            data-name="{{name}}" data-price="{{price}}"
+                            data-image="{{images.0.img}}" data-days="{{_var.days}}"
+                            data-discounts="{{json_encode({{discounts}})}}"
+                            data-link="/products/{{id}}/{{wbUrlOnly({{name}})}}"
+                            class="mod-cart-add mod-cart-data btn btn-success tx-20 px-4 my-3 rounded-30">Заказать
+                            <img src="/module/myicons/shopping-cart.svg?size=26&stroke=FFFFFF"></a>
                     </div>
                 </div>
                 </wb-foreach>
