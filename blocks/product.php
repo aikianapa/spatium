@@ -127,6 +127,7 @@
             <div class="row">
                 <div class="col-sm-4 offset-sm-4">
                     <a href="javascript:void(0);" data-id="{{_var.product.id}}" data-name="{{_var.product.name}}"
+                        wb-if="'{{_route.params.ajax}}'==''" 
                         data-price="{{_var.product.price}}" data-image="{{_var.product.images.0.img}}" data-days="7"
                         data-discounts="{{_var.product.discounts}}"
                         data-link="/products/{{_var.product.id}}/{{wbUrlOnly({{_var.product.name}})}}"

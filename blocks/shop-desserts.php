@@ -16,7 +16,7 @@
                         <form class="form-inline row mb-4">
                             <div class="col-12">
                                 <input class="form-control w-100 rounded-20 px-3" type="search" placeholder="Поиск"
-                                    aria-label="Search" data-ajax="{'target':'#productsList',
+                                    aria-label="Search" data-ajax="{'target':'#dessertsList',
                                                                     'filter_add':{'$or':[
                                                                         { 'name': {'$like' : '$value'} }, 
                                                                         { 'articul': {'$like' : '$value'} }
@@ -25,7 +25,7 @@
                         </form>
 
 
-                        <ul class="list-group mb-4" id="productsList">
+                        <ul class="list-group mb-4" id="dessertsList">
                             <wb-foreach wb="{'ajax':'/api/query/products/',
                             'render':'server',
                             'bind':'cms.list.products',
@@ -39,8 +39,7 @@
                             <img data-src="/thumbc/100x75/src/{{images.0.img}}" width="100" height="75"
                                             class="img-fluid wd-70 rounded mg-r-15" alt="{{name}}">
                                             <div>
-                                            <a href="/products/{{id}}/{{wbUrlOnly({{name}})}}"
-                                            class="position-absolute wd-auto r-50 b-5">
+                                            <a href="/products/{{id}}/{{wbUrlOnly({{name}})}}/?ajax=true" data-iframe="true" class="position-absolute wd-auto r-50 b-5">
                                                         <img src="/module/myicons/search-arrow-circle.svg?size=26&stroke=10b759" class="ht-md-40 wd-auto">
                                                 </a>
 

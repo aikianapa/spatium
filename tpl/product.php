@@ -3,14 +3,16 @@
     <title>{{name}}</title>
 </head>
 
-<body></body>
-    <wb-module wb="module=yonger&mode=render&view=header" />
+<body>
+    <wb-module wb="module=yonger&mode=render&view=header"  wb-if="'{{_route.params.ajax}}'==''" />
     <wb-var wid="{{wbNewId()}}" />
     <wb-var product="{{_current}}" />
-    <div class="mg-t-50">
+    <wb-var class="mg-t-50" wb-if="'{{_route.params.ajax}}'==''" />
+    <div class="{{_var.class}}">
         <wb-module wb="module=yonger&mode=render&view=product" />
     </div>
-    <wb-module wb="module=yonger&mode=render&view=footer" />
+    <wb-module wb="module=yonger&mode=render&view=footer" wb-if="'{{_route.params.ajax}}'==''" />
 </body>
 
 </html>
+
