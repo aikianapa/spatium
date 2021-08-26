@@ -9,19 +9,18 @@
 	=============================================-->
 	<footer class="section bg-dark">
     <div class="container py-3">
-      <div class="row align-self-center">
-        <div class="col-md-auto">
+      <div class="row align-items-center">
+        <div class="col-6">
 
           <!-- Brand -->
           <p>
-            <a href="#" class="position-absolute footer-brand text-white">
-              <img class="ht-70 w-auto" src="/assets/img/logo.svg" alt="">
+            <a href="#" class="footer-brand text-white">
+              <img class="ht-80 img-fluid w-auto" src="/assets/img/logo.svg" alt="">
             </a>
           </p>
       
         </div>
-        <div class="col-md">
-      
+        <div class="col-6">
           <!-- Links -->
           <ul class="list-unstyled list-inline text-md-right">
             <li class="list-inline-item mr-2">
@@ -44,13 +43,7 @@
         </div>
       </div> <!-- / .row -->
       <div class="row align-items-center">
-
-        <div class="col-md">
-&nbsp;
-        </div>
-
-        <div class="col-md">
-     
+        <div class="col-md tx-center tx-md-left">
           <p class="tx-white">
             <small>
               <span class="current-year">2021</span> Создано для Spatium Detox. 
@@ -58,7 +51,7 @@
           </p>
 
         </div>
-        <div class="col-md">
+        <div class="col-md tx-center">
       
           <!-- Social links -->
           <ul class="list-inline list-unstyled text-md-right">
