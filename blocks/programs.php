@@ -33,6 +33,7 @@
             <wb-foreach wb="{'table':'products',
                             'render':'server',
                             'limit':'3',
+                            'minimal':'3',
                             'rand':true,
                             'filter': {'category':'main'}
                 }">
