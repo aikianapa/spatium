@@ -29,7 +29,7 @@
             </div>
             <div id="programsList">
             <div class="card-columns pt-4">
-            <wb-var prog="{'0':{'count':1,'name':'Дневной'},'1':{'count':7,'name':'Недельный'},'2':{'count':30,'name':'Месячный'}}" />
+            <wb-var prog="{'0':{'count':7,'name':'Неделя'},'1':{'count':14,'name':'Полумесяц'},'2':{'count':30,'name':'Месяц'}}" />
             <wb-foreach wb="{'table':'products',
                             'render':'server',
                             'limit':'3',
@@ -48,17 +48,17 @@
                     </figure>
                     <wb-var days="{{_var.prog.{{_idx}}.count}}" />
                     <wb-var discount="{{discounts.{{_var.days}}}}" wb-if="'{{discounts.{{_var.days}}}}'>'0'" else="1" />
-                    <div class="card-body text-center">
+                    <div class="card-body text-center pb-0">
                         <h5 class="tx-semibold">{{_var.prog.{{_idx}}.name}}</h5>
                         <p>{{price * {{_var.days}} * {{_var.discount}} }} р.</p>
                     </div>
-                    <div class="card-footer text-center bd-0 pd-t-0">
+                    <div class="card-footer text-center bd-0 pt-0">
                     <a href="javascript:void(0);" data-id="{{id}}"
                             data-name="{{name}}" data-price="{{price}}"
                             data-image="{{images.0.img}}" data-days="{{_var.days}}"
                             data-discounts="{{json_encode({{discounts}})}}"
                             data-link="/products/{{id}}/{{wbUrlOnly({{name}})}}"
-                            class="mod-cart-add mod-cart-data btn btn-success tx-20 px-4 my-3 rounded-30">Заказать
+                            class="mod-cart-add mod-cart-data btn btn-success tx-semibold px-4 rounded-20">Заказать
                             <img src="/module/myicons/shopping-cart.svg?size=26&stroke=FFFFFF"></a>
                     </div>
                 </div>
