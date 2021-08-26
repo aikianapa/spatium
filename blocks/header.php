@@ -30,10 +30,10 @@
                         <a class="nav-link" href="/shop">Ежедневное меню</a>
                     </li>
 
-                    <li class="nav-item"><a class="nav-link" href="#">
+                    <li class="nav-item"><a class="nav-link" href="/desserts">
                             Полезные десерты
                         </a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">
+                    <li class="nav-item"><a class="nav-link" href="/catering">
                             Кейтеринг
                         </a></li>
                     <li class="nav-item"><a class="nav-link" href="#">

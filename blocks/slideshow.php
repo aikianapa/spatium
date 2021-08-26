@@ -36,9 +36,7 @@
                             <h2 class="tx-white tx-semibold py-4 tx-40">
                                 {{header}}
                             </h2>
-                            <p class="tx-white pb-4 tx-16">Отзывы реальных клиентов о доставке правильного питания на
-                                неделю, вкусе самой еды, ее качестве и сервисе компании Spatim Detox. Узнай почему у нас
-                                так вкусно!</p>
+                            <p class="tx-white pb-4 tx-16">{{text}}</p>
                         </div>
                     </div>
                     <div class="card-columns columns-6 columns-sm-3 pt-4 gallery">

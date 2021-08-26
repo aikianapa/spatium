@@ -17,7 +17,7 @@
 <view>
     <section>
         <div class="content">
-            <div class="container pd-x-0 pd-lg-x-10 pd-xl-x-0 mg-y-50">
+            <div class="container pd-x-0 pd-lg-x-10 pd-xl-x-0">
                 <div class="row">
                     <div class="col-lg-3 mg-t-40 mg-lg-t-0">
                         <div class=" d-none d-lg-block">
@@ -38,7 +38,7 @@
                                         class="tx-20 tx-gray-700">Все</a>
                                 </li>
 
-                                <li class="py-2">
+                                <li class="py-2" wb-if="'{{id}}'!=='desserts'">
                                     <a href="#"
                                         data-ajax="{'target':'#productsList','filter_add':{ 'category': '{{id}}' } }"
                                         class="tx-20 tx-gray-700">{{name}}</a>
@@ -82,12 +82,15 @@
                             'bind':'cms.list.products',
                             'sort':'category:d',
                             'size':'24',
-                            'filter': {'active':'on'}
+                            'filter': {
+                                'active':'on',
+                                'category': {'$ne' : 'desserts'} 
+                                }
                               }">
                                 <div class="col-sm-6 col-md-4 mg-y-20">
                                     <div class="card card-profile bd-1 shadow">
                                         <img data-src="/thumbc/500x450/src/{{images.0.img}}" width="500" height="450"
-                                            class="img-fluid rounded-top" alt="">
+                                            class="img-fluid rounded-top" alt="{{name}}">
                                         <div class="card-body bd-b-0-f bd-r-0-f bd-l-0-f tx-13">
                                             <div>
                                                 <a href="/products/{{id}}/{{wbUrlOnly({{name}})}}">
