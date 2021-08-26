@@ -38,7 +38,7 @@
                             'filter': {'category':'main','active':'on'}
                 }">
                 <div class="card bd-0">
-                    <figure class="img-caption pos-relative mg-b-0" data-iframe="true" data-src="{{images.0.img}}">
+                    <figure class="img-caption pos-relative mg-b-0" data-iframe="true" data-src="/products/{{id}}/{{wbUrlOnly({{name}})}}/?ajax=true">
                         <img data-src="{{images.0.img}}" class="card-img-top object-cover" height="300"
                             alt="Responsive image">
                         <figcaption

@@ -94,6 +94,7 @@
                                             {{_var.total_kcal}} Ккал
                                         </div>
                                         <a href="javascript:void(0);" data-id="{{_var.product.id}}"
+                                            wb-if="'{{_route.params.ajax}}'==''" 
                                             data-name="{{_var.product.name}}" data-price="{{_var.product.price}}"
                                             data-image="{{_var.product.images.0.img}}" data-days="7"
                                             data-discounts="{{json_encode({{_var.product.discounts}})}}"
