@@ -19,7 +19,7 @@
         <div class="content">
             <div class="container pd-x-0 pd-lg-x-10 pd-xl-x-0">
                 <div class="row">
-                    <div class="col-lg-3 mg-t-40 mg-lg-t-0">
+                    <!--div class="col-lg-3 mg-t-40 mg-lg-t-0">
                         <div class=" d-none d-lg-block">
                         <div class="divider-text">Поиск</div>
 
@@ -53,8 +53,8 @@
                             {{text}}
                         </p>
 
-                    </div>
-                    <div class="col-lg-9">
+                    </div-->
+                    <div class="col-12">
 
 
                         <form class="form-inline row d-lg-none">
