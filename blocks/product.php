@@ -59,7 +59,7 @@
                         <wb-var total_prot="0" />
                         <wb-var total_fats="0" />
                         <wb-var total_carb="0" />
-                        <div class="row">
+                        <div class="row justify-content-center">
                             <wb-foreach wb="from=_parent._var.product.{{wbTranslit({{_val}})}}"
                                 wb-filter="{'food':{'$gt':''}}">
                                 <div class="col-md-3 bd-0">
