@@ -40,17 +40,17 @@
                                             class="img-fluid wd-70 rounded mg-r-15" alt="{{name}}">
                                             <div>
                                             <a href="/products/{{id}}/{{wbUrlOnly({{name}})}}"
-                                            class="btn px-0 pd-y-6 bg-success position-absolute wd-40 ht-40 r-60 rounded-20">
-                                                        <img src="/module/myicons/search-arrow-circle.svg?size=26&stroke=FFFFFF">
+                                            class="position-absolute wd-auto r-50 b-5">
+                                                        <img src="/module/myicons/search-arrow-circle.svg?size=26&stroke=10b759" class="ht-md-40 wd-auto">
                                                 </a>
 
                                                 <a href="javascript:void(0);"
-                                                        class="mod-cart-add btn px-0 pd-y-6 bg-success position-absolute wd-40 ht-40 r-10 rounded-20"
+                                                        class="mod-cart-add position-absolute r-5 b-5"
                                                         data-id="{{id}}" data-name="{{name}}" data-price="{{price}}"
                                                         data-image="{{images.0.img}}" data-days="7"
                                                         data-link="/products/{{id}}/{{wbUrlOnly({{name}})}}"
                                                         data-tooltip="В корзину">
-                                                        <img src="/module/myicons/shopping-cart.svg?size=26&stroke=FFFFFF">
+                                                        <img src="/module/myicons/shopping-cart.svg?size=26&stroke=10b759" alt="В корзину" class="ht-md-40 wd-auto">
                                                     </a>
                                                 <h6 class="tx-13 tx-inverse tx-semibold mg-b-0">{{name}}</h6>
                                                 <span class="d-block tx-11 text-muted">Калорийность: {{kcal}}, Вес: {{weight}}</span>
