@@ -30,12 +30,15 @@
             <wb-foreach wb="from=list&form=pages&bind=cms.list.pages&render=server&tpl=true" wb-filter="{'_site':'{{_sett.site}}'}">
                 <li class="dd-item row" data-item="{{id}}" data-name="{{name}}">
                     <span class="dd-handle"><img src="/module/myicons/20/000000/dots-2.svg"  width="20" height="20"/></span>
-                    <span class="dd-text col-3">
+                    <span class="dd-text d-none d-sm-flex col-sm-6 ellipsis">
                     <span>{{header}}</span>
                     </span>
-                    <span class="dd-info col-9">
+                    <span class="dd-info col-sm-6">
                         <span class="row">
-                            <span class="dd-path col-6" data-path="{{url}}">{{url}}</span>
+                            <span class="dd-path col-6 ellipsis" data-path="{{url}}">
+                                {{url}}
+                                <span class="d-block d-sm-none tx-10 tx-muted">{{header}}</span>
+                            </span>
                             <form method="post" class="col-6 text-right m-0">
                                 <wb-var wb-if='"{{active}}" == ""' stroke="FC5A5A" else="82C43C" />
                                 <input type="checkbox" name="active" class="d-none">
