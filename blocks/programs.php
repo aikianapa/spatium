@@ -35,7 +35,7 @@
                             'limit':'3',
                             'minimal':'3',
                             'rand':true,
-                            'filter': {'category':'main'}
+                            'filter': {'category':'main','active':'on'}
                 }">
                 <div class="card bd-0">
                     <figure class="img-caption pos-relative mg-b-0" data-iframe="true" data-src="{{images.0.img}}">
