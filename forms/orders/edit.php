@@ -10,15 +10,22 @@
                     aria-label="Close"></i>
             </div>
             <div class="modal-body pd-20">
+                <form  id="{{_form}}EditForm">
                 <div>
                     <wb-data wb="table=users&item={{user}}">
                         <p>
                             <b>Клиент:</b> {{first_name}} {{last_name}}<br>
                             <b>Телефон:</b> {{wbPhoneFormat({{phone}})}}<br>
-                            <b>Адрес:</b> {{delivery_address}}
+                            <b>Адрес:</b> {{delivery_address}}<br>
                         </p>
                     </wb-data>
                 </div>
+
+                <div class="row">
+                <label class="tx-bold col-auto">Оплачен</label>
+                <wb-module wb="module=switch" name="payed" class="col-1" />
+                </div>
+
                 <div class="py-2" id="deliveryCalendar">
                     <wb-foreach wb="from=delivery&render=server&tpl=true">
                     <wb-var wb-if="'{{status}}'!=='deny'" color='success' else='danger' />
@@ -87,6 +94,10 @@
                             </wb-module>
                     </tbody>
                 </table>
+                </form>
+            </div>
+            <div class="modal-footer pd-x-20 pd-b-20 pd-t-0 bd-t-0">
+                <wb-include wb="{'form':'common_formsave.php'}" />
             </div>
         </div>
     </div>

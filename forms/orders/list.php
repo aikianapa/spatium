@@ -52,12 +52,12 @@
                     <td class="text-right">{{total.qty}}</td>
                     <td class="text-right">{{total.sum}}</td>
                     <td class="text-center">
-                        <span class="badge badge-danger wd-10 ht-10 rounded-circle" wb-if="'{{active}}'==''"> </span>
-                        <span class="badge badge-success wd-10 ht-10 rounded-circle" wb-if="'{{active}}'=='on'"> </span>
+                        <img wb-if="'{{active}}' == ''" data-src="/module/myicons/interface-essential-107.svg?size=30&stroke=dc3545">
+                        <img wb-if="'{{active}}' > ''" data-src="/module/myicons/interface-essential-114.svg?size=30&stroke=28a745">
                     </td>
                     <td class="text-center">
-                        <span class="badge badge-danger wd-10 ht-10 rounded-circle" wb-if="'{{payed}}'==''"> </span>
-                        <span class="badge badge-success wd-10 ht-10 rounded-circle" wb-if="'{{payed}}'=='on'"> </span>
+                        <img wb-if="'{{payed}}' == ''" data-src="/module/myicons/payments-finance-17.svg?size=30&stroke=dc3545">
+                        <img wb-if="'{{payed}}' > ''" data-src="/module/myicons/payments-finance-24.svg?size=30&stroke=28a745">
                     </td>
                     <td>
                         <a href="javascript:"

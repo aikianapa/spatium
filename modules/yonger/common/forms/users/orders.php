@@ -30,7 +30,7 @@
                         <img wb-if="'{{payed}}' > ''" data-src="/module/myicons/payments-finance-24.svg?size=30&stroke=28a745">
                     </td>
                     <td class="tx-center"><a href="javascript:void(0)" data-ajax="{'url':'/cms/ajax/form/orders/view/{{id}}','html':'modal'}" class="cursor-pointer">
-                        <img src="/module/myicons/search-arrow-circle.svg?size=30&stroke=10b759">
+                        <img src="/module/myicons/search-arrow-circle.svg?size=30&stroke=0168fa">
                     </a></td>
                 </tr>
                 </wb-foreach>
