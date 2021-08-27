@@ -4,6 +4,15 @@ wbapp.loadStyles([
   "https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;500;600;700&subset=latin,cyrillic"
 ]);
 
+
+if (!wbapp._session.user || !wbapp._session.user.id || wbapp._session.user.id < ' ') {
+  var uid = 'unknown';
+} else {
+  var uid = wbapp._session.user.id;
+}
+var hash = document.location.hash;
+var __token = wbapp._session.token;
+
 setTimeout(function () {
   $('.parallax').each(function () {
     let img = $(this).attr('data-img');
@@ -36,13 +45,12 @@ $.fn.lightGallery = function (options) {
 }
 
 wbapp.on('ready', function () {
-
-  if (!wbapp._session.user || !wbapp._session.user.id || wbapp._session.user.id < ' ') {
-    var uid = 'unknown';
-  } else {
-    var uid = wbapp._session.user.id;
+  
+  if (hash > '#') {
+    $('.nav-item a[href="'+hash+'"]:eq(0)').trigger('click');
   }
   
+
   $('#programs').lightGallery({
     'selector': '[data-iframe]',
     'download': false,
@@ -98,7 +106,7 @@ $(document).delegate(".checkin-btn", wbapp.evClick, function (e) {
   var data = getCartData();
   var token = "courier";
   setcookie('carttoken', token, time() + 1000);
-  $.redirectPost("/orders/checkout", { data: data, token: token });
+  $.redirectPost("/orders/checkout", { 'data': data, 'token': token, '__token':__token });
 })
 
 $(document).delegate(".checkout-btn", wbapp.evClick, function (e) {
@@ -127,7 +135,7 @@ $(document).delegate(".checkout-btn", wbapp.evClick, function (e) {
           //действие при успешной оплате
           if (options.data.token == token && paymentResult.success == true) {
             setcookie('carttoken', token, time() + 1000);
-            $.redirectPost("/orders/checkout", { data: data, token: token });
+            $.redirectPost("/orders/checkout", { 'data': data, 'token': token, '__token':__token });
           }
         },
         onFail: function (reason, options) { // fail
@@ -140,7 +148,7 @@ $(document).delegate(".checkout-btn", wbapp.evClick, function (e) {
           //например вызов вашей аналитики Facebook Pixel
           if (options.data.token == token && paymentResult.success == true) {
             setcookie('carttoken', token, time() + 1000);
-            $.redirectPost("/orders/checkout", { data: data, token: token });
+            $.redirectPost("/orders/checkout", { 'data': data, 'token': token, '__token':__token });
           }
         }
       }
@@ -205,8 +213,8 @@ $.extend(
   {
     redirectPost: function (location, args) {
       var form = '';
-      $.each(args, function (key, value) {
-        value = value.split('"').join('\"')
+      $.each(args,function (key, value) {
+        value == undefined ? value = "" : value = value.split('"').join('\"');
         form += '<textarea style="display:none;" name="' + key + '">' + value + '</textarea>';
       });
       $('<form action="' + location + '" method="POST">' + form + '</form>').appendTo($(document.body)).submit();

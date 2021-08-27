@@ -34,6 +34,7 @@
                 <th class="text-right">Кол-во</th>
                 <th class="text-right">Сумма</th>
                 <th class="text-center">Статус</th>
+                <th class="text-center">Оплата</th>
                 <th></th>
             </tr>
         </thead>
@@ -53,6 +54,10 @@
                     <td class="text-center">
                         <span class="badge badge-danger wd-10 ht-10 rounded-circle" wb-if="'{{active}}'==''"> </span>
                         <span class="badge badge-success wd-10 ht-10 rounded-circle" wb-if="'{{active}}'=='on'"> </span>
+                    </td>
+                    <td class="text-center">
+                        <span class="badge badge-danger wd-10 ht-10 rounded-circle" wb-if="'{{payed}}'==''"> </span>
+                        <span class="badge badge-success wd-10 ht-10 rounded-circle" wb-if="'{{payed}}'=='on'"> </span>
                     </td>
                     <td>
                         <a href="javascript:"

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <script type="wbapp" src="/modules/yonger/tpl/assets/js/dashforge.js"></script>
+    
 </head>
 
 <body>

@@ -32,11 +32,7 @@ class ordersClass extends cmsFormsClass {
             die;
         }
 
-        if ($app->vars('_post.token') == 'courier') {
-            $order['payed'] = false;
-        } else {
-            $order['payed'] = true;
-        }
+        $app->vars('_post.token') == 'courier' ? $order['payed'] = '' : $order['payed'] = 'on';
         $days = 1;
         foreach($order['list'] as $item) {
             $item['days'] > $days ? $days = $item['days'] : null;
@@ -52,7 +48,8 @@ class ordersClass extends cmsFormsClass {
         $ai = $app->module('autoinc');
         $order['number'] = $ai->inc('orders','number',1245);
         $app->itemSave('orders',$order);
-        header('Location: /checkout?order='.$order['id']);
+        //header('Location: /checkout?order='.$order['id']);
+        header('Location: /cabinet#orders');
         die;
     }
 

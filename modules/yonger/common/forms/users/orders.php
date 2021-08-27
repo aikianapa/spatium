@@ -2,8 +2,8 @@
 <div class="myaccount-content">
     <h3>Мои заказы</h3>
 
-    <div class="myaccount-table table-responsive text-center">
-        <table class="table table-bordered table-hover">
+    <div class="table-responsive text-center rounded bd-1">
+        <table class="table table-bordered table-striped table-hover">
             <thead class="thead-light">
                 <tr>
                     <th class="tx-center">Номер</th>
@@ -21,16 +21,16 @@
                     <td class="tx-center">{{number}}</td>
                     <td>{{wbDate("d.m.Y",{{date}})}} - {{wbDate("d.m.Y",{{expired}})}}</td>
                     <td class="tx-center">
-                        <svg wb-if="'{{active}}'=='on'" class="size-35 mi mi-checkmark-circle-1" wb-module="myicons" stroke="28a745"></svg>
-                        <svg wb-if="'{{active}}'!=='on'" class="size-35 mi mi-delete-circle" wb-module="myicons" stroke="dc3545"></svg>
+                        <svg wb-if="'{{active}}'=='on'" class="size-30 mi mi-checkmark-circle-1" wb-module="myicons" stroke="28a745"></svg>
+                        <svg wb-if="'{{active}}'!=='on'" class="size-30 mi mi-delete-circle" wb-module="myicons" stroke="dc3545"></svg>
                     </td>
                     <td class="tx-right">{{total.sum}}</td>
                     <td class="tx-center">
-                        <span wb-if="'{{payed}}' == 'courier'" class="tx-danger">Нет</span>
-                        <span wb-if="'{{payed}}' !== 'courier'" class="tx-success">Да</span>
+                        <img wb-if="'{{payed}}' == ''" data-src="/module/myicons/payments-finance-17.svg?size=30&stroke=dc3545">
+                        <img wb-if="'{{payed}}' > ''" data-src="/module/myicons/payments-finance-24.svg?size=30&stroke=28a745">
                     </td>
                     <td class="tx-center"><a href="javascript:void(0)" data-ajax="{'url':'/cms/ajax/form/orders/view/{{id}}','html':'modal'}" class="cursor-pointer">
-                    <svg class="size-35 mi mi-eye-circle" wb-module="myicons" stroke="666666"></svg>
+                        <img src="/module/myicons/search-arrow-circle.svg?size=30&stroke=10b759">
                     </a></td>
                 </tr>
                 </wb-foreach>
