@@ -88,7 +88,7 @@
                             <div class="col-4 p-0 input-group-prepend">
                                 <span class="wd-100p input-group-text">Ваше имя</span>
                             </div>
-                            <input class="form-control" type="text" name="name" placeholder="Ваше имя">
+                            <input class="form-control" type="text" name="name" placeholder="Ваше имя" required>
                         </div>
 
 
@@ -98,7 +98,7 @@
                                 <span class="wd-100p input-group-text">Телефон</span>
                             </div>
                             <input class="form-control" type="phone" name="phone" placeholder="Телефон"
-                                wb-mask="+7 (999) 999-99-99">
+                                wb-mask="+7 (999) 999-99-99" required>
                         </div>
 
                         <div class="input-group mb-2">
@@ -106,12 +106,11 @@
                                 <span class="wd-100p input-group-text">Сообщение</span>
                             </div>
                             <textarea class="form-control" rows="auto" name="msg"
-                                placeholder="Ваше сообщение"></textarea>
+                                placeholder="Ваше сообщение" required></textarea>
                         </div>
 
                         <div class="input-group mb-2">
-                            <button type="button" class="btn btn-success btn-block rounded-20"
-                                data-ajax="/api/mail">Отправить сообщение</button>
+                            <button type="button" class="btn btn-success btn-block feedback-btn rounded-20">Отправить сообщение</button>
                         </div>
                     </wb-data>
                 </form>

@@ -101,6 +101,15 @@ var getCartData = function () {
   return JSON.stringify(data);
 }
 
+$(document).delegate(".feedback-btn", wbapp.evClick, function (e) {
+  let form = $(this).parents('form');
+  if ($(form).verify()) {
+      wbapp.post("/api/mail",{formdata:$(form).serializeJson()},function(data){
+          console.log(data);
+      });
+  }
+});
+
 $(document).delegate(".checkin-btn", wbapp.evClick, function (e) {
   e.stopPropagation();
   var data = getCartData();
