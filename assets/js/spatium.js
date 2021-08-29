@@ -111,6 +111,7 @@ $(document).delegate(".feedback-btn", wbapp.evClick, function (e) {
         $(this).attr('placeholder') !== undefined ? label = $(this).attr('placeholder') : null;
         $(this).attr('data-label') !== undefined ? label = $(this).attr('data-label') : null;
         label == null ? null : formdata[label] = $(this).val();
+        $(form)[0].reset();
     })
 
     wbapp.post("/api/mail",{'formdata':formdata},function(data){
