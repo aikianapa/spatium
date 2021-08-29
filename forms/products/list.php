@@ -50,7 +50,7 @@
                             'render':'server',
                             'bind':'cms.list.{{_form}}',
                             'sort':'date:d',
-                            'size':'{{_sett.page_size}}',
+                            'size':'200',
                             'filter': {'_site':'{{_sett.site}}'}
                 }">
                     <tr class="bg-transparent">
