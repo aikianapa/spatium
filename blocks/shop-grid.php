@@ -57,7 +57,7 @@
                     <div class="col-12">
 
 
-                        <form class="form-inline row d-lg-none">
+                        <!--form class="form-inline row d-lg-none">
                             <div class="col-12 col-sm-6">
                                 <select name="category" class="mb-2 rounded-20 w-100 form-control" placeholder="Категория"
                                     wb-tree="dict=menu-categories"
@@ -73,7 +73,7 @@
                                                                         { 'articul': {'$like' : '$value'} }
                                                                     ]} }">
                             </div>
-                        </form>
+                        </form-->
 
 
                         <div class="row row-xs mg-b-25" id="productsList">
@@ -84,7 +84,7 @@
                             'size':'24',
                             'filter': {
                                 'active':'on',
-                                'category': {'$ne' : 'desserts'} 
+                                'category': 'main'
                                 }
                               }">
                                 <div class="col-sm-6 col-md-4 mg-y-20">

@@ -31,9 +31,10 @@
                             'bind':'cms.list.products',
                             'sort':'category:d',
                             'size':'24',
+                            'break':'category',
                             'filter': {
                                 'active':'on',
-                                'category': 'desserts'
+                                'category': {'$ne':'main'}
                             }}">
                             <li class="list-group-item d-flex align-items-center">
                             <img data-src="/thumbc/100x75/src/{{images.0.img}}" width="100" height="75"
