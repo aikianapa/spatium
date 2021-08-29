@@ -105,7 +105,7 @@ $(document).delegate(".feedback-btn", wbapp.evClick, function (e) {
   let form = $(this).parents('form');
   if ($(form).verify()) {
     let formdata = {};
-    $(form).each(':input',function(i,inp){
+    $(form).find(':input').each(function(i,inp){
         let label = i+'';
         $(this).attr('name') !== undefined ? label = $(this).attr('name') : null;
         $(this).attr('placeholder') !== undefined ? label = $(this).attr('placeholder') : null;
