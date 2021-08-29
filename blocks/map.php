@@ -12,6 +12,9 @@
             </div>
         </div>
 
+<input  wb="module=yamap" name="geo">
+
+
     <div class="form-group row">
             <label class="col-3 form-control-label">Zoom</label>
             <div class="col">
@@ -26,6 +29,12 @@
             </div>
     </div>
 
+    <div class="form-group row">
+            <label class="col-3 form-control-label">Центр</label>
+            <div class="col">
+                <input type="text" name="center" class="form-control" placeholder="Координаты центра карты">
+            </div>
+    </div>
 
     <wb-multiinput name="geopos">
         <div class="col">
