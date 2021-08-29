@@ -83,15 +83,13 @@
                 <form class="tx-16">
                     <wb-data wb="form=pages&item=_null">
                         <div class="divider-text">Обратная связь</div>
-
+                        <input type="hidden" name="_subject" placeholder="Сообщение с сайта"/>
                         <div class="input-group mb-2">
                             <div class="col-4 p-0 input-group-prepend">
                                 <span class="wd-100p input-group-text">Ваше имя</span>
                             </div>
                             <input class="form-control" type="text" name="name" placeholder="Ваше имя" required>
                         </div>
-
-
 
                         <div class="input-group mb-2">
                             <div class="col-4 p-0 input-group-prepend">

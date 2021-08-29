@@ -106,11 +106,11 @@ $(document).delegate(".feedback-btn", wbapp.evClick, function (e) {
   if ($(form).verify()) {
     let formdata = {};
     $(form).find(':input').each(function(i,inp){
-        let label = i+'';
+        let label = null;
         $(this).attr('name') !== undefined ? label = $(this).attr('name') : null;
         $(this).attr('placeholder') !== undefined ? label = $(this).attr('placeholder') : null;
         $(this).attr('data-label') !== undefined ? label = $(this).attr('data-label') : null;
-        formdata[label] = $(this).val();
+        label == null ? null : formdata[label] = $(this).val();
     })
 
     wbapp.post("/api/mail",{'formdata':formdata},function(data){
