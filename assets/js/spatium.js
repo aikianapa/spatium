@@ -104,9 +104,18 @@ var getCartData = function () {
 $(document).delegate(".feedback-btn", wbapp.evClick, function (e) {
   let form = $(this).parents('form');
   if ($(form).verify()) {
-      wbapp.post("/api/mail",{formdata:$(form).serializeJson()},function(data){
+    let formdata = {};
+    $(form).each(':input',function(i,inp){
+        let label = i+'';
+        $(this).attr('name') !== undefined ? label = $(this).attr('name') : null;
+        $(this).attr('placeholder') !== undefined ? label = $(this).attr('placeholder') : null;
+        $(this).attr('data-label') !== undefined ? label = $(this).attr('data-label') : null;
+        formdata[label] = $(this).val();
+    })
+
+    wbapp.post("/api/mail",{'formdata':formdata},function(data){
           console.log(data);
-      });
+    });
   }
 });
 

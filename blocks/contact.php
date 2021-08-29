@@ -106,7 +106,7 @@
                                 <span class="wd-100p input-group-text">Сообщение</span>
                             </div>
                             <textarea class="form-control" rows="auto" name="msg"
-                                placeholder="Ваше сообщение" required></textarea>
+                                placeholder="Сообщение" required></textarea>
                         </div>
 
                         <div class="input-group mb-2">
