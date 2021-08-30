@@ -42,21 +42,22 @@
                             </li>
                             <wb-var group="" wb-if="'{{_class}}'=='group-total'" />
                             <li class="list-group-item d-flex align-items-center" wb-if="'{{id}}'>''">
-                            <img data-src="/thumbc/100x75/src/{{images.0.img}}" width="100" height="75"
-                                            class="img-fluid wd-70 rounded mg-r-15" alt="{{name}}">
-                                            <div>
-                                            <a href="/products/{{id}}/{{wbUrlOnly({{name}})}}/?ajax=true" data-iframe="true" class="position-absolute wd-auto r-50 b-5">
+                            <img data-src="/thumbc/120x100/src/{{images.0.img}}" width="120" height="100" class="img-fluid wd-120 rounded mg-r-15" alt="{{name}}">
+                                            <div class="pb-4">
+                                                <div class="position-absolute wd-auto r-0 b-5">
+                                                    <a href="javascript:void(0);"
+                                                            class="mod-cart-add"
+                                                            data-id="{{id}}" data-name="{{name}}" data-price="{{price}}"
+                                                            data-image="{{images.0.img}}" data-days="7"
+                                                            data-link="/products/{{id}}/{{wbUrlOnly({{name}})}}"
+                                                            data-tooltip="В корзину">
+                                                            <span class="tx-18 tx-semibold tx-danger">{{price}}₽</span>
+                                                            <img src="/module/myicons/shopping-cart.svg?size=26&stroke=10b759" alt="В корзину" class="ht-md-40 wd-auto">
+                                                    </a>
+                                                    <a href="/products/{{id}}/{{wbUrlOnly({{name}})}}/?ajax=true" data-iframe="true" >
                                                         <img src="/module/myicons/search-arrow-circle.svg?size=26&stroke=10b759" class="ht-md-40 wd-auto">
-                                                </a>
-                                                <a href="javascript:void(0);"
-                                                        class="mod-cart-add position-absolute r-5 b-5"
-                                                        data-id="{{id}}" data-name="{{name}}" data-price="{{price}}"
-                                                        data-image="{{images.0.img}}" data-days="7"
-                                                        data-link="/products/{{id}}/{{wbUrlOnly({{name}})}}"
-                                                        data-tooltip="В корзину">
-                                                        <img src="/module/myicons/shopping-cart.svg?size=26&stroke=10b759" alt="В корзину" class="ht-md-40 wd-auto">
-                                                </a>
-                                                <span class=" position-absolute r-5 t-0 tx-18 tx-semibold tx-danger">{{price}}₽</span>
+                                                    </a>
+                                                </div>
                                                 <h6 class="tx-13 tx-inverse tx-semibold mg-b-0">{{name}}</h6>
                                                 <span class="d-block tx-11 text-muted">Калорийность: {{kcal}}, Вес: {{weight}}</span>
                                             </div>
