@@ -8,6 +8,7 @@ class productsClass extends cmsFormsClass
     }
 
     function afterItemRead(&$item) {
+        $app = &$this->app;
         $item['discounts'] = $this->getDiscounts();
         if ($item['category'] !== 'main') {
             unset($item['pn']);
@@ -17,6 +18,16 @@ class productsClass extends cmsFormsClass
             unset($item['pt']);
             unset($item['sb']);
             unset($item['vs']);
+        }
+        
+        $tree = $this->app->treeRead('menu-categories');
+        $catname = $app->vars('_env.tmp.catname.'.$item['category']);
+        if ($catname > '') {
+            $item['catname'] = $catname;    
+        } else {
+            $catname = $this->app->treeFindBranchById($tree['tree']['data'],$item['category']);
+            $item['catname'] = $catname['name'];
+            $app->vars('_env.tmp.catname.'.$item['category'],$item['catname']);
         }
         return $item;
     }

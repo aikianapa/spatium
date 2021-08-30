@@ -29,7 +29,7 @@
                             <wb-foreach wb="{'table':'products',
                             'render':'server',
                             'bind':'cms.list.products',
-                            'sort':'category name',
+                            'sort':'name catname',
                             'size':'30',
                             'group':'category',
                             'filter': {
@@ -48,7 +48,6 @@
                                             <a href="/products/{{id}}/{{wbUrlOnly({{name}})}}/?ajax=true" data-iframe="true" class="position-absolute wd-auto r-50 b-5">
                                                         <img src="/module/myicons/search-arrow-circle.svg?size=26&stroke=10b759" class="ht-md-40 wd-auto">
                                                 </a>
-
                                                 <a href="javascript:void(0);"
                                                         class="mod-cart-add position-absolute r-5 b-5"
                                                         data-id="{{id}}" data-name="{{name}}" data-price="{{price}}"
