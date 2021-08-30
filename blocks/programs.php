@@ -53,7 +53,9 @@
                         </figcaption>
                         </a>
                     </figure>
-
+                    <div class="position-absolute t-10 l-10 avatar avatar-lg" wb-if="'{{_var.discount}}'<'1'">
+                        <span class="avatar-initial rounded-circle bg-orange shadow-base">-{{(1-_var.discount)*100}}%</span>
+                    </div>
                     <div class="card-body text-center pb-0">
                         <h5 class="tx-semibold">{{_var.prog.{{_idx}}.name}}</h5>
                         <p>{{price * {{_var.days}} * {{_var.discount}} }} р.</p>
