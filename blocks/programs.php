@@ -41,7 +41,7 @@
                     <wb-var days="{{_var.prog.{{_idx}}.count}}" />
                     <wb-var discount="{{discounts.{{_var.days}}}}" wb-if="'{{discounts.{{_var.days}}}}'>'0'" else="1" />
                     <figure class="img-caption pos-relative mg-b-0">
-                        <a href="/products/{{id}}/{{wbUrlOnly({{name}})}}/?days={{_var.days}}">
+                        <a href="javascript:$.redirectPost('/products/{{id}}/{{wbUrlOnly({{name}})}}', { 'days':'{{_var.days}}' });">
                         <wb-var imgcnt="{{count({{images}})}}" />
                         <wb-var cicle="{{ceil({{_ndx}} / {{_var.imgcnt}})}}" />
                         <img data-src="{{images.{{_idx - (_var.cicle * _var.imgcnt - _var.imgcnt) }}.img}}" class="card-img-top object-cover" height="300"

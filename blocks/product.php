@@ -93,7 +93,7 @@
                                         <div class="tx-30 tx-success">
                                             {{_var.total_kcal}} Ккал
                                         </div>
-                                        <wb-var days="7" wb-if="'{{_req.days}}'==''" else="{{_req.days}}" />
+                                        <wb-var days="7" wb-if="'{{_post.days}}'==''" else="{{_post.days}}" />
                                         <a href="javascript:void(0);" data-id="{{_var.product.id}}"
                                             wb-if="'{{_route.params.ajax}}'==''" 
                                             data-name="{{_var.product.name}}" data-price="{{_var.product.price}}"
