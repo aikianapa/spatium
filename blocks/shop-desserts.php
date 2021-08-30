@@ -26,7 +26,7 @@
 
                         <wb-var group="" />
                         <ul class="list-group mb-4" id="dessertsList">
-                            <wb-foreach wb="{'ajax':'/api/query/products/',
+                            <wb-foreach wb="{'table':'products',
                             'render':'server',
                             'bind':'cms.list.products',
                             'sort':'category:d',
@@ -36,7 +36,7 @@
                                 'active':'on',
                                 'category': {'$ne':'main'}
                             }}">
-                            <li class="list-group-item d-flex align-items-center" wb-if="'{{_var.group}}'=='' && '{{id}}'>''">
+                            <li class="list-group-item tx-center" wb-if="'{{_var.group}}'=='' && '{{id}}'>''">
                                 <h4 wb-tree="dict=menu-categories&branch={{category}}">{{name}}</h4>
                                 <wb-var group="1" />
                             </li>
