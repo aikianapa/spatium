@@ -41,7 +41,7 @@
                     <figure class="img-caption pos-relative mg-b-0" data-iframe="true" data-src="/products/{{id}}/{{wbUrlOnly({{name}})}}/?ajax=true">
                         <wb-var imgcnt="{{count({{images}})}}" />
                         <wb-var cicle="{{ceil({{_ndx}} / {{_var.imgcnt}})}}" />
-                        <img data-src="{{images.{{_ndx - _var.cicle * _var.imgcnt + 1}}.img}}" class="card-img-top object-cover" height="300"
+                        <img data-src="{{images.{{_idx - (_var.cicle * _var.imgcnt - _var.imgcnt) }}.img}}" class="card-img-top object-cover" height="300"
                             alt="{{name}}">
                         <figcaption
                             class="pos-absolute a-0 wd-100p pd-20 d-flex flex-column justify-content-center bg-white-9 transition-base op-0">
