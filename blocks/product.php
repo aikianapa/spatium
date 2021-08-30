@@ -93,10 +93,11 @@
                                         <div class="tx-30 tx-success">
                                             {{_var.total_kcal}} Ккал
                                         </div>
+                                        <wb-var days="7" wb-if="'{{_req.days}}'==''" else="{{_req.days}}" />
                                         <a href="javascript:void(0);" data-id="{{_var.product.id}}"
                                             wb-if="'{{_route.params.ajax}}'==''" 
                                             data-name="{{_var.product.name}}" data-price="{{_var.product.price}}"
-                                            data-image="{{_var.product.images.0.img}}" data-days="7"
+                                            data-image="{{_var.product.images.0.img}}" data-days="{{_var.days}}"
                                             data-discounts="{{json_encode({{_var.product.discounts}})}}"
                                             data-link="/products/{{_var.product.id}}/{{wbUrlOnly({{_var.product.name}})}}"
                                             class="mod-cart-add mod-cart-data btn btn-success tx-20 px-4 my-3 rounded-30">В
