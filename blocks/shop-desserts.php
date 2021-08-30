@@ -36,8 +36,8 @@
                                 'active':'on',
                                 'category': {'$ne':'main'}
                             }}">
-                            <li class="list-group-item tx-center" wb-if="'{{_var.group}}'=='' && '{{id}}'>''">
-                                <h4 wb-tree="dict=menu-categories&branch={{category}}">{{name}}</h4>
+                            <li class="list-group-item tx-center bg-success" wb-if="'{{_var.group}}'=='' && '{{id}}'>''">
+                                <h4 wb-tree="dict=menu-categories&branch={{category}}" class="my-0 tx-white">{{name}}</h4>
                                 <wb-var group="1" />
                             </li>
                             <wb-var group="" wb-if="'{{_class}}'=='group-total'" />
