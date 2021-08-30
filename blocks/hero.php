@@ -42,11 +42,11 @@
         <div class="position-absolute d-block wd-100v ht-100v op-7 bg-black-8">&nbsp;</div>
         <div class="parallax-overlay row justify-content-center">
             <div class="col-sm-8 text-center text-center text-white">
-                <img data-src="/assets/img/logo.svg" class="wd-300 px-3 img-fluid">
-                <h1 class="text-white tx-semibold py-4 tx-50">
+                <img data-src="/assets/img/logo.svg" class="wd-300 px-4 pt-5 img-fluid">
+                <h1 class="text-white tx-semibold py-4 tx-30 tx-sm-50">
                 {{header}}
                 </h1>
-                <p class="pb-5 tx-20">
+                <p class="pb-5 tx-16 tx-sm-20">
                 {{text}}
                 </p>
                 <a href="{{link}}" wb-if="button > ''" class="btn btn-{{color}} rounded-30 tx-semibold pd-x-40 pd-y-15 ">
