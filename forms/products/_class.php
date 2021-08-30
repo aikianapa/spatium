@@ -9,6 +9,15 @@ class productsClass extends cmsFormsClass
 
     function afterItemRead(&$item) {
         $item['discounts'] = $this->getDiscounts();
+        if ($item['category'] !== 'main') {
+            unset($item['pn']);
+            unset($item['vt']);
+            unset($item['sr']);
+            unset($item['cht']);
+            unset($item['pt']);
+            unset($item['sb']);
+            unset($item['vs']);
+        }
         return $item;
     }
 

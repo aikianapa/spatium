@@ -24,19 +24,24 @@
                             </div>
                         </form>
 
-
+                        <wb-var group="" />
                         <ul class="list-group mb-4" id="dessertsList">
                             <wb-foreach wb="{'ajax':'/api/query/products/',
                             'render':'server',
                             'bind':'cms.list.products',
                             'sort':'category:d',
-                            'size':'24',
-                            'break':'category',
+                            'size':'30',
+                            'group':'category',
                             'filter': {
                                 'active':'on',
                                 'category': {'$ne':'main'}
                             }}">
-                            <li class="list-group-item d-flex align-items-center">
+                            <li class="list-group-item d-flex align-items-center" wb-if="'{{_var.group}}'=='' && '{{id}}'>''">
+                                <h4 wb-tree="dict=menu-categories&branch={{category}}">{{name}}</h4>
+                                <wb-var group="1" />
+                            </li>
+                            <wb-var group="" wb-if="'{{_class}}'=='group-total'" />
+                            <li class="list-group-item d-flex align-items-center" wb-if="'{{id}}'>''">
                             <img data-src="/thumbc/100x75/src/{{images.0.img}}" width="100" height="75"
                                             class="img-fluid wd-70 rounded mg-r-15" alt="{{name}}">
                                             <div>
@@ -51,10 +56,10 @@
                                                         data-link="/products/{{id}}/{{wbUrlOnly({{name}})}}"
                                                         data-tooltip="В корзину">
                                                         <img src="/module/myicons/shopping-cart.svg?size=26&stroke=10b759" alt="В корзину" class="ht-md-40 wd-auto">
-                                                    </a>
+                                                </a>
+                                                <span class=" position-absolute r-5 t-0 tx-18 tx-semibold tx-danger">{{price}}₽</span>
                                                 <h6 class="tx-13 tx-inverse tx-semibold mg-b-0">{{name}}</h6>
                                                 <span class="d-block tx-11 text-muted">Калорийность: {{kcal}}, Вес: {{weight}}</span>
-                                                <span class="d-block tx-11 text-primary">Цена: {{price}} ₽</span>
                                             </div>
                             </li>
                             <wb-empty>
