@@ -29,7 +29,7 @@
                             <wb-foreach wb="{'table':'products',
                             'render':'server',
                             'bind':'cms.list.products',
-                            'sort':'category:d',
+                            'sort':'category name',
                             'size':'30',
                             'group':'category',
                             'filter': {
