@@ -43,7 +43,7 @@
             </button>
             <div class="collapse navbar-collapse order-2" id="navbarNav">
                 
-                <ul class="navbar-nav tx-bold tx-uppercase mx-auto">
+                <ul class="navbar-nav tx-bold mx-auto">
                     <wb-foreach wb="from=sitemenu">
                     <li class="nav-item">
                         <a class="nav-link" href="{{link}}">{{label}}</a>
