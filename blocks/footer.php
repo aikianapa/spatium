@@ -80,7 +80,6 @@
         </div>
       </div> <!-- / .row -->
     </div> <!-- / .container -->
-
   </footer>
   
   <modal></modal>
