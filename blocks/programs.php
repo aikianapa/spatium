@@ -29,7 +29,7 @@
             </div>
             <div id="programsList">
             <div class="card-columns pt-4">
-            <wb-var prog="{'0':{'count':7,'name':'Неделя'},'1':{'count':14,'name':'Полумесяц'},'2':{'count':30,'name':'Месяц'}}" />
+            <wb-var prog="{'0':{'count':7,'name':'7 дней'},'1':{'count':14,'name':'14 дней'},'2':{'count':30,'name':'30 дней'}}" />
             <wb-foreach wb="{'table':'products',
                             'render':'server',
                             'limit':'3',
@@ -39,8 +39,10 @@
                 }">
                 <div class="card bd-0">
                     <figure class="img-caption pos-relative mg-b-0" data-iframe="true" data-src="/products/{{id}}/{{wbUrlOnly({{name}})}}/?ajax=true">
-                        <img data-src="{{images.0.img}}" class="card-img-top object-cover" height="300"
-                            alt="Responsive image">
+                        <wb-var imgcnt="{{count({{images}})}}" />
+                        <wb-var cicle="{{ceil({{_ndx}} / {{_var.imgcnt}})}}" />
+                        <img data-src="{{images.{{_ndx - _var.cicle * _var.imgcnt + 1}}.img}}" class="card-img-top object-cover" height="300"
+                            alt="{{name}}">
                         <figcaption
                             class="pos-absolute a-0 wd-100p pd-20 d-flex flex-column justify-content-center bg-white-9 transition-base op-0">
                             <h6 class="tx-inverse tx-semibold mg-b-20">{{name}}</h6>
