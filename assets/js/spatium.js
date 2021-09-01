@@ -57,12 +57,6 @@ wbapp.on('ready', function () {
     'counter': false
   });
 
-  $('#dessertsList').lightGallery({
-    'selector': '[data-iframe]',
-    'download': false,
-    'counter': false
-  });
-
   $('.gallery').lightGallery({
     'selector': 'img[data-src]',
     'download': false,

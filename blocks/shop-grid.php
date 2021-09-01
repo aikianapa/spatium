@@ -77,7 +77,7 @@
 
 
                         <div class="row row-xs mg-b-25" id="productsList">
-                            <wb-foreach wb="{'ajax':'/api/query/products/',
+                            <wb-foreach wb="{'table':'products',
                             'render':'server',
                             'bind':'cms.list.products',
                             'sort':'category:d',

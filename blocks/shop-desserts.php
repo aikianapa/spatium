@@ -54,7 +54,7 @@
                                                             <span class="tx-18 tx-semibold tx-danger">{{price}}₽</span>
                                                             <img src="/module/myicons/shopping-cart.svg?size=26&stroke=10b759" alt="В корзину" class="ht-md-40 wd-auto">
                                                     </a>
-                                                    <a href="/products/{{id}}/{{wbUrlOnly({{name}})}}/?ajax=true" data-iframe="true" >
+                                                    <a href="javascript:void(0)" data-ajax="{'url':'/products/info/{{id}}/{{wbUrlOnly({{name}})}}','html':'modal'}" >
                                                         <img src="/module/myicons/search-arrow-circle.svg?size=26&stroke=10b759" class="ht-md-40 wd-auto">
                                                     </a>
                                                 </div>

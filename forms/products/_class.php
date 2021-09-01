@@ -4,6 +4,7 @@ class productsClass extends cmsFormsClass
     function afterItemSave($item) {
         $this->app->shadow("/");
         $this->app->shadow('/shop');
+        $this->app->shadow('/desserts');
         $this->app->shadow("/products/{$item['id']}/".wbTranslit($item['name']));
     }
 
@@ -30,6 +31,10 @@ class productsClass extends cmsFormsClass
             $app->vars('_env.tmp.catname.'.$item['category'],$item['catname']);
         }
         return $item;
+    }
+
+    function checkToken() {
+        if ($this->app->vars('_route.action') == 'info') return true;
     }
 
     function getDiscounts() {
