@@ -14,6 +14,7 @@
   <link rel="preload" as="style" href="/modules/yonger/tpl/assets/css/dashforge.min.css" />
   <link rel="preload" as="style" href="/engine/modules/datetimepicker/datetimepicker/bootstrap-datetimepicker.min.css" />
   <link rel="preload" as="style" href="/engine/modules/datetimepicker/datetimepicker.less" />
+  <link rel="preload" as="style" href="/engine/lib/fonts/roboto/roboto.css" />
   <link rel="preload" as="style" href="/engine/lib/fonts/font-awesome/css/font-awesome.min.css" />
   <link rel="preload" as="style" href="/assets/css/custom.less" />
   
