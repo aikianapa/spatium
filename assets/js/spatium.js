@@ -14,17 +14,17 @@ var hash = document.location.hash;
 var __token = wbapp._session.token;
 
 wbapp.on('ready', function () {
-  
+
   setTimeout(function () {
     $('.parallax').each(function () {
       let img = $(this).attr('data-img');
       if (img !== undefined) $(this).css("background-image", "url(" + img + ")").removeAttr('data-img');
     })
-  
+
     $('.img-caption').on('mouseover mouseout', function () {
       $(this).find('figcaption').toggleClass('op-0');
     });
-  
+
     $('#faq-accordion').accordion({
       heightStyle: 'content'
       , collapsible: true
@@ -32,16 +32,20 @@ wbapp.on('ready', function () {
     });
     $('loader').hide();
   }, 1)
-  
+
+  setTimeout(function () {
+    $('#cart').removeClass('d-none');
+  }, 1000)
+
   $('.scroll-top').on('click', function () {
     $('html,body').animate({
       scrollTop: 0
     }, 2000);
   });
-  
+
 
   if (hash > '#') {
-    $('.nav-item a[href="'+hash+'"]:eq(0)').trigger('click');
+    $('.nav-item a[href="' + hash + '"]:eq(0)').trigger('click');
   }
 
   $(document).delegate('.lg-outer', 'mousewheel', function (e) {
@@ -72,17 +76,17 @@ $(document).delegate(".feedback-btn", wbapp.evClick, function (e) {
   let form = $(this).parents('form');
   if ($(form).verify()) {
     let formdata = {};
-    $(form).find(':input').each(function(i,inp){
-        let label = null;
-        $(this).attr('name') !== undefined ? label = $(this).attr('name') : null;
-        $(this).attr('placeholder') !== undefined ? label = $(this).attr('placeholder') : null;
-        $(this).attr('data-label') !== undefined ? label = $(this).attr('data-label') : null;
-        label == null ? null : formdata[label] = $(this).val();
-        $(form)[0].reset();
+    $(form).find(':input').each(function (i, inp) {
+      let label = null;
+      $(this).attr('name') !== undefined ? label = $(this).attr('name') : null;
+      $(this).attr('placeholder') !== undefined ? label = $(this).attr('placeholder') : null;
+      $(this).attr('data-label') !== undefined ? label = $(this).attr('data-label') : null;
+      label == null ? null : formdata[label] = $(this).val();
+      $(form)[0].reset();
     })
 
-    wbapp.post("/api/mail",{'formdata':formdata},function(data){
-          console.log(data);
+    wbapp.post("/api/mail", { 'formdata': formdata }, function (data) {
+      console.log(data);
     });
   }
 });
@@ -92,7 +96,7 @@ $(document).delegate(".checkin-btn", wbapp.evClick, function (e) {
   var data = getCartData();
   var token = "courier";
   setcookie('carttoken', token, time() + 1000);
-  $.redirectPost("/orders/checkout", { 'data': data, 'token': token, '__token':__token });
+  $.redirectPost("/orders/checkout", { 'data': data, 'token': token, '__token': __token });
 })
 
 $(document).delegate(".checkout-btn", wbapp.evClick, function (e) {
@@ -121,7 +125,7 @@ $(document).delegate(".checkout-btn", wbapp.evClick, function (e) {
           //действие при успешной оплате
           if (options.data.token == token && paymentResult.success == true) {
             setcookie('carttoken', token, time() + 1000);
-            $.redirectPost("/orders/checkout", { 'data': data, 'token': token, '__token':__token });
+            $.redirectPost("/orders/checkout", { 'data': data, 'token': token, '__token': __token });
           }
         },
         onFail: function (reason, options) { // fail
@@ -134,7 +138,7 @@ $(document).delegate(".checkout-btn", wbapp.evClick, function (e) {
           //например вызов вашей аналитики Facebook Pixel
           if (options.data.token == token && paymentResult.success == true) {
             setcookie('carttoken', token, time() + 1000);
-            $.redirectPost("/orders/checkout", { 'data': data, 'token': token, '__token':__token });
+            $.redirectPost("/orders/checkout", { 'data': data, 'token': token, '__token': __token });
           }
         }
       }
@@ -143,7 +147,7 @@ $(document).delegate(".checkout-btn", wbapp.evClick, function (e) {
 });
 
 
-$(document).on('mod-cart-add',function(){
+$(document).on('mod-cart-add', function () {
   $('#cart #ui-id-1.cart').trigger('click');
 })
 
@@ -199,7 +203,7 @@ $.extend(
   {
     redirectPost: function (location, args) {
       var form = '';
-      $.each(args,function (key, value) {
+      $.each(args, function (key, value) {
         value == undefined ? value = "" : value = value.split('"').join('\"');
         form += '<textarea style="display:none;" name="' + key + '">' + value + '</textarea>';
       });

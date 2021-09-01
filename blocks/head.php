@@ -12,11 +12,14 @@
   <!--script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.0.1/dist/alpine.js" defer></script-->
 
   <link rel="preload" as="style" href="/modules/yonger/tpl/assets/css/dashforge.min.css" />
+  <link rel="preload" as="style" href="/engine/modules/datetimepicker/datetimepicker/bootstrap-datetimepicker.min.css" />
+  <link rel="preload" as="style" href="/engine/modules/datetimepicker/datetimepicker.less" />
+  <link rel="preload" as="style" href="/engine/lib/fonts/font-awesome/css/font-awesome.min.css" />
   <link rel="preload" as="style" href="/assets/css/custom.less" />
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;500;600;700&subset=latin,cyrillic" />
-
+  
   <link rel="preload" as="script" href="/modules/yonger/tpl/assets/lib/perfect-scrollbar/perfect-scrollbar.min.js" />
   <link rel="preload" as="script" href="/engine/lib/bootstrap/js/bootstrap.bundle.min.js" />
+  <link rel="preload" as="script" href="/assets/js/lightgallery/js/lightgallery.min.js" />
   <link rel="preload" as="script" href="/modules/yonger/tpl/assets/js/dashforge.js" />
   <link rel="preload" as="script" href="/modules/yonger/tpl/assets/js/yonger.js" />
   <link rel="preload" as="script" href="/assets/js/spatium.js" />
@@ -24,6 +27,18 @@
 
   <script src="/engine/js/wbapp.js"></script>
   <script type="wbapp" remove>
-    wbapp.loadPreload('ready')
+    wbapp.loadStyles([
+     "/modules/yonger/tpl/assets/css/dashforge.min.css",
+     "/assets/js/lightgallery/css/lightgallery.min.css",
+     "/assets/css/custom.less",
+    ]);
+    wbapp.loadScripts([
+    "/modules/yonger/tpl/assets/lib/perfect-scrollbar/perfect-scrollbar.min.js",
+    "/engine/lib/bootstrap/js/bootstrap.bundle.min.js",
+    "/assets/js/lightgallery/js/lightgallery.min.js",
+    "/modules/yonger/tpl/assets/js/dashforge.js",
+    "/modules/yonger/tpl/assets/js/yonger.js",
+    "/assets/js/spatium.js"
+    ],'ready')
   </script>
 </view>
