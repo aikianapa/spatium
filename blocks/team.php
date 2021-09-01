@@ -45,15 +45,15 @@
 
 
 
-        <div class="card-columns teamgal">
+        <div class="card-columns">
             <wb-foreach wb-from="team">
-            <a class="card bd-0 mx-1" href="{{image.0.img}}">
+            <div class="card bd-0 mx-1">
             <img data-src="/thumbc/600x600/src/{{image.0.img}}" width="600" class="rounded img-fluid" alt="{{fullname}}">
               <div class="card-body">
                 <h5 class="card-title tx-20">{{fullname}}</h5>
                 <p class="card-text tx-12 tx-gray-600">{{vocation}}</p>
               </div>
-            </a>
+            </div>
             </wb-foreach>
           </div>
         </div>

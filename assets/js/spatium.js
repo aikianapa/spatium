@@ -70,13 +70,6 @@ wbapp.on('ready', function () {
     'zoom': true
   });
 
-  $('.teamgal').lightGallery({
-    'selector': 'a[href]',
-    'download': false,
-    'counter': false,
-    'zoom': true
-  });
-
   $(document).delegate('.lg-outer', 'mousewheel', function (e) {
     if (e.originalEvent.wheelDelta / 120 > 0) {
       $(this).find('.lg-prev').trigger('click');
