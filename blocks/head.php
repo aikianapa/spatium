@@ -29,13 +29,11 @@
   <script type="wbapp" remove>
     wbapp.loadStyles([
      "/modules/yonger/tpl/assets/css/dashforge.min.css",
-     "/assets/js/lightgallery/css/lightgallery.min.css",
      "/assets/css/custom.less",
     ]);
     wbapp.loadScripts([
     "/modules/yonger/tpl/assets/lib/perfect-scrollbar/perfect-scrollbar.min.js",
     "/engine/lib/bootstrap/js/bootstrap.bundle.min.js",
-    "/assets/js/lightgallery/js/lightgallery.min.js",
     "/modules/yonger/tpl/assets/js/dashforge.js",
     "/modules/yonger/tpl/assets/js/yonger.js",
     "/assets/js/spatium.js"
