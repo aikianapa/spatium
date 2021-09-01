@@ -129,6 +129,10 @@
                     <div class="container">
                     <div class="row">
                             <div class="col-12 col-lg-10 offset-lg-1">
+                                <div class="tx-center" wb-if="'{{_var.product.images.0.img}}'==''">
+                                <img data-src="/module/myicons/asian-food.1.svg?size=300&stroke=EEEEEE" class="img-fluid ht-300">
+                                </div>
+
                                 <div id="carouselProd" class="carousel slide" data-ride="carousel" wb-if="'{{_var.product.images.0.img}}'>''">
                                     <ol class="carousel-indicators">
                                         <wb-foreach wb-from="_var.product.images">

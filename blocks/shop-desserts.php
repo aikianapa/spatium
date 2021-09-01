@@ -42,7 +42,12 @@
                             </li>
                             <wb-var group="" wb-if="'{{_class}}'=='group-total'" />
                             <li class="list-group-item d-flex align-items-center" wb-if="'{{id}}'>''">
-                            <img data-src="/thumbc/120x100/src/{{images.0.img}}" width="120" height="100" class="img-fluid wd-120 rounded mg-r-15" alt="{{name}}">
+                            <img data-src="/thumbc/120x100/src/{{images.0.img}}" 
+                            width="120" height="100" class="img-fluid wd-120 rounded mg-r-15" alt="{{name}}" wb-if="'{{images.0.img}}'>''">
+
+                            <img data-src="/module/myicons/asian-food.1.svg?size=50&stroke=EEEEEE" 
+                            width="120" height="100" class="img-fluid wd-120 rounded mg-r-15" alt="{{name}}" wb-if="'{{images.0.img}}'==''">
+
                                             <div class="pb-4">
                                                 <div class="position-absolute wd-auto r-0 b-5">
                                                     <a href="javascript:void(0);"
