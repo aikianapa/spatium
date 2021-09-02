@@ -33,25 +33,48 @@ class ordersClass extends cmsFormsClass {
         }
 
         $app->vars('_post.token') == 'courier' ? $order['payed'] = '' : $order['payed'] = 'on';
-        $days = 1;
-        foreach($order['list'] as $item) {
-            $item['days'] > $days ? $days = $item['days'] : null;
-        }
-        $order['delivery'] = [];
-        for ($i=1;$i<=$days;$i++) {
-            date('Y-m-d',strtotime($order['date'])) > date('Y-m-d') ? $j = $i-1 : $j = $i;
-            $idx = date('Y-m-d',strtotime($order['date']. '+' . $j . "days"));
-            $order['delivery'][$idx] = ['date'=>$idx,'status'=>''];
-        }
-        $order['expired'] = $idx;
         $order['user'] = $user['id'];
         $ai = $app->module('autoinc');
         $order['number'] = $ai->inc('orders','number',1245);
+        $this->createDelivery($order);
         $app->itemSave('orders',$order);
         //header('Location: /checkout?order='.$order['id']);
         header('Location: /cabinet#orders');
         die;
     }
+
+    private function createDelivery(&$order) {
+        $app = &$this->app;
+        $list = $app->json($order['list']);
+        $days = intval($list->max('days'));
+        $oid = $order['id'];
+        for ($i=1;$i<=$days;$i++) {
+            date('Y-m-d',strtotime($order['date'])) > date('Y-m-d') ? $j = $i-1 : $j = $i;
+            $date = date('Y-m-d',strtotime($order['date']. '+' . $j . "days"));
+            $dlv = $app->itemRead('delivery',$date);
+            if (!$dlv) $dlv = ['_id'=>$date, 'list'=>[]];
+            foreach($order['list'] as $prod) {
+                for ($j=1; $j<=$prod['qty'];$j++) {
+                    $item = [
+                        'id' => $app->newId(),
+                        'date' => $date,
+                        'order' => $oid,
+                        'product' => $prod['id'],
+                        'user' => $order['user'],
+                        'qty' => 1,
+                        'status' => 'empty'
+                    ];
+                    $dlv['list'][$item['id']] = $item;
+                }
+            }
+
+            $app->itemSave('delivery',$dlv,false);
+        }
+        $app->tableFlush('delivery');
+        $order['days'] = $days;
+        $order['expired'] = $date;
+    }
+
 
     function rep_cook() {
         $app = &$this->app;

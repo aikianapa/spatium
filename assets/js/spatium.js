@@ -1,10 +1,4 @@
 "use strict"
-
-wbapp.loadStyles([
-  "https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;500;600;700&subset=latin,cyrillic"
-]);
-
-
 if (!wbapp._session.user || !wbapp._session.user.id || wbapp._session.user.id < ' ') {
   var uid = 'unknown';
 } else {

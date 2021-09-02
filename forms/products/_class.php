@@ -8,6 +8,11 @@ class productsClass extends cmsFormsClass
         $this->app->shadow("/products/{$item['id']}/".wbTranslit($item['name']));
     }
 
+    function beforeItemShow(&$item) {
+        count($item['images']) ? $item['image'] = $item['images'][0]['img'] : $item['image'] = '';
+        return $item;
+    }
+
     function afterItemRead(&$item) {
         $app = &$this->app;
         $item['discounts'] = $this->getDiscounts();

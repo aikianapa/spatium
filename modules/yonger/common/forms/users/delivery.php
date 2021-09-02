@@ -1,29 +1,83 @@
 <html>
+<script wb-app remove>
+
+wbapp.on('wb-render-done', function(data,target) {
+    if (target == '#deliveryCalendar') {
+        setTimeout(function() {
+            $("#deliveryCalendar .product-icon").draggable();
+            $("#deliveryCalendar").disableSelection();
+            $("#deliveryCalendar .day.empty").droppable({
+                drop: function(event, ui) {
+                    let $day = $(event.target);
+                    let $prd = $(ui.draggable);
+                    let date_to = $day.data('date');
+                    let date_from = $prd.parents('.day').data('date');
+                    let prod = $prd.data('prod');
+
+                    let dti = 'd'+str_replace('-','',date_to);
+                    let dfi = 'd'+str_replace('-','',date_from);
+                    /*
+                    let src = `cms.list.delivery.${dfi}.products.${prod}`;
+                    let dst = `cms.list.delivery.${dti}.products.${prod}`;
+                    let sitem = wbapp.storage(src);
+                    let ditem = wbapp.storage(dst);
+                    */
+                    if (dfi !== dti) {
+                        /*
+                        let osrc = `cms.list.delivery.${dfi}.orders.${sitem.order}`;
+                        let odst = `cms.list.delivery.${dti}.orders.${sitem.order}`;
+                        if (ditem) {
+                            ditem.qty += 1;
+                        } else {
+                            ditem = Object.assign({}, sitem);
+                            ditem.qty = 1;
+                        }
+                        sitem.qty -= 1;
+                        if (sitem.qty < 1) {
+                            wbapp.storage(src,null) // удаляем продукт
+                            wbapp.storage(osrc,null) // удаляем заказ
+                        } else {
+                            wbapp.storage(src,sitem);
+                            wbapp.storage(odst,Object.assign({}, wbapp.storage(osrc)));
+                        }
+                        */
+                        wbapp.post('/cms/ajax/form/users/delivery_change',{'from':date_from,'to':date_to,'prod':prod},function(data){
+                            wbapp.storage('cms.list.delivery',data);
+                        })
+
+                    }
+//                    wbapp.storage(dst,ditem);
+                }
+            });
+        }, 0)
+    }
+})
+</script>
+
 <div class="myaccount-content">
     <h3>Мои доставки</h3>
-    <ul class="list-group pd-b-50" id="deliveryCalendar" data-order="{{_var.order_id}}">
-        <wb-foreach wb="render=client" wb-ajax="/cms/ajax/form/users/delivery_list">
+    <ul class="list-group pd-b-50" id="deliveryCalendar" data-order="{{_var.order_id}}" unselectable="on">
+        <wb-foreach wb="render=client&bind=cms.list.delivery" wb-ajax="/cms/ajax/form/users/delivery_list">
 
 
 
             <li class="list-group-item d-flex day {{status}}" data-date="{{date}}">
 
-            {{#if status == 'empty'}}
-                        <div class="position-absolute t-5 r-5 btn-delivery z-index-10" title="Отложить доставку" style="bottom:5px;right:5px;">
-                            <img data-src="/module/myicons/delivery-truck-cancel.svg?size=24&stroke=dc3545">
-                        </div>
-                        {{/if}}
-                        {{#if status == 'deny'}}
-                        <div class="position-absolute t-5 r-5 btn-delivery z-index-10" title="Вернуть доставку" style="bottom:5px;right:5px;">
-                            <img data-src="/module/myicons/delivery-truck-checkmark.svg?size=24&stroke=10b759">
-                        </div>
-                        {{/if}}
+                {{#if status == 'empty'}}
+                <div class="position-absolute t-5 r-5 btn-delivery z-index-10" title="Отложить доставку"
+                    style="bottom:5px;right:5px;">
+                    <img data-src="/module/myicons/delivery-truck-cancel.svg?size=24&stroke=dc3545">
+                </div>
+                {{/if}}
+                {{#if status == 'deny'}}
+                <div class="position-absolute t-5 r-5 btn-delivery z-index-10" title="Вернуть доставку"
+                    style="bottom:5px;right:5px;">
+                    <img data-src="/module/myicons/delivery-truck-checkmark.svg?size=24&stroke=10b759">
+                </div>
+                {{/if}}
                 <div class="wd-60 mg-r-15" alt="">
-
                     <b class="d-block position-relative">{{n}}</b>
                     <span>{{d}} {{m}}</span>
-
-
                 </div>
                 <div class="row wd-100p">
                     {{#if status != 'deny'}}
@@ -46,8 +100,8 @@
                         {{/each}}
                         <div>
                             {{#each products}}
-                            <div class="avatar avatar-md d-inline-block mr-1">
-                                <img src="/thumbc/50x50/src{{image}}" class="rounded" alt="{{name}}">
+                            <div class="avatar avatar-lg product-icon d-inline-block mr-1" data-prod="{{_id}}">
+                                <img src="/thumbc/100x100/src{{image}}" class="rounded" alt="{{name}}">
                                 <span
                                     class="badge badge-success position-absolute rounded-circle tx-10 l-0 b-0">x{{qty}}</span>
                             </div>

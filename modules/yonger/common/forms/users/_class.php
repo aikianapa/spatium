@@ -11,45 +11,58 @@ class usersClass extends cmsFormsClass
         in_array($app->vars('_sess.user.role'),['admin','manager']) ? $uid = $app->vars('_post.uid') : $uid = $app->vars('_sess.user.id');
 
         $filter = [
-            '_creator' => $uid,
-            'expired' => ['$gte'=>date('Y-m-d')]
+            '_id' => ['$gte'=>date('Y-m-d')]
         ];
-        
-        //$app->vars('_sess.user.role') == 'user' ? $filter['date'] = ['$gte'=>date('Y-m-d')] : null;
 
-
-        $orders = $app->itemList('orders', ['filter'=>$filter]);
-        $dlvrs = [];
-        foreach ($orders['list'] as $order) {
-            $count = 0;
-            foreach ($order['delivery'] as $date => $d) {
-                $date = date('Y-m-d',strtotime($date));
-                $d['date'] = $date;
-                if ($app->vars('_sess.user.role') !== 'user' OR 
-                    ($app->vars('_sess.user.role') == 'user' && strtotime($date) >= strtotime(date('Y-m-d')))
-                    ) {
-                    !isset($dlvrs[$date]['orders']) ?  $dlvrs[$date]['orders'] = [] : null;
-                    !isset($dlvrs[$date]['products']) ?  $dlvrs[$date]['products'] = [] : null;
-                    $this->delivery_prep($d);
-                    $dlvrs[$date] = array_merge($dlvrs[$date], $d);
-                    if (in_array($d['status'], ['past','empty'])) {
-                        $count++;
-                        isset($dlvrs[$date]) ? $dlvrs[$date]['orders'][] = $order  : null;
-                        foreach ($order['list'] as $p) {
-                            if ($count <= $p['days']) {
-                                $p['active'] = 'on';
-                            }
-                            if (isset($dlvrs[$date]['products'][$p['id']])) {
-                                $p['qty'] += $dlvrs[$date]['products'][$p['id']]['qty']*1;
-                            }
-                            $dlvrs[$date]['products'][$p['id']] = $p;
-                        }
+        $dlvrs = $app->itemList('delivery', ['filter'=>$filter]);
+        $list = [];
+        $pClass = $app->formClass('products');
+        foreach($dlvrs['list'] as $date => $day) {
+            $did = 'd'.date('Ymd',strtotime($date));
+            $list[$did]['date'] = $date;
+            $list[$did]['products'] = $app->json($day['list'])->where('user','=',$uid)->groupBy('date')->get();
+            $list[$did]['orders'] = $app->json($day['list'])->where('user','=',$uid)->groupBy('order')->get();
+            $prds = [];
+            foreach($list[$did]['products'] as $k => &$dp) {
+                foreach($dp as $p) {
+                    $p = array_merge($app->itemRead('products',$p['product']),$p);
+                    $pClass->beforeItemShow($p);
+                    if (isset($prds[$p['product']])) {
+                        $prds[$p['product']]['qty'] += $p['qty'];
+                    } else {
+                        $prds[$p['product']] = $p;
                     }
+                    isset($prds[$p['product']]['orders']) ? null : $prds[$p['product']]['orders'] = [];
+                    $prds[$p['product']]['orders'][$p['order']] = $p['qty'];
                 }
             }
+            $list[$did]['products'] = $prds;
+            foreach($list[$did]['orders'] as $k => &$o) {
+                $o = $app->itemRead('orders',$k);
+            }
+            $this->delivery_prep($list[$did]);
         }
-        $dlvrs = $app->arraySort($dlvrs, "date");
-        echo json_encode($dlvrs);
+
+        echo json_encode($list);
+    }
+
+    public function delivery_change() {
+        $app = &$this->app;
+        $from = $app->itemRead('delivery',$this->app->vars('_post.from'));
+        $toto = $app->itemRead('delivery',$this->app->vars('_post.to'));
+        if ($from) {
+            $item = $app->json($from['list'])->where('product','=',$this->app->vars('_post.prod'))->first();
+            $item = (array)$item;
+            if (isset($item['id'])) {
+                unset($from['list'][$item['id']]);
+                $item['date'] = $this->app->vars('_post.to');
+                $toto['list'][$item['id']] = $item;
+            }
+            $app->itemSave('delivery',$from,false);
+            $app->itemSave('delivery',$toto,false);
+            $app->tableFlush('delivery');
+        }
+        $this->delivery_list();
     }
 
     public function delivery_decline()
