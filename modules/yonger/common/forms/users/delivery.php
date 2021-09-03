@@ -1,6 +1,5 @@
 <html>
 <script wb-app remove>
-
 wbapp.on('wb-render-done', function(data,target) {
     if (target == '#deliveryCalendar') {
         setTimeout(function() {
@@ -13,40 +12,13 @@ wbapp.on('wb-render-done', function(data,target) {
                     let date_to = $day.data('date');
                     let date_from = $prd.parents('.day').data('date');
                     let prod = $prd.data('prod');
-
                     let dti = 'd'+str_replace('-','',date_to);
                     let dfi = 'd'+str_replace('-','',date_from);
-                    /*
-                    let src = `cms.list.delivery.${dfi}.products.${prod}`;
-                    let dst = `cms.list.delivery.${dti}.products.${prod}`;
-                    let sitem = wbapp.storage(src);
-                    let ditem = wbapp.storage(dst);
-                    */
                     if (dfi !== dti) {
-                        /*
-                        let osrc = `cms.list.delivery.${dfi}.orders.${sitem.order}`;
-                        let odst = `cms.list.delivery.${dti}.orders.${sitem.order}`;
-                        if (ditem) {
-                            ditem.qty += 1;
-                        } else {
-                            ditem = Object.assign({}, sitem);
-                            ditem.qty = 1;
-                        }
-                        sitem.qty -= 1;
-                        if (sitem.qty < 1) {
-                            wbapp.storage(src,null) // удаляем продукт
-                            wbapp.storage(osrc,null) // удаляем заказ
-                        } else {
-                            wbapp.storage(src,sitem);
-                            wbapp.storage(odst,Object.assign({}, wbapp.storage(osrc)));
-                        }
-                        */
                         wbapp.post('/cms/ajax/form/users/delivery_change',{'from':date_from,'to':date_to,'prod':prod},function(data){
                             wbapp.storage('cms.list.delivery',data);
                         })
-
                     }
-//                    wbapp.storage(dst,ditem);
                 }
             });
         }, 0)
@@ -100,7 +72,7 @@ wbapp.on('wb-render-done', function(data,target) {
                         {{/each}}
                         <div>
                             {{#each products}}
-                            <div class="avatar avatar-lg product-icon d-inline-block mr-1" data-prod="{{_id}}">
+                            <div class="avatar avatar-xl product-icon d-inline-block mr-1" data-prod="{{_id}}">
                                 <img src="/thumbc/100x100/src{{image}}" class="rounded" alt="{{name}}">
                                 <span
                                     class="badge badge-success position-absolute rounded-circle tx-10 l-0 b-0">x{{qty}}</span>

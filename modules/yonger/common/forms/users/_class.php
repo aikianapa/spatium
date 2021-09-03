@@ -3,25 +3,44 @@ use Nahid\JsonQ\Jsonq;
 
 class usersClass extends cmsFormsClass
 {
-    public function delivery_list()
+    public function delivery_list($deny = null)
     {
         // формируем список доставок текущего пользователя
         $app = &$this->app;
         header('Content-Type: application/json');
         in_array($app->vars('_sess.user.role'),['admin','manager']) ? $uid = $app->vars('_post.uid') : $uid = $app->vars('_sess.user.id');
-
+        if ($deny === null) {
+            $user = $app->itemRead('users',$uid);
+            $deny = (array)$user['deny'];
+        }
         $filter = [
-            '_id' => ['$gte'=>date('Y-m-d')]
+            'date' => ['$gte'=>date('Y-m-d')],
+            'user' => $uid
         ];
 
-        $dlvrs = $app->itemList('delivery', ['filter'=>$filter]);
+        $dlvrs = $app->itemList('delivery', ['filter'=>$filter,'group'=>'date','sort'=>'date']);
+        $dlvrs = $app->json($dlvrs['list'])->groupBy('date')->get();
+        $maxdate = array_pop(array_keys($dlvrs));
+        $days = abs(strtotime(date('Y-m-d'))-strtotime($maxdate)) / 86400;
+
         $list = [];
+        for($d=1; $d<=$days; $d++) {
+            $did = 'd'.date('Ymd',strtotime('now +'.$d.' days'));
+            $list[$did] = [
+                'date' => date('Y-m-d',strtotime('now +'.$d.' days')),
+                'products' => [],
+                'orders' => [],
+                'status' => ''
+            ];
+            $this->delivery_prep($list[$did],$deny);
+        }
+        
         $pClass = $app->formClass('products');
-        foreach($dlvrs['list'] as $date => $day) {
+        foreach($dlvrs as $date => $day) {
             $did = 'd'.date('Ymd',strtotime($date));
             $list[$did]['date'] = $date;
-            $list[$did]['products'] = $app->json($day['list'])->where('user','=',$uid)->groupBy('date')->get();
-            $list[$did]['orders'] = $app->json($day['list'])->where('user','=',$uid)->groupBy('order')->get();
+            $list[$did]['products'] = $app->json($day)->groupBy('date')->get();
+            $list[$did]['orders'] = $app->json($day)->groupBy('order')->get();
             $prds = [];
             foreach($list[$did]['products'] as $k => &$dp) {
                 foreach($dp as $p) {
@@ -40,28 +59,16 @@ class usersClass extends cmsFormsClass
             foreach($list[$did]['orders'] as $k => &$o) {
                 $o = $app->itemRead('orders',$k);
             }
-            $this->delivery_prep($list[$did]);
+            $this->delivery_prep($list[$did],$deny);
         }
-
         echo json_encode($list);
     }
 
     public function delivery_change() {
         $app = &$this->app;
-        $from = $app->itemRead('delivery',$this->app->vars('_post.from'));
-        $toto = $app->itemRead('delivery',$this->app->vars('_post.to'));
-        if ($from) {
-            $item = $app->json($from['list'])->where('product','=',$this->app->vars('_post.prod'))->first();
-            $item = (array)$item;
-            if (isset($item['id'])) {
-                unset($from['list'][$item['id']]);
-                $item['date'] = $this->app->vars('_post.to');
-                $toto['list'][$item['id']] = $item;
-            }
-            $app->itemSave('delivery',$from,false);
-            $app->itemSave('delivery',$toto,false);
-            $app->tableFlush('delivery');
-        }
+        $item = $app->itemRead('delivery',$this->app->vars('_post.prod'));
+        $item['date'] = $this->app->vars('_post.to');
+        $app->itemSave('delivery',$item);
         $this->delivery_list();
     }
 
@@ -70,17 +77,40 @@ class usersClass extends cmsFormsClass
         // отмена доставки в указаный день
         header('Content-Type: application/json');
         $app = &$this->app;
-            in_array($app->vars('_sess.user.role'),['admin','manager']) ? $uid = $app->vars('_post.uid') : $uid = $app->vars('_sess.user.id');
-            $orders = $app->itemList('orders', ['filter'=>[
-            '_creator' => $uid,
-            'expired' => ['$gte'=>date('Y-m-d')]
-            ]]);
-            foreach ($orders['list'] as $order) {
-                $this->delivery_order_decline($order['id'], $app->vars('_post.date'));
+        in_array($app->vars('_sess.user.role'),['admin','manager']) ? $uid = $app->vars('_post.uid') : $uid = $app->vars('_sess.user.id');
+        $type = $app->vars('_post.type');
+        $user = $app->itemRead('users',$uid);
+        $deny = (array)$user['deny'];
+        if ($type == 'empty') array_push($deny,$app->vars('_post.date'));
+        if ($type == 'deny') unset($deny[array_search($app->vars('_post.date'),$deny)]);
+        $deny = array_values($deny);
+        $filter = [
+            'date' => ['$gte'=>$app->vars('_post.date')],
+            'user' => $uid
+        ];
+        $dlvrs = $app->itemList('delivery', ['filter'=>$filter,'group'=>'date','sort'=>'date:d']);
+        foreach($dlvrs['list'] as $id => &$item) {
+            $i=0;
+            if ($type == 'empty') {
+                $date = date('Y-m-d', strtotime($item['date'].' +1 day'));
+                while (in_array($date, $deny)) {
+                    $date = date('Y-m-d', strtotime($date.' +1 day'));
+                    $i++; if ($i>9999) {echo "Ошибка !!!";die;}
+                }
+            } else if ($type == 'deny') {
+                $date = date('Y-m-d',strtotime($item['date'].' -1 day'));
+                while (in_array($date, $deny)) {
+                    $date = date('Y-m-d',strtotime($date.' -1 day'));
+                    $i++; if ($i>9999) {echo "Ошибка !!!";die;}
+                }
             }
-            $app->tableFlush('orders');
-            echo $this->delivery_list();
-
+            $item['date'] = $date;
+            $app->itemSave('delivery', $item, false);
+        }
+        $user['deny'] = $deny;
+        $app->itemSave('users',$user);
+        $app->tableFlush('delivery');
+        $this->delivery_list($deny);
     }
 
     public function delivery_order_decline($oid = null, $date = null)
@@ -123,7 +153,7 @@ class usersClass extends cmsFormsClass
         $app->itemSave('orders', $order, true);
     }
 
-    public function delivery_prep(&$d)
+    public function delivery_prep(&$d,$deny)
     {
         setlocale(LC_ALL, 'ru_RU.utf8');
         $time = strtotime($d['date']);
@@ -131,11 +161,11 @@ class usersClass extends cmsFormsClass
         $d['m'] = strftime('%b', $time);
         $d['y'] = strftime('%Y', $time);
         $d['n'] = strftime('%a', $time);
+
+        in_array($d['date'],(array)$deny) ? $d['status'] = 'deny' : null;
         $d['status'] == '' ? $d['status'] = 'empty' : null;
         $d['status'] == 'deny' ? $d['deny'] = 'deny' : $d['deny'] = '';
-        if ($d['date'] <= date('Y-m-d')) {
-            $d['status'] = 'past';
-        }
+        $d['date'] <= date('Y-m-d') ? $d['status'] = 'past' : null;
     }
 
     public function profile()

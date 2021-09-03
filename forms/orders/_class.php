@@ -48,27 +48,29 @@ class ordersClass extends cmsFormsClass {
         $list = $app->json($order['list']);
         $days = intval($list->max('days'));
         $oid = $order['id'];
+        $user = $app->itemRead('users',$app->vars('_sess.user.id'));
+        $deny = (array)$user['deny'];
         for ($i=1;$i<=$days;$i++) {
             date('Y-m-d',strtotime($order['date'])) > date('Y-m-d') ? $j = $i-1 : $j = $i;
-            $date = date('Y-m-d',strtotime($order['date']. '+' . $j . "days"));
-            $dlv = $app->itemRead('delivery',$date);
-            if (!$dlv) $dlv = ['_id'=>$date, 'list'=>[]];
-            foreach($order['list'] as $prod) {
-                for ($j=1; $j<=$prod['qty'];$j++) {
-                    $item = [
-                        'id' => $app->newId(),
-                        'date' => $date,
-                        'order' => $oid,
-                        'product' => $prod['id'],
-                        'user' => $order['user'],
-                        'qty' => 1,
-                        'status' => 'empty'
-                    ];
-                    $dlv['list'][$item['id']] = $item;
+            if (in_array(date('Y-m-d',strtotime($order['date'])),$deny)) {
+                $days++;
+            } else {
+                $date = date('Y-m-d', strtotime($order['date']. '+' . $j . "days"));
+                foreach ($order['list'] as $prod) {
+                    for ($j=1; $j<=$prod['qty'];$j++) {
+                        $item = [
+                            'id' => $app->newId(),
+                            'date' => $date,
+                            'order' => $oid,
+                            'product' => $prod['id'],
+                            'user' => $order['user'],
+                            'qty' => 1,
+                            'status' => 'empty'
+                        ];
+                        $app->itemSave('delivery', $item, false);
+                    }
                 }
             }
-
-            $app->itemSave('delivery',$dlv,false);
         }
         $app->tableFlush('delivery');
         $order['days'] = $days;
