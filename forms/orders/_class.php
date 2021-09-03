@@ -87,30 +87,15 @@ class ordersClass extends cmsFormsClass {
         } else {
             $date = date('Y-m-d',strtotime('now'));
         }
-        $list = $app->itemList('orders',['filter'=>[
-            'date'=>['$lte'=>$date]
-            ,'expired'=>['$gte'=>$date]
-        ]]);
-        foreach($list['list'] as $order) {
-            $this->beforeItemShow($order,$date);
-            $delivery = &$order['delivery'][$date];
-            $start = date('Y-m-d',strtotime($order['date']));
-            if ($delivery['status'] !== 'deny' ) {
-                foreach($order['list'] as $line) {
-                    if ($line['active'] == 'on') $result[] = $line;
-                }
-            }
-        }
-        $list = $app->json($result)->groupBy('id')->get();
+        $dlvrs = $app->itemList('delivery',['filter'=>['date'=>$date]]);
+        $dlvrs = $app->json($dlvrs['list'])->groupBy('product')->get();
         $result = [];
-        foreach($list as $grp) {
-                $line = $grp;
-                $line = array_pop($line);
-                $line['qty'] = $app->json($grp)->sum('qty');
-                $result[] = $line;
+        foreach($dlvrs as $pid => $product) {
+            $qty = count($product);
+            $product = $app->itemRead('products',$pid);
+            $product['qty'] = $qty;
+            $result[] = $product;
         }
-
-
         $dom->fetch(['date'=>$date,'result'=>$result]);
         echo $dom->outer();
     }
@@ -124,15 +109,21 @@ class ordersClass extends cmsFormsClass {
         } else {
             $date = date('Y-m-d',strtotime('now'));
         }
-        $list = $app->itemList('orders',['filter'=>[
-            'date'=>['$lte'=>$date]
-            ,'expired'=>['$gte'=>$date]
-        ]]);
-        foreach($list['list'] as $order) {
-            $this->beforeItemShow($order,$date);
-            $delivery = &$order['delivery'][$date];
-            $start = date('Y-m-d',strtotime($order['date']));
-            $delivery['status'] !== 'deny' ? $result[] = $order : null;
+        $dlvrs = $app->itemList('delivery',['filter'=>['date'=>$date]]);
+        $dlvrs = $app->json($dlvrs['list'])->groupBy('order')->get();
+        foreach($dlvrs as $oid => $delivery) {
+            if (!isset($result[$oid])) {
+                $order = $app->itemRead('orders',$oid);
+                $order['list'] = [];
+                $result[$oid] = $order;
+            }
+            $list = $app->json($delivery)->groupBy('product')->get();
+            foreach($list as $pid => $product) {
+                $qty = count($product);
+                $product = $app->itemRead('products',$pid);
+                $product['qty'] = $qty;
+                $result[$order['id']]['list'][] = $product;
+            }
         }
         $dom->fetch(['date'=>$date,'result'=>$result]);
         echo $dom->outer();
@@ -147,45 +138,24 @@ class ordersClass extends cmsFormsClass {
         } else {
             $date = date('Y-m-d',strtotime('now'));
         }
-        $list = $app->itemList('orders',['filter'=>[
-            '$and'=>[
-                'expired'=>['$gte'=>$date],
-                'date' => ['$lte'=>$date]
-            ]
-        ]]);
-        
-        foreach($list['list'] as $order) {
-                $this->beforeItemShow($order,$date);
-                $delist = $order['delivery'];
-                $delivery = $delist[$date];
-                //$start = date('Y-m-d', strtotime($order['date']));
-                if ($delivery['status'] !== 'deny') {
-                    foreach ($order['list'] as $line) {
-                        $line['user'] = $order['user'];
-                        $line['order'] = $order['id'];
-                        $result[] = $line;
-                    }
-                }
-        }
-        $list = $app->json($result)->groupBy('user')->get(); // группировка по клиенту
+
+        $dlvrs = $app->itemList('delivery',['filter'=>['date'=>$date]]);
+        $dlvrs = $app->json($dlvrs['list'])->groupBy('user')->get();
+
         $result = [];
-        foreach($list as $uid => $grp) {
+        foreach($dlvrs as $uid => $grp) {
             if (!isset($result[$uid])) {
                 $result[$uid] = [
                     'user' => $app->itemRead('users',$uid)
                     ,'list' => []
                 ];
             }
-            $grp = $app->json($grp)->groupBy('id')->get(); // группировка по товару
-            $qty = 0;
-            foreach($grp as $g => $gr) {
-                $line = array_pop($gr);
-                if ($line['active'] == 'on') {
-                    foreach ($gr as $gl) {
-                        $line['qty'] += $gl['qty'];
-                    }
-                    $result[$uid]['list'][$g] = $line;
-                }
+            $list = $app->json($grp)->groupBy('product')->get();
+            foreach($list as $pid => $product) {
+                $qty = count($product);
+                $product = $app->itemRead('products',$pid);
+                $product['qty'] = $qty;
+                $result[$uid]['list'][] = $product;
             }
         }
         $dom->fetch(['date'=>$date,'result'=>$result]);

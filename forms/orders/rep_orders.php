@@ -46,7 +46,7 @@
                     <div class="w-75">
                         <ul>
                             <wb-var tsum="0" />
-                            <wb-foreach wb="from=list" __wb-filter="active=on">
+                            <wb-foreach wb="from=list">
                                 <wb-var wb-if="'{{active}}'!=='on'" stroke='tx-danger stroke' else='' />
                                 <li class="list-group-item d-flex align-items-center tx-11 p-1 {{_var.stroke}}">
                                     <span class="d-flex mr-10">{{name}}</span>
