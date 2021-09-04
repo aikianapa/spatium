@@ -2,7 +2,7 @@
     {{_route.subdomain}}</div>
 <hr wb-if='"{{_route.subdomain}}" == "" AND "{{_sett.modules.yonger.standalone}}" !== "on"'>
 <ul class="nav nav-aside" wb-if='"{{_route.subdomain}}" > "" OR "{{_sett.modules.yonger.standalone}}" == "on"'>
-    <li wb-allow="admin">
+    <li wb-allow="admin manager">
         <div class="mg-y-20">Навигация</div>
     </li>
 
@@ -32,7 +32,7 @@
             <span>Заказы</span>
         </a>
     </li>
-    <li wb-allow="admin" class="nav-item">
+    <li wb-allow="admin manager" class="nav-item">
         <a href="#" data-ajax="{'url':'/cms/ajax/form/delivery/list/','html':'.content-body'}" class="nav-link">
             <svg class="mi mi-delivery-truck-fast" wb-module="myicons"></svg>
             <span>Доставки</span>

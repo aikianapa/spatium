@@ -40,11 +40,11 @@ class usersClass extends cmsFormsClass
                 'date' => date('Y-m-d',strtotime('now +'.$d.' days')),
                 'products' => [],
                 'orders' => [],
-                'status' => ''
+                'status' => 'empty'
             ];
             $this->delivery_prep($list[$did],$deny);
         }
-        
+
         $pClass = $app->formClass('products');
         foreach($dlvrs as $date => $day) {
             $did = 'd'.date('Ymd',strtotime($date));
@@ -71,6 +71,7 @@ class usersClass extends cmsFormsClass
             }
             $this->delivery_prep($list[$did],$deny);
         }
+        $list = $app->json($list)->sort('date')->get();
         echo json_encode($list);
     }
 
@@ -172,8 +173,8 @@ class usersClass extends cmsFormsClass
         $d['y'] = strftime('%Y', $time);
         $d['n'] = strftime('%a', $time);
 
-        in_array($d['date'],(array)$deny) ? $d['status'] = 'deny' : null;
         $d['status'] == '' ? $d['status'] = 'empty' : null;
+        in_array($d['date'],(array)$deny) ? $d['status'] = 'deny' : null;
         $d['status'] == 'deny' ? $d['deny'] = 'deny' : $d['deny'] = '';
         $d['date'] <= date('Y-m-d') ? $d['status'] = 'past' : null;
     }

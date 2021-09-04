@@ -3,8 +3,8 @@
 wbapp.on('wb-render-done', function(data, target) {
     if (target == '#deliveryCalendar') {
         setTimeout(function() {
-            $("#deliveryCalendar .product-icon").draggable();
             $("#deliveryCalendar").disableSelection();
+            $("#deliveryCalendar .day.empty .product-icon").draggable();
             $("#deliveryCalendar .day.empty").droppable({
                 drop: function(event, ui) {
                     let $day = $(event.target);
@@ -14,7 +14,7 @@ wbapp.on('wb-render-done', function(data, target) {
                     let prod = $prd.data('prod');
                     let dti = 'd' + str_replace('-', '', date_to);
                     let dfi = 'd' + str_replace('-', '', date_from);
-                    if (dfi !== dti) {
+
                         wbapp.post(
                             '/cms/ajax/form/users/delivery_change?uid={{_post.formdata.uid}}', {
                                 'from': date_from,
@@ -24,7 +24,7 @@ wbapp.on('wb-render-done', function(data, target) {
                             function(data) {
                                 wbapp.storage('cms.list.delivery', data);
                             })
-                    }
+
                 }
             });
         }, 0);
@@ -122,8 +122,10 @@ $(document).delegate('#deliveryCalendar .day .btn-delivery', wbapp.evClick, func
                         </div>
                         {{/if}}
                         <div class="wd-60 mg-r-15" alt="">
+                            <div class=" card p-1 tx-center">
                             <b class="d-block position-relative">{{n}}</b>
                             <span>{{d}} {{m}}</span>
+                            </div>
                         </div>
                         <div class="row wd-100p">
                             {{#if status != 'deny'}}
