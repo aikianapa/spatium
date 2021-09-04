@@ -77,7 +77,6 @@ class ordersClass extends cmsFormsClass {
         $order['expired'] = $date;
     }
 
-
     function rep_cook() {
         $app = &$this->app;
         $dom = $app->fromFile(__DIR__ . '/rep_cook.php');
@@ -232,6 +231,7 @@ class ordersClass extends cmsFormsClass {
         $date_report == null ? $date_report = date('Y-m-d') : null;
         setlocale(LC_ALL, 'ru_RU.utf8');
         isset($item['number']) ? null : $item['number'] = $item['id'];
+        /*
         foreach ($item['delivery'] as $date => $d) {
             $time = strtotime($date);
             $d['date'] = $date;
@@ -261,6 +261,7 @@ class ordersClass extends cmsFormsClass {
                 $count > $line['days'] ? $line['active'] = '' : $line['active'] = 'on';
             }
         }
+        */
         return $item;
     }
 }

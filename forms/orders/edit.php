@@ -26,7 +26,7 @@
                 <wb-module wb="module=switch" name="payed" class="col-1" />
                 </div>
 
-                <div class="py-2" id="deliveryCalendar">
+                <!--div class="py-2" id="deliveryCalendar">
                     <wb-foreach wb="from=delivery&render=server&tpl=true">
                     <wb-var wb-if="'{{status}}'!=='deny'" color='success' else='danger' />
                         <wb-var wb-if="'{{status}}'=='past'" color='outline-secondary' />
@@ -64,7 +64,7 @@
                             </div>
                         </div>
                     </wb-foreach>
-                </div>
+                </div-->
 
                 <table class="table">
                     <thead>

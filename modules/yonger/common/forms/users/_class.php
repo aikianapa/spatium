@@ -8,7 +8,17 @@ class usersClass extends cmsFormsClass
         // формируем список доставок текущего пользователя
         $app = &$this->app;
         header('Content-Type: application/json');
-        in_array($app->vars('_sess.user.role'),['admin','manager']) ? $uid = $app->vars('_post.uid') : $uid = $app->vars('_sess.user.id');
+        if (in_array($app->vars('_sess.user.role'),['admin','manager'])) {
+            $uid = $app->vars('_req.uid');
+            if (!$uid) $uid = $app->vars('_req.uid');
+            if (!$uid) {
+                echo json_encode([]);
+                return;
+            }
+        } else {
+            $uid = $app->vars('_sess.user.id');
+        }
+
         if ($deny === null) {
             $user = $app->itemRead('users',$uid);
             $deny = (array)$user['deny'];
@@ -77,7 +87,7 @@ class usersClass extends cmsFormsClass
         // отмена доставки в указаный день
         header('Content-Type: application/json');
         $app = &$this->app;
-        in_array($app->vars('_sess.user.role'),['admin','manager']) ? $uid = $app->vars('_post.uid') : $uid = $app->vars('_sess.user.id');
+        in_array($app->vars('_sess.user.role'),['admin','manager']) ? $uid = $app->vars('_req.uid') : $uid = $app->vars('_sess.user.id');
         $type = $app->vars('_post.type');
         $user = $app->itemRead('users',$uid);
         $deny = (array)$user['deny'];

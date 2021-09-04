@@ -33,6 +33,12 @@
         </a>
     </li>
     <li wb-allow="admin" class="nav-item">
+        <a href="#" data-ajax="{'url':'/cms/ajax/form/delivery/list/','html':'.content-body'}" class="nav-link">
+            <svg class="mi mi-delivery-truck-fast" wb-module="myicons"></svg>
+            <span>Доставки</span>
+        </a>
+    </li>
+    <li wb-allow="admin" class="nav-item">
         <a href="#" data-ajax="{'url':'/cms/ajax/form/catalogs/list','html':'.content-body'}" class="nav-link">
             <svg class="mi mi-hierarchy-circle.1" wb-module="myicons"></svg>
             <span>Справочники</span>
