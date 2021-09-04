@@ -64,24 +64,47 @@ $(document).delegate('#deliveryCalendar .day .btn-delivery', wbapp.evClick, func
 });
 </script>
 
-<div class="p-3">
+<div class="p-3" wb-allow="manager admin">
     <form id="rep_delivery">
         <h3>Доставки</h3>
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Клиент</span>
+            <div class="input-group mb-2">
+                <div class="col-4 col-sm-3 p-0 input-group-prepend">
+                    <span class="w-100 input-group-text  bg-black-6 tx-white">Поиск...</span>
                 </div>
                 <div class="form-control p-0 m-0 bd-0">
                     <select id="rep_delivery_users" name="uid" wb-select2 placeholder="">
                         <wb-foreach wb="from=users">
-                            <option value="{{id}}" wb-if="'{{_post.formdata.uid}}'=='{{id}}'" selected>{{first_name}} {{last_name}} {{phone}}</option>
-                            <option value="{{id}}" wb-if="'{{_post.formdata.uid}}'!=='{{id}}'">{{first_name}} {{last_name}} {{phone}}</option>
-
+                            <option value="{{id}}">{{first_name}} {{last_name}} {{phone}}</option>
                         </wb-foreach>
                     </select>
                 </div>
             </div>
-        <div wb-if="'{{_post.formdata.uid}}' > ''" class="pt-3">
+
+                <wb-data wb-if="'{{_post.formdata.uid}}'>''" wb="table=users&item={{_post.formdata.uid}}">
+
+                    <div class="input-group mb-2">
+                        <div class="col-4 col-sm-3 p-0 input-group-prepend">
+                            <span class="w-100 input-group-text">Клиент</span>
+                        </div>
+                        <input class="form-control bg-white" type="text" value="{{first_name}} {{last_name}}" readonly>
+                    </div>
+
+                    <div class="input-group mb-2">
+                        <div class="col-4 col-sm-3 p-0 input-group-prepend">
+                            <span class="w-100 input-group-text">Телефон</span>
+                        </div>
+                        <input class="form-control bg-white" type="text" value="{{phone}}" readonly>
+                    </div>
+
+                    <div class="input-group mb-2">
+                        <div class="col-4 col-sm-3 p-0 input-group-prepend">
+                            <span class="w-100 input-group-text">Адрес</span>
+                        </div>
+                        <textarea class="form-control bg-white" type="text" name="delivery_address" readonly></textarea>
+                    </div>
+                </div>
+            
+        <div wb-if="'{{_post.formdata.uid}}' > ''" class="p-3">
             <ul class="list-group pd-b-50" id="deliveryCalendar" data-order="{{_var.order_id}}" unselectable="on">
                 <wb-foreach wb="render=client&bind=cms.list.delivery"
                     wb-ajax="/cms/ajax/form/users/delivery_list?uid={{_post.formdata.uid}}">
