@@ -1,68 +1,4 @@
 <html>
-<script wb-app remove>
-wbapp.on('wb-render-done', function(data, target) {
-    if (target == '#deliveryCalendar') {
-        setTimeout(function() {
-            $("#deliveryCalendar").disableSelection();
-            $("#deliveryCalendar .day.empty .product-icon").draggable();
-            $("#deliveryCalendar .day.empty").droppable({
-                drop: function(event, ui) {
-                    let $day = $(event.target);
-                    let $prd = $(ui.draggable);
-                    let date_to = $day.data('date');
-                    let date_from = $prd.parents('.day').data('date');
-                    let prod = $prd.data('prod');
-                    let dti = 'd' + str_replace('-', '', date_to);
-                    let dfi = 'd' + str_replace('-', '', date_from);
-
-                        wbapp.post(
-                            '/cms/ajax/form/users/delivery_change?uid={{_post.formdata.uid}}', {
-                                'from': date_from,
-                                'to': date_to,
-                                'prod': prod
-                            },
-                            function(data) {
-                                wbapp.storage('cms.list.delivery', data);
-                            })
-
-                }
-            });
-        }, 0);
-    }
-})
-$('#rep_delivery_users').on('select2:select', function(e) {
-    wbapp.ajax({
-        'url': '/cms/ajax/form/delivery/list',
-        'form': '#rep_delivery',
-        'html': '.content-body'
-    });
-});
-
-$(document).undelegate('#deliveryCalendar .day .btn-delivery', wbapp.evClick);
-$(document).delegate('#deliveryCalendar .day .btn-delivery', wbapp.evClick, function(ev) {
-    var type = null;
-    var $that = $(this).parents('.day');
-    if ($that.hasClass('wait')) return;
-    if ($that.hasClass('past')) return;
-    if ($that.hasClass('empty')) type = 'empty';
-    if ($that.hasClass('deny')) type = 'deny';
-    if (type) {
-        $that.addClass('wait');
-        var date = $that.data('date');
-        var tid = '#deliveryCalendar';
-        wbapp.post('/cms/ajax/form/users/delivery_decline?uid={{_req.formdata.uid}}', {
-            type: type,
-            date: date
-        }, function(data) {
-            $that.removeClass('wait');
-            wbapp.render(tid, {
-                'result': data
-            });
-        })
-    }
-    ev.stopPropagation();
-});
-</script>
 
 <div class="p-3" wb-allow="manager admin">
     <form id="rep_delivery">
@@ -121,8 +57,8 @@ $(document).delegate('#deliveryCalendar .day .btn-delivery', wbapp.evClick, func
                             <img data-src="/module/myicons/delivery-truck-checkmark.svg?size=24&stroke=10b759">
                         </div>
                         {{/if}}
-                        <div class="wd-60 mg-r-15" alt="">
-                            <div class=" card p-1 tx-center">
+                        <div class="mg-r-15" alt="">
+                            <div class="wd-60 ht-60 rounded-circle card p-1 tx-center">
                             <b class="d-block position-relative">{{n}}</b>
                             <span>{{d}} {{m}}</span>
                             </div>
@@ -237,6 +173,71 @@ $(document).delegate('#deliveryCalendar .day .btn-delivery', wbapp.evClick, func
     </form>
 </div>
 
+<script wb-app remove>
+wbapp.on('wb-render-done', function(data, target) {
+    if (target == '#deliveryCalendar') {
+        setTimeout(function() {
+            $("#deliveryCalendar").disableSelection();
+            $("#deliveryCalendar .day.empty .product-icon").draggable();
+            $("#deliveryCalendar .day.empty").droppable({
+                drop: function(event, ui) {
+                    let $day = $(event.target);
+                    let $prd = $(ui.draggable);
+                    let date_to = $day.data('date');
+                    let date_from = $prd.parents('.day').data('date');
+                    let prod = $prd.data('prod');
+                    let dti = 'd' + str_replace('-', '', date_to);
+                    let dfi = 'd' + str_replace('-', '', date_from);
+
+                        wbapp.post(
+                            '/cms/ajax/form/users/delivery_change?uid={{_post.formdata.uid}}', {
+                                'from': date_from,
+                                'to': date_to,
+                                'prod': prod
+                            },
+                            function(data) {
+                                wbapp.storage('cms.list.delivery', data);
+                            })
+
+                }
+            });
+        }, 0);
+    }
+})
+$('#rep_delivery_users').on('select2:select', function(e) {
+    wbapp.ajax({
+        'url': '/cms/ajax/form/delivery/list',
+        'form': '#rep_delivery',
+        'html': '.content-body'
+    });
+});
+
+$(document).undelegate('#deliveryCalendar .day .btn-delivery', wbapp.evClick);
+$(document).delegate('#deliveryCalendar .day .btn-delivery', wbapp.evClick, function(ev) {
+    var type = null;
+    var $that = $(this).parents('.day');
+    if ($that.hasClass('wait')) return;
+    if ($that.hasClass('past')) return;
+    if ($that.hasClass('empty')) type = 'empty';
+    if ($that.hasClass('deny')) type = 'deny';
+    if (type) {
+        $that.addClass('wait');
+        var date = $that.data('date');
+        var tid = '#deliveryCalendar';
+        wbapp.post('/cms/ajax/form/users/delivery_decline?uid={{_req.formdata.uid}}', {
+            type: type,
+            date: date
+        }, function(data) {
+            $that.removeClass('wait');
+            wbapp.render(tid, {
+                'result': data
+            });
+        })
+    }
+    ev.stopPropagation();
+});
+</script>
+
 <style wb-module="scss">
 #rep_delivery_users+.select2 .select2-selection--single {
     border-radius: 0 0.25rem 0.25rem 0 !important;
@@ -264,6 +265,9 @@ $(document).delegate('#deliveryCalendar .day .btn-delivery', wbapp.evClick, func
                 margin-bottom: 0;
 
             }
+            .product-icon img {
+                cursor: move;
+            }
         }
 
         &.deny {
@@ -285,9 +289,8 @@ $(document).delegate('#deliveryCalendar .day .btn-delivery', wbapp.evClick, func
             }
 
             img {
-                border: 1px var(--gray) solid;
-                cursor: move;
-
+                border: 1px var(--light) solid;
+                background-color: white;
                 &:hover {
                     box-shadow: 0px 0px 3px var(--success);
                     border: 1px var(--success) solid;
