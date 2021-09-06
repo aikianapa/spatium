@@ -85,6 +85,16 @@ $(document).delegate(".feedback-btn", wbapp.evClick, function (e) {
   }
 });
 
+wbapp.on('mod-cart-update',function(ev,cart){
+  if (cart.total.sum !== undefined && cart.total.sum * 1 > 0) {
+    $('#cart').find('.cart-payment, .mod-cart-clear, .checkout-btn, .checkin-btn').show();
+  } else {
+    $('#cart').find('.cart-payment, .mod-cart-clear, .checkout-btn, .checkin-btn').hide();
+  }
+    
+});
+
+
 $(document).delegate(".checkin-btn", wbapp.evClick, function (e) {
   e.stopPropagation();
   var data = getCartData();
@@ -141,11 +151,6 @@ $(document).delegate(".checkout-btn", wbapp.evClick, function (e) {
 });
 
 
-$(document).on('mod-cart-add', function () {
-  $('#cart #ui-id-1.cart').trigger('click');
-})
-
-
 $(document).delegate('#deliveryCalendar .day .btn-delivery', wbapp.evClick, function (ev) {
   var type = null;
   var $that = $(this).parents('.day');
@@ -168,8 +173,8 @@ $(document).delegate('#deliveryCalendar .day .btn-delivery', wbapp.evClick, func
   ev.stopPropagation();
 });
 
-
 wbapp.on('mod-cart-add', function () {
+  $('#cart #ui-id-1.cart').trigger('click');
   setTimeout(() => { $('#cart').addClass('show') });
 })
 

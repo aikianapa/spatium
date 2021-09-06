@@ -3,7 +3,7 @@
 wbapp.on('wb-render-done', function(data,target) {
     if (target == '#deliveryCalendar') {
         setTimeout(function() {
-            $("#deliveryCalendar .product-icon").draggable();
+            $("#deliveryCalendar  .day.empty .product-icon").draggable();
             $("#deliveryCalendar").disableSelection();
             $("#deliveryCalendar .day.empty").droppable({
                 drop: function(event, ui) {
@@ -14,11 +14,9 @@ wbapp.on('wb-render-done', function(data,target) {
                     let prod = $prd.data('prod');
                     let dti = 'd'+str_replace('-','',date_to);
                     let dfi = 'd'+str_replace('-','',date_from);
-                    if (dfi !== dti) {
-                        wbapp.post('/cms/ajax/form/users/delivery_change',{'from':date_from,'to':date_to,'prod':prod},function(data){
-                            wbapp.storage('cms.list.delivery',data);
-                        })
-                    }
+                    wbapp.post('/cms/ajax/form/users/delivery_change',{'from':date_from,'to':date_to,'prod':prod},function(data){
+                        wbapp.storage('cms.list.delivery',data);
+                    })
                 }
             });
         }, 0)

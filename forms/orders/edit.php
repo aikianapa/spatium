@@ -25,47 +25,6 @@
                 <label class="tx-bold col-auto">Оплачен</label>
                 <wb-module wb="module=switch" name="payed" class="col-1" />
                 </div>
-
-                <!--div class="py-2" id="deliveryCalendar">
-                    <wb-foreach wb="from=delivery&render=server&tpl=true">
-                    <wb-var wb-if="'{{status}}'!=='deny'" color='success' else='danger' />
-                        <wb-var wb-if="'{{status}}'=='past'" color='outline-secondary' />
-                        <wb-var wb-if="'{{status}}'=='fail'" color='outline-warning' />
-                        <wb-var wb-if="'{{status}}'=='ready'" color='outline-success' />
-                        <wb-var wb-if="'{{deny}}'=='deny'" color='outline-danger' />
-                    <div class="dropdown  d-inline">
-                            <button type="button" wb-if="'{{status}}'!=='past'"
-                                class="dropdown-toggle day {{status}} btn btn-xs btn-{{_var.color}} mr-2 mb-2"
-                                data-date="{{date}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{wbDate("d.m.Y",{{date}})}}
-                            </button>
-                            <button type="button" wb-if="'{{status}}'=='past'"
-                                class="day {{status}} btn btn-xs btn-{{_var.color}} mr-2 mb-2" data-date="{{date}}">
-                                {{wbDate("d.m.Y",{{date}})}}
-                            </button>
-
-                            <div class="dropdown-menu"  wb-if="'{{status}}'!=='past'">
-                                <a class="dropdown-item" wb-if="'{{status}}'=='empty'" href="#empty">
-                                    <img src="/module/myicons/delivery-17.svg?size=24&stroke=dc3545">
-                                    Сдвинуть доставку</a>
-                                <a class="dropdown-item" wb-if="'{{status}}'=='deny'" href="#deny">
-                                    <img src="/module/myicons/delivery-truck-fast.svg?size=24&stroke=10b759">
-                                    Вернуть доставку</a>
-                                <a class="dropdown-item" wb-if="'{{status}}'=='ready' OR '{{status}}'=='fail'" href="#toempty">
-                                    <img src="/module/myicons/delivery-truck-fast.svg?size=24&stroke=10b759">
-                                    Вернуть доставку</a>
-                                <a class="dropdown-item"  wb-if="'{{status}}'=='empty'" href="#ready">
-                                    <img src="/module/myicons/delivery-truck-checkmark.svg?size=24&stroke=10b759">
-                                    Доставлено</a>
-                                <a class="dropdown-item"  wb-if="'{{status}}'=='empty'" href="#fail">
-                                    <img src="/module/myicons/delivery-truck-cancel.svg?size=24&stroke=ffc107">
-                                    Срыв доставки</a>
-
-                            </div>
-                        </div>
-                    </wb-foreach>
-                </div-->
-
                 <table class="table">
                     <thead>
                         <tr>

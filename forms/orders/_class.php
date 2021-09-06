@@ -38,8 +38,7 @@ class ordersClass extends cmsFormsClass {
         $order['number'] = $ai->inc('orders','number',1245);
         $this->createDelivery($order);
         $app->itemSave('orders',$order);
-        //header('Location: /checkout?order='.$order['id']);
-        header('Location: /cabinet#orders');
+        header('Location: /cabinet#orders?cartclear');
         die;
     }
 
