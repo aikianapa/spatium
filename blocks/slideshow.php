@@ -42,7 +42,7 @@
                     <div class="card-columns columns-6 columns-sm-3 pt-4 gallery">
                         <wb-foreach wb="from=bkg">
                         <div class="card bd-0 animated hiding" data-animation="flipInY" data-delay="{{200*{{_ndx}}}}" data-src="{{img}}">
-                            <img data-src="/assets/img/tm1.webp" class="img-fluid">
+                            <img data-src="{{img}}" class="img-fluid">
                         </div>
                         </wb-foreach>
                     </div>
