@@ -19,63 +19,7 @@
         <div class="content">
             <div class="container pd-x-0 pd-lg-x-10 pd-xl-x-0">
                 <div class="row">
-                    <!--div class="col-lg-3 mg-t-40 mg-lg-t-0">
-                        <div class=" d-none d-lg-block">
-                        <div class="divider-text">Поиск</div>
-
-                        <form class="">
-                            <input class="form-control rounded-20 mn-wd-100p" type="search" placeholder="Поиск"
-                                aria-label="Search" data-ajax="{'target':'#productsList',
-                                'filter_add':{'$or':[
-                                    { 'name': {'$like' : '$value'} }, 
-                                    { 'articul': {'$like' : '$value'} }
-                                ]} }">
-                            <div class="divider-text">Категории</div>
-                            <ul class="list-unstyled text-center mg-t-20" wb-tree="dict=menu-categories">
-                                <li class="py-2" wb-if="'{{_idx}}'=='0'">
-                                    <a href="#"
-                                        data-ajax="{'target':'#productsList','filter_add':{ 'category': '' }, 'filter_clear':{'category': ''} }"
-                                        class="tx-20 tx-gray-700">Все</a>
-                                </li>
-
-                                <li class="py-2" wb-if="'{{id}}'!=='desserts'">
-                                    <a href="#"
-                                        data-ajax="{'target':'#productsList','filter_add':{ 'category': '{{id}}' } }"
-                                        class="tx-20 tx-gray-700">{{name}}</a>
-                                </li>
-                            </ul>
-
-                        </form>
-
-                        <div class="divider-text">{{header}}</div>
-                        </div>
-                        <p>
-                            {{text}}
-                        </p>
-
-                    </div-->
                     <div class="col-12">
-
-
-                        <!--form class="form-inline row d-lg-none">
-                            <div class="col-12 col-sm-6">
-                                <select name="category" class="mb-2 rounded-20 w-100 form-control" placeholder="Категория"
-                                    wb-tree="dict=menu-categories"
-                                    data-ajax="{'target':'#productsList','filter_add':{ 'category': '$value' }, 'filter_clear':{'category': ''} }">
-                                    <option value="{{id}}">{{name}}</option>
-                                </select>
-                            </div>
-                            <div class="col-12 col-sm-6">
-                                <input class="form-control w-100 rounded-20" type="search" placeholder="Поиск"
-                                    aria-label="Search" data-ajax="{'target':'#productsList',
-                                                                    'filter_add':{'$or':[
-                                                                        { 'name': {'$like' : '$value'} }, 
-                                                                        { 'articul': {'$like' : '$value'} }
-                                                                    ]} }">
-                            </div>
-                        </form-->
-
-
                         <div class="row row-xs mg-b-25" id="productsList">
                             <wb-foreach wb="{'table':'products',
                             'render':'server',

@@ -33,7 +33,7 @@
                 <div class="content container">
                     <div class="row">
                         <div class="col-lg-8 offset-lg-2 text-center px-5">
-                            <h2 class="tx-white tx-semibold py-4 tx-40">
+                            <h2 class="tx-white tx-light py-4 tx-40">
                                 {{header}}
                             </h2>
                             <p class="tx-white pb-4 tx-16">{{text}}</p>

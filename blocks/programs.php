@@ -19,7 +19,7 @@
         <div class="content container">
             <div class="row">
                 <div class="col-lg-8 offset-lg-2 text-center px-5">
-                    <h2 class="tx-semibold pb-4 tx-40">
+                    <h2 class="tx-light pb-4 tx-40">
                         {{header}}
                     </h2>
                     <p class="tx-16">

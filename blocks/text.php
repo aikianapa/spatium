@@ -17,7 +17,7 @@
     <section>
         <div class="row">
             <div class="col-12 px-5">
-                <h2 class="tx-semibold py-4 tx-40">
+                <h2 class="tx-light py-4 tx-40">
                     {{header}}
                 </h2>
                 <div class="pb-4 tx-16">

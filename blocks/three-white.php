@@ -12,7 +12,7 @@
         <div class="content container pb-5">
             <div class="row">
                 <div class="col-lg-8 offset-lg-2 text-center px-5">
-                    <h2 class="tx-semibold py-4 tx-40">
+                    <h2 class="tx-light py-4 tx-40">
                         Как это работает?
                     </h2>
                     <p class="pb-4 tx-16">Всё просто - последовательно выполните три шага и вы достигните цели!</p>
@@ -22,7 +22,7 @@
                 <div class="col-sm-4 mb-2">
                     <div class="bd bd-success rounded pd-20 ht-100p">
                         <img data-src="./assets/img/icon01.webp">
-                        <div class="pt-3 tx-22 tx-success tx-semibold">Выберите тариф</div>
+                        <div class="pt-3 tx-22 tx-success tx-light">Выберите тариф</div>
                         <div class="pt-3 tx-16 tx-gray-500">Мы составляем меню каждую неделю, считаем БЖУ, выбираем
                             только свежие продукты</div>
                     </div>
@@ -30,7 +30,7 @@
                 <div class="col-sm-4 mb-2">
                     <div class="bd bd-success rounded pd-20 ht-100p">
                         <img data-src="./assets/img/icon02.webp">
-                        <div class="pt-3 tx-22 tx-success tx-semibold">Получите продукты</div>
+                        <div class="pt-3 tx-22 tx-success tx-light">Получите продукты</div>
                         <div class="pt-3 tx-16 tx-gray-500">Регулярно наш курьер привозит Вам пакет с набором блюд
                             на весь день</div>
                     </div>
@@ -38,7 +38,7 @@
                 <div class="col-sm-4 mb-2">
                     <div class="bd bd-success rounded pd-20 ht-100p">
                         <img data-src="./assets/img/icon03.webp">
-                        <div class="pt-3 tx-22 tx-success tx-semibold">Вы питаетесь правильно!</div>
+                        <div class="pt-3 tx-22 tx-success tx-light">Вы питаетесь правильно!</div>
                         <div class="pt-3 tx-16 tx-gray-500">Без лишних усилий, потери времени на кухне и в магазине
                             за покупкой продуктов</div>
                     </div>

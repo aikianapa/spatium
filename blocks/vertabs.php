@@ -43,7 +43,7 @@
         <div class="content container">
             <div class="row">
                 <div class="col-lg-8 offset-lg-2 text-center px-5">
-                    <h2 class="tx-semibold py-4 tx-40">
+                    <h2 class="tx-light py-4 tx-40">
                         {{header}}
                     </h2>
                     <p class="pb-4 tx-16">{{text}}</p>
@@ -57,7 +57,7 @@
                             <li class="nav-item mb-2 b-0">
                                 <wb-var wb-if="'{{_idx}}'=='0'" active="active" else="" />
                                 <a class="nav-link d-block ht-auto bg-white {{_var.active}} p-3" data-toggle="tab" href="#{{_var.wid}}-{{_idx}}">
-                                    <div class="tx-semibold tx-20 tx-black pb-3">{{title}}</div>
+                                    <div class="tx-normal tx-20 tx-black pb-3">{{title}}</div>
                                     <p class="tx-gray-500 tx-12 text-justify pb-0">
                                         {{text}}
                                     </p>

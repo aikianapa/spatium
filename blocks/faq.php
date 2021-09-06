@@ -31,7 +31,7 @@
             <div class="content container">
                 <div class="row">
                     <div class="col-lg-8 offset-lg-2 text-center px-5 pb-5">
-                        <h2 class="tx-semibold py-4 tx-40">
+                        <h2 class="tx-light py-4 tx-40">
                             {{header}}
                         </h2>
                         <p class="tx-16">{{text}}</p>
@@ -40,7 +40,7 @@
                     <div class="col-lg-10 offset-lg-1 text-center px-5">
                         <div id="faq-accordion" class="collapsed">
                             <wb-foreach wb-from="tabs">
-                            <h6 class="tx-20 tx-semibold py-4 pr-5">{{title}}</h6>
+                            <h6 class="tx-20 tx-light py-4 pr-5">{{title}}</h6>
                             <div>{{text}}</div>
                             </wb-foreach>
                         </div>

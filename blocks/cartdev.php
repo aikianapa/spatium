@@ -106,7 +106,7 @@
                     <ee class="d-inline mod-cart-total-sum">0</ee>₽
                 </span></p>
             <p>Доставка <span>0₽</span></p>
-            <h2>Общий итог <ee class="d-inline mod-cart-total-sum">0</ee>₽</span></h2>
+            <h2 class="tx-semibold">Общий итог <ee class="d-inline mod-cart-total-sum">0</ee>₽</span></h2>
             <div class="row">
                 <div class="col-sm-6 py-1">
                     <a href="javascript:void(0)" class="wd-100p checkout-btn btn btn-success rounded-20">Оплата

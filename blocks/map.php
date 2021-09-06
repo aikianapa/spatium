@@ -53,7 +53,7 @@
 <section>
 <div class="row">
     <div class="px-5 col-12">
-        <h2 class="tx-semibold py-4 tx-40"  wb-if="'{{header}}'>''">
+        <h2 class="tx-light py-4 tx-40"  wb-if="'{{header}}'>''">
             {{header}}
         </h2>
         <div class="tx-16 pb-3" wb-if="'{{text}}'>''">{{text}}</div>

@@ -44,14 +44,14 @@
             <div class="position-absolute d-block wd-100v ht-100v op-7 bg-black-8">&nbsp;</div>
             <div class="parallax-overlay row justify-content-center">
                 <div class="col-sm-8 text-center text-center text-white">
-                    <h1 class="text-white tx-semibold py-4 tx-50">
+                    <h1 class="text-white tx-light py-4 tx-50">
                         {{header}}
                     </h1>
                     <p class="pb-4 tx-20">
                         {{text}}
                     </p>
 
-                    <a href="{{link}}" class="btn btn-{{color}} rounded-30 tx-semibold pd-x-40 pd-y-15 ">
+                    <a href="{{link}}" class="btn btn-{{color}} rounded-30 tx-light pd-x-40 pd-y-15 ">
                         {{button}}
                     </a>
                 </div>

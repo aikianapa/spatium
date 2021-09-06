@@ -12,7 +12,7 @@
     <div class="product-item mg-b-50" >
         <div class="row" wb-if="'{{_route.form}}' == 'pages'">
             <div class="col-lg-8 offset-lg-2 text-center px-5">
-                <h2 class="tx-semibold py-4 tx-40">
+                <h2 class="tx-light py-4 tx-40">
                     {{_var.product.name}}
                 </h2>
                 <div class="tx-16 pb-3">{{_var.product.text}}</div>
