@@ -29,6 +29,9 @@ wbapp.on('ready', function () {
 
   setTimeout(function () {
     $('#cart').removeClass('d-none');
+    if (strpos(document.location.href,'cartclear')) {
+      $('#cart .mod-cart-clear').trigger('click');
+    }
   }, 1000)
 
   $('.scroll-top').on('click', function () {
