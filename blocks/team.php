@@ -47,7 +47,7 @@
 
         <div class="card-columns">
             <wb-foreach wb-from="team">
-            <div class="card bd-0 mx-1">
+            <div class="card bd-0 mx-1 animated hiding" data-animation="flipInY" data-delay="{{200*{{_ndx}}}}">
             <img data-src="/thumbc/600x600/src/{{image.0.img}}" width="600" class="rounded img-fluid" alt="{{fullname}}">
               <div class="card-body">
                 <h5 class="card-title tx-20">{{fullname}}</h5>

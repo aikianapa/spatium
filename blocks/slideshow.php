@@ -1,4 +1,4 @@
-<edit header="Блок вертикальных табов">
+<edit header="Слайдшоу">
     <div class="alert alert-info">
         Смотри в /blocks/slideshow.php
     </div>
@@ -40,26 +40,11 @@
                         </div>
                     </div>
                     <div class="card-columns columns-6 columns-sm-3 pt-4 gallery">
-                        <div class="card bd-0" data-src="/assets/img/tm1.webp">
+                        <wb-foreach wb="from=bkg">
+                        <div class="card bd-0 animated hiding" data-animation="flipInY" data-delay="{{200*{{_ndx}}}}" data-src="{{img}}">
                             <img data-src="/assets/img/tm1.webp" class="img-fluid">
                         </div>
-
-                        <div class="card bd-0" data-src="/assets/img/tm2.webp">
-                            <img data-src="/assets/img/tm2.webp" class="img-fluid">
-                        </div>
-
-                        <div class="card bd-0" data-src="/assets/img/tm3.webp">
-                            <img data-src="/assets/img/tm3.webp" class="img-fluid">
-                        </div>
-                        <div class="card bd-0" data-src="/assets/img/tm4.webp">
-                            <img data-src="/assets/img/tm4.webp" class="img-fluid">
-                        </div>
-                        <div class="card bd-0" data-src="/assets/img/tm5.webp">
-                            <img data-src="/assets/img/tm5.webp" class="img-fluid">
-                        </div>
-                        <div class="card bd-0" data-src="/assets/img/tm6.webp">
-                            <img data-src="/assets/img/tm6.webp" class="img-fluid">
-                        </div>
+                        </wb-foreach>
                     </div>
                 </div>
             </div>

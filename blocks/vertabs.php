@@ -70,7 +70,7 @@
                     <div class="tab-content ">
                         <wb-foreach wb-from="tabs">
                         <wb-var wb-if="'{{_idx}}'=='0'" active="active" else="" />
-                        <div id="{{_var.wid}}-{{_idx}}" class="container tab-pane {{_var.active}}">
+                        <div id="{{_var.wid}}-{{_idx}}" class="container tab-pane {{_var.active}} animated hiding" data-animation="fadeInLeft" data-delay="100">
                             <img data-src="{{bkg.0.img}}" class="img-fluid" />
                         </div>
                         </wb-foreach>
