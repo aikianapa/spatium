@@ -9,13 +9,12 @@
             <div class="off-canvas-header tx-20 tx-success bd-0"><span>
                     <img src="/module/myicons/shopping-cart.svg?size=26&stroke=10b759"> Мои покупки</span>
                 <a href="javascript:void(0)" class="close">
-                    <img src="/module/myicons/32/323232/interface-essential-109.svg" width="32" height="32"
-                        class="dd-remove">
+                    <img src="/module/myicons/32/323232/interface-essential-109.svg" width="32" height="32">
                 </a>
 
             </div>
-            <div class="off-canvas-body scroll-y p-2">
-                <div class="position-relative" id="shopping-cart">
+            <div class="off-canvas-body p-2">
+                <div class="position-relative scroll-y" id="shopping-cart">
                     <div class="accordion">
                         <h6 class="cart">Покупки</h6>
                         <!-- cart floating box -->

@@ -179,36 +179,29 @@ class ordersClass extends cmsFormsClass {
         header('Content-Type: application/json');
         $app = &$this->app;
         $date = date('Y-m-d',strtotime($app->vars('_post.date')));
-        if (!$app->checkToken()) {
+        if ($app->checkToken()) {
             echo json_encode(null);
             die;
         } else {
+            $result = [];
 
-        $result = [];
-
-        $list = $app->itemList('orders',['filter'=>[
-            'date'=>['$lte'=>$date]
-            ,'expired'=>['$gte'=>$date]
-            ,'_creator'=>$app->vars('_sess.user.id')
-        ]]);
-
-        foreach($list['list'] as $order) {
-            $this->beforeItemShow($order,$date);
-            $delivery = &$order['delivery'][$date];
-            $start = date('Y-m-d',strtotime($order['date']));
-            $result[] = $order;
-        }
-        $res = ['date'=>$date,'result'=>$result];
-        
-            $res['freedate'] = null;
-            if (count($res['result'])) {
-                foreach($res['result'] as &$line) {
-                    $line['expired'] > $res['freedate'] ? $res['freedate'] = $line['expired'] : null;
-                    $line['date'] = date('d.m.Y',strtotime($line['date']));
-                    $line['expired'] = date('d.m.Y',strtotime($line['expired']));
-                }
-                $res['freedate'] = date('d.m.Y',strtotime($res['freedate'] . ' +1day'));
+            $list = $app->itemList('delivery', ['filter'=>[
+            'date'=>['$gte'=>$date]
+            ,'user'=>$app->vars('_sess.user.id')
+        ],'sort'=>'date']);
+            $orders = $app->json($list['list'])->sort('date')->groupBy('order')->get();
+            $freedate = '';
+            foreach ($orders as $oid => $item) {
+                $max = $app->json($item)->max('date');
+                $min = $app->json($item)->min('date');
+                $max > $freedate ? $freedate = $max : null;
+                $order = $app->itemRead('orders', $oid);
+                $order['expired'] = date('d.m.Y',strtotime($max));
+                $order['date'] = date('d.m.Y',strtotime($date));
+                $result[] = $order;
             }
+            $freedate = date('d.m.Y',strtotime($freedate.' +1 day'));
+            $res = ['date'=>$date,'freedate'=>$freedate,'result'=>$result];
             echo json_encode($res);
         }
     }

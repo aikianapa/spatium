@@ -109,10 +109,13 @@ $(document).delegate(".feedback-btn", wbapp.evClick, function (e) {
     })
 
     wbapp.post("/api/mail", { 'formdata': formdata }, function (data) {
-      console.log(data);
+ 
     });
   }
 });
+
+
+
 
 wbapp.on('mod-cart-update',function(ev,cart){
   if (cart.total.sum !== undefined && cart.total.sum * 1 > 0) {
@@ -207,7 +210,7 @@ wbapp.on('mod-cart-add', function () {
   setTimeout(() => { $('#cart').addClass('show') });
 })
 
-$(document).delegate('#Details [name=date][type=hidden]', 'change', function (e) {
+$(document).delegate('#cart #Details [name=date][type=hidden]', 'change', function (e) {
   e.stopPropagation();
   if (wbapp._session.user.id == undefined) return;
   let data = wbapp.postSync('/orders/get_date_dlvrs', { date: $(this).val() });

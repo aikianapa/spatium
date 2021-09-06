@@ -3,30 +3,22 @@
 var yonger = {};
 
 
-$('.off-canvas-menu').on('click', function (e) {
+$(document).delegate('.off-canvas-menu',wbapp.evClick, function (e) {
     e.stopPropagation();
     var target = $(this).attr('href');
     $(target).addClass('show');
 });
 
 
-$('.off-canvas-header > .close').on('click', function (e) {
+$(document).delegate('.off-canvas-header > .close',wbapp.evClick, function (e) {
     e.stopPropagation();
     $(this).closest('.off-canvas').removeClass('show');
 })
 
-$(document).on('click touchstart', function (e) {
+$(document).delegate('.backdrop',wbapp.evClick, function (e) {
     e.stopPropagation();
-    // closing of sidebar menu when clicking outside of it
-    if (!$(e.target).closest('.off-canvas').length) {
-        var offCanvas = $(e.target).closest('.off-canvas').length;
-        if (!offCanvas) {
-            $('.off-canvas.show').removeClass('show');
-        }
-    }
+    if ($('.off-canvas.show').length) $('.off-canvas.show').removeClass('show');
 });
-
-
 
 $(document).delegate(".nav-link:not([data-toggle=tab])", "tap click", function () {
     $(this).parents("ul,nav").find(".nav-link").removeClass("active");
