@@ -87,7 +87,7 @@
   <wb-module wb="module=yonger&mode=render&view=cart" />
   <!-- scroll to top  -->
 	<a href="javascript:void(0)" class="scroll-top bg-white rounded-circle">
-    <img data-src="/module/myicons/arrows-diagrams-03.svg?size=50&stroke=10b759">
+    <img data-src="/module/myicons/arrows-diagrams-03.svg?size=50&stroke=10b759" width="50" height="50">
   </a>
 	<!-- end of scroll to top -->
 </view>

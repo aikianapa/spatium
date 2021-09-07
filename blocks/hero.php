@@ -42,7 +42,7 @@
         <div class="position-absolute d-block wd-100v ht-100v op-7 bg-black-8">&nbsp;</div>
         <div class="parallax-overlay row justify-content-center">
             <div class="col-sm-8 text-center text-center text-white">
-                <img data-src="/assets/img/logo.svg" class="wd-300 px-4 pt-5 img-fluid animated hiding" data-animation="flipInY" data-delay="200">
+                <img data-src="/assets/img/logo.svg" width="300" height="209" class="wd-300 px-4 pt-5 img-fluid animated hiding" data-animation="flipInY" data-delay="200">
                 <h1 class="text-white tx-light py-4 tx-30 tx-sm-50 animated hiding" data-animation="bounceInDown" data-delay="0">
                 {{header}}
                 </h1>

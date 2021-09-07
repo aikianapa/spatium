@@ -5,24 +5,40 @@
 </edit>
 <view>
 
-    <div wb-if="'{{_sess.user.id}}' == ''">
+    <div wb-if="'{{_sess.user.id}}' == ''" id="cartLogin">
         <p class="alert alert-info">Чтобы продолжить оформление заказа,
-            <a href="/signin">войдите</a> в личный кабинет или
-            <a href="/signup">зарегистрируйтесь</a>,
-            если у вас ещё нет учётной записи.
+            введите свой номер телефона
         </p>
 
-        <div class="row p-2">
-            <div class="col-6">
-                <a class="wd-100p btn btn-sm btn-success" href="/signin">Вход</a>
+        <div class="input-group mb-2">
+                        <div class="col-3 p-0 input-group-prepend">
+                            <span class="wd-100p input-group-text">Телефон</span>
+                        </div>
+                        <input class="form-control checkphone" type="phone" wb-mask="+7 (999) 999-99-99"
+                            placeholder="Телефон" onchange="cartCheckPhone();" value="+73333333333">
+                        <div class="p-0 input-group-append">
+                            <span class="input-group-text p-0 cursor-pointer" onclick="cartCheckPhone();">
+                            <img class="mx-1" data-src="/module/myicons/arrow-right-circle.1.svg?size=30&stroke=10b759">
+                            </span>
+                        </div>
+                    </div>
+        <div class="input-group mb-2 checkcode d-none">
+            <div class="col-3 p-0 input-group-prepend">
+                <span class="wd-100p input-group-text">Код из SMS</span>
             </div>
-            <div class="col-6">
-                <a class="wd-100p btn btn-sm btn-primary" href="/signup">Регистрация</a>
-            </div>
-        </div>
+            <input type="hidden" class="token">
+            <input class="form-control checkcode" type="text" wb-mask="999-999" 
+                placeholder="Проверочный код" onchange="cartCheckPhone();">
+                <div class="p-0 input-group-append">
+                            <span class="input-group-text p-0 cursor-pointer">
+                            <img class="mx-1" data-src="/module/myicons/login-enter-arrow-right-circle.svg?size=30&stroke=10b759">
+                            </span>
+                </div>
 
+            </div>
     </div>
-    <form action="#" id="Details" wb-if="'{{_sess.user.id}}' > ''">
+    <wb-var class="d-block" wb-if="'{{_sess.user.id}}' > ''" else="d-none" />
+    <form action="#" id="Details" class="{{_var.class}}">
         <input type="hidden" name="id" value="{{_sess.user.id}}">
         <wb-data wb="table=users&item={{_sess.user.id}}">
             <div class="row">
@@ -66,10 +82,7 @@
                     <div class="input-group mb-2">
                         <div class="col-4 p-0 input-group-prepend">
                             <span class="wd-100p input-group-text">
-                                <span class="d-flex d-md-none">Д</span>
-                                <span class="d-none d-md-flex">Начало д</span>оставк
-                                <span class="d-flex d-md-none">а</span>
-                                <span class="d-none d-md-flex">и</span>
+                                <span class="d-flex">Доставка с</span>
                             </span>
                         </div>
                         <input class="form-control" type="datepicker" data-date-start="+1day" data-date-end="+30day"
@@ -107,7 +120,14 @@
                 </span></p>
             <p>Доставка <span>0₽</span></p>
             <h2 class="tx-semibold">Общий итог <ee class="d-inline mod-cart-total-sum">0</ee>₽</span></h2>
-            <div class="row">
+            <div class="row d-none" id="cartRegButton">
+                <div class="col py-1">
+                        <a href="javascript:cartReg(true)" class="wd-100p btn btn-success btn-block rounded-20" disabled>Продолжить покупку</a>
+                    </div>
+
+            </div>
+            
+            <div class="row" id="cartButtons">
                 <div class="col-sm-6 py-1">
                     <a href="javascript:void(0)" class="wd-100p checkout-btn btn btn-success rounded-20">Оплата
                         картой</a>

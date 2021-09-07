@@ -75,6 +75,88 @@ class usersClass extends cmsFormsClass
         echo json_encode($list);
     }
 
+    public function checkphone() {
+        header('Content-Type: application/json');
+        $user = false;
+        $app = &$this->app;
+        $phone = preg_replace('/[^0-9]/','',$app->vars('_post.phone'));
+        $list = $app->itemList('users',['filter'=>['phone'=>$phone]]);
+        $list = $app->json($list['list'])->where('active','=','on')->get();
+
+        if (count($list)) $user = true;
+        $list = $app->json($list)->where('password','=',$app->vars('_post.check'))->get();
+        if (count($list)) {
+            $user = $app->login(array_pop($list));
+            $cart = $app->fromFile($app->route->host.'/delivery');
+            $cart = $cart->find('#cart #cartdev')->html();
+            echo json_encode([
+                'login'=>true,
+                'error'=>false,
+                'user'=>$user,
+                'msg'=>'Успешный вход',
+                'cart'=>$cart
+            ]);
+        } else if ($user) {
+            echo json_encode([
+                'login'=>false,
+                'error'=>true,
+                'errno'=>1,
+                'msg'=>"Ошибка входа"
+            ]);
+        } else {
+            echo json_encode([
+                'login'=>false,
+                'error'=>true,
+                'errno'=>2,
+                'msg'=>"Пользователь отсутствует"
+            ]);
+
+        }
+    }
+
+    public function checkToken() {
+        $app = &$this->app;
+        if ($app->vars('_route.action') == 'checkphone') return true;
+        if ($app->vars('_route.action') == 'reguser') return true;
+        return $this->app->checkToken();
+    }
+
+    public function reguser() {
+        header('Content-Type: application/json');
+        $app = &$this->app;
+        $token = $app->vars('_post.id');
+        $phone = $app->vars('_post.phone');
+        $number = preg_replace('/[^0-9]/','',$phone);
+        $code = $app->vars('_post.code');
+        $check = $app->PasswordMake($code.$number);
+        if ($check == $token) {
+            $user = [
+                'id' => $app->newId(),
+                'role' => 'user',
+                'active' => 'on',
+                'first_name' => $app->vars('_post.first_name'),
+                'last_name' => $app->vars('_post.last_name'),
+                'delivery_address' => $app->vars('_post.delivery_address'),
+                'email' => '',
+                'login' => '',
+                'phone' => $number,
+                'password' => $token,
+            ];
+            $user = $app->itemSave('users',$user);
+            if (!$user) {
+                echo json_encode(['error'=>true]);
+            } else {
+                $user =  $app->login($user);
+                $cart = $app->fromFile($app->route->host.'/delivery');
+                $cart = $cart->find('#cart #cartdev')->html();
+                echo json_encode(['error'=>false,'user'=>$user]);
+            }
+            
+        } else {
+            echo json_encode(['error'=>true]);
+        }
+    }
+
     public function delivery_change() {
         $app = &$this->app;
         $item = $app->itemRead('delivery',$this->app->vars('_post.prod'));

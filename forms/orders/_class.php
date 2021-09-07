@@ -38,8 +38,13 @@ class ordersClass extends cmsFormsClass {
         $order['number'] = $ai->inc('orders','number',1245);
         $this->createDelivery($order);
         $app->itemSave('orders',$order);
-        header('Location: /cabinet#orders?cartclear');
+        header('Location: /cabinet?cartclear#orders');
         die;
+    }
+
+    public function checkToken() {
+        if ($this->app->vars('_route.action') == 'checkout') return true;
+        return $this->app->checkToken();
     }
 
     private function createDelivery(&$order) {
