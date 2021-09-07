@@ -15,7 +15,7 @@
                             <span class="wd-100p input-group-text">Телефон</span>
                         </div>
                         <input class="form-control checkphone" type="phone" wb-mask="+7 (999) 999-99-99"
-                            placeholder="Телефон" onchange="cartCheckPhone();" value="+73333333333">
+                            placeholder="Телефон" onchange="cartCheckPhone();" value="">
                         <div class="p-0 input-group-append">
                             <span class="input-group-text p-0 cursor-pointer" onclick="cartCheckPhone();">
                             <img class="mx-1" data-src="/module/myicons/arrow-right-circle.1.svg?size=30&stroke=10b759">
