@@ -2,7 +2,7 @@
 <script>
     document.body.classList.add("load");
 </script>
-<loader class="fade out">
+<loader id="loader" class="fade out">
     <div class="loader">
         <div class="shape shape-1"></div>
         <div class="shape shape-2"></div>
