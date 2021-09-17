@@ -21,7 +21,7 @@
 
     </nav>
     <div class="col-12">
-        <div id="yongerPageBlocks" class="dd yonger-nested pl-3">
+        <div id="yongerPageBlocks" class="dd yonger-nested pl-3 scroll-y" style="height:50vh;">
             <ul class="dd-list" id="yonblocks">
                 <wb-foreach wb="bind=yonger.page.blocks&render=client">
                     <li class="dd-item row" data-id="{{id}}" data-form="{{form}}" data-name="{{name}}">

@@ -5,7 +5,7 @@
 
 <body class="bg-light" id="signup">
     <div class="row h-100">
-        <wb-include wb-src="signleft.php" />
+        <wb-include wb-tpl="signleft.php" />
         <div class="col-12 col-sm-6 col-lg-5" id="form">
             <div class="container">
                 <div class="row mt-5">
@@ -39,7 +39,7 @@
                                 <br>
                                 <span class="msg-repeat">Повторная отправка возможна через <span class='wait'></span> секунд</span>
                                 <a href="#" onclick="wbapp.sign.login();"
-                                    class="btn btn-secondary mt-5 btn-block rounded-20">Войти</a>
+                                    class="btn btn-success mt-5 btn-block rounded-20">Войти</a>
                             </div>
                             <div class="col-12 d-none tx-danger pt-3"></div>
                         </div>
@@ -49,7 +49,7 @@
                             Дополнительные сведения см. в разделе
                             <a href="/faq">Часто задаваемые вопросы</a>
                         </p>
-                        <a href="/" class="btn btn-success btn-block rounded-20 mt-5 tx-16">
+                        <a href="/" class="btn btn-secondary btn-block rounded-20 mt-5 tx-16">
                         <img data-src="/module/myicons/home-house.4.svg?size=20&stroke=FFFFFF">
                         На главную</a>
                     </form>

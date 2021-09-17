@@ -6,7 +6,7 @@
 <body class="bg-light" id="signup">
 
     <div class="row">
-        <wb-include wb-src="signleft.php" />
+        <wb-include wb-tpl="signleft.php" />
         <div class="col-12 col-sm-6 col-lg-5" id="form">
             <div class="container">
                 <div class="row mt-5">
@@ -78,7 +78,7 @@
                             Дополнительные сведения см. в разделе
                             <a href="/faq">Часто задаваемые вопросы</a>
                         </p>
-                        <a href="/" class="btn btn-success btn-block rounded-20 mt-5 tx-16">
+                        <a href="/" class="btn btn-secondary btn-block rounded-20 mt-5 tx-16">
                         <img data-src="/module/myicons/home-house.4.svg?size=20&stroke=FFFFFF">
                         На главную</a>
                     </form>
