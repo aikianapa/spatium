@@ -117,7 +117,7 @@
             </div>
         </div>
         <!-- Отображение дополнительных блюд -->
-        <div class="modal-dialog modal-fullscreen" role="document">
+        <div class="modal-dialog modal-fullscreen" role="document" wb-if="'{{_route.day}}'==''">
             <div class="modal-content">
                 <div class="modal-header align-items-center">
                     <h6 class="modal-title tx-semibold tx-success w-100 tx-center">{{name}}</h6>

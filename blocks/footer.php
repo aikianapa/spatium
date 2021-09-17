@@ -14,7 +14,7 @@
 
           <!-- Brand -->
           <p>
-            <a href="#" class="footer-brand text-white">
+            <a href="/" class="footer-brand text-white">
               <img class="ht-80 img-fluid w-auto" src="/assets/img/logo.svg" alt="">
             </a>
           </p>
@@ -24,17 +24,17 @@
           <!-- Links -->
           <ul class="list-unstyled list-inline text-md-right">
             <li class="list-inline-item mr-2">
-              <a href="#" class="text-white">
+              <a href="/rules" class="text-white">
                 Правила
               </a>
             </li>
             <li class="list-inline-item mr-2">
-              <a href="#" class="text-white">
+              <a href="/privacy" class="text-white">
                 Политика 
               </a>
             </li>
             <li class="list-inline-item">
-              <a href="#" class="text-white">
+              <a href="/contact" class="text-white">
                 Контакты
               </a>
             </li>
@@ -55,23 +55,23 @@
       
           <!-- Social links -->
           <ul class="list-inline list-unstyled text-md-right">
-            <li class="list-inline-item">
-              <a href="#">
+            <li class="list-inline-item" wb-if="'{{_sett.facebook}}'>''">
+              <a href="{{_sett.facebook}}" target="_blank">
                 <img data-src="/module/myicons/facebook-circle.svg?size=30&stroke=ffffff">
               </a>
             </li>
-            <li class="list-inline-item ml-2">
-              <a href="#">
+            <li class="list-inline-item ml-2" wb-if="'{{_sett.vkontakte}}'>''">
+              <a href="{{_sett.vkontakte}}" target="_blank">
                 <img data-src="/module/myicons/vk-vkontakte.svg?size=30&stroke=ffffff">
               </a>
             </li>
-            <li class="list-inline-item ml-2">
-              <a href="#">
+            <li class="list-inline-item ml-2" wb-if="'{{_sett.instagram}}'>''">
+              <a href="{{_sett.instagram}}" target="_blank">
                 <img data-src="/module/myicons/instagram-circle.svg?size=30&stroke=ffffff">
               </a>
             </li>
-            <li class="list-inline-item ml-2">
-              <a href="#">
+            <li class="list-inline-item ml-2" wb-if="'{{_sett.youtube}}'>''">
+              <a href="{{_sett.youtube}}" target="_blank">
                 <img data-src="/module/myicons/youtube-circle.svg?size=30&stroke=ffffff">
               </a>
             </li>
