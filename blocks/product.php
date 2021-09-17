@@ -64,7 +64,7 @@
                                 wb-filter="{'food':{'$gt':''}}">
                                 <div class="col-md-3 bd-0">
                                     <div class="card ht-100p bd-0">
-                                        <img data-src="/thumb/400x300/src{{images.0.img}}" class="img-fluid rounded-top"
+                                        <img data-src="/thumb/400x300/src{{images.0.img}}" width="400" height="300" class="img-fluid rounded-top"
                                             width="400" height="300" alt="{{food}}">
                                         <div class="card-body pb-0">
                                             <div class="tx-12 tx-success tx-semibold tx-spacing-4 pb-2">
@@ -103,7 +103,7 @@
                                             data-link="/products/{{_var.product.id}}/{{wbUrlOnly({{_var.product.name}})}}"
                                             class="mod-cart-add mod-cart-data btn btn-success tx-20 px-4 my-3 rounded-30">В
                                             корзину <img
-                                                src="/module/myicons/shopping-cart.svg?size=26&stroke=FFFFFF">
+                                                src="/module/myicons/shopping-cart.svg?size=26&stroke=FFFFFF" width="26" height="26">
                                             </a>
                                         <div class="row tx-normal">
                                             <div class="col">
@@ -136,7 +136,7 @@
                         data-discounts="{{_var.product.discounts}}"
                         data-link="/products/{{_var.product.id}}/{{wbUrlOnly({{_var.product.name}})}}"
                         class="mod-cart-add mod-cart-data btn btn-success tx-20 px-4 my-3 rounded-30">В
-                        корзину <img src="/module/myicons/shopping-cart.svg?size=26&stroke=FFFFFF"></a>
+                        корзину <img src="/module/myicons/shopping-cart.svg?size=26&stroke=FFFFFF" width="26" height="26"></a>
                     <div class="row tx-normal">
                         <div class="col">
                             <div class="tx-22">{{_var.product.proteins*1}}</div>

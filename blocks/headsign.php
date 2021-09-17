@@ -5,7 +5,7 @@
 </edit>
 <view>
                     <a href="javascript:$('#cart').addClass('show');" class="my-2 my-sm-0">
-                    <img data-src="/module/myicons/shopping-cart.svg?size=26&stroke=10b759" alt="Мои покупки">
+                    <img data-src="/module/myicons/shopping-cart.svg?size=26&stroke=10b759" width="26" height="26" alt="Мои покупки">
                     </a>
 
                     <a href="/signin" class="btn btn-outline-success rounded-20 my-2 my-sm-0" wb-if="'{{_sett.user.id}}'==''">Вход</a>

@@ -44,7 +44,7 @@
                         <a href="javascript:$.redirectPost('/products/{{id}}/{{wbUrlOnly({{name}})}}', { 'days':'{{_var.days}}' });">
                         <wb-var imgcnt="{{count({{images}})}}" />
                         <wb-var cicle="{{ceil({{_ndx}} / {{_var.imgcnt}})}}" />
-                        <img data-src="{{images.{{_idx - (_var.cicle * _var.imgcnt - _var.imgcnt) }}.img}}" class="card-img-top object-cover" height="300"
+                        <img data-src="/thumbc/350x300/src/{{images.{{_idx - (_var.cicle * _var.imgcnt - _var.imgcnt) }}.img}}" class="card-img-top object-cover" width="350" height="300"
                             alt="{{name}}">
                         <figcaption
                             class="pos-absolute a-0 wd-100p pd-20 d-flex flex-column justify-content-center bg-white-9 transition-base op-0">
@@ -67,7 +67,7 @@
                             data-discounts="{{json_encode({{discounts}})}}"
                             data-link="/products/{{id}}/{{wbUrlOnly({{name}})}}"
                             class="mod-cart-add mod-cart-data btn btn-success tx-semibold px-4 rounded-20">Заказать
-                            <img src="/module/myicons/shopping-cart.svg?size=26&stroke=FFFFFF"></a>
+                            <img src="/module/myicons/shopping-cart.svg?size=26&stroke=FFFFFF" width="26" height="26"></a>
                     </div>
                 </div>
                 </wb-foreach>

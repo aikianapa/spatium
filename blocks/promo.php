@@ -80,7 +80,7 @@
                         data-link="/products/{{id}}/{{wbUrlOnly({{name}})}}"
                     class="mod-cart-add mod-cart-data btn btn-{{_parent.color}}  rounded-30 tx-light pd-x-40 pd-y-15">
                     {{_parent.button}} 
-                    <img src="/module/myicons/shopping-cart.svg?size=26&stroke=FFFFFF">
+                    <img src="/module/myicons/shopping-cart.svg?size=26&stroke=FFFFFF" width="26" height="26">
                     </a>
                     </wb-data>
                 </div>

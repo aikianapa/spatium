@@ -18,7 +18,7 @@
                             placeholder="Телефон" onchange="cartCheckPhone();" value="">
                         <div class="p-0 input-group-append">
                             <span class="input-group-text p-0 cursor-pointer" onclick="cartCheckPhone();">
-                            <img class="mx-1" data-src="/module/myicons/arrow-right-circle.1.svg?size=30&stroke=10b759">
+                            <img class="mx-1" data-src="/module/myicons/arrow-right-circle.1.svg?size=30&stroke=10b759"  width="30" height="30">
                             </span>
                         </div>
                     </div>
@@ -31,7 +31,7 @@
                 placeholder="Проверочный код" onchange="cartCheckPhone();">
                 <div class="p-0 input-group-append">
                             <span class="input-group-text p-0 cursor-pointer">
-                            <img class="mx-1" data-src="/module/myicons/login-enter-arrow-right-circle.svg?size=30&stroke=10b759">
+                            <img class="mx-1" data-src="/module/myicons/login-enter-arrow-right-circle.svg?size=30&stroke=10b759" width="30" height="30">
                             </span>
                 </div>
 

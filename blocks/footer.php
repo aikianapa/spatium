@@ -57,22 +57,22 @@
           <ul class="list-inline list-unstyled text-md-right">
             <li class="list-inline-item" wb-if="'{{_sett.facebook}}'>''">
               <a href="{{_sett.facebook}}" target="_blank">
-                <img data-src="/module/myicons/facebook-circle.svg?size=30&stroke=ffffff">
+                <img data-src="/module/myicons/facebook-circle.svg?size=30&stroke=ffffff" width="30" height="30" alt="facebook">
               </a>
             </li>
             <li class="list-inline-item ml-2" wb-if="'{{_sett.vkontakte}}'>''">
               <a href="{{_sett.vkontakte}}" target="_blank">
-                <img data-src="/module/myicons/vk-vkontakte.svg?size=30&stroke=ffffff">
+                <img data-src="/module/myicons/vk-vkontakte.svg?size=30&stroke=ffffff" width="30" height="30" alt="vkontakte">
               </a>
             </li>
             <li class="list-inline-item ml-2" wb-if="'{{_sett.instagram}}'>''">
               <a href="{{_sett.instagram}}" target="_blank">
-                <img data-src="/module/myicons/instagram-circle.svg?size=30&stroke=ffffff">
+                <img data-src="/module/myicons/instagram-circle.svg?size=30&stroke=ffffff" width="30" height="30" alt="instagram">
               </a>
             </li>
             <li class="list-inline-item ml-2" wb-if="'{{_sett.youtube}}'>''">
               <a href="{{_sett.youtube}}" target="_blank">
-                <img data-src="/module/myicons/youtube-circle.svg?size=30&stroke=ffffff">
+                <img data-src="/module/myicons/youtube-circle.svg?size=30&stroke=ffffff" width="30" height="30" alt="youtube">
               </a>
             </li>
           </ul>

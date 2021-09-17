@@ -7,7 +7,7 @@
     <div>
         <div id="cart" class="off-canvas off-canvas-overlay off-canvas-right wd-300 wd-md-400 d-none">
             <div class="off-canvas-header tx-20 tx-success bd-0"><span>
-                    <img src="/module/myicons/shopping-cart.svg?size=26&stroke=10b759"> Мои покупки</span>
+                    <img src="/module/myicons/shopping-cart.svg?size=26&stroke=10b759" width="26" height="26"> Мои покупки</span>
                 <a href="javascript:void(0)" class="close">
                     <img src="/module/myicons/32/323232/interface-essential-109.svg" width="32" height="32">
                 </a>
@@ -25,7 +25,7 @@
                                         {{#if image == ""}}
                                         <img data-src="/module/myicons/asian-food.1.svg?size=50&stroke=EEEEEE" width="120" height="100" class="img-fluid wd-120 rounded mg-r-15" alt="{{name}}">
                                         {{else}}
-                                        <img data-src="/thumbc/100x100/src/{{image}}" class="wd-60 wd-md-80 rounded mg-r-15" alt="{{name}}">
+                                        <img data-src="/thumbc/100x100/src/{{image}}" class="img-fluid wd-60 wd-md-80 rounded mg-r-15" width="100" height="100" alt="{{name}}">
                                         {{/if}}
                                         <a href="javascript:void(0)" class="position-absolute t-5 r-5 mod-cart-remove"
                                             data-id="{{id}}">

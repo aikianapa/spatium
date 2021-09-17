@@ -51,7 +51,8 @@ wbapp.on('ready', function () {
 
     wbapp.alive();                                                                                                           
 
-    $('loader').hide();
+    $('loader').remove();
+    $('body').removeClass('load');
   }, 1)
 
   setTimeout(function () {
