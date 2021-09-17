@@ -75,7 +75,8 @@
                         data-price="{{_parent.price}}" 
                         data-image="{{images.0.img}}" 
                         data-days="{{_parent.days}}" 
-                        data-discounts="{}" 
+                        data-discounts="{}"
+                        data-promo="1"
                         data-link="/products/{{id}}/{{wbUrlOnly({{name}})}}"
                     class="mod-cart-add mod-cart-data btn btn-{{_parent.color}}  rounded-30 tx-light pd-x-40 pd-y-15">
                     {{_parent.button}} 

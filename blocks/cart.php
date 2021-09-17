@@ -39,6 +39,10 @@
                                             <div class="row">
                                                 <div class="col">
                                                     <label>Дней</label>
+                                                    {{#if promo == "1"}}
+                                                    <input name="days" type="text" value="{{days}}"
+                                                            class="form-control input-sm" readonly>
+                                                    {{else}}
                                                     <div class="input-group">
                                                         <div class="input-group-prepend mod-cart-dec">
                                                             <span class="input-group-text">-</span>
@@ -50,6 +54,7 @@
                                                             <span class="input-group-text">+</span>
                                                         </div>
                                                     </div>
+                                                    {{/if}}
                                                 </div>
                                                 <div class="col">
                                                     <label>Кол-во</label>
