@@ -94,6 +94,7 @@
                                             {{_var.total_kcal}} Ккал
                                         </div>
                                         <wb-var days="7" wb-if="'{{_post.days}}'==''" else="{{_post.days}}" />
+                                        <div class="d-block tx-14">Цена: <span class="tx-danger">{{_var.product.price}}₽</span></div>
                                         <a href="javascript:void(0);" data-id="{{_var.product.id}}"
                                             wb-if="'{{_route.params.ajax}}'==''" 
                                             data-name="{{_var.product.name}}" data-price="{{_var.product.price}}"
@@ -102,7 +103,8 @@
                                             data-link="/products/{{_var.product.id}}/{{wbUrlOnly({{_var.product.name}})}}"
                                             class="mod-cart-add mod-cart-data btn btn-success tx-20 px-4 my-3 rounded-30">В
                                             корзину <img
-                                                src="/module/myicons/shopping-cart.svg?size=26&stroke=FFFFFF"></a>
+                                                src="/module/myicons/shopping-cart.svg?size=26&stroke=FFFFFF">
+                                            </a>
                                         <div class="row tx-normal">
                                             <div class="col">
                                                 <div class="tx-22">{{_var.total_prot}}</div>

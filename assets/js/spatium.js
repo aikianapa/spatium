@@ -49,6 +49,7 @@ wbapp.on('ready', function () {
 
     }
 
+    wbapp.alive();                                                                                                           
 
     $('loader').hide();
   }, 1)
