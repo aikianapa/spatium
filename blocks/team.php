@@ -13,10 +13,10 @@
     </div>
 
     <wb-multiinput name="team">
-            <div class="col-lg-auto">
+            <div class="col-md-4">
                 <wb-module wb="module=filepicker&mode=single" name="image" wb-path="/assets/images/team/" wb-ext="webp,jpg,png,jpeg,svg" />
             </div>
-            <div class="col-lg-8">
+            <div class="col-md-8">
                 <div class="ml-3 form-group row">
                 <div class="col-12">
                     <label class="form-control-label">Имя</label>

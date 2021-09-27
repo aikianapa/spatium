@@ -9,13 +9,15 @@ class productsClass extends cmsFormsClass
     }
 
     function beforeItemShow(&$item) {
-        count($item['images']) ? $item['image'] = $item['images'][0]['img'] : $item['image'] = '';
+        isset($item['images']) && count((array)$item['images']) ? $item['image'] = $item['images'][0]['img'] : $item['image'] = '';
         return $item;
     }
 
     function afterItemRead(&$item) {
         $app = &$this->app;
+        $item = (array)$item;
         $item['discounts'] = $this->getDiscounts();
+        isset($item['category']) ? null : $item['category'] = '';
         if ($item['category'] !== 'main') {
             unset($item['pn']);
             unset($item['vt']);
@@ -32,7 +34,7 @@ class productsClass extends cmsFormsClass
             $item['catname'] = $catname;    
         } else {
             $catname = $this->app->treeFindBranchById($tree['tree']['data'],$item['category']);
-            $item['catname'] = $catname['name'];
+            isset($catname['name']) ?  $item['catname'] = $catname['name'] : null;
             $app->vars('_env.tmp.catname.'.$item['category'],$item['catname']);
         }
         return $item;

@@ -128,13 +128,18 @@
             </div>
             
             <div class="row" id="cartButtons">
-                <div class="col-sm-6 py-1">
+                <!--div class="col-sm-6 py-1">
                     <a href="javascript:void(0)" class="wd-100p checkout-btn btn btn-success rounded-20">Оплата
                         картой</a>
+                </div-->
+                <div class="col-sm-12 py-1">
+                    <div class="alert alert-info">
+                        Оплата по картам временно не доступна. Приносим свои извинения!
+                    </div>
                 </div>
-                <div class="col-sm-6 py-1">
+                <div class="col-sm-12 py-1">
                     <a href="javascript:void(0)" class="wd-100p checkin-btn btn btn-primary rounded-20">Оплата
-                        курьеру</a>
+                        курьеру наличными</a>
                 </div>
 
             </div>
