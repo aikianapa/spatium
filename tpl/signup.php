@@ -7,7 +7,7 @@
 
     <div class="row">
         <wb-include wb-tpl="signleft.php" />
-        <div class="col-12 col-sm-6 col-lg-5" id="form">
+        <div class="d-flex col-12 col-sm-6 col-lg-5" id="form">
             <div class="container">
                 <div class="row mt-5">
                     <div class="col-12 col-md-6 offset-md-4 offset-xl-5 text-right">
@@ -16,7 +16,7 @@
                     </div>
                 </div>
 
-                <div class="d-flex">
+                <div class="d-block">
                     <form class="d-block">
                         <h2 class="mb-4">Регистрация</h2>
                         <div class="row">
