@@ -132,7 +132,7 @@
                         <wb-foreach wb-json='["пн","вт","ср", "чт","пт","сб","вс"]'>
                             <wb-var day="{{wbTranslit({{_val}})}}" />
                             <div id="{{_var.day}}" class="container tab-pane fade">
-                                <wb-multilang wb-lang="Завтрак,Обед,Полдник,Ужин" wb-flags="false" name="{{_var.day}}">
+                                <wb-multilang wb-lang="{{getMeals()}}" wb-flags="false" name="{{_var.day}}">
                                     <div class="form-group row">
                                         <div class="input-group col-12">
                                             <div class="input-group-prepend">
