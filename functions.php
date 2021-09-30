@@ -5,7 +5,7 @@
         $meals = $meals['tree']['data'];
         $res = [];
         foreach($meals as $item) {
-            $res[] = $item['name'];
+            $item['active'] == 'on' ? $res[] = $item['name'] : null;
         }
         $res = implode(',',$res);
         $res = str_replace(' ','_',$res);
