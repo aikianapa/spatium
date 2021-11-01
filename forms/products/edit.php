@@ -182,7 +182,8 @@
                                                 placeholder="Углеводы">
                                         </div>
                                     </div>
-
+                                    <div class="divider-text">Описание</div>
+                                    <wb-module wb="{'module':'jodit'}" name="descr" />
                                     <div class="divider-text">Состав</div>
                                     <wb-multiinput name="components">
                                         <div class="col-md-9">
