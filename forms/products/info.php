@@ -87,6 +87,12 @@
                             </div>
                         </div>
 
+                        <div class="row" wb-if="'{{_var.prod.descr}}'>''">
+                            <div class="col-lg-8 offset-lg-2 px-5">
+                                <div class="divider-text mb-3">Описание</div>
+                                {{_var.prod.descr}}
+                            </div>
+                        </div>
 
                         <div class="row" wb-if="'{{count(_var.prod.components)}}' > '0'">
                             <div class="col-lg-8 offset-lg-2 px-5">
