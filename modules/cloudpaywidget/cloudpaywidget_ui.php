@@ -1,25 +1,20 @@
-<script wb-app remove>
+<script wb-app remove1>
     if (typeof wbapp.mod == "undefined") wbapp.mod = {};
   wbapp.loadScripts(["https://widget.cloudpayments.ru/bundles/cloudpayments"], 'cloudpayment', function () {
     wbapp.mod.cloudpaywidget = function(params = {}) {
-        let onSuccess, onFail, onComplete;
-    params.onSuccess == undefined ? onSuccess = ()=>{} : onSuccess = params.onSuccess;
-    params.onFail == undefined ? onFail = ()=>{} : onFail = params.onFail; 
-    params.onComplete == undefined ? onComplete = ()=>{} : onComplete = params.onComplete;
     let widget = new cp.CloudPayments();
-    //var iid = Object.keys(wbapp.storage('mod.cart'))[0];
-    let data = getCartData();
+    var data = getCartData();
     let item = JSON.parse(data);
     let uid = wbapp._session.user.id;
     let sum = wbapp.storage('mod.cart.' + uid + '.total.sum') * 1;
-    let token = md5(data + uid + time());
+    var token = md5(data + uid + time());
     var options = { //options
       publicId: '{{api_key}}', //id из личного кабинета
       description: '{{description}}', //назначение
       amount: sum, //сумма
       currency: '{{currency}}', //валюта
       accountId: '{{acc_id}}', //идентификатор плательщика (необязательно)
-      invoiceId: uid, //номер заказа  (необязательно)
+      invoiceId: '{{number}}', //номер заказа  (необязательно)
       skin: '{{skin}}', //дизайн виджета (необязательно)
       data: {
         token: token
@@ -29,22 +24,21 @@
       {
         onSuccess: function (options) { // success
           //действие при успешной оплате
-          if (options.data.token == token && paymentResult.success == true) {
+          if (options.data.token == token) {
             setcookie('carttoken', token, time() + 1000);
-            $.redirectPost("/orders/checkout", { 'data': data, 'token': token, '__token': __token });
+            $.redirectPost("/orders/checkout", { 'data': data, 'token': token, '__token': __token, 'number': '{{number}}' });
           }
         },
-        onFail: function (reason, options) { // fail
-          //действие при неуспешной оплате
-          //console.log(reason,options);
-          //$.redirectPost("/cart", {});
+        onFail: function (reason, options) {
+          //wbapp.toast("Ошибка","Платёж не удался. Попробуйте снова.",{'bgcolor':'danger'});
         },
         onComplete: function (paymentResult, options) { //Вызывается как только виджет получает от api.cloudpayments ответ с результатом транзакции.
           //					console.log(paymentResult,options);
           //например вызов вашей аналитики Facebook Pixel
           if (options.data.token == token && paymentResult.success == true) {
+            console.log(token);
             setcookie('carttoken', token, time() + 1000);
-            $.redirectPost("/orders/checkout", { 'data': data, 'token': token, '__token': __token });
+            $.redirectPost("/orders/checkout", { 'data': data, 'token': token, '__token': __token, 'number': '{{number}}' });
           }
         }
       }

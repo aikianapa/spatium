@@ -34,8 +34,7 @@ class ordersClass extends cmsFormsClass {
 
         $app->vars('_post.token') == 'courier' ? $order['payed'] = '' : $order['payed'] = 'on';
         $order['user'] = $user['id'];
-        $ai = $app->module('autoinc');
-        $order['number'] = $ai->inc('orders','number',1245);
+        $order['number'] = $_POST['number'];
         $this->createDelivery($order);
         $app->itemSave('orders',$order);
         header('Location: /cabinet?cartclear#orders');
