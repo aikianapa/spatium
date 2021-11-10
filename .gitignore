@@ -2,3 +2,4 @@ uploads/
 database/
 engine/
 tpl/assets
+.htaccess
