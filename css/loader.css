@@ -1,0 +1,208 @@
+html,
+body {
+  margin: 0;
+}
+
+body.load {
+  width: 100vw !important;
+  height: 100vh !important;
+  overflow: hidden !important;
+}
+
+loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw !important;
+  height: 120vh !important;
+  overflow: hidden !important;
+  background-color: #c9ffc7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  z-index: 1000;
+}
+loader p {
+  position: absolute;
+  padding-top: 100px;
+  font-family: sans-serif;
+  font-size: 24px;
+  color: #34A853;
+}
+loader .loader {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  -webkit-animation: rotation 1s infinite;
+          animation: rotation 1s infinite;
+}
+loader .loader .shape {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+}
+loader .loader .shape.shape-1 {
+  left: 0;
+  background-color: #4285F4;
+}
+loader .loader .shape.shape-2 {
+  right: 0;
+  background-color: #34A853;
+}
+loader .loader .shape.shape-3 {
+  bottom: 0;
+  background-color: #FBBC05;
+}
+loader .loader .shape.shape-4 {
+  bottom: 0;
+  right: 0;
+  background-color: #EA4335;
+}
+loader .loader .shape-1 {
+  -webkit-animation: shape1 2s linear infinite;
+          animation: shape1 2s linear infinite;
+}
+loader .loader .shape-2 {
+  -webkit-animation: shape2 2s linear infinite;
+          animation: shape2 2s linear infinite;
+}
+loader .loader .shape-3 {
+  -webkit-animation: shape3 2s linear infinite;
+          animation: shape3 2s linear infinite;
+}
+loader .loader .shape-4 {
+  -webkit-animation: shape4 2s linear infinite;
+          animation: shape4 2s linear infinite;
+}
+
+@-webkit-keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes shape1 {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(0, 18px);
+  }
+  50% {
+    transform: translate(18px, 18px);
+  }
+  75% {
+    transform: translate(18px, 0);
+  }
+}
+@keyframes shape1 {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(0, 18px);
+  }
+  50% {
+    transform: translate(18px, 18px);
+  }
+  75% {
+    transform: translate(18px, 0);
+  }
+}
+@-webkit-keyframes shape2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(-18px, 0);
+  }
+  50% {
+    transform: translate(-18px, 18px);
+  }
+  75% {
+    transform: translate(0, 18px);
+  }
+}
+@keyframes shape2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(-18px, 0);
+  }
+  50% {
+    transform: translate(-18px, 18px);
+  }
+  75% {
+    transform: translate(0, 18px);
+  }
+}
+@-webkit-keyframes shape3 {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(18px, 0);
+  }
+  50% {
+    transform: translate(18px, -18px);
+  }
+  75% {
+    transform: translate(0, -18px);
+  }
+}
+@keyframes shape3 {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(18px, 0);
+  }
+  50% {
+    transform: translate(18px, -18px);
+  }
+  75% {
+    transform: translate(0, -18px);
+  }
+}
+@-webkit-keyframes shape4 {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(0, -18px);
+  }
+  50% {
+    transform: translate(-18px, -18px);
+  }
+  75% {
+    transform: translate(-18px, 0);
+  }
+}
+@keyframes shape4 {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(0, -18px);
+  }
+  50% {
+    transform: translate(-18px, -18px);
+  }
+  75% {
+    transform: translate(-18px, 0);
+  }
+}/*# sourceMappingURL=loader.css.map */

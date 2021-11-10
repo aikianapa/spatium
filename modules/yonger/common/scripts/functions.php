@@ -1,4 +1,7 @@
 <?php
+
+    @include_once(__DIR__ . '/engine/modules/yonger/common/scripts/functions.php');
+
     function customRoute($route = []) {
         $app = &$_ENV['app'];
         $pages = $app->itemList('pages',['filter'=>[
