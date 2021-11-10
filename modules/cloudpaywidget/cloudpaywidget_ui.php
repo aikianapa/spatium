@@ -27,6 +27,7 @@
           if (options.data.token == token) {
             setcookie('carttoken', token, time() + 1000);
             $.redirectPost("/orders/checkout", { 'data': data, 'token': token, '__token': __token, 'number': '{{number}}' });
+            wbapp.storage('mod.cart.' + uid , null);
           }
         },
         onFail: function (reason, options) {
@@ -39,6 +40,7 @@
             console.log(token);
             setcookie('carttoken', token, time() + 1000);
             $.redirectPost("/orders/checkout", { 'data': data, 'token': token, '__token': __token, 'number': '{{number}}' });
+            wbapp.storage('mod.cart.' + uid , null);
           }
         }
       }
