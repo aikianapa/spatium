@@ -1,24 +1,26 @@
 <?php
-class ordersClass extends cmsFormsClass {
-    function checkout() {
-        /* тут нужно 
+class ordersClass extends cmsFormsClass
+{
+    public function checkout()
+    {
+        /* тут нужно
         1. верифицировать оплату
         2. создать пользователя, если нужно
         3. сформировать запись заказа
         */
         $app = $this->app;
-        $order = json_decode($_POST['data'],true);
-        $order['id'] = wbNewId('','z');
+        $order = json_decode($_POST['data'], true);
+        $order['id'] = wbNewId('', 'z');
         $user = $order['user'];
         $order['date']  = $user['date'];
         unset($user['date']);
         if ($user['id'] !== '' && $user['phone'] > '') {
-            $phone =  preg_replace('/[^0-9]/','',$user['phone']);
+            $phone =  preg_replace('/[^0-9]/', '', $user['phone']);
             $filter = ['filter' => [
                 'role' => 'user'
-                ,'phone' => preg_replace('/[^0-9]/','',$user['phone'])
+                ,'phone' => preg_replace('/[^0-9]/', '', $user['phone'])
             ]];
-            $list = $app->itemList('users',$filter);
+            $list = $app->itemList('users', $filter);
             if ($list['count'] > 0) {
                 $user = array_shift($list['list']);
             } else {
@@ -26,7 +28,7 @@ class ordersClass extends cmsFormsClass {
             }
         }
         $uid = $user['id'];
-        
+
         if ($_COOKIE['carttoken'] !== $_POST['token']) {
             echo "Что-то пошло не так.";
             die;
@@ -36,26 +38,32 @@ class ordersClass extends cmsFormsClass {
         $order['user'] = $user['id'];
         $order['number'] = $_POST['number'];
         $this->createDelivery($order);
-        $app->itemSave('orders',$order);
+        $app->itemSave('orders', $order);
+        $cloudpay = $app->module('cloudpaywidget');
+        $cloudpay->kassa($order, $user);
         header('Location: /cabinet?cartclear#orders');
         die;
     }
 
-    public function checkToken() {
-        if ($this->app->vars('_route.action') == 'checkout') return true;
+    public function checkToken()
+    {
+        if ($this->app->vars('_route.action') == 'checkout') {
+            return true;
+        }
         return $this->app->checkToken();
     }
 
-    private function createDelivery(&$order) {
+    private function createDelivery(&$order)
+    {
         $app = &$this->app;
         $list = $app->json($order['list']);
         $days = intval($list->max('days'));
         $oid = $order['id'];
-        $user = $app->itemRead('users',$app->vars('_sess.user.id'));
+        $user = $app->itemRead('users', $app->vars('_sess.user.id'));
         $deny = (array)$user['deny'];
         for ($i=1;$i<=$days;$i++) {
-            date('Y-m-d',strtotime($order['date'])) > date('Y-m-d') ? $j = $i-1 : $j = $i;
-            if (in_array(date('Y-m-d',strtotime($order['date'])),$deny)) {
+            date('Y-m-d', strtotime($order['date'])) > date('Y-m-d') ? $j = $i-1 : $j = $i;
+            if (in_array(date('Y-m-d', strtotime($order['date'])), $deny)) {
                 $days++;
             } else {
                 $date = date('Y-m-d', strtotime($order['date']. '+' . $j . "days"));
@@ -80,21 +88,22 @@ class ordersClass extends cmsFormsClass {
         $order['expired'] = $date;
     }
 
-    function rep_cook() {
+    public function rep_cook()
+    {
         $app = &$this->app;
         $dom = $app->fromFile(__DIR__ . '/rep_cook.php');
         $result = [];
         if ($app->vars('_post.formdata.date') > '') {
-            $date = date('Y-m-d',strtotime($app->vars('_post.formdata.date')));    
+            $date = date('Y-m-d', strtotime($app->vars('_post.formdata.date')));
         } else {
-            $date = date('Y-m-d',strtotime('now'));
+            $date = date('Y-m-d', strtotime('now'));
         }
-        $dlvrs = $app->itemList('delivery',['filter'=>['date'=>$date]]);
+        $dlvrs = $app->itemList('delivery', ['filter'=>['date'=>$date]]);
         $dlvrs = $app->json($dlvrs['list'])->groupBy('product')->get();
         $result = [];
-        foreach($dlvrs as $pid => $product) {
+        foreach ($dlvrs as $pid => $product) {
             $qty = count($product);
-            $product = $app->itemRead('products',$pid);
+            $product = $app->itemRead('products', $pid);
             $product['qty'] = $qty;
             $result[] = $product;
         }
@@ -102,27 +111,28 @@ class ordersClass extends cmsFormsClass {
         echo $dom->outer();
     }
 
-    function rep_orders() {
+    public function rep_orders()
+    {
         $app = &$this->app;
         $dom = $app->fromFile(__DIR__ . '/rep_orders.php');
         $result = [];
         if ($app->vars('_post.formdata.date') > '') {
             $date = date('Y-m-d', strtotime($app->vars('_post.formdata.date')));
         } else {
-            $date = date('Y-m-d',strtotime('now'));
+            $date = date('Y-m-d', strtotime('now'));
         }
-        $dlvrs = $app->itemList('delivery',['filter'=>['date'=>$date]]);
+        $dlvrs = $app->itemList('delivery', ['filter'=>['date'=>$date]]);
         $dlvrs = $app->json($dlvrs['list'])->groupBy('order')->get();
-        foreach($dlvrs as $oid => $delivery) {
+        foreach ($dlvrs as $oid => $delivery) {
             if (!isset($result[$oid])) {
-                $order = $app->itemRead('orders',$oid);
+                $order = $app->itemRead('orders', $oid);
                 $order['list'] = [];
                 $result[$oid] = $order;
             }
             $list = $app->json($delivery)->groupBy('product')->get();
-            foreach($list as $pid => $product) {
+            foreach ($list as $pid => $product) {
                 $qty = count($product);
-                $product = $app->itemRead('products',$pid);
+                $product = $app->itemRead('products', $pid);
                 $product['qty'] = $qty;
                 $result[$order['id']]['list'][] = $product;
             }
@@ -131,31 +141,32 @@ class ordersClass extends cmsFormsClass {
         echo $dom->outer();
     }
 
-    function rep_clients() {
+    public function rep_clients()
+    {
         $app = &$this->app;
         $dom = $app->fromFile(__DIR__ . '/rep_clients.php');
         $result = [];
         if ($app->vars('_post.formdata.date') > '') {
-            $date = date('Y-m-d',strtotime($app->vars('_post.formdata.date')));    
+            $date = date('Y-m-d', strtotime($app->vars('_post.formdata.date')));
         } else {
-            $date = date('Y-m-d',strtotime('now'));
+            $date = date('Y-m-d', strtotime('now'));
         }
 
-        $dlvrs = $app->itemList('delivery',['filter'=>['date'=>$date]]);
+        $dlvrs = $app->itemList('delivery', ['filter'=>['date'=>$date]]);
         $dlvrs = $app->json($dlvrs['list'])->groupBy('user')->get();
 
         $result = [];
-        foreach($dlvrs as $uid => $grp) {
+        foreach ($dlvrs as $uid => $grp) {
             if (!isset($result[$uid])) {
                 $result[$uid] = [
-                    'user' => $app->itemRead('users',$uid)
+                    'user' => $app->itemRead('users', $uid)
                     ,'list' => []
                 ];
             }
             $list = $app->json($grp)->groupBy('product')->get();
-            foreach($list as $pid => $product) {
+            foreach ($list as $pid => $product) {
                 $qty = count($product);
-                $product = $app->itemRead('products',$pid);
+                $product = $app->itemRead('products', $pid);
                 $product['qty'] = $qty;
                 $result[$uid]['list'][] = $product;
             }
@@ -165,13 +176,14 @@ class ordersClass extends cmsFormsClass {
     }
 
 
-    function set_status() {
+    public function set_status()
+    {
         $app = &$this->app;
         header('Content-Type: application/json');
-        $order = $app->itemRead('orders',$app->vars('_post.oid'));
+        $order = $app->itemRead('orders', $app->vars('_post.oid'));
         if ($order && isset($order['delivery'][$app->vars('_post.date')])) {
             $order['delivery'][$app->vars('_post.date')]['status'] = $app->vars('_post.type');
-            $res = $app->itemSave('orders',$order);
+            $res = $app->itemSave('orders', $order);
             echo json_encode(['error'=>false,'order'=>$res]);
         } else {
             echo json_encode(['error'=>true]);
@@ -179,10 +191,11 @@ class ordersClass extends cmsFormsClass {
         die;
     }
 
-    function get_date_dlvrs() {
+    public function get_date_dlvrs()
+    {
         header('Content-Type: application/json');
         $app = &$this->app;
-        $date = date('Y-m-d',strtotime($app->vars('_post.date')));
+        $date = date('Y-m-d', strtotime($app->vars('_post.date')));
         if ($app->checkToken()) {
             echo json_encode(null);
             die;
@@ -200,30 +213,32 @@ class ordersClass extends cmsFormsClass {
                 $min = $app->json($item)->min('date');
                 $max > $freedate ? $freedate = $max : null;
                 $order = $app->itemRead('orders', $oid);
-                $order['expired'] = date('d.m.Y',strtotime($max));
-                $order['date'] = date('d.m.Y',strtotime($date));
+                $order['expired'] = date('d.m.Y', strtotime($max));
+                $order['date'] = date('d.m.Y', strtotime($date));
                 $result[] = $order;
             }
-            $freedate = date('d.m.Y',strtotime($freedate.' +1 day'));
+            $freedate = date('d.m.Y', strtotime($freedate.' +1 day'));
             $res = ['date'=>$date,'freedate'=>$freedate,'result'=>$result];
             echo json_encode($res);
         }
     }
 
-    function afterItemRead(&$item) {
+    public function afterItemRead(&$item)
+    {
         $item['expired'] >= date('Y-m-d') ? $item['active'] = 'on' : $item['active'] = '';
-        $user = $this->app->itemRead('users',$item['_creator']);
+        $user = $this->app->itemRead('users', $item['_creator']);
         $item['name'] = $user['first_name'] . ' ' . $user['last_name'];
         $item['phone'] = wbPhoneFormat($user['phone']);
         $item['address'] = $user['delivery_address'];
     }
 
-    function beforeItemEdit(&$item)
+    public function beforeItemEdit(&$item)
     {
         $this->beforeItemShow($item);
     }
 
-    function beforeItemShow(&$item, $date_report = null) {
+    public function beforeItemShow(&$item, $date_report = null)
+    {
         $date_report == null ? $date_report = date('Y-m-d') : null;
         setlocale(LC_ALL, 'ru_RU.utf8');
         isset($item['number']) ? null : $item['number'] = $item['id'];
@@ -242,7 +257,7 @@ class ordersClass extends cmsFormsClass {
             } else {
                 if ($date <= date('Y-m-d')) $d['status'] = 'past';
             }
-            
+
             $item['delivery'][$date] = $d;
         }
         foreach($item['list'] as &$line) {
@@ -261,4 +276,3 @@ class ordersClass extends cmsFormsClass {
         return $item;
     }
 }
-?>
