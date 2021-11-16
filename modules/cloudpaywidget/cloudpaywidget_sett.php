@@ -13,6 +13,14 @@
         <small>Пароль для API</small>
     </div>
 
+    <label class="form-control-label col-sm-4">Метод платежа</label>
+    <div class="col-sm-8 mb-2">
+        <select name="method" class="form-control wb-select2">
+            <option value="charge">Одностадийный</option>
+            <option value="auth">Двухстадийный</option>
+        </select>
+        <small>Метод платежа</small>
+    </div>
 
     <label class="form-control-label col-sm-4">Валюта</label>
     <div class="col-sm-8 mb-2">
@@ -38,6 +46,7 @@
         </select>
         <small>Описание платежа (необязательно)</small>
     </div>
+    
 </div>
 
 <div class="divider-text">Касса</div>

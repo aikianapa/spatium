@@ -8,6 +8,8 @@
     let uid = wbapp._session.user.id;
     let sum = wbapp.storage('mod.cart.' + uid + '.total.sum') * 1;
     var token = md5(data + uid + time());
+    let method: '{{method}}';
+    method == '' ? method = 'charge' : null;
     var options = { //options
       publicId: '{{api_key}}', //id из личного кабинета
       description: '{{description}}', //назначение
@@ -20,7 +22,7 @@
         token: token
       }
     };
-    widget.pay('auth', options,
+    widget.pay(method, options,
       {
         onSuccess: function (options) { // success
           //действие при успешной оплате
@@ -33,16 +35,17 @@
         onFail: function (reason, options) {
           //wbapp.toast("Ошибка","Платёж не удался. Попробуйте снова.",{'bgcolor':'danger'});
         },
+        /*
         onComplete: function (paymentResult, options) { //Вызывается как только виджет получает от api.cloudpayments ответ с результатом транзакции.
           //					console.log(paymentResult,options);
           //например вызов вашей аналитики Facebook Pixel
           if (options.data.token == token && paymentResult.success == true) {
-            console.log(token);
             setcookie('carttoken', token, time() + 1000);
             $.redirectPost("/orders/checkout", { 'data': data, 'token': token, '__token': __token, 'number': '{{number}}' });
             wbapp.storage('mod.cart.' + uid , null);
           }
         }
+        */
       }
     )
     }
