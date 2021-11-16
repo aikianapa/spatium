@@ -8,7 +8,7 @@
     let uid = wbapp._session.user.id;
     let sum = wbapp.storage('mod.cart.' + uid + '.total.sum') * 1;
     var token = md5(data + uid + time());
-    let method: '{{method}}';
+    let method = '{{method}}';
     method == '' ? method = 'charge' : null;
     var options = { //options
       publicId: '{{api_key}}', //id из личного кабинета
