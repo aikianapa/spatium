@@ -26,16 +26,18 @@
       {
         onSuccess: function (options) { // success
           //действие при успешной оплате
+          /*
           if (options.data.token == token) {
             setcookie('carttoken', token, time() + 1000);
             $.redirectPost("/orders/checkout", { 'data': data, 'token': token, '__token': __token, 'number': '{{number}}' });
             wbapp.storage('mod.cart.' + uid , null);
           }
+          */
         },
         onFail: function (reason, options) {
           //wbapp.toast("Ошибка","Платёж не удался. Попробуйте снова.",{'bgcolor':'danger'});
         },
-        /*
+        
         onComplete: function (paymentResult, options) { //Вызывается как только виджет получает от api.cloudpayments ответ с результатом транзакции.
           //					console.log(paymentResult,options);
           //например вызов вашей аналитики Facebook Pixel
@@ -45,7 +47,7 @@
             wbapp.storage('mod.cart.' + uid , null);
           }
         }
-        */
+        
       }
     )
     }
