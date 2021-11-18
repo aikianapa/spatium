@@ -115,7 +115,7 @@ class modYonger
     private function block() {
         $app = &$_ENV['app'];
         $this->app = $app;
-        $this->dom = &$app->fromString('<html></html>');
+        $this->dom = $app->fromString('<html></html>');
         $this->dom->params = (object)['view'=>$app->vars('_route.params.0')]; 
         $this->dom->item = $app->vars('_post.item');
         $this->render();

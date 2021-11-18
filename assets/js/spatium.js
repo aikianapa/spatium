@@ -110,7 +110,14 @@ $(document).delegate(".feedback-btn", wbapp.evClick, function(e) {
         })
 
         wbapp.post("/api/mail", { 'formdata': formdata }, function(data) {
-
+            if (data.error == false) {
+                $(form).find('.alert-info').removeClass('d-none');
+            } else {
+                $(form).find('.alert-warning').removeClass('d-none');
+            }
+            setTimeout(() => {
+                $(form).find('.alert').addClass('d-none');
+            }, 3000)
         });
     }
 });

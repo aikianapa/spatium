@@ -110,6 +110,14 @@
                         <div class="input-group mb-2">
                             <button type="button" class="btn btn-success btn-block feedback-btn rounded-20">Отправить сообщение</button>
                         </div>
+
+                        <div class="alert alert-info d-none">
+                            Ваше сообщение успешно отправлено.
+                        </div>
+                        <div class="alert alert-warning d-none">
+                            Ваше сообщение не удалось отправить. Попробуйте позже.
+                        </div>
+
                     </wb-data>
                 </form>
 
