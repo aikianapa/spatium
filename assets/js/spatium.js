@@ -195,13 +195,15 @@ var cartCheckPhone = function() {
         'phone': $('#cart input.checkphone').val(),
         'type': 'login'
     }, function(data) {
+        console.log(data);
         if (data.code !== undefined) {
             $('#cart .checkcode').removeClass('d-none');
             if (wbapp._settings.modules.phonecheck.testmode == 'on') {
                 $('#cart input.checkcode').val(data.code);
-                $('#cart input.token').val(data.check);
-                $('#cart input.checkcode + .input-group-append > span').attr('onclick', 'cartLogin()');
             }
+            $('#cart input.token').val(data.check);
+            $('#cart input.checkcode + .input-group-append > span').attr('onclick', 'cartLogin()');
+
         } else if (data.error) {
             cartRegPhone();
         }

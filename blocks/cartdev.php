@@ -14,8 +14,7 @@
                         <div class="col-3 p-0 input-group-prepend">
                             <span class="wd-100p input-group-text">Телефон</span>
                         </div>
-                        <input class="form-control checkphone" type="phone" wb-mask="+7 (999) 999-99-99"
-                            placeholder="Телефон" onchange="cartCheckPhone();" value="">
+                        <input class="form-control checkphone" type="phone" wb-mask="+7 (999) 999-99-99" placeholder="Телефон" value="">
                         <div class="p-0 input-group-append">
                             <span class="input-group-text p-0 cursor-pointer" onclick="cartCheckPhone();">
                             <img class="mx-1" data-src="/module/myicons/arrow-right-circle.1.svg?size=30&stroke=10b759"  width="30" height="30">
@@ -28,7 +27,7 @@
             </div>
             <input type="hidden" class="token">
             <input class="form-control checkcode" type="text" wb-mask="999-999" 
-                placeholder="Проверочный код" onchange="cartCheckPhone();">
+                placeholder="Проверочный код" onchange="cartLogin();">
                 <div class="p-0 input-group-append">
                             <span class="input-group-text p-0 cursor-pointer">
                             <img class="mx-1" data-src="/module/myicons/login-enter-arrow-right-circle.svg?size=30&stroke=10b759" width="30" height="30">
