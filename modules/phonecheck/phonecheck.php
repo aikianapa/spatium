@@ -54,8 +54,7 @@ class modPhonecheck {
 
         $_SESSION['reg'] = ['phone'=>$this->phone, 'data'=>$data, 'control'=>$this->check];
         $this->type == 'login' ? $this->setcode() : null;
-
-        $this->sett->testmode == 'on' OR $this->number == '71111111111' ? $code = $this->code : $code = '';
+        ($this->sett->testmode == 'on' OR $this->number == '71111111111') ? $code = $this->code : $code = '';
 
         return json_encode([
             'phone'=>$this->number,
