@@ -1,4 +1,4 @@
-<script wb-app remove1>
+<script wb-app remove>
     if (typeof wbapp.mod == "undefined") wbapp.mod = {};
   wbapp.loadScripts(["https://widget.cloudpayments.ru/bundles/cloudpayments"], 'cloudpayment', function () {
     wbapp.mod.cloudpaywidget = function(params = {}) {
