@@ -202,7 +202,6 @@ var cartCheckPhone = function() {
         'phone': $('#cart input.checkphone').val(),
         'type': 'login'
     }, function(data) {
-        console.log(data);
         if (data.code !== undefined) {
             $('#cart .checkcode').removeClass('d-none');
             if (wbapp._settings.modules.phonecheck.testmode == 'on' || data.phone == '71111111111') {
@@ -212,7 +211,6 @@ var cartCheckPhone = function() {
             $('#cart input.checkcode + .input-group-append > span').attr('onclick', 'cartLogin()');
 
         } else if (data.error && data.data) {
-            console.log(data);
             cartRegPhone(data.data);
         }
     });
@@ -220,7 +218,6 @@ var cartCheckPhone = function() {
 
 var cartRegPhone = function(data = null) {
     let viewReg = function(data) {
-        console.log(data);
         if (wbapp._settings.modules.phonecheck.testmode == 'on' || data.phone == '71111111111') {
             $('#cartLogin input.checkcode').val(data.code);
         }
@@ -235,7 +232,6 @@ var cartRegPhone = function(data = null) {
             'phone': $('#cart input.checkphone').val(),
             'type': 'reg'
         }, function(data) {
-            console.log(data);
             if (data.code !== undefined && !data.error) {
                 viewReg(data)
             } else if (data.error) {
@@ -284,16 +280,21 @@ var cartLogin = function() {
         'check': $('#cartLogin input.token').val()
     }, function(data) {
         if (data.login == true) {
-            wbapp._session.user = data.user;
-            $('#cart #cartdev').html(data.cart);
-            wbapp.ajaxAuto();
             $(document).on('wb-ajax-done', function(ev, param) {
+                let cart = wbapp.storage('mod.cart.unknown');
+                uid = wbapp._session.user.id;
+                wbapp.storage('mod.cart', null);
+                wbapp.storage('mod.cart.' + uid, cart);
+                $(document).trigger('modCartInit');
                 if (param.html !== undefined && param.html == '#cartdev') {
                     setTimeout(function() {
                         $('#cart input[name=qty]:eq(0)').trigger('change');
                     }, 10)
                 }
             })
+            wbapp._session.user = data.user;
+            $('#cart #cartdev').html(data.cart);
+            wbapp.ajaxAuto();
         }
     })
 }
