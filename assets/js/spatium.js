@@ -211,40 +211,52 @@ var cartCheckPhone = function() {
             $('#cart input.token').val(data.check);
             $('#cart input.checkcode + .input-group-append > span').attr('onclick', 'cartLogin()');
 
-        } else if (data.error) {
-            cartRegPhone();
+        } else if (data.error && data.data) {
+            console.log(data);
+            cartRegPhone(data.data);
         }
     });
 }
 
-var cartRegPhone = function() {
-    wbapp.post('/module/phonecheck/getcode/', {
-        'phone': $('#cart input.checkphone').val(),
-        'type': 'reg'
-    }, function(data) {
+var cartRegPhone = function(data = null) {
+    let viewReg = function(data) {
         console.log(data);
-        if (data.code !== undefined && data.error == undefined) {
-            $('#cart .checkcode').removeClass('d-none');
-            if (wbapp._settings.modules.phonecheck.testmode == 'on' || data.phone == '71111111111') {
-                $('#cartLogin input.checkcode').val(data.code);
-                $('#cartLogin input.token').val(data.check);
-                $('#cartLogin input.checkcode + .input-group-append > span').attr('onclick', 'cartReg()');
-                $('#cart #Details input[name=id]').val(data.check);
-                if ($('#cart #Details [name=code]').length) {
-                    $('#cart #Details [name=code]').val(data.code);
-                } else {
-                    $('#cart #Details').prepend('<input type="hidden" name="code" value="' + data.code + '">');
-                }
-            }
-        } else if (data.error) {
-            console.log("cartRegPhone - Error");
+        if (wbapp._settings.modules.phonecheck.testmode == 'on' || data.phone == '71111111111') {
+            $('#cartLogin input.checkcode').val(data.code);
         }
-    });
+        $('#cartLogin input.token').val(data.check);
+        $('#cart #Details input[name=id]').val(data.check);
+        $('#cart .checkcode').removeClass('d-none');
+        $('#cartLogin input.checkcode + .input-group-append > span').attr('onclick', 'cartReg()');
+    }
+
+    if (!data) {
+        wbapp.post('/module/phonecheck/getcode/', {
+            'phone': $('#cart input.checkphone').val(),
+            'type': 'reg'
+        }, function(data) {
+            console.log(data);
+            if (data.code !== undefined && !data.error) {
+                viewReg(data)
+            } else if (data.error) {
+                console.log("cartRegPhone - Error");
+            }
+        });
+    } else {
+        viewReg(data);
+    }
     return false;
 }
 
+
 var cartReg = function(form = false) {
     if (!form) {
+        let code = $('#cartLogin input.checkcode').val();
+        if ($('#cart #Details [name=code]').length) {
+            $('#cart #Details [name=code]').val(code);
+        } else {
+            $('#cart #Details').prepend('<input type="hidden" name="code" value="' + code + '">');
+        }
         $('#cart #Details [readonly]').removeAttr('readonly').prop('readonly', false);
         $('#cart #Details input[name=phone]').val($('#cartLogin input.checkphone').val()).prop('readonly', true).attr('readonly', true);
         $('#cart #Details :input[name!=phone]').attr('required', true).prop('required', true);

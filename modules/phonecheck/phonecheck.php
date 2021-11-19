@@ -30,17 +30,20 @@ class modPhonecheck {
     private function getcode() {
         header('Content-Type: application/json');
         $this->phone = $this->app->vars('_post.phone');
-        $this->type = $this->app->vars('_post.type');
-        $this->number = preg_replace('/[^0-9]/','',$this->phone);
-        $this->code = $this->sendsms($this->phone);
-        $this->check = $this->app->PasswordMake($this->code.$this->number);
-
         $user = $this->app->checkUser($this->number, 'phone');
+        
         if ($this->type !== "login" && $user) {
             echo json_encode(['error' => true, 'msg' => 'Пользователь уже зарегистрирван']);    
             die;
         }
 
+        $this->type = $this->app->vars('_post.type');
+        $this->number = preg_replace('/[^0-9]/', '', $this->phone);
+
+        $this->code = $this->sendsms($this->phone);
+        $this->check = $this->app->PasswordMake($this->code.$this->number);
+
+        
         if ($this->code == 0 && $this->number !== '71111111111') return json_encode([
             'phone'=>$this->number,
             'code'=>'',
@@ -73,7 +76,11 @@ class modPhonecheck {
             ]);
         } else {
             header('Content-Type: application/json');
-            echo json_encode(['error' => true, 'msg' => 'Пользователь не зарегистрирван']);
+            echo json_encode(['error' => true, 'msg' => 'Пользователь не зарегистрирван','data'=>[
+            'phone'=>$this->number,
+            'code'=>'',
+            'check'=>$this->check
+            ]]);
             die;
         }
     }

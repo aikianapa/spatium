@@ -27,9 +27,9 @@
             </div>
             <input type="hidden" class="token">
             <input class="form-control checkcode" type="text" wb-mask="999-999" 
-                placeholder="Проверочный код" onchange="cartLogin();">
+                placeholder="Проверочный код">
                 <div class="p-0 input-group-append">
-                            <span class="input-group-text p-0 cursor-pointer">
+                            <span class="input-group-text p-0 cursor-pointer" onclick="cartLogin();">
                             <img class="mx-1" data-src="/module/myicons/login-enter-arrow-right-circle.svg?size=30&stroke=10b759" width="30" height="30">
                             </span>
                 </div>
