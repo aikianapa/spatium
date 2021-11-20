@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    
-</head>
+<head></head>
 
 <body class="scroll-y">
     <wb-module wb="module=yonger&mode=render&view=header" />
