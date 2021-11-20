@@ -3,39 +3,39 @@
 var yonger = {};
 
 
-$(document).delegate('.off-canvas-menu',wbapp.evClick, function (e) {
+$(document).delegate('.off-canvas-menu', wbapp.evClick, function(e) {
     e.stopPropagation();
     var target = $(this).attr('href');
     $(target).addClass('show');
 });
 
 
-$(document).delegate('.off-canvas-header > .close',wbapp.evClick, function (e) {
+$(document).delegate('.off-canvas-header > .close', wbapp.evClick, function(e) {
     e.stopPropagation();
     $(this).closest('.off-canvas').removeClass('show');
 })
 
-$(document).delegate('.backdrop',wbapp.evClick, function (e) {
+$(document).delegate('.backdrop', wbapp.evClick, function(e) {
     e.stopPropagation();
     if ($('.off-canvas.show').length) $('.off-canvas.show').removeClass('show');
 });
 
-$(document).delegate(".nav-link:not([data-toggle=tab])", "tap click", function () {
+$(document).delegate(".nav-link:not([data-toggle=tab])", "tap click", function() {
     $(this).parents("ul,nav").find(".nav-link").removeClass("active");
     $(this).addClass("active");
 })
 
-$(document).delegate("aside .nav-link", "tap click", function () {
+$(document).delegate("aside .nav-link", "tap click", function() {
     $(".content-header .content-search input").prop("disabled", true);
     $("body").removeClass("show-aside");
     $("body").addClass("chat-content-show");
 });
 
-$(document).delegate(".chat-sidebar .nav-link", "tap click", function () {
+$(document).delegate(".chat-sidebar .nav-link", "tap click", function() {
     $("body").addClass("chat-content-show");
 });
 
-$(document).on("wb-save-start", function (e, params) {
+$(document).on("wb-save-start", function(e, params) {
     if ($(e.target).is("button.cms") && !$(e.target).find(".spinner-border").length) {
         var spinner = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> ';
         $(e.target).find("i").addClass("d-none");
@@ -43,13 +43,13 @@ $(document).on("wb-save-start", function (e, params) {
     }
 })
 
-$(document).on('wb-verify-false', function (e, el, err) {
+$(document).on('wb-verify-false', function(e, el, err) {
     if (err !== undefined) {
         wbapp.toast(wbapp._settings.sysmsg.error, err, { target: '.content-toasts', 'bgcolor': 'warning', 'txcolor': 'white' });
     }
 });
 
-$(document).on("wb-save-error", function (e, params) {
+$(document).on("wb-save-error", function(e, params) {
     if ($(e.target).is("button.cms") && $(e.target).find(".spinner-border").length) {
         $(e.target).find(".spinner-border").remove();
         $(e.target).find("i").removeClass("d-none");
@@ -57,7 +57,7 @@ $(document).on("wb-save-error", function (e, params) {
     }
 });
 
-$(document).delegate(".modal", "show.bs.modal", function () {
+$(document).delegate(".modal", "show.bs.modal", function() {
     if (PerfectScrollbar !== undefined) {
         this.psb == undefined ? null : this.psb.destroy();
         this.psb = new PerfectScrollbar(this);
@@ -66,14 +66,14 @@ $(document).delegate(".modal", "show.bs.modal", function () {
     }
 });
 
-$(document).delegate(".modal", "hidden.bs.modal", function (event) {
+$(document).delegate(".modal", "hidden.bs.modal", function(event) {
     if ($('body').hasClass('app-chat') && $(document).find('.modal:visible').length) {
         $('body').addClass('modal-open');
     }
     this.psb == undefined ? null : this.psb.destroy();
 });
 
-$(document).on("wb-save-done", function (e, params) {
+$(document).on("wb-save-done", function(e, params) {
     if ($(e.target).is("button.cms") && $(e.target).find(".spinner-border").length) {
         $(e.target).find(".spinner-border").remove();
         $(e.target).find("i").removeClass("d-none");
@@ -91,12 +91,12 @@ $(document).on("wb-save-done", function (e, params) {
 })
 
 
-$(document).on("data-ajax", function (e, params) {
+$(document).on("data-ajax", function(e, params) {
 
 });
 
-$(document).on("wb-ajax-done", function (e, params) {
-    $(document).find(".content-body [type=search][data-ajax].search-header").each(function () {
+$(document).on("wb-ajax-done", function(e, params) {
+    $(document).find(".content-body [type=search][data-ajax].search-header").each(function() {
         $(".content-header .content-search [type=search]").attr("data-ajax", $(this).attr("data-ajax")).prop("disabled", false);
         $(this).remove();
     });
@@ -104,7 +104,7 @@ $(document).on("wb-ajax-done", function (e, params) {
     yonger.plugins();
 });
 
-yonger.workspace = function () {
+yonger.workspace = function() {
     if ($("#userProfileMenu").length) {
         wbapp.storage('cms.profile.user', wbapp._session.user);
         var profileMenu = Ractive({
@@ -118,25 +118,11 @@ yonger.workspace = function () {
     yonger.plugins();
 };
 
-yonger.plugins = function () {
-    if (PerfectScrollbar !== undefined) {
-        $(document).find('.modal-body').addClass('scroll-y');
-        $('.scroll-x').each(function () {
-            this.psb == undefined ? null : this.psb.destroy();
-            this.psb = new PerfectScrollbar(this, { suppressScrollY: true });
-        });
-        $('.scroll-y').each(function () {
-            this.psb == undefined ? null : this.psb.destroy();
-            this.psb = new PerfectScrollbar(this, { suppressScrollX: true });
-        });
-        $('.scroll').each(function () {
-            this.psb == undefined ? null : this.psb.destroy();
-            this.psb = new PerfectScrollbar(this, { suppressScrollY: false, suppressScrollX: false });
-        });
-    }
+yonger.plugins = function() {
+
 }
 
-yonger.siteCreator = function () {
+yonger.siteCreator = function() {
     if ($('#yongerSiteCreator form').verify()) {
         let form = $('#yongerSiteCreator form').serializeJson();
         let domain = document.location.host.split('.');
@@ -147,14 +133,14 @@ yonger.siteCreator = function () {
         if (data.error == true) {
             wbapp.toast('Ошибка', data.msg);
         } else {
-            $('#yongerSiteCreator').modal('hide').on('hidden.bs.modal', function () {
+            $('#yongerSiteCreator').modal('hide').on('hidden.bs.modal', function() {
                 $('.content-header nav a[href="#sites"]').trigger('click');
             });
         }
     }
 }
 
-yonger.siteRemove = function (sid) {
+yonger.siteRemove = function(sid) {
     let confirm = window.confirm("Удалить сайт?");
     if (confirm) {
         let res = wbapp.postSync('/module/yonger/removeSite/' + sid);
@@ -167,7 +153,7 @@ yonger.siteRemove = function (sid) {
     }
 }
 
-yonger.siteWorkspace = function (sid) {
+yonger.siteWorkspace = function(sid) {
     let res = wbapp.postSync('/module/yonger/goto/' + sid);
     if (res.goto == undefined) return;
     let $form = $('<form class="d-none" method="post" action="' + res.goto + '" />');

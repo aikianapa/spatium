@@ -31,20 +31,23 @@ class usersClass extends cmsFormsClass
         $dlvrs = $app->itemList('delivery', ['filter'=>$filter,'group'=>'date','sort'=>'date']);
         $dlvrs = $app->json($dlvrs['list'])->groupBy('date')->get();
         $maxdate = array_pop(array_keys($dlvrs));
-        $days = abs(strtotime(date('Y-m-d'))-strtotime($maxdate)) / 86400;
-
+        if (!$maxdate) $maxdate = date('Y-m-d',strtotime(date('Y-m-d')));
+        $days = intval(strtotime(date('Y-m-d'))-strtotime($maxdate)) / 86400;
         $list = [];
-        for($d=1; $d<=$days; $d++) {
-            $did = 'd'.date('Ymd',strtotime('now +'.$d.' days'));
-            $list[$did] = [
-                'date' => date('Y-m-d',strtotime('now +'.$d.' days')),
+
+        if ($days > 0) {
+            for ($d=1; $d<=$days; $d++) {
+                $did = 'd'.date('Ymd', strtotime('now +'.$d.' days'));
+                $list[$did] = [
+                'date' => date('Y-m-d', strtotime('now +'.$d.' days')),
                 'products' => [],
                 'orders' => [],
                 'status' => 'empty'
             ];
-            $this->delivery_prep($list[$did],$deny);
+                $this->delivery_prep($list[$did], $deny);
+            }
         }
-
+        
         $pClass = $app->formClass('products');
         foreach($dlvrs as $date => $day) {
             $did = 'd'.date('Ymd',strtotime($date));

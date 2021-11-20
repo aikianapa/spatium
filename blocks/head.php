@@ -19,7 +19,6 @@
   <link rel="preload" as="style" href="/assets/css/animate.css" />
   <link rel="preload" as="style" href="/assets/css/custom.less" />
   
-  <link rel="preload" as="script" href="/modules/yonger/tpl/assets/lib/perfect-scrollbar/perfect-scrollbar.min.js" />
   <link rel="preload" as="script" href="/engine/lib/bootstrap/js/bootstrap.bundle.min.js" />
   <link rel="preload" as="script" href="/modules/yonger/tpl/assets/js/dashforge.js" />
   <link rel="preload" as="script" href="/modules/yonger/tpl/assets/js/yonger.js" />
@@ -35,7 +34,6 @@
      "/assets/css/custom.less"
     ]);
     wbapp.loadScripts([
-    "/modules/yonger/tpl/assets/lib/perfect-scrollbar/perfect-scrollbar.min.js",
     "/engine/lib/bootstrap/js/bootstrap.bundle.min.js",
     "/modules/yonger/tpl/assets/js/dashforge.js",
     "/modules/yonger/tpl/assets/js/yonger.js",

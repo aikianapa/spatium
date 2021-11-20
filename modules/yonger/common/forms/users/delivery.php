@@ -28,11 +28,7 @@ wbapp.on('wb-render-done', function(data,target) {
     <h3>Мои доставки</h3>
     <ul class="list-group pd-b-50" id="deliveryCalendar" data-order="{{_var.order_id}}" unselectable="on">
         <wb-foreach wb="render=client&bind=cms.list.delivery" wb-ajax="/cms/ajax/form/users/delivery_list">
-
-
-
             <li class="list-group-item d-flex day {{status}}" data-date="{{date}}">
-
                 {{#if status == 'empty'}}
                 <div class="position-absolute t-5 r-5 btn-delivery z-index-10" title="Отложить доставку"
                     style="bottom:5px;right:5px;">
