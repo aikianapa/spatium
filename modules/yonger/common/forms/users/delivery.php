@@ -67,7 +67,11 @@ wbapp.on('wb-render-done', function(data,target) {
                         <div>
                             {{#each products}}
                             <div class="avatar avatar-xl product-icon d-inline-block mr-1" data-prod="{{_id}}">
-                                <img src="/thumbc/100x100/src{{image}}" class="rounded" alt="{{name}}">
+                                {{#if image !== ""}}
+                                    <img src="/thumbc/100x100/src{{image}}" width="100" height="100" class="rounded" alt="{{name}}">
+                                {{else}}
+                                    <img data-src="/module/myicons/asian-food.1.svg?size=100&stroke=7987a1" width="100" height="100" class="rounded" alt="{{name}}">
+                                {{/if}}
                                 <span
                                     class="badge badge-success position-absolute rounded-circle tx-10 l-0 b-0">x{{qty}}</span>
                             </div>
@@ -81,10 +85,14 @@ wbapp.on('wb-render-done', function(data,target) {
                     {{/if}}
                 </div>
             </li>
-
-
         </wb-foreach>
     </ul>
+</div>
+
+<div class="alert alert-info">
+<p>Если вы  хотите  перенести доставку  на другой день нажмите на значок <img data-src="/module/myicons/delivery-truck-checkmark.svg?size=24&stroke=dc3545"> и доставка сдвинется на следующий день. Чтобы вернуть отменённую доставку, нажмите на значёк <img data-src="/module/myicons/delivery-truck-checkmark.svg?size=24&stroke=10b759">.  Данную процедуру можно повторять неоднократно, пока доставка не попадет на нужный вам день.</p>
+
+
 </div>
 
 

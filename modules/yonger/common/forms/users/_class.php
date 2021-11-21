@@ -32,7 +32,7 @@ class usersClass extends cmsFormsClass
         $dlvrs = $app->json($dlvrs['list'])->groupBy('date')->get();
         $maxdate = array_pop(array_keys($dlvrs));
         if (!$maxdate) $maxdate = date('Y-m-d',strtotime(date('Y-m-d')));
-        $days = intval(strtotime(date('Y-m-d'))-strtotime($maxdate)) / 86400;
+        $days = intval((strtotime($maxdate) - strtotime(date('Y-m-d'))) / 86400);
         $list = [];
 
         if ($days > 0) {
