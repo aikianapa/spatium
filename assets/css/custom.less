@@ -322,6 +322,17 @@ section {
         box-shadow: 0 0 12px 4px white;
         opacity: 0.9;
     }
+    .card {
+        figcaption {
+            overflow: hidden;
+        }
+    }
+    @media (min-width: 576px) {
+        .card-columns {
+            column-count: 2;
+        }
+    }
+    
 }
 
 #productsList {
@@ -456,6 +467,10 @@ section {
 
 .visible {
     opacity:1;
+}
+
+.nobr {
+    white-space: nowrap;
 }
 
 .cursor-pointer {
