@@ -26,9 +26,9 @@ wbapp.on('wb-render-done', function(data,target) {
 
 <div class="myaccount-content">
     <h3>Мои доставки</h3>
-    <ul class="list-group pd-b-50 bd-0" id="deliveryCalendar" data-order="{{_var.order_id}}" unselectable="on">
+    <ul class="list-group pd-b-20 bd-0" id="deliveryCalendar" data-order="{{_var.order_id}}" unselectable="on">
         <wb-foreach wb="render=client&bind=cms.list.delivery" wb-ajax="/cms/ajax/form/users/delivery_list">
-            <li class="list-group-item d-flex day {{status}} py-4" data-date="{{date}}">
+            <li class="list-group-item d-flex day {{status}} py-3 text-muted" data-date="{{date}}">
                 <div class="wd-60 mg-r-15" alt="">
                     <b class="d-block position-relative">{{n}}</b>
                     <span>{{d}} {{m}}</span>
@@ -87,8 +87,9 @@ wbapp.on('wb-render-done', function(data,target) {
     </ul>
 </div>
 
-<div class="alert alert-info">
+<div class="alert alert-info md-b-50">
 <p>Если вы  хотите  перенести доставку  на другой день нажмите на значок <img data-src="/module/myicons/delivery-truck-checkmark.svg?size=24&stroke=dc3545"> и доставка сдвинется на следующий день. Чтобы вернуть отменённую доставку, нажмите на значёк <img data-src="/module/myicons/delivery-truck-checkmark.svg?size=24&stroke=10b759">.  Данную процедуру можно повторять неоднократно, пока доставка не попадет на нужный вам день.</p>
+<p><span class="tx-danger">Внимание!</span><br>Доставку нельзя перенести на "сегодня", так как  формирование заказа и планирование маршрута курьерской службы проводятся заблаговременно.</p>
 
 
 </div>
