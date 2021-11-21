@@ -26,21 +26,9 @@ wbapp.on('wb-render-done', function(data,target) {
 
 <div class="myaccount-content">
     <h3>Мои доставки</h3>
-    <ul class="list-group pd-b-50" id="deliveryCalendar" data-order="{{_var.order_id}}" unselectable="on">
+    <ul class="list-group pd-b-50 bd-0" id="deliveryCalendar" data-order="{{_var.order_id}}" unselectable="on">
         <wb-foreach wb="render=client&bind=cms.list.delivery" wb-ajax="/cms/ajax/form/users/delivery_list">
-            <li class="list-group-item d-flex day {{status}}" data-date="{{date}}">
-                {{#if status == 'empty'}}
-                <div class="position-absolute t-5 r-5 btn-delivery z-index-10" title="Отложить доставку"
-                    style="bottom:5px;right:5px;">
-                    <img data-src="/module/myicons/delivery-truck-cancel.svg?size=24&stroke=dc3545">
-                </div>
-                {{/if}}
-                {{#if status == 'deny'}}
-                <div class="position-absolute t-5 r-5 btn-delivery z-index-10" title="Вернуть доставку"
-                    style="bottom:5px;right:5px;">
-                    <img data-src="/module/myicons/delivery-truck-checkmark.svg?size=24&stroke=10b759">
-                </div>
-                {{/if}}
+            <li class="list-group-item d-flex day {{status}} py-4" data-date="{{date}}">
                 <div class="wd-60 mg-r-15" alt="">
                     <b class="d-block position-relative">{{n}}</b>
                     <span>{{d}} {{m}}</span>
@@ -84,6 +72,16 @@ wbapp.on('wb-render-done', function(data,target) {
                     </div>
                     {{/if}}
                 </div>
+                {{#if status == 'empty'}}
+                <div class="d-flex wd-30 t-0 btn-delivery z-index-10" title="Отложить доставку" >
+                    <img data-src="/module/myicons/delivery-truck-cancel.svg?size=24&stroke=dc3545">
+                </div>
+                {{/if}}
+                {{#if status == 'deny'}}
+                <div class="d-flex wd-30 t-0 btn-delivery z-index-10" title="Вернуть доставку">
+                    <img data-src="/module/myicons/delivery-truck-checkmark.svg?size=24&stroke=10b759">
+                </div>
+                {{/if}}
             </li>
         </wb-foreach>
     </ul>
