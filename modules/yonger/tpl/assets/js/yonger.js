@@ -58,12 +58,7 @@ $(document).on("wb-save-error", function(e, params) {
 });
 
 $(document).delegate(".modal", "show.bs.modal", function() {
-    if (PerfectScrollbar !== undefined) {
-        this.psb == undefined ? null : this.psb.destroy();
-        this.psb = new PerfectScrollbar(this);
-        $(this).children('.modal-body').css('overflow', 'hidden');
-        yonger.plugins();
-    }
+    yonger.plugins();
 });
 
 $(document).delegate(".modal", "hidden.bs.modal", function(event) {
