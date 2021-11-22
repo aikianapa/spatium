@@ -41,7 +41,7 @@ class modCloudpaywidget
         }
         isset($user['email']) ? $email = $user['email'] : $email = '';
         $phone = $user['phone'];
-        $orderId = $order['number'];
+        $orderId = $app->digitsOnly($order['number']);
 //        $url = 'https://api.cloudpayments.ru/test';
         $url = 'https://api.cloudpayments.ru/kkt/receipt';
         $post = [
@@ -53,7 +53,7 @@ class modCloudpaywidget
                 'Amounts' => ['electronic' => $order['total']['sum']],
                 'Phone' => $phone,
             ],
-            'InvoiceId' => $order['number'],
+            'InvoiceId' => $orderId,
             'AccountId' => $set['acc_id']
         ];
 

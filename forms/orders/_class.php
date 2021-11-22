@@ -39,7 +39,7 @@ class ordersClass extends cmsFormsClass
 
         $app->vars('_post.token') == 'courier' ? $order['payed'] = '' : $order['payed'] = 'on';
         $order['user'] = $user['id'];
-        $order['number'] = $_POST['number'];
+        //$order['number'] = $_POST['number'];
         $this->createDelivery($order);
         $app->itemSave('orders', $order);
         if ($app->vars('_post.token') !== 'courier') {
@@ -246,7 +246,8 @@ class ordersClass extends cmsFormsClass
     {
         $date_report == null ? $date_report = date('Y-m-d') : null;
         setlocale(LC_ALL, 'ru_RU.utf8');
-        isset($item['number']) ? null : $item['number'] = wbDigitsOnly($item['id']);
+        isset($item['number']) ? null : $item['number'] = $item['id'];
+        $item['number'] = wbDigitsOnly($item['number']);
         /*
         foreach ($item['delivery'] as $date => $d) {
             $time = strtotime($date);
