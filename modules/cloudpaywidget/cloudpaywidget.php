@@ -16,10 +16,9 @@ class modCloudpaywidget
     public function init() {
         $app = &$this->app;
         $obj = &$this->dom;
-        $ai = $app->module('autoinc');
         $out = $app->fromFile(__DIR__.'/cloudpaywidget_ui.php');
         $data = $app->vars('_sett.modules.cloudpaywidget');
-        $data['number'] = $ai->inc('orders', 'number', 1245);
+
         $out->fetch($data);
         $obj->after($out);
         $obj->remove();
@@ -30,8 +29,6 @@ class modCloudpaywidget
         $app = &$this->app;
         $set = $app->vars('_sett.modules.cloudpaywidget');
         if ($set['kassa'] !== 'on') return false;
-        
-
         $items = [];
         foreach($order['list'] as $item) {
             $items[] = [

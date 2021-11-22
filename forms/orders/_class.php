@@ -10,7 +10,10 @@ class ordersClass extends cmsFormsClass
         */
         $app = $this->app;
         $order = json_decode($_POST['data'], true);
-        $order['id'] = wbNewId('', 'z');
+        
+        $ai = $app->module('autoinc');
+        $order['number'] = $ai->inc('orders', 'number', 1500);
+        $order['id'] = 'z'.$order['number'];
         $user = $order['user'];
         $order['date']  = $user['date'];
         unset($user['date']);
@@ -243,7 +246,7 @@ class ordersClass extends cmsFormsClass
     {
         $date_report == null ? $date_report = date('Y-m-d') : null;
         setlocale(LC_ALL, 'ru_RU.utf8');
-        isset($item['number']) ? null : $item['number'] = $item['id'];
+        isset($item['number']) ? null : $item['number'] = wbDigitsOnly($item['id']);
         /*
         foreach ($item['delivery'] as $date => $d) {
             $time = strtotime($date);
