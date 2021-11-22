@@ -12,6 +12,16 @@
         return $res;
     }
 
+    function getDiscounts() {
+        $tree = wbTreeread('discount');
+        $tree = $tree['tree']['data'];
+        $discounts = [];
+        foreach($tree as $key => $d) {
+            $discounts[$key] = (1 - $d['data']['percent'] / 100).'';
+        }
+        return json_encode($discounts);
+    }
+
     function customRoute($route = []) {
         $app = &$_ENV['app'];
         $pages = $app->itemList('pages',['filter'=>[
