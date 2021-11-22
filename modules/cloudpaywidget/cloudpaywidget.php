@@ -34,7 +34,7 @@ class modCloudpaywidget
             $items[] = [
                 'label' => $item['name'],
                 'price' => $item['price'],
-                'quantity' => $item['qty'],
+                'quantity' => $item['qty'] * $item['days'],
                 'amount' => $item['sum'],
                 'vat' => null
             ];
@@ -42,7 +42,7 @@ class modCloudpaywidget
         isset($user['email']) ? $email = $user['email'] : $email = '';
         $phone = $user['phone'];
         $orderId = $order['number'];
-        $url = 'https://api.cloudpayments.ru/test';
+//        $url = 'https://api.cloudpayments.ru/test';
         $url = 'https://api.cloudpayments.ru/kkt/receipt';
         $post = [
             'Inn' => $set['inn'],
