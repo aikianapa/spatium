@@ -39,8 +39,10 @@ class ordersClass extends cmsFormsClass
         $order['number'] = $_POST['number'];
         $this->createDelivery($order);
         $app->itemSave('orders', $order);
-        $cloudpay = $app->module('cloudpaywidget');
-        $cloudpay->kassa($order, $user);
+        if ($app->vars('_post.token') !== 'courier') {
+            $cloudpay = $app->module('cloudpaywidget');
+            $cloudpay->kassa($order, $user);
+        }
         header('Location: /cabinet?cartclear#orders');
         die;
     }
