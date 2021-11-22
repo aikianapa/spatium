@@ -11,7 +11,7 @@
                     <th class="tx-center">Статус</th>
                     <th class="tx-right">Сумма</th>
                     <th class="tx-center">Оплачен</th>
-                    <th class="tx-center">Действие</th>
+                    <th class="tx-center">Детали</th>
                 </tr>
             </thead>
 
@@ -25,9 +25,15 @@
                         <svg wb-if="'{{active}}'!=='on'" class="size-30 mi mi-delete-circle" wb-module="myicons" stroke="dc3545"></svg>
                     </td>
                     <td class="tx-right">{{total.sum}}</td>
-                    <td class="tx-center">
-                        <img wb-if="'{{payed}}' == ''" data-src="/module/myicons/payments-finance-17.svg?size=30&stroke=dc3545">
-                        <img wb-if="'{{payed}}' > ''" data-src="/module/myicons/payments-finance-24.svg?size=30&stroke=28a745">
+                    <td class="tx-left">
+                        <div wb-if="'{{payed}}' == ''">
+                            <img data-src="/module/myicons/payments-finance-17.svg?size=30&stroke=dc3545">
+                            <span class="tx-12"> нет</span>
+                        </div>
+                        <div wb-if="'{{payed}}' > ''">
+                        <img data-src="/module/myicons/payments-finance-24.svg?size=30&stroke=28a745">
+                        <span class="tx-12"> да</span>
+                        </div>
                     </td>
                     <td class="tx-center"><a href="javascript:void(0)" data-ajax="{'url':'/cms/ajax/form/orders/view/{{id}}','html':'modal'}" class="cursor-pointer">
                         <img src="/module/myicons/search-arrow-circle.svg?size=30&stroke=0168fa">
