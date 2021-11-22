@@ -43,8 +43,6 @@
                             'filter': {'category':'main','active':'on'}
                 }">
                 <div class="card bd-0 mb-5">
-                    <wb-var days="{{_var.prog.{{_idx}}.count}}" />
-                    <wb-var discount="{{discounts.{{_var.days}}}}" wb-if="'{{discounts.{{_var.days}}}}'>'0'" else="1" />
                     <figure class="img-caption pos-relative mg-b-0">
                         <a href="javascript:$.redirectPost('/products/{{id}}/{{wbUrlOnly({{name}})}}', { 'days':'{{_var.days}}' });">
                         <wb-var imgcnt="{{count({{images}})}}" />
@@ -58,9 +56,6 @@
                         </figcaption>
                         </a>
                     </figure>
-                    <div class="position-absolute t-10 l-10 avatar avatar-lg" wb-if="'{{_var.discount}}'<'1'">
-                        <span class="avatar-initial rounded-circle bg-orange shadow-base">-{{(1-_var.discount)*100}}%</span>
-                    </div>
                     <div class="card-body text-center pb-0 tx-sm-12 tx-md-14">
                         <wb-foreach wb-from="_var.prog">
                         <div class="row bd-b">
