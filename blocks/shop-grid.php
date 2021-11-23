@@ -33,45 +33,39 @@
                               }">
                                 <div class="col-sm-6 col-md-4 mg-y-20">
                                     <div class="card card-profile bd-1 shadow">
-                                        <img data-src="/thumbc/500x450/src/{{images.0.img}}" width="500" height="450"
-                                            class="img-fluid rounded-top" alt="{{name}}">
+                                        <img data-src="/thumbc/500x450/src/{{images.0.img}}" width="500" height="450" class="img-fluid rounded-top" alt="{{name}}">
                                         <div class="card-body bd-b-0-f bd-r-0-f bd-l-0-f tx-13">
                                             <div>
                                                 <a href="/products/{{id}}/{{wbUrlOnly({{name}})}}">
                                                     <div class="avatar avatar-lg">
-                                                        <img class="avatar-initial p-1 rounded-circle bg-white"
-                                                            src="/module/myicons/search-arrow-circle.svg?size=26&stroke=10b759">
+                                                        <img class="avatar-initial p-1 rounded-circle bg-white" src="/module/myicons/search-arrow-circle.svg?size=26&stroke=10b759">
                                                     </div>
                                                 </a>
 
-                                                <h5 class="tx-semibold"><a href="">{{name}}</a></h5>
+                                                <h5 class="tx-semibold">
+                                                    <a href="">{{name}}</a>
+                                                </h5>
                                                 <p class="ht-25">{{wbGetWords({{text}},7)}}</p>
 
                                                 <div class="img-group img-group-sm mg-b-5">
                                                     <wb-var tmp="0" />
                                                     <wb-foreach wb="from=pn" wb-filter="{'images.0.img':{'$gt':''}}">
-                                                        <img src="/thumbc/40x40/src{{images.0.img}}"
-                                                            class="bd img wd-40 ht-40 rounded-circle" alt="">
+                                                        <img src="/thumbc/40x40/src{{images.0.img}}" class="bd img wd-40 ht-40 rounded-circle" alt="">
                                                         <wb-var tmp="{{_var.tmp*1 + 1}}" />
                                                     </wb-foreach>
-                                                    <img wb-if="'{{_var.tmp}}' == '0'"
-                                                        data-src="/thumbc/40x40/src{{images.0.img}}"
-                                                        class="bd img wd-40 ht-40 rounded-circle" alt="">
+                                                    <img wb-if="'{{_var.tmp}}' == '0'" data-src="/thumbc/40x40/src{{images.0.img}}" class="bd img wd-40 ht-40 rounded-circle"
+                                                        alt="">
                                                 </div>
-                                                <div class="mg-b-25"><span class="tx-12 tx-color-03">{{kcal}}
-                                                        Ккал<span wb-if="'{{category}}'=='main'"> /
-                                                            день</span></span></div>
-
-                                                <wb-module wb="module=cart">
-                                                    <a href="javascript:void(0);"
-                                                        class="mod-cart-add btn btn-block btn-outline-success rounded-20"
-                                                        data-id="{{id}}" data-name="{{name}}" data-price="{{price}}"
-                                                        data-image="{{images.0.img}}" data-days="7"
-                                                        data-link="/products/{{id}}/{{wbUrlOnly({{name}})}}"
-                                                        data-tooltip="В корзину"> В корзину
-                                                    </a>
-                                                </wb-module>
-
+                                                <div class="mg-b-25">
+                                                    <span class="tx-12 tx-color-03">{{kcal}} Ккал
+                                                        <span wb-if="'{{category}}'=='main'"> / день
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                                <div class="wd-100p">
+                                                    <wb-var product="{{_val}}" />
+                                                    <wb-include wb-tpl="price_table.php" />
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
