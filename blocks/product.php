@@ -86,26 +86,14 @@
                             </wb-foreach>
                             <div class="col-12">
                                 <div class="row text-center tx-semibold py-4">
-                                    <div class="col-sm-4 offset-sm-4">
+                                    <div class="col-sm-6 offset-sm-3">
                                         <wb-var week="{'пн':'в понедельник','вт':'во вторник','ср':'в среду','чт':'в четверг','пт':'в пятницу','сб':'в субботу','вс':'в воскресенье'}" />
                                         <div class="tx-18">Всего {{_var.week.{{_val}}}}
                                         </div>
                                         <div class="tx-30 tx-success">
                                             {{_var.total_kcal}} Ккал
                                         </div>
-                                        <wb-var days="7" wb-if="'{{_post.days}}'==''" else="{{_post.days}}" />
-                                        <div class="d-block tx-14">Цена: <span class="tx-danger">{{_var.product.price}}₽</span></div>
-                                        <a href="javascript:void(0);" data-id="{{_var.product.id}}"
-                                            wb-if="'{{_route.params.ajax}}'==''" 
-                                            data-name="{{_var.product.name}}" data-price="{{_var.product.price}}"
-                                            data-image="{{_var.product.images.0.img}}" data-days="{{_var.days}}"
-                                            data-discounts="{{json_encode({{_var.product.discounts}})}}"
-                                            data-link="/products/{{_var.product.id}}/{{wbUrlOnly({{_var.product.name}})}}"
-                                            class="mod-cart-add mod-cart-data btn btn-success tx-20 px-4 my-3 rounded-30">В
-                                            корзину <img
-                                                src="/module/myicons/shopping-cart.svg?size=26&stroke=FFFFFF" width="26" height="26">
-                                            </a>
-                                        <div class="row tx-normal">
+                                        <div class="row tx-normal mb-3">
                                             <div class="col">
                                                 <div class="tx-22">{{_var.total_prot}}</div>
                                                 <div class="tx-14 tx-gray-600">белки</div>
@@ -119,6 +107,7 @@
                                                 <div class="tx-14 tx-gray-600">углеводы</div>
                                             </div>
                                         </div>
+                                        <wb-include wb-tpl="price_table.php" />
                                     </div>
                                 </div>
                             </div>
@@ -128,15 +117,8 @@
             </div>
         </div>
         <div wb-if="'{{_var.product.category}}'!=='main'" class="d-block text-center">
-            <div class="row">
-                <div class="col-sm-4 offset-sm-4">
-                    <a href="javascript:void(0);" data-id="{{_var.product.id}}" data-name="{{_var.product.name}}"
-                        wb-if="'{{_route.params.ajax}}'==''" 
-                        data-price="{{_var.product.price}}" data-image="{{_var.product.images.0.img}}" data-days="7"
-                        data-discounts="{{_var.product.discounts}}"
-                        data-link="/products/{{_var.product.id}}/{{wbUrlOnly({{_var.product.name}})}}"
-                        class="mod-cart-add mod-cart-data btn btn-success tx-20 px-4 my-3 rounded-30">В
-                        корзину <img src="/module/myicons/shopping-cart.svg?size=26&stroke=FFFFFF" width="26" height="26"></a>
+            <div class="row mb-3">
+                <div class="col-sm-6 offset-sm-3">
                     <div class="row tx-normal">
                         <div class="col">
                             <div class="tx-22">{{_var.product.proteins*1}}</div>
@@ -152,6 +134,7 @@
                         </div>
                     </div>
                 </div>
+                <wb-include wb-tpl="price_table.php" />
             </div>
         </div>
 

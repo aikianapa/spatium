@@ -57,25 +57,8 @@
                         </a>
                     </figure>
                     <div class="card-body text-center pb-0 tx-sm-12 tx-md-14">
-                        <wb-foreach wb-from="_var.prog">
-                        <div class="row bd-b">
-                            <wb-var days="{{_var.prog.{{_idx}}.count}}" />
-                            <wb-var discount="{{_parent.discounts.{{_var.days}}}}" wb-if="'{{_parent.discounts.{{_var.days}}}}'>'0'" else="1" />
-                            <div class="col tx-left nobr">{{_var.prog.{{_idx}}.name}} <div class="badge badge-warning"  wb-if="'{{_var.discount}}'<'1'">
-                                    -{{(1-{{_var.discount}})*100}}%
-                                </div></div>
-                            <div class="col tx-right">{{_parent.price * {{_var.days}} * {{_var.discount}} }}₽</div>
-                            <div class="col-auto">
-                            <a href="javascript:void(0);" data-id="{{_parent.id}}"
-                            data-name="{{_parent.name}}" data-price="{{_parent.price}}"
-                            data-image="{{_parent.images.0.img}}" data-days="{{_var.days}}"
-                            data-discounts="{{json_encode({{_parent.discounts}})}}"
-                            data-link="/products/{{_parent.id}}/{{wbUrlOnly({{_parent.name}})}}"
-                            class="mod-cart-add mod-cart-data">
-                            <img src="/module/myicons/shopping-cart.svg?size=24&stroke=10b759" width="24" height="24"></a>
-                            </div>
-                        </div>
-                        </wb-foreach>
+                        <wb-var product="{{_val}}" />
+                        <wb-include wb-tpl="price_table.php" />
                     </div>
                 </div>
                 </wb-foreach>

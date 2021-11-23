@@ -17,7 +17,12 @@
         $tree = $tree['tree']['data'];
         $discounts = [];
         foreach($tree as $key => $d) {
-            $discounts[$key] = (1 - $d['data']['percent'] / 100).'';
+            if ($d['active'] == 'on') {
+                $discounts[$key] = [
+                    'name' => $d['name'],
+                    'percent' => (1 - $d['data']['percent'] / 100).''
+                ];
+            }
         }
         return json_encode($discounts);
     }
