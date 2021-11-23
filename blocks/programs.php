@@ -29,16 +29,10 @@
             </div>
             <div id="programsList">
             <div class="card-columns pt-4">
-            <wb-var prog="{
-                '0':{'count':3,'name':'3 дня'}
-                ,'1':{'count':7,'name':'7 дней'}
-                ,'2':{'count':14,'name':'14 дней'}
-                ,'3':{'count':30,'name':'30 дней'}
-            }" />
             <wb-foreach wb="{'table':'products',
                             'render':'server',
-                            'limit':'3',
-                            'minimal':'3',
+                            'limit':'2',
+                            'minimal':'2',
                             'rand':true,
                             'filter': {'category':'main','active':'on'}
                 }">
@@ -47,7 +41,7 @@
                         <a href="javascript:$.redirectPost('/products/{{id}}/{{wbUrlOnly({{name}})}}', { 'days':'{{_var.days}}' });">
                         <wb-var imgcnt="{{count({{images}})}}" />
                         <wb-var cicle="{{ceil({{_ndx}} / {{_var.imgcnt}})}}" />
-                        <img data-src="/thumbc/350x300/src/{{images.{{_idx - (_var.cicle * _var.imgcnt - _var.imgcnt) }}.img}}" class="card-img-top object-cover" width="350" height="300"
+                        <img data-src="/thumbc/350x300/src/{{images.0.img}}" class="card-img-top object-cover" width="350" height="300"
                             alt="{{name}}">
                         <figcaption
                             class="pos-absolute a-0 wd-100p pd-20 d-flex flex-column tx-10 tx-md-14 justify-content-md-center bg-white-9 transition-base op-0">
