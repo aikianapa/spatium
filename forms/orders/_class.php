@@ -1,4 +1,16 @@
 <?php
+/* 
+Статусы заказа
+
+1. Нулевой (null) - статус для только что поступивших заказов. Они нигде не отображаются, кроме как в кабинете менеджера.
+2. Активный (active) - менеджер подтверждает актуальность заказа.
+3. Оплачен (payed) - если заказ уже оплачен, то статус сразу меняется с Активного на Оплачен
+4. Отменён (cancel) - заказ отменяется, если менеджер не смог связаться с клиентом или если клиент сам отказался
+5. Ожидание (wait) - не смогли связаться с клиентом
+6. Завершен - (done)  успешно
+7. Завершен - (fail) неуспешно
+*/
+
 class ordersClass extends cmsFormsClass
 {
     public function checkout()
@@ -230,7 +242,11 @@ class ordersClass extends cmsFormsClass
 
     public function afterItemRead(&$item)
     {
-        $item['expired'] >= date('Y-m-d') ? $item['active'] = 'on' : $item['active'] = '';
+//        $item['expired'] >= date('Y-m-d') ? $item['active'] = 'on' : $item['active'] = '';
+
+        $item['active'] == 'on' ? $item['active'] = 'active' : null;
+        $item['active'] == '' ? $item['active'] = 'null' : null;
+
         $user = $this->app->itemRead('users', $item['_creator']);
         $item['name'] = $user['first_name'] . ' ' . $user['last_name'];
         $item['phone'] = wbPhoneFormat($user['phone']);

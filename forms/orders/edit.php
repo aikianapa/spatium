@@ -22,8 +22,17 @@
                 </div>
 
                 <div class="row">
-                <label class="tx-bold col-auto">Оплачен</label>
-                <wb-module wb="module=switch" name="payed" class="col-1" />
+                    <label class="tx-bold col-auto">Оплачен</label>
+                    <wb-module wb="module=switch" name="payed" class="col-1" />
+                    <label class="tx-bold col-auto">Статус</label>
+                    <div class="col-4">
+                        <select class="form-control select2" name="active" wb-tree="item=status">
+                            <option value="{{id}}" wb-if="'{{active}}'=='on'">{{name}}</option>
+                        </select>
+                    </div>
+                    <div class="col-12 my-1">
+                        <textarea class="form-control" name="notes" placeholder="Комментарии"></textarea>
+                    </div>
                 </div>
                 <table class="table">
                     <thead>
