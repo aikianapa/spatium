@@ -144,14 +144,17 @@ class ordersClass extends cmsFormsClass
             if (!isset($result[$oid])) {
                 $order = $app->itemRead('orders', $oid);
                 $order['list'] = [];
-                $result[$oid] = $order;
+                if ($order['active'] == 'active') $result[$oid] = $order;
             }
-            $list = $app->json($delivery)->groupBy('product')->get();
-            foreach ($list as $pid => $product) {
-                $qty = count($product);
-                $product = $app->itemRead('products', $pid);
-                $product['qty'] = $qty;
-                $result[$order['id']]['list'][] = $product;
+
+            if ($order['active'] == 'active') {
+                $list = $app->json($delivery)->groupBy('product')->get();
+                foreach ($list as $pid => $product) {
+                    $qty = count($product);
+                    $product = $app->itemRead('products', $pid);
+                    $product['qty'] = $qty;
+                    $result[$order['id']]['list'][] = $product;
+                }
             }
         }
         $dom->fetch(['date'=>$date,'result'=>$result]);
@@ -242,11 +245,12 @@ class ordersClass extends cmsFormsClass
 
     public function afterItemRead(&$item)
     {
-//        $item['expired'] >= date('Y-m-d') ? $item['active'] = 'on' : $item['active'] = '';
-
         $item['active'] == 'on' ? $item['active'] = 'active' : null;
         $item['active'] == '' ? $item['active'] = 'null' : null;
 
+//        $item['expired'] >= date('Y-m-d') && $item['active'] == 'active' ? null : $item['active'] = 'wait';
+
+        $item['expired'] < date('Y-m-d')  && in_array($item['active'],['active']) ? $item['active'] = 'done' : null;
         $user = $this->app->itemRead('users', $item['_creator']);
         $item['name'] = $user['first_name'] . ' ' . $user['last_name'];
         $item['phone'] = wbPhoneFormat($user['phone']);
