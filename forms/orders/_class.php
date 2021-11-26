@@ -110,19 +110,15 @@ class ordersClass extends cmsFormsClass
         $app = &$this->app;
         $dom = $app->fromFile(__DIR__ . '/rep_cook.php');
         $result = [];
-        if ($app->vars('_post.formdata.date') > '') {
-            $date = date('Y-m-d', strtotime($app->vars('_post.formdata.date')));
-        } else {
-            $date = date('Y-m-d', strtotime('now'));
-        }
-        $dlvrs = $app->itemList('delivery', ['filter'=>['date'=>$date]]);
+        $dlvrs = $this->repDeliveryActiveList();
+        $date = $dlvrs['date'];
         $dlvrs = $app->json($dlvrs['list'])->groupBy('product')->get();
         $result = [];
         foreach ($dlvrs as $pid => $product) {
             $qty = count($product);
-            $product = $app->itemRead('products', $pid);
-            $product['qty'] = $qty;
-            $result[] = $product;
+                $product = $app->itemRead('products', $pid);
+                $product['qty'] = $qty;
+                $result[] = $product;
         }
         $dom->fetch(['date'=>$date,'result'=>$result]);
         echo $dom->outer();
@@ -133,21 +129,19 @@ class ordersClass extends cmsFormsClass
         $app = &$this->app;
         $dom = $app->fromFile(__DIR__ . '/rep_orders.php');
         $result = [];
-        if ($app->vars('_post.formdata.date') > '') {
-            $date = date('Y-m-d', strtotime($app->vars('_post.formdata.date')));
-        } else {
-            $date = date('Y-m-d', strtotime('now'));
-        }
-        $dlvrs = $app->itemList('delivery', ['filter'=>['date'=>$date]]);
+        $dlvrs = $this->repDeliveryActiveList();
+        $date = $dlvrs['date'];
         $dlvrs = $app->json($dlvrs['list'])->groupBy('order')->get();
+        $status = [];
         foreach ($dlvrs as $oid => $delivery) {
             if (!isset($result[$oid])) {
                 $order = $app->itemRead('orders', $oid);
                 $order['list'] = [];
-                if ($order['active'] == 'active') $result[$oid] = $order;
+                $status[$oid] = $order['active'];
+                if ($status[$oid] == 'active') $result[$oid] = $order;
             }
 
-            if ($order['active'] == 'active') {
+            if ($status[$oid] == 'active') {
                 $list = $app->json($delivery)->groupBy('product')->get();
                 foreach ($list as $pid => $product) {
                     $qty = count($product);
@@ -166,15 +160,9 @@ class ordersClass extends cmsFormsClass
         $app = &$this->app;
         $dom = $app->fromFile(__DIR__ . '/rep_clients.php');
         $result = [];
-        if ($app->vars('_post.formdata.date') > '') {
-            $date = date('Y-m-d', strtotime($app->vars('_post.formdata.date')));
-        } else {
-            $date = date('Y-m-d', strtotime('now'));
-        }
-
-        $dlvrs = $app->itemList('delivery', ['filter'=>['date'=>$date]]);
+        $dlvrs = $this->repDeliveryActiveList();
+        $date = $dlvrs['date'];
         $dlvrs = $app->json($dlvrs['list'])->groupBy('user')->get();
-
         $result = [];
         foreach ($dlvrs as $uid => $grp) {
             if (!isset($result[$uid])) {
@@ -195,6 +183,30 @@ class ordersClass extends cmsFormsClass
         echo $dom->outer();
     }
 
+    function repDeliveryActiveList($date = null) {
+        $app = $this->app;
+        if ($date == null) {
+            if ($app->vars('_post.formdata.date') > '') {
+                $date = date('Y-m-d', strtotime($app->vars('_post.formdata.date')));
+            } else {
+                $date = date('Y-m-d', strtotime('now'));
+            }
+        }
+        $dlvrs = $app->itemList('delivery', ['filter'=>['date'=>$date]]);
+        $status = [];
+        foreach ($dlvrs['list'] as $k => $dlvr) {
+            $oid = $dlvr['order'];
+            if (!isset($status[$oid])) {
+                $order = $app->itemRead('orders', $oid);
+                $status[$oid] = $order['active'];
+            }
+            if ($status[$oid] !== 'active') {
+                unset($dlvrs['list'][$k]);
+            }
+        }
+        $dlvrs['date'] = $date;
+        return $dlvrs;
+    }
 
     public function set_status()
     {
