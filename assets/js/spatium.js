@@ -122,9 +122,6 @@ $(document).delegate(".feedback-btn", wbapp.evClick, function(e) {
     }
 });
 
-
-
-
 wbapp.on('mod-cart-update', function(ev, cart) {
     if (cart.total.sum !== undefined && cart.total.sum * 1 > 0) {
         $('#cart').find('.cart-payment, .mod-cart-clear, .checkout-btn, .checkin-btn').show();
@@ -133,13 +130,14 @@ wbapp.on('mod-cart-update', function(ev, cart) {
     }
 });
 
-
 $(document).delegate(".checkin-btn", wbapp.evClick, function(e) {
     e.stopPropagation();
     var data = getCartData();
     var token = "courier";
-    setcookie('carttoken', token, time() + 1000);
-    $.redirectPost("/orders/checkout", { 'data': data, 'token': token, '__token': __token });
+    setcookie('carttoken', token, time() + 1);
+    setTimeout(function() {
+        $.redirectPost("/orders/checkout", { 'data': data, 'token': token, '__token': __token });
+    }, 100);
 })
 
 $(document).delegate(".checkout-btn", wbapp.evClick, function(e) {

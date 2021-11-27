@@ -44,7 +44,7 @@ class ordersClass extends cmsFormsClass
         }
         $uid = $user['id'];
 
-        if ($_COOKIE['carttoken'] !== $_POST['token']) {
+        if ($app->vars('_post.token') !== 'courier' && $_COOKIE['carttoken'] !== $app->vars('_post.token')) {
             echo "Что-то пошло не так.";
             die;
         }
