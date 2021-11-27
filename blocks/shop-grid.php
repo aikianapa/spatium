@@ -43,7 +43,7 @@
                                                 </a>
 
                                                 <h5 class="tx-semibold">
-                                                    <a href="">{{name}}</a>
+                                                    <a href="/products/{{id}}/{{wbUrlOnly({{name}})}}">{{name}}</a>
                                                 </h5>
                                                 <p class="ht-25">{{wbGetWords({{text}},7)}}</p>
 
