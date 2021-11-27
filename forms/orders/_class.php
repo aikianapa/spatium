@@ -80,12 +80,13 @@ class ordersClass extends cmsFormsClass
         $oid = $order['id'];
         $user = $app->itemRead('users', $app->vars('_sess.user.id'));
         $deny = (array)$user['deny'];
+        
         for ($i=1;$i<=$days;$i++) {
             date('Y-m-d', strtotime($order['date'])) > date('Y-m-d') ? $j = $i-1 : $j = $i;
-            if (in_array(date('Y-m-d', strtotime($order['date'])), $deny)) {
+            $date = date('Y-m-d', strtotime($order['date']. '+' . $j . "days"));
+            if (in_array($date, $deny)) {
                 $days++;
             } else {
-                $date = date('Y-m-d', strtotime($order['date']. '+' . $j . "days"));
                 foreach ($order['list'] as $prod) {
                     for ($j=1; $j<=$prod['qty'];$j++) {
                         $item = [
@@ -101,6 +102,12 @@ class ordersClass extends cmsFormsClass
                     }
                 }
             }
+            if ($days>1000) {
+				echo "Кажется, мы зациклились!\n";
+				echo basename(__FILE__, '.php'); 
+				die;
+			}
+
         }
         $app->tableFlush('delivery');
         $order['days'] = $days;
@@ -282,37 +289,6 @@ class ordersClass extends cmsFormsClass
         setlocale(LC_ALL, 'ru_RU.utf8');
         isset($item['number']) ? null : $item['number'] = $item['id'];
         $item['number'] = wbDigitsOnly($item['number']);
-        /*
-        foreach ($item['delivery'] as $date => $d) {
-            $time = strtotime($date);
-            $d['date'] = $date;
-            $d['d'] = strftime('%d', $time);
-            $d['m'] = strftime('%b', $time);
-            $d['y'] = strftime('%Y', $time);
-            $d['n'] = strftime('%a', $time);
-            $d['status'] == '' ? $d['status'] = 'empty' : null;
-            $d['status'] == 'deny' ? $d['deny'] = 'deny' : $d['deny'] = '';
-            if ($this->app->vars('_sess.user.role') > '' && $this->app->vars('_sess.user.role')!== 'user')  {
-                if ($date < date('Y-m-d')) $d['status'] = 'past';
-            } else {
-                if ($date <= date('Y-m-d')) $d['status'] = 'past';
-            }
-
-            $item['delivery'][$date] = $d;
-        }
-        foreach($item['list'] as &$line) {
-            if (!isset($line['dlvrs'])) {
-                $count = 0;
-                foreach ($item['delivery'] as $date => $d) {
-                    if ($date_report >= $date && $d['deny'] !== 'deny') {
-                        $count++;
-                    }
-                }
-                $line['dlvrs'] = $count;
-                $count > $line['days'] ? $line['active'] = '' : $line['active'] = 'on';
-            }
-        }
-        */
         return $item;
     }
 }
