@@ -139,8 +139,10 @@ $(document).delegate(".checkin-btn", wbapp.evClick, function(e) {
         wbapp.post("/orders/checkout", { 'data': data, 'token': token, '__token': __token }, function(res) {
             if (res.error) {
                 wbapp.toast('Ошибка', res.msg, { 'bgcolor': 'warning' });
+                /* ошибка */
             } else {
                 document.location.href = res.url;
+
             }
         });
     }, 100);
