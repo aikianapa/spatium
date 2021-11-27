@@ -15,6 +15,8 @@ class ordersClass extends cmsFormsClass
 {
     public function checkout()
     {
+        header('Content-Type: application/json');
+
         /* тут нужно
         1. верифицировать оплату
         2. создать пользователя, если нужно
@@ -45,7 +47,7 @@ class ordersClass extends cmsFormsClass
         $uid = $user['id'];
 
         if ($app->vars('_post.token') !== 'courier' && $_COOKIE['carttoken'] !== $app->vars('_post.token')) {
-            echo "Что-то пошло не так.";
+            echo json_encode(['error'=>true,'msg'=>'Что-то пошло не так.']);
             die;
         }
 
@@ -58,7 +60,7 @@ class ordersClass extends cmsFormsClass
             $cloudpay = $app->module('cloudpaywidget');
             $cloudpay->kassa($order, $user);
         }
-        header('Location: /cabinet?cartclear#orders');
+        echo json_encode(['error'=>false,'msg'=>'Оплата завершена','url'=>'/cabinet?cartclear#orders']);
         die;
     }
 

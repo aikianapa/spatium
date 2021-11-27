@@ -136,7 +136,13 @@ $(document).delegate(".checkin-btn", wbapp.evClick, function(e) {
     var token = "courier";
     setcookie('carttoken', token, time() + 1);
     setTimeout(function() {
-        $.redirectPost("/orders/checkout", { 'data': data, 'token': token, '__token': __token });
+        wbapp.post("/orders/checkout", { 'data': data, 'token': token, '__token': __token }, function(res) {
+            if (res.error) {
+                wbapp.toast('Ошибка', res.msg, { 'bgcolor': 'warning' });
+            } else {
+                document.location.href = res.url;
+            }
+        });
     }, 100);
 })
 

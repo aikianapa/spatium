@@ -74,9 +74,11 @@
                         </div>
                         <p class="mt-5 tx-12">
                             Регистрируясь на сайте вы соглашаетесь принять <a href="/rules">правила использования сервиса</a> и <a href="/privacy">политику конфидициальности</a>
+                            <!--
                             <br><br>
                             Дополнительные сведения см. в разделе
                             <a href="/faq">Часто задаваемые вопросы</a>
+                            -->
                         </p>
                         <a href="/" class="btn btn-secondary btn-block rounded-20 mt-5 tx-16">
                         <img data-src="/module/myicons/home-house.4.svg?size=20&stroke=FFFFFF">
