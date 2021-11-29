@@ -41,13 +41,13 @@
                                     </div>
 
                                     <a class="carousel-control-prev" href="#carouselProd" role="button"
-                                        data-slide="prev">
+                                        data-slide="prev" wb-if="'{{count({{_var.prod.images}})}}'>'1'">
                                         <span class="carousel-control-prev-icon" aria-hidden="true"><i
                                                 data-feather="chevron-left"></i></span>
                                         <span class="sr-only">Previous</span>
                                     </a>
                                     <a class="carousel-control-next" href="#carouselProd" role="button"
-                                        data-slide="next">
+                                        data-slide="next" wb-if="'{{count({{_var.prod.images}})}}'>'1'">
                                         <span class="carousel-control-next-icon" aria-hidden="true"><i
                                                 data-feather="chevron-right"></i></span>
                                         <span class="sr-only">Next</span>
