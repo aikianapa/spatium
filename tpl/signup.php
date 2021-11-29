@@ -28,7 +28,7 @@
 
                         <div class="col-12 col-md-6 mb-3">
                                 <label class="form-control-label">Фамилия</label>
-                                <input type="text" placeholder="" class="form-control" name="last_name" required>
+                                <input type="text" placeholder="" class="form-control" name="last_name">
                         </div>
 
 
@@ -39,7 +39,7 @@
 
                         <div class="col-12 mb-3">
                                 <label class="form-control-label">Эл.почта <span class="tx-10">(для уведомлений и чеков)</span></label>
-                                <input type="email" placeholder="" class="form-control" name="email" required>
+                                <input type="email" placeholder="" class="form-control" name="email">
                         </div>
 
                         <div class="col-12 col-md-7">

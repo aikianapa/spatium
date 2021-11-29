@@ -43,8 +43,9 @@
                         <wb-var cicle="{{ceil({{_ndx}} / {{_var.imgcnt}})}}" />
                         <img data-src="/thumbc/350x300/src/{{images.0.img}}" class="card-img-top object-cover" width="350" height="300"
                             alt="{{name}}">
+                        <h6 class="pos-absolute t-20 l-20 tx-white tx-shadow tx-semibold mg-b-20">{{name}}</h6>
                         <figcaption
-                            class="pos-absolute a-0 wd-100p pd-20 d-flex flex-column tx-10 tx-md-14 justify-content-md-center bg-white-9 transition-base op-0">
+                            class="pos-absolute a-0 wd-100p pd-20 d-flex flex-column tx-10 tx-md-14 justify-content-md-start bg-white-9 transition-base op-0">
                             <h6 class="tx-inverse tx-semibold mg-b-20">{{name}}</h6>
                             <div class="tx-inverse mg-b-0">{{text}}</div>
                         </figcaption>

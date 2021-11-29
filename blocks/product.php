@@ -38,7 +38,11 @@
             </div>
         </div>
 
-
+        <div class="container text-center pb-3">
+            <p>Рационы здорового питания составлены на каждый день недели, изготавливаются и доставляются ежедневно.
+            В зависимости от дня доставки вы получите рацион дня, следующего за  датой доставки.  Например, во вторник вечером мы развозим рационы на среду.
+            Изменить день доставки после заказа вы можете в личном кабинете, отменив доставки на ненужные дни.</p>
+        </div>
 
         <div wb-if="'{{_var.product.category}}'=='main'">
 
@@ -138,7 +142,7 @@
             </div>
         </div>
 
-        <div class="row" wb-if="'{{count(_var.product.components)}}' > '0' AND '{{_route.form}}' == 'products'">
+        <div class="row" wb-if="'{{count(_var.product.components)}}' > '0' AND '{{_route.form}}' == 'products' AND '{{_var.product.components.0.c_name}}'>''">
             <div class="col-lg-8 offset-lg-2 px-5">
 
                 <div class="divider-text mb-1">Состав</div>
