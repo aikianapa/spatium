@@ -77,7 +77,11 @@ class modPhonecheck {
         } else {
             ($this->sett->testmode == 'on' or $this->number == '71111111111') ? $code = $this->code : $code = '';
             header('Content-Type: application/json');
-            echo json_encode(['error' => true, 'msg' => 'Пользователь не зарегистрирван','data'=>[
+            $msg = "<p class='tx-12 tx-dark'>Пожалуйста, проверьте правильность введённого номера телефона:<br>
+            <b class='tx-danger'>{$this->phone}</b><br>
+            Если вы первый раз совершаете заказ, пожалуйста, перейдите на страницу <a href='/signup'>регистрации</a>.</p>
+            <a href='/signup' class='btn btn-sm btn-success rounded-20'>Зарегистрироваться</a>";
+            echo json_encode(['error' => true, 'msg' => $msg,'data'=>[
             'phone'=>$this->number,
             'code'=>$code,
             'check'=>$this->check

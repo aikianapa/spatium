@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <wb-var assets="/modules/yonger/tpl/assets" />
-<wb-include wb-src="signhead.inc.php" />
+<wb-include wb-tpl="signhead.inc.php" />
 
 <body class="bg-light" id="signup">
     <div class="row h-100">
