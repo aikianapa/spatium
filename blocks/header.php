@@ -35,7 +35,7 @@
                 
                 <ul class="navbar-nav tx-bold mx-auto">
                     <wb-foreach wb="from=sitemenu">
-                    <li class="nav-item">
+                    <li class="nav-item" wb-if="'{{active}}'=='on'">
                         <a class="nav-link" href="{{link}}">{{label}}</a>
                     </li>
                     </wb-foreach>
