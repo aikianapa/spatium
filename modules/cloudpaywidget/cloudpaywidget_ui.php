@@ -33,6 +33,7 @@
             wbapp.storage('mod.cart.' + uid , null);
           }
           */
+         document.location.href = "/cabinet?cartclear#orders";
         },
         onFail: function (reason, options) {
           //wbapp.toast("Ошибка","Платёж не удался. Попробуйте снова.",{'bgcolor':'danger'});
@@ -42,12 +43,19 @@
           //					console.log(paymentResult,options);
           //например вызов вашей аналитики Facebook Pixel
           if (options.data.token == token && paymentResult.success == true) {
-            setcookie('carttoken', token, time() + 1000);
-            $.redirectPost("/orders/checkout", { 'data': data, 'token': token, '__token': __token, 'number': '{{number}}' });
-            wbapp.storage('mod.cart.' + uid , null);
+          setcookie('carttoken', token, time() + 100);
+              wbapp.post("/orders/checkout", { 'data': data, 'token': token, '__token': __token, 'number': '{{number}}' }, function(res) {
+                  if (res.error) {
+                      wbapp.toast('Ошибка', res.msg, { 'bgcolor': 'warning' });
+                      /* ошибка */
+                  } else {
+                      wbapp.storage('mod.cart.' + uid, null);
+                      document.location.href = res.url;
+                  }
+              });
           }
         }
-        
+       
       }
     )
     }
