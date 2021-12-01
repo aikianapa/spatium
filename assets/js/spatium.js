@@ -294,20 +294,21 @@ var cartLogin = function() {
     }, function(data) {
         if (data.login == true) {
             $(document).on('wb-ajax-done', function(ev, param) {
-                let cart = wbapp.storage('mod.cart.unknown');
-                uid = wbapp._session.user.id;
-                wbapp.storage('mod.cart', null);
-                wbapp.storage('mod.cart.' + uid, cart);
-                $(document).trigger('modCartInit');
                 if (param.html !== undefined && param.html == '#cartdev') {
+                    let cart = wbapp.storage('mod.cart.unknown');
+                    uid = wbapp._session.user.id;
+                    wbapp.storage('mod.cart', null);
+                    wbapp.storage('mod.cart.' + uid, cart);
+                    $(document).trigger('modCartInit');
                     setTimeout(function() {
                         $('#cart input[name=qty]:eq(0)').trigger('change');
+                        $(document).trigger('modCartInit');
                     }, 10)
                 }
+                $(document).trigger('modCartInit');
             })
             wbapp._session.user = data.user;
             $('#cart #cartdev').html(data.cart);
-            $(document).trigger('modCartInit');
             wbapp.ajaxAuto();
         }
     })
