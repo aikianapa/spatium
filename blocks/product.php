@@ -137,8 +137,8 @@
                             <div class="tx-14 tx-gray-600">углеводы</div>
                         </div>
                     </div>
+                    <wb-include wb-tpl="price_table.php" />
                 </div>
-                <wb-include wb-tpl="price_table.php" />
             </div>
         </div>
 

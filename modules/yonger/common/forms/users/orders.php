@@ -8,7 +8,7 @@
                 <tr>
                     <th class="tx-center">Номер</th>
                     <th>Период</th>
-                    <th class="tx-center">Статус</th>
+                    <!--th class="tx-center">Статус</th-->
                     <th class="tx-right">Сумма</th>
                     <th class="tx-center">Оплачен</th>
                     <th class="tx-center">Детали</th>
@@ -20,10 +20,10 @@
                 <tr>
                     <td class="tx-center">{{number}}</td>
                     <td>{{wbDate("d.m.Y",{{date}})}} - {{wbDate("d.m.Y",{{expired}})}}</td>
-                    <td class="tx-center">
+                    <!--td class="tx-center">
                         <svg wb-if="'{{active}}'=='on'" class="size-30 mi mi-checkmark-circle-1" wb-module="myicons" stroke="28a745"></svg>
                         <svg wb-if="'{{active}}'!=='on'" class="size-30 mi mi-delete-circle" wb-module="myicons" stroke="dc3545"></svg>
-                    </td>
+                    </td-->
                     <td class="tx-right">{{total.sum}}</td>
                     <td class="tx-left">
                         <div wb-if="'{{payed}}' == ''">

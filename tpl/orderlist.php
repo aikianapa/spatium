@@ -16,10 +16,15 @@
                     <tr>
                         <td class="pro-thumbnail">
                             <a href="{{link}}">
-                                <img data-src="/thumb/359x359/src/{{image}}" class="wd-100 img-fluid" alt="{{name}}">
+                            <img data-src="/thumbc/120x100/src/{{image}}" 
+                            width="120" height="100" class="img-fluid wd-120 rounded mg-r-15" alt="{{name}}" wb-if="'{{image}}'>''">
+                            <img data-src="/module/myicons/asian-food.1.svg?size=50&stroke=EEEEEE" 
+                            width="120" height="100" class="img-fluid wd-120 rounded mg-r-15" alt="{{name}}" wb-if="'{{image}}'==''">
                             </a>
                         </td>
-                        <td class="pro-title"><a href="{{link}}">{{name}}</a></td>
+                        <td class="pro-title">
+                            <a href="{{link}}">{{name}}</a>
+                        </td>
                         <td class="pro-price"><span>{{price}}₽</span></td>
                         <td class="pro-quantity">{{qty}}</td>
                         <td class="pro-quantity">{{days}}</td>
