@@ -62,6 +62,27 @@
                     </div>
                 </div>
 
+                <div class="media tx-16 mg-b-30" wb-if="'{{_sett.whatsapp}}'>''">
+                <img data-src="/module/myicons/chat-messages-bubble-phone-call.svg?size=40&stroke=10b759" alt="Whatsapp">
+                    <div class="media-body mg-l-30">
+                        <h5 class="mg-y-10 tx-20 tx-semibold tx-success">Whatsapp</h5>
+                        <a href="https://wa.me/{{wbDigitsOnly({{_sett.whatsapp}})}}" target="_blank">
+                        <span class="ws-break">{{_sett.whatsapp}}</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="media tx-16 mg-b-30" wb-if="'{{_sett.instagram}}'>''">
+                <img data-src="/module/myicons/instagram-circle.svg?size=40&stroke=10b759" alt="Whatsapp">
+                    <div class="media-body mg-l-30">
+                        <h5 class="mg-y-10 tx-20 tx-semibold tx-success">Инстаграм</h5>
+                        <a href="{{_sett.instagram}}" target="_blank">
+                        <span class="ws-break">SpatiumDetox</span>
+                        </a>
+                    </div>
+                </div>
+
+
                 <div class="media tx-16 mg-b-30">
                 <img data-src="/module/myicons/@-email-mail-1.svg?size=40&stroke=10b759" alt="Email">
                     <div class="media-body mg-l-30">

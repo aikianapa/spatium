@@ -75,6 +75,11 @@
                 <img data-src="/module/myicons/youtube-circle.svg?size=30&stroke=ffffff" width="30" height="30" alt="youtube">
               </a>
             </li>
+            <li class="list-inline-item" wb-if="'{{_sett.whatsapp}}'>''">
+              <a href="https://wa.me/{{wbDigitsOnly({{_sett.whatsapp}})}}" target="_blank">
+                <img data-src="/module/myicons/chat-messages-bubble-phone-call.svg?size=30&stroke=ffffff" width="30" height="30" alt="whatsapp">
+              </a>
+            </li>
           </ul>
 
         </div>
