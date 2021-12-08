@@ -87,7 +87,9 @@
                 <img data-src="/module/myicons/@-email-mail-1.svg?size=40&stroke=10b759" alt="Email">
                     <div class="media-body mg-l-30">
                         <h5 class="mg-y-10 tx-20 tx-semibold tx-success">Электронная почта</h5>
+                        <a href="mailto:{{email}}" target="_blank">
                         <span class="ws-break">{{email}}</span>
+                        </a>
                     </div>
                 </div>
 
