@@ -6,8 +6,8 @@
 <body class="bg-light" id="signup">
     <div class="row h-100">
         <wb-include wb-tpl="signleft.php" />
-        <div class="d-flex col-12 col-sm-6 col-lg-5" id="form">
-            <div class="container">
+        <div class="d-flex col-12 col-sm-6 col-lg-5 ht-100v overflow-y" id="form">
+            <div class="container overflow-y">
                 <div class="row mt-5">
                     <div class="col-12 col-md-6 offset-md-4 offset-xl-5 text-right">
                         <p class="">Ещё нет аккаунта?</p>

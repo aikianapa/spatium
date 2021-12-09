@@ -93,6 +93,9 @@
     font-family: sans;
     width: 100vw;
     overflow: hidden;
+    .overflow-y {
+        overflow-y: auto;
+    }
     
     .btn-rounded {
         border-radius: 100px;
