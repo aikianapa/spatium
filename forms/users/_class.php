@@ -280,7 +280,7 @@ class usersClass extends cmsFormsClass
 
     public function afterItemRead(&$item)
     {
-        if ($item['role'] !== 'user' && $item['id'] !== $this->app->vars('_sess.user.id') && in_array($this->app->vars('_sess.user.role'),['content','manager'])) {
+        if ($this->app->route->mode !== 'login' && $item['role'] !== 'user' && $item['isgroup'] !== 'on' && $item['id'] !== $this->app->vars('_sess.user.id') && in_array($this->app->vars('_sess.user.role'),['content','manager'])) {
             $item = null;
         } else {
             isset($item['phone']) ? null : $item['phone'] = '';

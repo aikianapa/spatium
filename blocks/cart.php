@@ -9,7 +9,7 @@
         <div id="cart" class="off-canvas off-canvas-overlay off-canvas-right wd-300 wd-md-400 d-none">
             <div class="off-canvas-header tx-20 tx-success bd-0"><span>
                     <img src="/module/myicons/shopping-cart.svg?size=26&stroke=10b759" width="26" height="26"> Мои покупки</span>
-                <a href="javascript:void(0)" class="close">
+                <a href="javascript:$('#cart').removeClass('show')" class="close">
                     <img src="/module/myicons/32/323232/interface-essential-109.svg" width="32" height="32">
                 </a>
             </div>
