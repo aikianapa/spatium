@@ -3,7 +3,7 @@
         Смотри в /blocks/hero-half.php
     </div>
     <div>
-        <wb-include wb-src="/modules/yonger/common/blocks/common.inc.php" />
+<wb-module wb="module=yonger&mode=edit&block=common.inc" />
     </div>
 
     <div class="form-group row">

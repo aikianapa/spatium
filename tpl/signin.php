@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<wb-var assets="/modules/yonger/tpl/assets" />
+<wb-var assets="/engine/modules/yonger/tpl/assets" />
 <wb-include wb-tpl="signhead.inc.php" />
 
 <body class="bg-light" id="signup">

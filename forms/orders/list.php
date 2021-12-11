@@ -70,7 +70,7 @@
                                 class="d-inline">
                                 <img src="/module/myicons/content-edit-pen.svg?size=24&stroke=323232">
                             </a>
-                            <a href="javascript:"
+                            <a href="javascript:" wb-disallow="content"
                                 data-ajax="{'url':'/ajax/rmitem/orders/{{id}}','update':'cms.list.orders','html':'#yongerorders modals'}"
                                 class="d-inline">
                                 <img src="/module/myicons/trash-delete-bin.2.svg?size=24&stroke=323232"

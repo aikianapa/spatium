@@ -102,7 +102,7 @@
     }
 
     #image {
-        background: url(/modules/yonger/tpl/assets/img/signup_bg.jpg) 50% 0%;
+        background: url({{_sett.modules.login.background.0.img}}) 50% 0%;
         background-size: cover;
         height: 100vh;
 

@@ -84,7 +84,7 @@
                                 data-ajax="{'url':'/cms/ajax/form/{{_form}}/edit/{{_id}}','update':'cms.list.{{_form}}','html':'#yongerSpace modals'}"
                                 class=" d-inline"><img src="/module/myicons/24/323232/content-edit-pen.svg" width="24"
                                     height="24"></a>
-                            <a href="javascript:"
+                            <a href="javascript:" wb-disallow="content"
                                 data-ajax="{'url':'/ajax/rmitem/{{_form}}/{{_id}}','update':'cms.list.{{_form}}','html':'#yongerSpace modals'}"
                                 class=" d-inline"><img src="/module/myicons/24/323232/trash-delete-bin.2.svg" width="24"
                                     height="24"></a>

@@ -4,7 +4,7 @@
     <nav class="nav navbar navbar-expand-md col">
         <h3 class="tx-bold tx-spacing--2 order-1">{{_lang.users}}</h3>
         <a href="#" data-ajax="{'url':'/cms/ajax/form/users/list_roles/','html':'.content-body'}"
-            class="ml-auto order-2 float-right btn btn-secondary">
+            class="ml-auto order-2 float-right btn btn-secondary" wb-disallow="content">
             <img src="/module/myicons/24/FFFFFF/users-circle.svg" /> {{_lang.roles}}
         </a>
         <a href="#" data-ajax="{'url':'/cms/ajax/form/users/edit/_new','html':'#yongerSpace modals'}"
@@ -17,7 +17,13 @@
             <div class="header p-2">
                 <span clsss="row">
                     <div class="col-3">
-                        <input type="search" class="form-control" placeholder="{{_lang.search}}">
+                        <input type="search" class="form-control" placeholder="{{_lang.search}}"
+                        data-ajax="{'target':'#{{_form}}List','filter_add':{'$or':[
+                            { 'first_name': {'$like' : '$value'} },
+                            { 'last_name': {'$like' : '$value'} },
+                            { 'phone': {'$like' : '$value'} },
+                            { 'email': {'$like' : '$value'} }
+                              ]} }">
                     </div>
                 </span>
             </div>

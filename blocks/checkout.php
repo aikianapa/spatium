@@ -1,4 +1,7 @@
 <edit header="Страница оплаты заказа">
+<div>
+<wb-module wb="module=yonger&mode=edit&block=common.inc" />
+</div>
     <div class="alert alert-info">
         Смотри в /blocks/checkout.php
     </div>

@@ -20,15 +20,22 @@
             <div class="header p-2">
                 <span clsss="row">
                 <div class="col-3">
-                <input type="search" class="form-control" placeholder="Поиск страницы">
+                <input type="search" class="form-control" placeholder="Поиск страницы"
+                data-ajax="{'target':'#{{_form}}List','filter_add':{'$or':[{ 'header': {'$like' : '$value'} }, { 'url': {'$like' : '$value'} }  ]} }">
                 </div>
                 </span>
             </div>
             
         </span>
         <ol id="pagesList" class="dd-list">
-            <wb-foreach wb="from=list&form=pages&bind=cms.list.pages&render=server&tpl=true" wb-filter="{'_site':'{{_sett.site}}'}">
-                <li class="dd-item row" data-item="{{id}}" data-name="{{name}}">
+                        <wb-foreach wb="{'table':'{{_form}}',
+                            'render':'server',
+                            'bind':'cms.list.{{_form}}',
+                            'sort':'date:d',
+                            'size':'{{_sett.page_size}}',
+                            'filter': {'_site':'{{_sett.site}}'}
+                }">
+                <li class="dd-item row" data-item="{{id}}" data-name="{{name}}" wb-if="!in_array('{{_id}}',['_header','_footer'])">
                     <span class="dd-handle"><img src="/module/myicons/20/000000/dots-2.svg"  width="20" height="20"/></span>
                     <span class="dd-text d-none d-sm-flex col-sm-6 ellipsis">
                     <span>{{header}}</span>
@@ -36,6 +43,7 @@
                     <span class="dd-info col-sm-6">
                         <span class="row">
                             <span class="dd-path col-6 ellipsis" data-path="{{url}}">
+                                <img data-src="/module/myicons/link-big.svg?size=24&stroke=000000">
                                 {{url}}
                                 <span class="d-block d-sm-none tx-10 tx-muted">{{header}}</span>
                             </span>
@@ -43,6 +51,7 @@
                                 <wb-var wb-if='"{{active}}" == ""' stroke="FC5A5A" else="82C43C" />
                                 <input type="checkbox" name="active" class="d-none">
                                 <img src="/module/myicons/24/{{_var.stroke}}/power-turn-on-square.1.svg" class="dd-active cursor-pointer">
+                                <img src="/module/myicons/24/323232/copy-paste-select-add-plus.svg" width="24" height="24" class="dd-copy">
                                 <img src="/module/myicons/24/323232/content-edit-pen.svg" width="24" height="24" class="dd-edit">
                                 <img src="/module/myicons/24/323232/trash-delete-bin.2.svg" width="24" height="24" class="dd-remove">
                             </form>
@@ -83,10 +92,10 @@
 
         $('#yongerPagesTree').delegate('.dd-path',wbapp.evClick,function(e){
             e.stopPropagation();
-            let url = document.location.origin + $(this).text();
+            let url = document.location.origin + $(this).attr('data-path');
             let target = md5(url);
             window.open(url, target).focus();
-            e.stopPropogation();
+            e.stopPropagation();
         });
 
         $('#yongerPagesTree').delegate('.dd-active',wbapp.evClick,function(e){
@@ -100,6 +109,12 @@
             e.stopPropagation();
             let item = $(this).parents('[data-item]').attr('data-item')
             wbapp.ajax({'url':'/cms/ajax/form/pages/edit/'+item,'html':'#yongerSpace modals'});
+        });
+
+        $('#yongerPagesTree').delegate('li[data-item] .dd-copy',wbapp.evClick,function(e){
+            e.stopPropagation();
+            let item = $(this).parents('[data-item]').attr('data-item')
+            wbapp.ajax({'url':'/module/yonger/copypage/','item':item,'update':'cms.list.pages'});
         });
 
         $(document).on('bind-cms.list.pages',function(){

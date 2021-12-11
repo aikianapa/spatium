@@ -3,7 +3,7 @@
         Смотри в /blocks/product.php
     </div>
     <div>
-        <wb-include wb-src="/modules/yonger/common/blocks/common.inc.php" />
+<wb-module wb="module=yonger&mode=edit&block=common.inc" />
     </div>
 </edit>
 

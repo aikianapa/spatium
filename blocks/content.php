@@ -11,7 +11,7 @@
 </view>
 <edit header="{{_lang.header}}">
     <div>
-    <wb-include wb-src="/modules/yonger/common/blocks/common.inc.php" />
+<wb-module wb="module=yonger&mode=edit&block=common.inc" />
     </div>
     <wb-multilang wb-lang="{{_sett.locales}}" name="lang">
         <div class="form-group row">

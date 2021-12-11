@@ -3,8 +3,9 @@
         Смотри в /blocks/contact.php
     </div>
     <div>
-        <wb-include wb-src="/modules/yonger/common/blocks/common.inc.php" />
-
+    <div>
+<wb-module wb="module=yonger&mode=edit&block=common.inc" />
+</div>
         <form>
 
                 <div class="divider-text">Контакты</div>
