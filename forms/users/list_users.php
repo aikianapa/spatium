@@ -8,7 +8,7 @@
             <img src="/module/myicons/24/FFFFFF/users-circle.svg" /> {{_lang.roles}}
         </a>
         <a href="#" data-ajax="{'url':'/cms/ajax/form/users/edit/_new','html':'#yongerSpace modals'}"
-            class="ml-2 order-2 float-right btn btn-primary">
+            class="ml-2 order-2 float-right btn btn-primary" wb-disallow="content">
             <img src="/module/myicons/24/FFFFFF/users-15.svg" /> {{_lang.create}}
         </a>
     </nav>
