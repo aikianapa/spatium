@@ -278,6 +278,21 @@ class usersClass extends cmsFormsClass
         $item['phone'] = $this->app->phoneFormat($item['phone']);
     }
 
+    public function afterItemRemove(&$item) {
+        if (!isset($item['id'])) return $item;
+        $app = &$this->app;
+        $list = $app->ItemList('orders', ['filter'=>['user'=>$item['id']]]);
+        foreach($list['list'] as $key => $item) {
+            $app->itemRemove('orders', $item['id'],false);
+        }
+        $list = $app->ItemList("delivery", ['filter'=>['user'=>$item['id']]]);
+        foreach($list['list'] as $key => $item) {
+            $app->itemRemove('delivery', $item['id'], false);
+        }
+        $app->tableFlush('orders');
+        $app->tableFlush('delivery');
+    }
+
     public function afterItemRead(&$item)
     {
         if ($this->app->route->mode !== 'login' && $item['role'] !== 'user' && $item['isgroup'] !== 'on' && $item['id'] !== $this->app->vars('_sess.user.id') && in_array($this->app->vars('_sess.user.role'),['content','manager'])) {
