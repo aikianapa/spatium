@@ -6,5 +6,10 @@
 </edit>
 
 <view>
-    <wb-include wb-tpl="cabinet.php"></wb-include>
+    <wb-include wb-tpl="cabinet.php" wb-if="'{{_sess.user.role}}'=='user'"></wb-include>
+    <div class="container mg-t-150 mg-b-80" wb-if="'{{_sess.user.role}}'!=='user'">
+    <div class="alert alert-info" role="alert">
+        Личный кабинет доступен только зарегистрированным пользователям.
+    </div>
+    </div>
 </view>
