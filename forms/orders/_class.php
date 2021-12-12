@@ -287,6 +287,16 @@ class ordersClass extends cmsFormsClass
         $this->beforeItemShow($item);
     }
 
+    public function afterItemRemove(&$item) {
+        if (!isset($item['id'])) return $item;
+        $app = &$this->app;
+        $list = $app->ItemList("delivery", ['filter'=>['order'=>$item['id']]]);
+        foreach($list['list'] as $key => $item) {
+            $app->itemRemove('delivery', $item['id'], false);
+        }
+        $app->tableFlush('delivery');
+    }
+
     public function beforeItemShow(&$item, $date_report = null)
     {
         $date_report == null ? $date_report = date('Y-m-d') : null;
