@@ -23,13 +23,13 @@
 
 </edit>
 <view>
-<html>
-                <ul class="navbar-nav tx-bold mx-auto">
+
+                <ul class="navbar-nav tx-bold">
                     <wb-foreach wb="from=_parent.sitemenu&tpl=false">
                     <li class="nav-item" wb-if="'{{active}}'=='on'">
                         <a class="nav-link" href="{{link}}">{{label}}</a>
                     </li>
                     </wb-foreach>
                 </ul>
-</html>
+
 </view>

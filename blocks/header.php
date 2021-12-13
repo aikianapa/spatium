@@ -32,7 +32,7 @@
                 <img data-src="/module/myicons/menu-burger.svg?size=30&stroke=333333"  width="30" height="30">
             </button>
             <div class="collapse navbar-collapse order-2" id="navbarNav">
-                <wb-module wb="module=yonger&mode=render&view=sitemenu" />
+                <div class="d-inline  mx-auto my-2 my-lg-0"><wb-module wb="module=yonger&mode=render&view=sitemenu" /></div>
                 <div class="d-inline my-2 my-lg-0" id="headsign">
                     <div auto data-ajax="{'url':'/module/yonger/block/headsign','html':'#headsign'}"></div>
                 </div>
