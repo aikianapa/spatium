@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<html>
-
-<head></head>
-
-<body class="scroll-y">
-    <wb-module wb="module=yonger&mode=render&view=header" />
     <div class="my-account-section section position-relative mb-50 mg-t-80">
         <div class="container">
             <div class="row">
@@ -245,7 +238,3 @@
             </div>
         </div>
     </div>
-    <wb-module wb="module=yonger&mode=render&view=footer" />
-</body>
-
-</html>
