@@ -13,14 +13,14 @@
             <div id="productsCaptions" class="carousel slide" data-ride="carousel" data-keyboard="true"
                 data-touch="true">
                 <ol class="carousel-indicators">
-                    <wb-foreach wb="table=products&sort=_created" wb-filter="category=main&active=on">
+                    <wb-foreach wb="table=products&sort=_created&tpl=false" wb-filter="category=main&active=on">
                         <wb-var wb-if="'{{_idx}}'=='0'" active="active" else="" />
                         <li data-target="#productsCaptions" data-slide-to="{{_idx}}" class="{{_var.active}}">
                         </li>
                     </wb-foreach>
                 </ol>
                 <div class="carousel-inner">
-                    <wb-foreach wb="table=products&sort=_created" wb-filter="category=main&active=on">
+                    <wb-foreach wb="table=products&sort=_created&tpl=false" wb-filter="category=main&active=on">
                         <wb-var product="{{_val}}" />
                         <wb-var wb-if="'{{_idx}}'=='0'" active="active" else="" />
                         <div class="carousel-item {{_var.active}}">

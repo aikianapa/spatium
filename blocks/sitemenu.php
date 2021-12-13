@@ -23,24 +23,13 @@
 
 </edit>
 <view>
-
-<ul class="navbar-nav tx-bold tx-uppercase">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/shop">Ежедневное меню</a>
+<html>
+                <ul class="navbar-nav tx-bold mx-auto">
+                    <wb-foreach wb="from=_parent.sitemenu&tpl=false">
+                    <li class="nav-item" wb-if="'{{active}}'=='on'">
+                        <a class="nav-link" href="{{link}}">{{label}}</a>
                     </li>
-
-                    <li class="nav-item"><a class="nav-link" href="/desserts">
-                            Полезные десерты
-                        </a></li>
-                    <li class="nav-item"><a class="nav-link" href="/catering">
-                            Кейтеринг
-                        </a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">
-                            Доставка
-                        </a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">
-                            Контакты
-                        </a></li>
-</ul>
-
+                    </wb-foreach>
+                </ul>
+</html>
 </view>
