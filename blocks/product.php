@@ -47,7 +47,7 @@
         <div wb-if="'{{_var.product.category}}'=='main'">
 
             <ul class="nav nav-tabs bd-0 justify-content-center tx-16" role="tablist">
-                <wb-foreach wb-json='["пн","вт","ср", "чт","пт","сб","вс"]' wb-render="server">
+                <wb-foreach wb-json='["пн","вт","ср", "чт","пт","сб","вс"]' wb-tpl="false" wb-render="server">
                     <li class="nav-item">
                         <wb-var wb-if="'{{_idx}}'=='0'" active="active" else="" />
                         <a class="nav-link {{_var.active}}" data-toggle="tab" href="#{{_var.wid}}-{{_idx}}">{{_val}}</a>
@@ -56,7 +56,7 @@
             </ul>
             <div class="tab-content mt-5">
                 <wb-var tmp="{'Zavtrak':'Завтрак','Obed':'Обед','Poldnik':'Полдник','Ujin':'Ужин'}" />
-                <wb-foreach wb-json='["пн","вт","ср", "чт","пт","сб","вс"]'>
+                <wb-foreach wb-json='["пн","вт","ср", "чт","пт","сб","вс"]' wb-tpl="false">
                     <wb-var wb-if="'{{_idx}}'=='0'" active="active" else="" />
                     <div id="{{_var.wid}}-{{_idx}}" class="container tab-pane {{_var.active}}">
                         <wb-var total_kcal="0" />
@@ -64,7 +64,7 @@
                         <wb-var total_fats="0" />
                         <wb-var total_carb="0" />
                         <div class="row justify-content-center">
-                            <wb-foreach wb="from=_parent._var.product.{{wbTranslit({{_val}})}}"
+                            <wb-foreach wb="from=_parent._var.product.{{wbTranslit({{_val}})}}" wb-tpl="false"
                                 wb-filter="{'food':{'$gt':''}}">
                                 <div class="col-md-3 bd-0">
                                     <div class="card ht-100p bd-0">
@@ -155,7 +155,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <wb-foreach wb-from="_var.product.components">
+                        <wb-foreach wb-from="_var.product.components" wb-tpl="false">
                             <tr>
                                 <th scope="row" class="text-right">{{_ndx}}</th>
                                 <td>{{c_name}}</td>

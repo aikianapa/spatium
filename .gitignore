@@ -7,3 +7,5 @@ tpl/assets
 engine
 
 *.log
+
+assets/css/compress/

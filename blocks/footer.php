@@ -139,6 +139,9 @@
                         script.async = true;
                         script.src = "https://getbtn.com/widget/index.php?id=" + WidGetButtonOptions.id;
                         document.getElementsByTagName("head")[0].appendChild(script);
+                        setTimeout(() => {
+                            document.querySelector('.widgethelptext').remove();
+                        }, 1000);
                     })();
                     </script>
 
