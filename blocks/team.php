@@ -60,7 +60,7 @@
 
 
         <div class="d-sm-none">
-            <div id="teamCaption" class="carousel slide" data-ride="carousel" data-keyboard="true" data-touch="true">
+            <div id="teamCaption" class="carousel slide carousel-fade" data-ride="carousel" data-keyboard="true" data-touch="true">
                 <div class="carousel-inner">
                     <wb-foreach wb="from=team&tpl=false">
                         <wb-var wb-if="'{{_idx}}'=='0'" active="active" else="" />
