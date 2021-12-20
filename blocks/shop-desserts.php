@@ -42,11 +42,13 @@
                             </li>
                             <wb-var group="" wb-if="'{{_class}}'=='group-total'" />
                             <li class="list-group-item d-flex align-items-center" wb-if="'{{id}}'>''">
-                            <img data-src="/thumbc/120x100/src/{{images.0.img}}" 
-                            width="120" height="100" class="img-fluid wd-120 rounded mg-r-15" alt="{{name}}" wb-if="'{{images.0.img}}'>''">
+                            <img data-src="/thumbc/120x100/src/{{images.0.img}}"
+                            data-ajax="{'url':'/products/info/{{id}}/{{wbUrlOnly({{name}})}}','html':'modal'}"
+                            width="120" height="100" class="cursor-pointer img-fluid wd-120 rounded mg-r-15" alt="{{name}}" wb-if="'{{images.0.img}}'>''">
 
-                            <img data-src="/module/myicons/asian-food.1.svg?size=50&stroke=EEEEEE" 
-                            width="120" height="100" class="img-fluid wd-120 rounded mg-r-15" alt="{{name}}" wb-if="'{{images.0.img}}'==''">
+                            <img data-src="/module/myicons/asian-food.1.svg?size=50&stroke=EEEEEE"
+                            data-ajax="{'url':'/products/info/{{id}}/{{wbUrlOnly({{name}})}}','html':'modal'}"
+                            width="120" height="100" class="cursor-pointer img-fluid wd-120 rounded mg-r-15" alt="{{name}}" wb-if="'{{images.0.img}}'==''">
 
                                             <div class="pb-4">
                                                 <div class="position-absolute wd-auto r-0 b-5">
@@ -63,7 +65,8 @@
                                                         <img src="/module/myicons/search-arrow-circle.svg?size=26&stroke=10b759" class="ht-md-40 wd-auto">
                                                     </a>
                                                 </div>
-                                                <h6 class="tx-13 tx-inverse tx-semibold mg-b-0">{{name}}</h6>
+                                                <h6 class="tx-13 tx-inverse tx-semibold mg-b-0 cursor-pointer"
+                                                data-ajax="{'url':'/products/info/{{id}}/{{wbUrlOnly({{name}})}}','html':'modal'}">{{name}}</h6>
                                                 <span class="d-block tx-11 text-muted">Калорийность: {{kcal}}, Вес: {{weight}}</span>
                                             </div>
                             </li>
