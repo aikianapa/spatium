@@ -8,6 +8,8 @@ var hash = document.location.hash;
 var __token = wbapp._session.token;
 
 wbapp.on('ready', function() {
+    $('#loader').addClass("hide").removeClass('show');
+    $('body').removeClass('load');
 
     setTimeout(function() {
         $('.parallax').each(function() {
@@ -50,9 +52,6 @@ wbapp.on('ready', function() {
         }
 
         wbapp.alive();
-
-        $('loader').remove();
-        $('body').removeClass('load');
 
         setTimeout(function() {
             $('#cart').removeClass('d-none');

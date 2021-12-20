@@ -8,7 +8,7 @@
     <head>
         <meta charset="UTF-8" />
 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0" />
         <meta name="description" content="Spatium Detox">
         <title></title>
         <!--script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.0.1/dist/alpine.js" defer></script-->
@@ -19,13 +19,6 @@
         <link rel="stylesheet" href="/engine/modules/datetimepicker/datetimepicker.less" />
         <link rel="stylesheet" href="/assets/css/animate.css" />
         <link rel="stylesheet" href="/assets/css/custom.less" />
-
-        <link rel="preload" as="script" href="/engine/lib/bootstrap/js/bootstrap.bundle.min.js" />
-        <link rel="preload" as="script" href="/engine/modules/yonger/tpl/assets/js/dashforge.js" />
-        <link rel="preload" as="script" href="/engine/modules/yonger/tpl/assets/js/yonger.js" />
-        <link rel="preload" as="script" href="/assets/js/jquery.appear.js" />
-        <link rel="preload" as="script" href="/assets/js/spatium.js" />
-
 
         <script src="/engine/js/wbapp.js"></script>
         <script type="wbapp" remove>
