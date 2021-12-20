@@ -8,9 +8,6 @@ var hash = document.location.hash;
 var __token = wbapp._session.token;
 
 wbapp.on('ready', function() {
-    $('#loader').addClass("hide").removeClass('show');
-    $('body').removeClass('load');
-
     setTimeout(function() {
         $('.parallax').each(function() {
             let img = $(this).attr('data-img');
@@ -58,6 +55,8 @@ wbapp.on('ready', function() {
             if (strpos(document.location.href, 'cartclear')) {
                 $('#cart .mod-cart-clear').trigger('click');
             }
+            $('#loader').addClass("hide").removeClass('show');
+            $('body').removeClass('load');
         }, 1000)
 
         $('.scroll-top').on('click', function() {
@@ -70,7 +69,7 @@ wbapp.on('ready', function() {
             $(document).trigger('modCartInit');
         });
 
-    }, 1)
+    }, 10)
 
 
 
