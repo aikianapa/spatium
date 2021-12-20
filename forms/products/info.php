@@ -1,5 +1,6 @@
 <html>
 <div class="modal fade show" tabindex="-1" role="dialog">
+    <wb-var week="{'pn':'понедельник','vt':'вторник','sr':'среда','cht':'четверг','pt':'пятница','sb':'суббота','vs':'воскресенье'}" />
     <wb-data wb="table=products&item={{_route.item}}">
         <wb-var product="{{ _current }}" />
         <wb-var prod="{{ _current.{{_route.day}}.{{_route.pos}} }}" />
@@ -7,7 +8,10 @@
         <div class="modal-dialog modal-fullscreen" role="document" wb-if="'{{_route.day}}'>''">
             <div class="modal-content">
                 <div class="modal-header align-items-center">
-                    <h6 class="modal-title tx-semibold tx-success w-100 tx-center">{{ _var.prod.food }}</h6>
+                    <h6 class="modal-title tx-semibold tx-success w-100 tx-center">
+                        {{name}} ({{_var.week.{{_route.day}}}})
+                        <br>{{ _var.prod.food }}
+                    </h6>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <img data-src="/module/myicons/interface-essential-107.svg?size=30&stroke=10b759">
                     </button>
@@ -116,6 +120,13 @@
                                         </wb-foreach>
                                     </tbody>
                                 </table>
+                            </div>
+                        </div>
+                        <div class="row mg-b-100 mg-t-50">
+                            <div class="col-lg-8 offset-lg-2 px-5 tx-center">
+                                <h3 class="tx-gray-700">Добавить в корзину</h3>
+                                <p class="tx-semibold tx-16 tx-gray-700">{{name}}</p>
+                                <wb-include wb-tpl="price_table.php" />
                             </div>
                         </div>
                     </div>

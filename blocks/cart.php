@@ -96,6 +96,7 @@
                 </div>
             </div>
         </div>
+        <wb-module wb="module=cart"></wb-module>
         <div class="backdrop"></div>
     </div>
 </view>

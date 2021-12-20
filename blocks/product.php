@@ -68,7 +68,7 @@
                                 wb-filter="{'food':{'$gt':''}}">
                                 <div class="col-md-3 bd-0">
                                     <div class="card ht-100p bd-0">
-                                        <img data-src="/thumb/400x300/src{{images.0.img}}" width="400" height="300" class="img-fluid rounded-top"
+                                        <img data-src="/thumb/400x300/src{{images.0.img}}" width="400" height="300" class="wd-100p img-fluid rounded-top"
                                             width="400" height="300" alt="{{food}}">
                                         <div class="card-body pb-0">
                                             <div class="tx-12 tx-success tx-semibold tx-spacing-4 pb-2">

@@ -185,6 +185,7 @@ $(document).delegate('#deliveryCalendar .day .btn-delivery', wbapp.evClick, func
 
 wbapp.on('mod-cart-add', function() {
     $('#cart #ui-id-1.cart').trigger('click');
+    $('.modal:visible').modal('hide');
     setTimeout(() => { $('#cart').addClass('show') });
 })
 
