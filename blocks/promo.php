@@ -50,8 +50,8 @@
                     <p class="tx-20">
                         {{_parent.text}}
                     </p>
-                        <h6 class="text-white tx-light py-4 tx-20">{{name}} — <span class="tx-semibold">{{price}}₽</span></h6>
-                        <a href="javascript:void(0);" data-id="{{id}}" data-name="{{name}}" data-price="{{_parent.price}}" data-image="{{images.0.img}}" data-days="1" data-promo="1" data-discounts="{}" data-promo="1" data-link="/products/{{id}}/{{wbUrlOnly({{name}})}}"
+                        <h6 class="text-white tx-light py-4 tx-20">{{name}} — <span class="tx-semibold">{{promoprice}}₽</span></h6>
+                        <a href="javascript:void(0);" data-id="{{id}}" data-name="{{name}}" data-price="{{promoprice}}" data-image="{{images.0.img}}" data-days="1" data-promo="1" data-discounts="{}" data-promo="1" data-link="/products/{{id}}/{{wbUrlOnly({{name}})}}"
                             class="mod-cart-add mod-cart-data btn btn-{{_parent.color}}  rounded-30 tx-light pd-x-40 pd-y-15">
                             {{_parent.button}}
                             <img src="/module/myicons/shopping-cart.svg?size=26&stroke=FFFFFF" width="26" height="26">
