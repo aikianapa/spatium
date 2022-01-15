@@ -60,7 +60,7 @@
     </div>
     <div class="col-12">
     <div wb="module=yamap" zoom="{{zoom}}" height="{{height}}px">
-    <wb-foreach wb="from=geopos">
+    <wb-foreach wb="from=geopos&tpl=false">
         <geopos value="{{pos}}" title="{{name}}" wb-if="'{{active}}'=='on'"></geopos>
     </wb-foreach>
 </div>

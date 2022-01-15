@@ -70,7 +70,8 @@
                             {{articul}}
                         </td>
                         <td>
-                            {{price}}
+                            <div>{{price}}</div>
+                            <div class="tx-danger tx-11" wb-if="'{{promoprice}}'>''">{{promoprice}}</div>
                         </td>
                         <td class="text-right">
                             <div class="custom-control custom-switch d-inline">

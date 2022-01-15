@@ -25,7 +25,7 @@
         <div class="col-lg-4">
             <label class="form-control-label">Цвет</label>
             <select name="color" class="form-control">
-                <wb-foreach wb="render=server" wb-json='["success","primary","secondary","danger","warning"]'>
+                <wb-foreach wb="render=server" wb-tpl="false" wb-json='["success","primary","secondary","danger","warning"]'>
                     <option value="{{_val}}">{{_val}}</option>
                 </wb-foreach>
             </select>

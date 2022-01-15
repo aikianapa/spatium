@@ -81,7 +81,7 @@
                             <div class="d-block p-3">
                                 <button type="button" class="btn btn-outline-warning btn-block mod-cart-clear rounded-20">Очистить корзину</button>   
                                 <button type="button" class="btn btn-outline-success btn-block cart-payment rounded-20"
-                                onclick='$("#cart #ui-id-2").trigger("click");'>Перейти к оплате</button>
+                                onclick='$("#cart h6.delivery").trigger("click");'>Перейти к оплате</button>
                             </div>
                             <p class="tx-16 tx-semibold py-3 m-0 tx-center">
                             Итого: <span class="mod-cart-total-sum tx-primary"></span><span class="tx-primary">₽</span></p>

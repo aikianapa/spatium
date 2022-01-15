@@ -39,7 +39,7 @@
 
                     <div class="col-lg-10 offset-lg-1 text-center px-5">
                         <div id="faq-accordion" class="collapsed">
-                            <wb-foreach wb-from="tabs">
+                            <wb-foreach wb-from="tabs" wb-tpl="false">
                             <h6 class="tx-20 tx-light py-4 pr-5">{{title}}</h6>
                             <div>{{text}}</div>
                             </wb-foreach>

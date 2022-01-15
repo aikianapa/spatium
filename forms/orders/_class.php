@@ -55,6 +55,31 @@ class ordersClass extends cmsFormsClass
             die;
         }
 
+
+        // ======= Проверка промо-заказов и цен
+        $products = $app->itemList('products', ['active'=>'on']);
+        $products = $products['list'];
+        isset($user['promo']) && is_array($user['promo']) ? null : $user['promo'] = [];
+        $promo = (array)$user['promo'];
+        foreach ($order['list'] as $prod) {
+            $prod = (object)$prod;
+            $product = (object)$products[$prod->id];
+            $flag = isset($prod->promo) && intval($prod->promo) == 1 ? true : false;
+            $flag && !in_array($prod->id, $promo) ? $promo[] = $prod->id : null;
+            // здесь сверка проверка цены в заказе и цены в товаре
+            if (($flag && intval($prod->price) !== intval($product->promoprice)) OR (!$flag && intval($prod->price) !== intval($product->price)))
+            {
+                echo json_encode(['error'=>true,'msg'=>'Что-то пошло не так.','note'=>'Invalid price']);
+                die;
+            }
+        }
+
+        if ($user['promo'] !== $promo) {
+            $user['promo'] = $promo;
+            $app->itemSave('users', $user, true);
+            $_SESSION['user'] = $user;
+        }
+        // =======
         $app->vars('_post.token') == 'courier' ? $order['payed'] = '' : $order['payed'] = 'on';
         $order['user'] = $user['id'];
         //$order['number'] = $_POST['number'];
@@ -64,6 +89,7 @@ class ordersClass extends cmsFormsClass
             $cloudpay = $app->module('cloudpaywidget');
             $cloudpay->kassa($order, $user);
         }
+        session_write_close();
         echo json_encode(['error'=>false,'msg'=>'Оплата завершена','url'=>'/cabinet?cartclear#orders']);
         die;
     }
@@ -84,7 +110,7 @@ class ordersClass extends cmsFormsClass
         $oid = $order['id'];
         $user = $app->itemRead('users', $app->vars('_sess.user.id'));
         $deny = (array)$user['deny'];
-        
+
         for ($i=1;$i<=$days;$i++) {
             date('Y-m-d', strtotime($order['date'])) > date('Y-m-d') ? $j = $i-1 : $j = $i;
             $date = date('Y-m-d', strtotime($order['date']. '+' . $j . "days"));

@@ -65,9 +65,16 @@ wbapp.on('ready', function() {
             }, 2000);
         });
 
-        $(document).delegate("#cart #ui-id-2", "click", function() {
+
+        $(document).delegate('.btn-promo:not(.mod-cart-add)', wbapp.evClick, function() {
+            document.promoBtn = this;
+            $('#cart').addClass('show').find('.delivery').trigger('click');
+        })
+
+        $(document).delegate("#cart #ui-id-2", wbapp.evClick, function() {
             $(document).trigger('modCartInit');
         });
+
         if (hash > '#') {
             $('.nav-item a[href="' + hash + '"]:eq(0)').trigger('click');
         }
@@ -203,6 +210,11 @@ $(document).delegate('#cart #Details [name=date][type=hidden]', 'change', functi
 })
 $('#Details [name=date][type=hidden]').trigger('change');
 
+if (wbapp._session.user && wbapp._session.user.promo !== undefined) {
+    $(wbapp._session.user.promo).each(function(i, id) {
+        $(document).find(`.btn-promo[data-id="${id}"]`).remove();
+    })
+}
 
 var cartCheckPhone = function() {
     wbapp.post('/module/phonecheck/getcode/', {
@@ -281,6 +293,26 @@ var cartReg = function(form = false) {
     }
 }
 
+var cartAfterLogin = function() {
+    $('.btn-promo').removeClass('__mod-cart-add').addClass('mod-cart-add');
+    $('#headsign a.btn-outline-success').attr('href', '/cabinet').text('Кабинет');
+    if (wbapp._session.user.promo !== undefined) {
+        $.each(wbapp._session.user.promo, function(i, id) {
+            if (document.promoBtn !== undefined && $(document.promoBtn).data('id') == id) {
+                let name = $(document.promoBtn).data('name');
+                wbapp.toast("Внимание", `Ранее вы уже заказывали "${name}" по промо-акции. Данное предложение действует только один раз. Вы можете заказать этот продукт по регулярной цене.`, { bgcolor: 'warning', delay: 15000 });
+                delete document.promoBtn;
+                $('#cart').removeClass('show');
+            }
+            $(document).find(`.btn-promo[data-id="${id}"]`).remove();
+        })
+    }
+    if (document.promoBtn !== undefined) {
+        if ($(document.promoBtn).length) $(document.promoBtn).trigger('click');
+    }
+}
+
+
 var cartLogin = function() {
     wbapp.post('/cms/ajax/form/users/checkphone/', {
         'phone': $('#cartLogin input.checkphone').val(),
@@ -304,6 +336,7 @@ var cartLogin = function() {
             wbapp._session.user = data.user;
             $('#cart #cartdev').html(data.cart);
             wbapp.ajaxAuto();
+            cartAfterLogin();
         }
     })
 }

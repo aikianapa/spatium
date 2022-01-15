@@ -35,7 +35,7 @@
                         <li class="nav-item">
                             <a class="nav-link active" data-toggle="tab" href="#main">Описание</a>
                         </li>
-                        <wb-foreach wb-json='["пн","вт","ср", "чт","пт","сб","вс"]'>
+                        <wb-foreach wb-json='["пн","вт","ср", "чт","пт","сб","вс"]' wb-tpl="false">
                             <li class="nav-item d-none">
                                 <a class="nav-link" data-toggle="tab" href="#{{wbTranslit({{_val}})}}">{{_val}}</a>
                             </li>
@@ -45,21 +45,27 @@
                     <div class="tab-content">
                         <div id="main" class="container tab-pane active">
                             <div class="form-group row">
-                                <div class="input-group col-6">
+                                <div class="input-group col-4">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text">Категория</span>
+                                        <span class="input-group-text">Кат-я</span>
                                     </div>
                                     <select name="category" class="form-control" required
                                         wb-tree="dict=menu-categories">
                                         <option value="{{id}}">{{name}}</option>
                                     </select>
                                 </div>
-                                <div class="input-group col-6">
+                                <div class="input-group col-4">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">Артикул</span>
                                     </div>
                                     <input type="text" name="articul" class="form-control" placeholder="Артикул"
                                         required>
+                                </div>
+                                <div class="input-group col-4">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text bg-danger tx-white">Промо ₽</span>
+                                    </div>
+                                    <input type="text" name="promoprice" class="form-control" placeholder="Цена ₽" required>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -109,7 +115,7 @@
 
                             <div class="form-group row">
                                 <div class="col-12">
-                                    <wb-module wb="{'module':'jodit'}" name="text" />
+                                    <wb-module wb="{'module':'editor'}" name="text" />
                                 </div>
                             </div>
                             <div class="divider-text">Состав</div>
@@ -129,7 +135,7 @@
                             </div>
                         </div>
 
-                        <wb-foreach wb-json='["пн","вт","ср", "чт","пт","сб","вс"]'>
+                        <wb-foreach wb-json='["пн","вт","ср", "чт","пт","сб","вс"]' wb-tpl="false">
                             <wb-var day="{{wbTranslit({{_val}})}}" />
                             <div id="{{_var.day}}" class="container tab-pane fade">
                                 <wb-multilang wb-lang="{{getMeals()}}" wb-flags="false" name="{{_var.day}}">
@@ -183,7 +189,7 @@
                                         </div>
                                     </div>
                                     <div class="divider-text">Описание</div>
-                                    <wb-module wb="{'module':'jodit'}" name="descr" />
+                                    <wb-module wb="{'module':'editor'}" name="descr" />
                                     <div class="divider-text">Состав</div>
                                     <wb-multiinput name="components">
                                         <div class="col-md-9">
