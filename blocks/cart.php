@@ -59,6 +59,10 @@
                                                 </div>
                                                 <div class="col">
                                                     <label>Кол-во</label>
+                                                    {{#if promo == "1"}}
+                                                        <input name="qty" type="number" readonly value="{{qty}}"
+                                                            class="form-control input-sm">
+                                                    {{else}}
                                                     <div class="input-group">
                                                         <div class="input-group-prepend mod-cart-dec">
                                                             <span class="input-group-text">-</span>
@@ -70,6 +74,7 @@
                                                             <span class="input-group-text">+</span>
                                                         </div>
                                                     </div>
+                                                    {{/if}}
                                                 </div>
                                             </div>
                                             <p class="price py-1 m-0 tx-center tx-semibold tx-primary mod-cart-item-sum">
