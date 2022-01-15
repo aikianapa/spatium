@@ -7,14 +7,14 @@ if (!wbapp._session.user || !wbapp._session.user.id || wbapp._session.user.id < 
 var hash = document.location.hash;
 var __token = wbapp._session.token;
 
-wbapp.on('ready', function() {
-    setTimeout(function() {
-        $('.parallax').each(function() {
+wbapp.on('ready', async function() {
+    setTimeout(async function() {
+        $('.parallax').each(async function() {
             let img = $(this).attr('data-img');
             if (img !== undefined) $(this).css("background-image", "url(" + img + ")").removeAttr('data-img');
         })
 
-        $('.img-caption').on('mouseover mouseout', function() {
+        $('.img-caption').on('mouseover mouseout', async function() {
             $(this).find('figcaption').toggleClass('op-0');
         });
 
@@ -50,7 +50,7 @@ wbapp.on('ready', function() {
 
         wbapp.alive();
 
-        setTimeout(function() {
+        setTimeout(async function() {
             $('#cart').removeClass('d-none');
             if (strpos(document.location.href, 'cartclear')) {
                 $('#cart .mod-cart-clear').trigger('click');
@@ -59,7 +59,7 @@ wbapp.on('ready', function() {
             $('body').removeClass('load');
         }, 1000)
 
-        $('.scroll-top').on('click', function() {
+        $('.scroll-top').on('click', async function() {
             $('html,body').animate({
                 scrollTop: 0
             }, 2000);
@@ -129,7 +129,7 @@ $(document).delegate(".feedback-btn", wbapp.evClick, function(e) {
     }
 });
 
-wbapp.on('mod-cart-update', function(ev, cart) {
+wbapp.on('mod-cart-update', async function(ev, cart) {
     if (cart.total.sum !== undefined && cart.total.sum * 1 > 0) {
         $('#cart').find('.cart-payment, .mod-cart-clear, .checkout-btn, .checkin-btn').show();
     } else {
@@ -211,7 +211,7 @@ $(document).delegate('#cart #Details [name=date][type=hidden]', 'change', functi
 $('#Details [name=date][type=hidden]').trigger('change');
 
 if (wbapp._session.user && wbapp._session.user.promo !== undefined) {
-    $(wbapp._session.user.promo).each(function(i, id) {
+    $(wbapp._session.user.promo).each(async function(i, id) {
         $(document).find(`.btn-promo[data-id="${id}"]`).remove();
     })
 }
