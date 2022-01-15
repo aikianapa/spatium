@@ -1,5 +1,6 @@
 
 <wb-var disc="{{getDiscounts()}}" />
+
 <wb-foreach wb-from="_var.disc" wb-tpl="false">
     <div class="row bd-b tx-normal">
         <wb-var discount="{{percent}}" wb-if="'{{percent}}'>'0'" else="1" />
@@ -19,7 +20,7 @@
     </div>
 </wb-foreach>
 
-
+<wb-var uspr="{{_sess.user.promo}}" wb-if="'{{_sess.user.promo}}'>' '" else='[]'/>
 <wb-var class="mod-cart-add" wb-if="'{{_sess.user.id}}'>' '"  else="__mod-cart-add"/>
 <button class="btn btn-sm btn-block btn-outline-success rounded-20 my-3 btn-promo mod-cart-data {{_var.class}}"
  data-id="{{_var.product.id}}"
@@ -29,6 +30,6 @@
  data-days="1"
  data-promo="1"
  data-link="/products/{{_var.product.id}}/{{wbUrlOnly({{_var.product.name}})}}"
- wb-if="'{{_var.product.promoprice}}'>' ' && !in_array('{{_var.product.id}}',{{_sess.user.promo}})">
+ wb-if="'{{_var.product.promoprice}}'>' ' && !in_array('{{_var.product.id}}',{{_var.uspr}})">
  Попробовать за {{_var.product.promoprice}}₽
 </button>
