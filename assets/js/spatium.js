@@ -301,7 +301,8 @@ var cartAfterLogin = function() {
             if (document.promoBtn !== undefined && $(document.promoBtn).data('id') == id) {
                 let name = $(document.promoBtn).data('name');
                 wbapp.toast("Внимание", `Ранее вы уже заказывали "${name}" по промо-акции. Данное предложение действует только один раз. Вы можете заказать этот продукт по регулярной цене.`, { bgcolor: 'warning', delay: 15000 });
-                delete document.promoBtn;
+                $(document.promoBtn).remove();
+                document.promoBtn = undefined;
                 $('#cart').removeClass('show');
             }
             $(document).find(`.btn-promo[data-id="${id}"]`).remove();
