@@ -133,13 +133,13 @@
                         arrbtn: arrgetbtn
                     };
 
-                    (function() {
+                    (async function() {
                         var script = document.createElement("script");
                         script.type = "text/javascript";
                         script.async = true;
                         script.src = "https://getbtn.com/widget/index.php?id=" + WidGetButtonOptions.id;
                         document.getElementsByTagName("head")[0].appendChild(script);
-                        setTimeout(() => {
+                        setTimeout(async () => {
                             document.querySelector('.widgethelptext').remove();
                         }, 1000);
                     })();
@@ -152,6 +152,7 @@
     </footer>
 
     <modal></modal>
+    <wb-snippet name="wbapp" />
     <wb-module wb="module=cart" />
     <wb-module wb="module=cloudpaywidget" />
     <wb-module wb="module=yonger&mode=render&view=cart" />
@@ -160,4 +161,14 @@
         <svg wb-module="myicons" class="mi mi-arrows-diagrams-03 size-50" stroke="10b759" width="50" height="50"></svg>
     </a>
     <!-- end of scroll to top -->
+  <wb-scripts src="main.jsgz" trigger="ready">
+                [
+                  "/engine/lib/bootstrap/js/bootstrap.bundle.min.js",
+                  "/engine/modules/yonger/tpl/assets/js/dashforge.js",
+                  "/engine/modules/yonger/tpl/assets/js/yonger.js",
+                  "/assets/js/jquery.appear.js",
+                  "/assets/js/counters.js",
+                  "/assets/js/spatium.js"
+                ]
+  </wb-scripts>
 </view>

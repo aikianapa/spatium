@@ -33,7 +33,7 @@
                             'render':'server',
                             'limit':'2',
                             'minimal':'2',
-                            'tpl':false,
+                            'tpl':'false',
                             'rand':true,
                             'filter': {'category':'main','active':'on'}
                 }">

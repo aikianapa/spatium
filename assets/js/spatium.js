@@ -8,91 +8,88 @@ var hash = document.location.hash;
 var __token = wbapp._session.token;
 
 wbapp.on('ready', async function() {
-    setTimeout(async function() {
-        $('.parallax').each(async function() {
-            let img = $(this).attr('data-img');
-            if (img !== undefined) $(this).css("background-image", "url(" + img + ")").removeAttr('data-img');
-        })
+    $('.parallax').each(async function() {
+        let img = $(this).attr('data-img');
+        if (img !== undefined) $(this).css("background-image", "url(" + img + ")").removeAttr('data-img');
+    })
 
-        $('.img-caption').on('mouseover mouseout', async function() {
-            $(this).find('figcaption').toggleClass('op-0');
-        });
+    $('.img-caption').on('mouseover mouseout', async function() {
+        $(this).find('figcaption').toggleClass('op-0');
+    });
 
-        $('#faq-accordion').accordion({
-            heightStyle: 'content',
-            collapsible: true,
-            active: false
-        });
+    $('#faq-accordion').accordion({
+        heightStyle: 'content',
+        collapsible: true,
+        active: false
+    });
 
-        // Animated Appear Element
-        if ($(window).width() > 1024) {
+    // Animated Appear Element
+    if ($(window).width() > 1024) {
 
-            $('.animated').appear(function() {
-                var element = $(this);
-                var animation = element.data('animation');
-                var animationDelay = element.data('delay');
-                if (animationDelay) {
-                    setTimeout(function() {
-                        element.addClass(animation + " visible");
-                        element.removeClass('hiding');
-                    }, animationDelay);
-                } else {
+        $('.animated').appear(function() {
+            var element = $(this);
+            var animation = element.data('animation');
+            var animationDelay = element.data('delay');
+            if (animationDelay) {
+                setTimeout(function() {
                     element.addClass(animation + " visible");
                     element.removeClass('hiding');
-                }
-            }, { accY: -150 });
-
-        } else {
-
-            $('.animated').css('opacity', 1);
-
-        }
-
-        wbapp.alive();
-
-        setTimeout(async function() {
-            $('#cart').removeClass('d-none');
-            if (strpos(document.location.href, 'cartclear')) {
-                $('#cart .mod-cart-clear').trigger('click');
-            }
-            $('#loader').addClass("hide").removeClass('show').remove();
-            $('body').removeClass('load');
-        }, 1000)
-
-        $('.scroll-top').on('click', async function() {
-            $('html,body').animate({
-                scrollTop: 0
-            }, 2000);
-        });
-
-
-        $(document).delegate('.btn-promo:not(.mod-cart-add)', wbapp.evClick, function() {
-            document.promoBtn = this;
-            $('#cart').addClass('show').find('.delivery').trigger('click');
-        })
-
-        $(document).delegate("#cart #ui-id-2", wbapp.evClick, function() {
-            $(document).trigger('modCartInit');
-        });
-
-        if (hash > '#') {
-            $('.nav-item a[href="' + hash + '"]:eq(0)').trigger('click');
-        }
-
-        $(document).delegate('.lg-outer', 'mousewheel', function(e) {
-            if (e.originalEvent.wheelDelta / 120 > 0) {
-                $(this).find('.lg-prev').trigger('click');
+                }, animationDelay);
             } else {
-                $(this).find('.lg-next').trigger('click');
+                element.addClass(animation + " visible");
+                element.removeClass('hiding');
             }
-            e.stopPropagation();
-        });
+        }, { accY: -150 });
 
-        $('#shopping-cart .accordion').accordion({
-            heightStyle: 'content'
-        });
-    }, 10)
+    } else {
 
+        $('.animated').css('opacity', 1);
+
+    }
+
+    wbapp.alive();
+
+    setTimeout(async function() {
+        $('#cart').removeClass('d-none');
+        if (strpos(document.location.href, 'cartclear')) {
+            $('#cart .mod-cart-clear').trigger('click');
+        }
+        $('#loader').addClass("hide").removeClass('show').remove();
+        $('body').removeClass('load');
+    }, 1000)
+
+    $('.scroll-top').on('click', async function() {
+        $('html,body').animate({
+            scrollTop: 0
+        }, 2000);
+    });
+
+
+    $(document).delegate('.btn-promo:not(.mod-cart-add)', wbapp.evClick, function() {
+        document.promoBtn = this;
+        $('#cart').addClass('show').find('.delivery').trigger('click');
+    })
+
+    $(document).delegate("#cart #ui-id-2", wbapp.evClick, function() {
+        $(document).trigger('modCartInit');
+    });
+
+    if (hash > '#') {
+        $('.nav-item a[href="' + hash + '"]:eq(0)').trigger('click');
+    }
+
+    $(document).delegate('.lg-outer', 'mousewheel', function(e) {
+        if (e.originalEvent.wheelDelta / 120 > 0) {
+            $(this).find('.lg-prev').trigger('click');
+        } else {
+            $(this).find('.lg-next').trigger('click');
+        }
+        e.stopPropagation();
+    });
+
+    $('#shopping-cart .accordion').accordion({
+        heightStyle: 'content'
+    });
 })
 
 var getCartData = function() {
@@ -160,7 +157,6 @@ $(document).delegate(".checkout-btn", wbapp.evClick, function(e) {
     wbapp.mod.cloudpaywidget();
 });
 
-
 $(document).delegate('#deliveryCalendar .day .btn-delivery', wbapp.evClick, function(ev) {
     var type = null;
     var $that = $(this).parents('.day');
@@ -189,7 +185,7 @@ wbapp.on('mod-cart-add', function() {
     setTimeout(() => { $('#cart').addClass('show') });
 })
 
-$(document).delegate('#cart #Details [name=date][type=hidden]', 'change', function(e) {
+$(document).delegate('#cart #Details [name=date][type=hidden]', 'change', async function(e) {
     e.stopPropagation();
     if (wbapp._session.user == undefined) return;
     if (wbapp._session.user.id == undefined) return;

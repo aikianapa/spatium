@@ -12,29 +12,18 @@
         <meta name="description" content="Spatium Detox">
         <title></title>
         <!--script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.0.1/dist/alpine.js" defer></script-->
-        <link rel="preload" href="/engine/lib/fonts/roboto/roboto.css" as="style"/>
 
-        <link rel="stylesheet" href="/engine/modules/yonger/tpl/assets/css/dashforge.css" />
-        <link rel="stylesheet" href="/engine/modules/datetimepicker/datetimepicker/bootstrap-datetimepicker.min.css" />
-        <link rel="stylesheet" href="/engine/modules/datetimepicker/datetimepicker.less" />
-        <link rel="stylesheet" href="/assets/css/animate.css" />
-        <link rel="stylesheet" href="/assets/css/custom.less" />
+<wb-styles src="/assets/css/main.css">
+    [
+         "/engine/lib/fonts/roboto/roboto.css"
+        ,"/engine/modules/yonger/tpl/assets/css/dashforge.css"
+        ,"/assets/css/animate.css"
+        ,"/assets/css/custom.less"
+        ,"/engine/modules/datetimepicker/datetimepicker/bootstrap-datetimepicker.min.css"
+        ,"/engine/modules/datetimepicker/datetimepicker.less"
+    ]
+</wb-styles>
 
-        <script src="/engine/js/wbapp.js"></script>
-        <script type="wbapp" remove>
-          setTimeout(function(){
-            wbapp.loadStyles(["/engine/lib/fonts/roboto/roboto.css"]);
-            wbapp.loadScripts([
-                  "/engine/lib/bootstrap/js/bootstrap.bundle.min.js",
-                  "/engine/modules/yonger/tpl/assets/js/dashforge.js",
-                  "/engine/modules/yonger/tpl/assets/js/yonger.js",
-                  "/assets/js/jquery.appear.js",
-                  "/assets/js/counters.js",
-                  "/assets/js/spatium.js"
-            ],'ready')
-          },1500);
-
-  </script>
         <!-- Yandex.Metrika counter -->
         <noscript wb-if="'{{_route.domain}}'!=='spatium.loc'">
             <div><img src="https://mc.yandex.ru/watch/86835257" style="position:absolute; left:-9999px;" alt="" /></div>

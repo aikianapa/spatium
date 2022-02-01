@@ -506,6 +506,7 @@ section {
     background-color: darkgrey;
     outline: 0px;
 }
+
 .adv {
     color: #fff;
     font-size: 0;
@@ -541,40 +542,14 @@ section {
         }
     }
 
-}
+    @media only screen and (min-width: 576px) {
 
-@media only screen and (min-width: 576px) {
-    .container {
-        max-width: 540px;
-    }
+        li {
+            width: 50%;
 
-    .adv li {
-        width: 50%;
-    }
-
-    .adv li div {
-        max-width: 80%;
-    }
-}
-
-@media only screen and (min-width: 768px) {
-    .container {
-        max-width: 720px;
-    }
-}
-
-@media only screen and (min-width: 992px) {
-    .container {
-        max-width: 960px
-    }
-}
-
-@media only screen and (min-width: 1200px) {
-    .container {
-        max-width: 1140px;
-    }
-
-    .content {
-        padding: 30px
+            div {
+                max-width: 80%;
+            }
+        }
     }
 }

@@ -34,7 +34,7 @@
 <view>
     <section>
         <wb-var uspr="{{_sess.user.promo}}" wb-if="'{{_sess.user.promo}}'>' '" else='[]'/>
-        <wb-foreach wb="table=products&tpl=false&rand=1&limit=1" wb-filter="{
+        <wb-foreach wb="table=products&tpl=false&rand=true&limit=1" wb-filter="{
             'active':'on',
             'category':'main',
             'promoprice':{'$gt':'0'},

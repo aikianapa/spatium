@@ -9,3 +9,9 @@ engine
 *.log
 
 assets/css/compress/
+
+*.cssgz
+
+*.jsgz
+
+*.gzjs
