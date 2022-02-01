@@ -1,27 +1,33 @@
 <edit header="Три блока на зелёном фоне">
-    <div class="alert alert-info">
-        Смотри в /blocks/three-green.php
-    </div>
-    <div>
-	<wb-module wb="module=yonger&mode=edit&block=common.inc" />
-    </div>
+  <div>
+    <wb-module wb="module=yonger&amp;mode=edit&amp;block=common.inc"></wb-module>
+  </div>
+  <div>
+    <wb-multiinput name="list">
+      <div class="col-3">
+        <input name="img" class="form-control" placeholder="Картинка ./assets/img/{имя}.svg">
+      </div>
+      <div class="col-9">
+        <input name="text" class="form-control" placeholder="Текст">
+      </div>
+
+    </wb-multiinput>
+  </div>
 </edit>
+
 <view>
-    <section class="bg-success">
-        <div class="content container">
-            <div class="row text-white tx-semibold tx-18">
-                <div class="col-sm-4">
-                    <img data-src="./assets/img/icon1.png">
-                    <p class="pt-3">Уменьшение объемов<br>и - 2 кг за 3 дня</p>
-                </div>
-                <div class="col-sm-4">
-                    <img data-src="./assets/img/icon2.png">
-                    <p class="pt-3">Продуманный рацион<br>на весь день</p>
-                </div>
-                <div class="col-sm-4">
-                    <img data-src="./assets/img/icon3.png">
-                    <p class="pt-3">Холодный отжим:<br>на 80% больше витаминов и минералов</p>
-                </div>
+  <section class="bg-success">
+    <div class="content container">
+      <ul class="adv list-unstyled">
+        <wb-foreach wb="from=list&amp;tpl=false">
+          <li>
+            <div>
+              <img src="./assets/img/%7B%7Bimg%7D%7D.svg" alt="">
+              <p>{{text}}</p>
             </div>
-    </section>
+          </li>
+        </wb-foreach>
+      </ul>
+    </div>
+  </section>
 </view>
