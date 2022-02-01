@@ -18,12 +18,14 @@
 <view>
   <section class="bg-success">
     <div class="content container">
-      <ul class="adv list-unstyled">
+      <ul class="row list-unstyled pd-t-50">
         <wb-foreach wb="from=list&amp;tpl=false">
-          <li>
-            <div>
-              <img src="./assets/img/%7B%7Bimg%7D%7D.svg" alt="">
-              <p>{{text}}</p>
+          <li class="col-sm-6">
+            <div class="media wd-sm-80p">
+              <img data-src="./assets/img/%7B%7Bimg%7D%7D.svg" class="mg-r-20" alt="">
+              <div class="media-body tx-18 tx-white pb-5">
+                {{text}}
+              </div>
             </div>
           </li>
         </wb-foreach>
