@@ -153,14 +153,6 @@
 
     <modal></modal>
     <wb-snippet name="wbapp" />
-    <wb-module wb="module=cart" />
-    <wb-module wb="module=cloudpaywidget" />
-    <wb-module wb="module=yonger&mode=render&view=cart" />
-    <!-- scroll to top  -->
-    <a href="javascript:void(0)" class="scroll-top bg-white rounded-circle">
-        <svg wb-module="myicons" class="mi mi-arrows-diagrams-03 size-50" stroke="{{_var.colorSuccess}}" width="50" height="50"></svg>
-    </a>
-    <!-- end of scroll to top -->
   <wb-scripts src="main.jsgz" trigger="ready">
                 [
                   "/engine/lib/bootstrap/js/bootstrap.bundle.min.js",
@@ -171,4 +163,12 @@
                   "/assets/js/spatium.js"
                 ]
   </wb-scripts>
+    <wb-module wb="module=cart" />
+    <wb-module wb="module=cloudpaywidget" />
+    <wb-module wb="module=yonger&mode=render&view=cart" />
+    <!-- scroll to top  -->
+    <a href="javascript:void(0)" class="scroll-top bg-white rounded-circle">
+        <svg wb-module="myicons" class="mi mi-arrows-diagrams-03 size-50" stroke="{{_var.colorSuccess}}" width="50" height="50"></svg>
+    </a>
+    <!-- end of scroll to top -->
 </view>

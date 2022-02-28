@@ -26,7 +26,6 @@
                         <div class="carousel-item {{_var.active}}">
                             <wb-var wid="{{wbNewId()}}" />
                             <wb-module wb="module=yonger&mode=render&view=product" />
-
                         </div>
                     </wb-foreach>
                 </div>
