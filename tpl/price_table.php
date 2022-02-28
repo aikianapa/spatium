@@ -14,7 +14,7 @@
                 data-days="{{_key}}" data-link="/products/{{_var.product.id}}/{{wbUrlOnly({{_var.product.name}})}}"
                 class="mod-cart-add mod-cart-data">
                 <span class="tx-success"> {{_var.product.price * {{_key}} * {{_var.discount}} }}₽</span>
-                <img src="/module/myicons/shopping-cart.svg?size=24&stroke=10b759" width="24" height="24">
+                <img src="/module/myicons/shopping-cart.svg?size=24&stroke={{_var.colorSuccess}}" width="24" height="24">
             </a>
         </div>
     </div>

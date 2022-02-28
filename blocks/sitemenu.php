@@ -24,7 +24,7 @@
 </edit>
 <view>
 
-                <ul class="navbar-nav tx-bold">
+                <ul class="navbar-nav w-100">
                     <wb-foreach wb="from=_parent.sitemenu&tpl=false">
                     <li class="nav-item" wb-if="'{{active}}'=='on'">
                         <a class="nav-link" href="{{link}}">{{label}}</a>

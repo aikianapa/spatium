@@ -40,7 +40,7 @@
                                             <div>
                                                 <a href="/products/{{id}}/{{wbUrlOnly({{name}})}}">
                                                     <div class="avatar avatar-lg">
-                                                        <img class="avatar-initial p-1 rounded-circle bg-white" src="/module/myicons/search-arrow-circle.svg?size=26&stroke=10b759">
+                                                        <img class="avatar-initial p-1 rounded-circle bg-white" src="/module/myicons/search-arrow-circle.svg?size=26&stroke={{_var.colorSuccess}}">
                                                     </div>
                                                 </a>
 

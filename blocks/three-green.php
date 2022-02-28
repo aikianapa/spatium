@@ -5,7 +5,7 @@
   <div>
     <wb-multiinput name="list">
       <div class="col-3">
-        <input name="img" class="form-control" placeholder="Картинка ./assets/img/{имя}.svg">
+        <input name="img" class="form-control" placeholder="Картинка /assets/img/{имя}.svg">
       </div>
       <div class="col-9">
         <input name="text" class="form-control" placeholder="Текст">
@@ -19,10 +19,10 @@
   <section class="bg-success">
     <div class="content container">
       <ul class="row list-unstyled pd-t-50">
-        <wb-foreach wb="from=list&amp;tpl=false">
+        <wb-foreach wb="from=list&tpl=false">
           <li class="col-sm-6">
             <div class="media wd-sm-80p">
-              <img data-src="./assets/img/%7B%7Bimg%7D%7D.svg" class="mg-r-20" alt="">
+              <img src="/assets/img/{{img}}.svg" class="mg-r-20" alt="">
               <div class="media-body tx-18 tx-white pb-5">
                 {{text}}
               </div>

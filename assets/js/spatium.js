@@ -8,6 +8,7 @@ var hash = document.location.hash;
 var __token = wbapp._session.token;
 
 wbapp.on('ready', async function() {
+
     $('.parallax').each(async function() {
         let img = $(this).attr('data-img');
         if (img !== undefined) $(this).css("background-image", "url(" + img + ")").removeAttr('data-img');

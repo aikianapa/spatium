@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /database
+Disallow: /assets
+Disallow: /blocks
+Disallow: /tpl
+Disallow: /forms
+Disallow: /modules
+Disallow: /uploads

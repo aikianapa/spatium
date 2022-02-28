@@ -59,10 +59,10 @@
                                                             data-link="/products/{{id}}/{{wbUrlOnly({{name}})}}"
                                                             data-tooltip="В корзину">
                                                             <span class="tx-18 tx-semibold tx-danger">{{price}}₽</span>
-                                                            <img src="/module/myicons/shopping-cart.svg?size=26&stroke=10b759" alt="В корзину" class="ht-md-40 wd-auto">
+                                                            <img src="/module/myicons/shopping-cart.svg?size=26&stroke={{_var.colorSuccess}}" alt="В корзину" class="ht-md-40 wd-auto">
                                                     </a>
                                                     <a href="javascript:void(0)" data-ajax="{'url':'/products/info/{{id}}/{{wbUrlOnly({{name}})}}','html':'modal'}" >
-                                                        <img src="/module/myicons/search-arrow-circle.svg?size=26&stroke=10b759" class="ht-md-40 wd-auto">
+                                                        <img src="/module/myicons/search-arrow-circle.svg?size=26&stroke={{_var.colorSuccess}}" class="ht-md-40 wd-auto">
                                                     </a>
                                                 </div>
                                                 <h6 class="tx-13 tx-inverse tx-semibold mg-b-0 cursor-pointer"

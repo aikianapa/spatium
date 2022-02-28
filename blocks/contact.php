@@ -48,7 +48,7 @@
         <div class="row mg-b-50">
             <div class="col-sm-6">
                 <div class="media tx-16 mg-b-30">
-                    <img data-src="/module/myicons/house-location-pin.svg?size=40&stroke=10b759" alt="Адрес">
+                    <img data-src="/module/myicons/house-location-pin.svg?size=40&stroke={{_var.colorSuccess}}" alt="Адрес">
                     <div class="media-body mg-l-30">
                         <h5 class="mg-y-10 tx-20 tx-semibold tx-success">Адрес</h5>
                         <span class="ws-break">{{address}}</span>
@@ -56,7 +56,7 @@
                 </div>
 
                 <div class="media tx-16 mg-b-30">
-                <img data-src="/module/myicons/phones-04.svg?size=40&stroke=10b759" alt="Телефоны">
+                <img data-src="/module/myicons/phones-04.svg?size=40&stroke={{_var.colorSuccess}}" alt="Телефоны">
                     <div class="media-body mg-l-30">
                         <h5 class="mg-y-10 tx-20 tx-semibold tx-success">Телефоны</h5>
                         <span class="ws-break">{{phones}}</span>
@@ -64,7 +64,7 @@
                 </div>
 
                 <div class="media tx-16 mg-b-30" wb-if="'{{_sett.whatsapp}}'>''">
-                <img data-src="/module/myicons/chat-messages-bubble-phone-call.svg?size=40&stroke=10b759" alt="Whatsapp">
+                <img data-src="/module/myicons/chat-messages-bubble-phone-call.svg?size=40&stroke={{_var.colorSuccess}}" alt="Whatsapp">
                     <div class="media-body mg-l-30">
                         <h5 class="mg-y-10 tx-20 tx-semibold tx-success">Whatsapp</h5>
                         <a href="https://wa.me/{{wbDigitsOnly({{_sett.whatsapp}})}}" target="_blank">
@@ -74,7 +74,7 @@
                 </div>
 
                 <div class="media tx-16 mg-b-30" wb-if="'{{_sett.instagram}}'>''">
-                <img data-src="/module/myicons/instagram-circle.svg?size=40&stroke=10b759" alt="Whatsapp">
+                <img data-src="/module/myicons/instagram-circle.svg?size=40&stroke={{_var.colorSuccess}}" alt="Whatsapp">
                     <div class="media-body mg-l-30">
                         <h5 class="mg-y-10 tx-20 tx-semibold tx-success">Инстаграм</h5>
                         <a href="{{_sett.instagram}}" target="_blank">
@@ -85,7 +85,7 @@
 
 
                 <div class="media tx-16 mg-b-30">
-                <img data-src="/module/myicons/@-email-mail-1.svg?size=40&stroke=10b759" alt="Email">
+                <img data-src="/module/myicons/@-email-mail-1.svg?size=40&stroke={{_var.colorSuccess}}" alt="Email">
                     <div class="media-body mg-l-30">
                         <h5 class="mg-y-10 tx-20 tx-semibold tx-success">Электронная почта</h5>
                         <a href="mailto:{{email}}" target="_blank">
@@ -95,7 +95,7 @@
                 </div>
 
                 <div class="media tx-16 mg-b-30">
-                <img data-src="/module/myicons/calendar-schedule-clock-time.svg?size=40&stroke=10b759" alt="Schedule">
+                <img data-src="/module/myicons/calendar-schedule-clock-time.svg?size=40&stroke={{_var.colorSuccess}}" alt="Schedule">
                     <div class="media-body mg-l-30">
                         <h5 class="mg-y-10 tx-20 tx-semibold tx-success">Расписание работы</h5>
                         <span class="ws-break">{{schedule}}</span>

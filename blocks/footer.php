@@ -10,7 +10,7 @@
     <!--=============================================
 	=            Footer         =
 	=============================================-->
-    <footer class="section bg-dark">
+    <footer class="section bg-success">
         <div class="container py-3">
             <div class="row align-items-center">
                 <div class="col-6">
@@ -124,7 +124,7 @@
                         id: "2e60a2e4e72969cfe8ada4a36c01d544",
                         iconopen: "fwidgethelp-commenting-o",
                         maintitle: "",
-                        mainbackground: "#10b759",
+                        mainbackground: "#7a9f57",
                         maincolor: "rgb(255, 255, 255)",
                         pulse: "widgethelp_pulse",
                         fasize: "2",
@@ -158,7 +158,7 @@
     <wb-module wb="module=yonger&mode=render&view=cart" />
     <!-- scroll to top  -->
     <a href="javascript:void(0)" class="scroll-top bg-white rounded-circle">
-        <svg wb-module="myicons" class="mi mi-arrows-diagrams-03 size-50" stroke="10b759" width="50" height="50"></svg>
+        <svg wb-module="myicons" class="mi mi-arrows-diagrams-03 size-50" stroke="{{_var.colorSuccess}}" width="50" height="50"></svg>
     </a>
     <!-- end of scroll to top -->
   <wb-scripts src="main.jsgz" trigger="ready">

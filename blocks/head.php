@@ -16,7 +16,7 @@
 <wb-styles src="/assets/css/main.css">
     [
          "/engine/lib/fonts/roboto/roboto.css"
-        ,"/engine/modules/yonger/tpl/assets/css/dashforge.css"
+        ,"/assets/css/dashforge.css"
         ,"/assets/css/animate.css"
         ,"/assets/css/custom.less"
         ,"/engine/modules/datetimepicker/datetimepicker/bootstrap-datetimepicker.min.css"
