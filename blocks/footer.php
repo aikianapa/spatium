@@ -140,7 +140,9 @@
                         script.src = "https://getbtn.com/widget/index.php?id=" + WidGetButtonOptions.id;
                         document.getElementsByTagName("head")[0].appendChild(script);
                         setTimeout(async () => {
-                            document.querySelector('.widgethelptext').remove();
+                            if (document.querySelector('.widgethelptext')) {
+                                document.querySelector('.widgethelptext').remove();
+                            }
                         }, 1000);
                     })();
                     </script>
