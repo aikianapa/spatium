@@ -4,8 +4,13 @@
         Смотри в /blocks/cartdev.php
     </div>
 </edit>
-<view>
 
+<view>
+                                <p class="alert alert-danger">
+                                    Извините, по техническим причинам, заказы временно приостановлены. Будем рады видеть вас в числе наших заказчиков чуть позже.
+                                </p>
+</view>
+<view-save>
     <div wb-if="'{{_sess.user.id}}' == ''" id="cartLogin">
         <p class="alert alert-info">Чтобы продолжить оформление заказа,
             введите свой номер телефона
@@ -143,4 +148,4 @@
 
 
     </form>
-</view>
+</view-save>
