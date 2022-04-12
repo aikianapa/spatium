@@ -135,8 +135,8 @@
                             <wb-var day="{{wbTranslit({{_val}})}}" />
                             <div id="{{_var.day}}" class="container tab-pane fade">
                                 <wb-multilang wb-lang="{{getMeals()}}" wb-flags="false" name="{{_var.day}}">
-
-                                    <wb-multiinput name="products">
+                                    <div class="col-12">
+                                    <wb-multiinput name="prodlist">
                                         <div class="col-12">
                                             <div class="form-group row">
                                                 <div class="input-group col-12">
@@ -187,6 +187,7 @@
                                             <wb-module wb="{'module':'editor'}" name="descr" />
                                         </div>
                                     </wb-multiinput>
+                                    </div>
                                     <!--
                                     <div class="divider-text">Состав</div>
                                     <wb-multiinput name="components">
