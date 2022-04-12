@@ -98,9 +98,8 @@
                             </div>
                         </div>
 
-                        <div class="row" wb-if="'{{count(_var.prod.components)}}' > '0'">
+                        <div class="row" wb-if="'{{count(_var.prod.components)}}' > '0' AND '{{_var.prod.components.0.c_name}}'>''">
                             <div class="col-lg-8 offset-lg-2 px-5">
-
                                 <div class="divider-text mb-1">Состав</div>
                                 <table class="table">
                                     <thead>
