@@ -56,13 +56,13 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">Артикул</span>
                                     </div>
-                                    <input type="text" name="articul" class="form-control" placeholder="Артикул" required>
+                                    <input type="text" name="articul" class="form-control" placeholder="Артикул" >
                                 </div>
                                 <div class="input-group col-4">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text bg-danger tx-white">Промо ₽</span>
                                     </div>
-                                    <input type="text" name="promoprice" class="form-control" placeholder="Цена ₽" required>
+                                    <input type="text" name="promoprice" class="form-control" placeholder="Цена ₽" >
                                 </div>
                             </div>
                             <div class="form-group row">

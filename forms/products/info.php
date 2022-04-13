@@ -1,16 +1,18 @@
 <html>
 <div class="modal fade show" tabindex="-1" role="dialog">
-    <wb-var week="{'pn':'понедельник','vt':'вторник','sr':'среда','cht':'четверг','pt':'пятница','sb':'суббота','vs':'воскресенье'}" />
+    <wb-var week="{'pn':'понедельник','vt':'вторник','sr':'среда','cht':'четверг','pt':'пятница','sb':'суббота','vs':'воскресенье'}"
+    />
+    <wb-var meals="{{getMealsJson()}}" />
     <wb-data wb="table=products&item={{_route.item}}">
         <wb-var product="{{ _current }}" />
         <wb-var prod="{{ _current.{{_route.day}}.{{_route.pos}} }}" />
+        <wb-var imgfld="{{_route.pos}}_images" />
         <!-- Отображение основного блюда по дням -->
         <div class="modal-dialog modal-fullscreen" role="document" wb-if="'{{_route.day}}'>''">
             <div class="modal-content">
                 <div class="modal-header align-items-center">
                     <h6 class="modal-title tx-semibold tx-success w-100 tx-center">
                         {{name}} ({{_var.week.{{_route.day}}}})
-                        <br>{{ _var.prod.food }}
                     </h6>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <img data-src="/module/myicons/interface-essential-107.svg?size=30&stroke=10b759">
@@ -18,47 +20,75 @@
                 </div>
                 <div class="modal-body">
                     <div class="container">
-                        <div class="mg-b-0 tx-center">{{text}}</div>
+                        <h3 class="text-center">{{_var.meals.{{_route.pos}}}}</h3>
 
-                        <div class="row">
-                            <div class="col-12 col-lg-10 offset-lg-1">
+                        <wb-foreach wb-from="_var.prod">
+                            <div class="row pb-3">
+                                <div class="col-lg-8 offset-lg-2 px-5">
+
+                                    <div class="mg-b-0">
+                                        <div class="">
+                                            <b>{{_ndx}}. {{food}}</b>
+                                            <span wb-if="'{{text}}'>''">{{text}}</span>
+                                        </div>
+                                        <div class="tx-10">
+                                            <span wb-if="'{{weight}}'>''">
+                                                <b>Вес:</b> {{weight}}</span>
+                                            <span wb-if="'{{kcal}}'>''">
+                                                <b>Ккал:</b> {{kcal}}</span>
+                                            <span wb-if="'{{proteins}}'>''">
+                                                <b>Белки:</b> {{proteins}}</span>
+                                            <span wb-if="'{{fats}}'>''">
+                                                <b>Жиры:</b> {{fats}}</span>
+                                            <span wb-if="'{{carbs}}'>''">
+                                                <b>Углеводы:</b> {{carbs}}</span>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </wb-foreach>
+                        <div class="row pb-3">
+                            <div class="col-lg-8 offset-lg-2 px-5">
+
+                                <wb-var imgs="{{_current.{{_route.day}}.{{_var.imgfld}}}}" /> 
+                                
 
                                 <div id="carouselProd" class="carousel slide" data-ride="carousel">
                                     <ol class="carousel-indicators">
-                                        <wb-foreach wb-from="_var.prod.images">
+                                        <wb-foreach wb-from="_var.imgs">
                                             <wb-var wb-if="'{{_idx}}'=='0'" active="active" else="" />
-                                            <li data-target="#carouselProd" data-slide-to="{{_idx}}"
-                                                class="{{_var.active}}">
+                                            <li data-target="#carouselProd" data-slide-to="{{_idx}}" class="{{_var.active}}">
                                             </li>
                                         </wb-foreach>
                                     </ol>
 
                                     <div class="carousel-inner pd-md-x-40">
-                                        <wb-foreach wb-from="_var.prod.images">
+                                        <wb-foreach wb-from="_var.imgs">
                                             <wb-var wb-if="'{{_idx}}'=='0'" active="active" else="" />
                                             <div class="carousel-item {{_var.active}}">
-                                                <img data-src="/thumb/1200x700/src{{img}}" width="1200" height="700"
-                                                    alt="{{ _var.prod.food }}" class="img-fluid wd-100p">
+                                                <img data-src="/thumb/1200x700/src{{img}}" width="1200" height="700" alt="{{ _var.prod.food }}" class="img-fluid wd-100p">
                                             </div>
                                         </wb-foreach>
 
                                     </div>
 
-                                    <a class="carousel-control-prev" href="#carouselProd" role="button"
-                                        data-slide="prev" wb-if="'{{count({{_var.prod.images}})}}'>'1'">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"><i
-                                                data-feather="chevron-left"></i></span>
+                                    <a class="carousel-control-prev" href="#carouselProd" role="button" data-slide="prev" wb-if="'{{count({{_var.imgs}})}}'>'1'">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true">
+                                            <i data-feather="chevron-left"></i>
+                                        </span>
                                         <span class="sr-only">Previous</span>
                                     </a>
-                                    <a class="carousel-control-next" href="#carouselProd" role="button"
-                                        data-slide="next" wb-if="'{{count({{_var.prod.images}})}}'>'1'">
-                                        <span class="carousel-control-next-icon" aria-hidden="true"><i
-                                                data-feather="chevron-right"></i></span>
+                                    <a class="carousel-control-next" href="#carouselProd" role="button" data-slide="next" wb-if="'{{count({{_var.imgs}})}}'>'1'">
+                                        <span class="carousel-control-next-icon" aria-hidden="true">
+                                            <i data-feather="chevron-right"></i>
+                                        </span>
                                         <span class="sr-only">Next</span>
                                     </a>
                                 </div>
                             </div>
                         </div>
+
 
 
                         <div class="row mg-t-20">
@@ -98,7 +128,7 @@
                             </div>
                         </div>
 
-<!--
+                        <!--
                         <div class="row" wb-if="'{{count(_var.prod.components)}}' > '0' AND '{{_var.prod.components.0.c_name}}'>''">
                             <div class="col-lg-8 offset-lg-2 px-5">
                                 <div class="divider-text mb-1">Состав</div>
@@ -145,18 +175,17 @@
                 </div>
                 <div class="modal-body">
                     <div class="container">
-                    <div class="row">
+                        <div class="row">
                             <div class="col-12 col-lg-10 offset-lg-1">
                                 <div class="tx-center" wb-if="'{{_var.product.images.0.img}}'==''">
-                                <img data-src="/module/myicons/asian-food.1.svg?size=300&stroke=EEEEEE" class="img-fluid ht-300">
+                                    <img data-src="/module/myicons/asian-food.1.svg?size=300&stroke=EEEEEE" class="img-fluid ht-300">
                                 </div>
 
                                 <div id="carouselProd" class="carousel slide" data-ride="carousel" wb-if="'{{_var.product.images.0.img}}'>''">
                                     <ol class="carousel-indicators">
                                         <wb-foreach wb-from="_var.product.images">
                                             <wb-var wb-if="'{{_idx}}'=='0'" active="active" else="" />
-                                            <li data-target="#carouselProd" data-slide-to="{{_idx}}"
-                                                class="{{_var.active}}">
+                                            <li data-target="#carouselProd" data-slide-to="{{_idx}}" class="{{_var.active}}">
                                             </li>
                                         </wb-foreach>
                                     </ol>
@@ -165,31 +194,30 @@
                                         <wb-foreach wb-from="_var.product.images">
                                             <wb-var wb-if="'{{_idx}}'=='0'" active="active" else="" />
                                             <div class="carousel-item {{_var.active}}">
-                                                <img data-src="/thumb/1200x700/src{{img}}" width="1200" height="700"
-                                                    alt="{{ _var.product.food }}" class="img-fluid wd-100p">
+                                                <img data-src="/thumb/1200x700/src{{img}}" width="1200" height="700" alt="{{ _var.product.food }}" class="img-fluid wd-100p">
                                             </div>
                                         </wb-foreach>
                                     </div>
 
-                                    <a class="carousel-control-prev" href="#carouselProd" role="button"
-                                        data-slide="prev">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"><i
-                                                data-feather="chevron-left"></i></span>
+                                    <a class="carousel-control-prev" href="#carouselProd" role="button" data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true">
+                                            <i data-feather="chevron-left"></i>
+                                        </span>
                                         <span class="sr-only">Previous</span>
                                     </a>
-                                    <a class="carousel-control-next" href="#carouselProd" role="button"
-                                        data-slide="next">
-                                        <span class="carousel-control-next-icon" aria-hidden="true"><i
-                                                data-feather="chevron-right"></i></span>
+                                    <a class="carousel-control-next" href="#carouselProd" role="button" data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true">
+                                            <i data-feather="chevron-right"></i>
+                                        </span>
                                         <span class="sr-only">Next</span>
                                     </a>
                                 </div>
                             </div>
                         </div>
-                    
+
 
                         <div class="">
-                                    {{_var.product.text}}
+                            {{_var.product.text}}
                         </div>
 
 
@@ -197,14 +225,12 @@
 
                         <div class="row tx-center">
                             <div class="col-sm-4 offset-sm-4">
-                                <a href="javascript:void(0);" data-id="{{_var.product.id}}"
-                                    data-dismiss="modal" aria-label="Close"
-                                    data-name="{{_var.product.name}}" data-price="{{_var.product.price}}"
-                                    data-image="{{_var.product.images.0.img}}" data-days="7"
-                                    data-discounts="{{_var.product.discounts}}"
-                                    data-link="/products/{{_var.product.id}}/{{wbUrlOnly({{_var.product.name}})}}"
-                                    class="mod-cart-add mod-cart-data btn btn-success tx-20 px-4 my-3 rounded-30">В
-                                    корзину <img src="/module/myicons/shopping-cart.svg?size=26&stroke=FFFFFF"></a>
+                                <a href="javascript:void(0);" data-id="{{_var.product.id}}" data-dismiss="modal" aria-label="Close" data-name="{{_var.product.name}}"
+                                    data-price="{{_var.product.price}}" data-image="{{_var.product.images.0.img}}" data-days="7"
+                                    data-discounts="{{_var.product.discounts}}" data-link="/products/{{_var.product.id}}/{{wbUrlOnly({{_var.product.name}})}}"
+                                    class="mod-cart-add mod-cart-data btn btn-success tx-20 px-4 my-3 rounded-30">В корзину
+                                    <img src="/module/myicons/shopping-cart.svg?size=26&stroke=FFFFFF">
+                                </a>
                                 <div class="row tx-normal">
                                     <div class="col" wb-if="'{{_var.product.proteins*1}}'>'0'">
                                         <div class="tx-22">{{_var.product.proteins*1}}</div>
