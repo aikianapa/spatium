@@ -114,6 +114,7 @@
                                     <wb-module wb="{'module':'editor'}" name="text" />
                                 </div>
                             </div>
+                            <!--
                             <div class="divider-text">Состав</div>
                             <wb-multiinput name="components">
                                 <div class="col-md-9">
@@ -123,6 +124,7 @@
                                     <input class="form-control" type="text" name="c_weight" placeholder="Вес" />
                                 </div>
                             </wb-multiinput>
+                            -->
                             <div class="divider-text">Изображения</div>
                             <div class="form-group row">
                                 <div class="col-12">
@@ -131,64 +133,76 @@
                             </div>
                         </div>
 
-                        <wb-foreach wb-json='["пн","вт","ср", "чт","пт","сб","вс"]' wb-tpl="false">
+                        <wb-var meals="{{getMealsJson()}}" />
+                        <wb-foreach wb-json='["пн","вт","ср", "чт","пт","сб","вс"]' wb-tpl="false" wb-parent="true">
                             <wb-var day="{{wbTranslit({{_val}})}}" />
                             <div id="{{_var.day}}" class="container tab-pane fade">
-                                <wb-multilang wb-lang="{{getMeals()}}" wb-flags="false" name="{{_var.day}}">
-                                    <div class="col-12">
-                                    <wb-multiinput name="prodlist">
-                                        <div class="col-12">
-                                            <div class="form-group row">
-                                                <div class="input-group col-12">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text">Наименование</span>
-                                                    </div>
-                                                    <input type="text" name="food" class="form-control" placeholder="Наименование">
-                                                </div>
-                                            </div>
 
-                                            <div class="form-group row">
-                                                <div class="input-group col-sm-6">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text">Вес</span>
+                                <ul class="nav nav-tabs mb-2">
+                                    <wb-foreach wb-tpl="false" wb-from="_var.meals">
+                                        <wb-var active="active" wb-if="'{{_idx}}'=='0'" else=""/>
+                                        <li class="nav-item">
+                                            <a data-toggle="tab" class="nav-link {{_var.active}}" href="#Panel_{{_var.day}}_{{_key}}">{{_val}}</a>
+                                        </li>
+                                    </wb-foreach>
+                                </ul>
+                                <div class="tab-content">
+                                    <wb-foreach wb-tpl="false" wb-from="_var.meals" wb-parent="true">
+                                        <wb-var active="active show" wb-if="'{{_idx}}'=='0'" else="" />
+                                        <div class="container tab-pane {{_var.active}}" id="Panel_{{_var.day}}_{{_key}}">
+                                            <wb-multiinput name="{{_var.day}}.{{_key}}">
+                                                <div class="col-12">
+                                                    <div class="form-group row">
+                                                        <div class="input-group col-12">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text">Наименование</span>
+                                                            </div>
+                                                            <input type="text" name="food" class="form-control" placeholder="Наименование">
+                                                        </div>
                                                     </div>
-                                                    <input type="number" name="weight" class="form-control" placeholder="Вес (гр.)">
-                                                </div>
-                                                <p class="d-block d-sm-none p-1"></p>
-                                                <div class="input-group col-sm-6">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text">Калорийность</span>
+
+                                                    <div class="form-group row">
+                                                        <div class="input-group col-sm-6">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text">Вес</span>
+                                                            </div>
+                                                            <input type="number" name="weight" class="form-control" placeholder="Вес (гр.)">
+                                                        </div>
+                                                        <p class="d-block d-sm-none p-1"></p>
+                                                        <div class="input-group col-sm-6">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text">Калорийность</span>
+                                                            </div>
+                                                            <input type="number" name="kcal" class="form-control" placeholder="Калорийность (ккал.)">
+                                                        </div>
                                                     </div>
-                                                    <input type="number" name="kcal" class="form-control" placeholder="Калорийность (ккал.)">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="input-group col-4">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text">Белки</span>
+                                                    <div class="form-group row">
+                                                        <div class="input-group col-4">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text">Белки</span>
+                                                            </div>
+                                                            <input type="text" name="proteins" class="form-control" placeholder="Белки">
+                                                        </div>
+                                                        <div class="input-group col-sm-4">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text">Жиры</span>
+                                                            </div>
+                                                            <input type="number" name="fats" class="form-control" placeholder="Жиры">
+                                                        </div>
+                                                        <p class="d-block d-sm-none p-1"></p>
+                                                        <div class="input-group col-sm-4">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text">Углеводы</span>
+                                                            </div>
+                                                            <input type="number" name="carbs" class="form-control" placeholder="Углеводы">
+                                                        </div>
                                                     </div>
-                                                    <input type="text" name="proteins" class="form-control" placeholder="Белки">
+                                                    <div class="divider-text">Описание</div>
+                                                    <wb-module wb="{'module':'editor'}" name="descr" />
                                                 </div>
-                                                <div class="input-group col-sm-4">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text">Жиры</span>
-                                                    </div>
-                                                    <input type="number" name="fats" class="form-control" placeholder="Жиры">
-                                                </div>
-                                                <p class="d-block d-sm-none p-1"></p>
-                                                <div class="input-group col-sm-4">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text">Углеводы</span>
-                                                    </div>
-                                                    <input type="number" name="carbs" class="form-control" placeholder="Углеводы">
-                                                </div>
-                                            </div>
-                                            <div class="divider-text">Описание</div>
-                                            <wb-module wb="{'module':'editor'}" name="descr" />
-                                        </div>
-                                    </wb-multiinput>
-                                    </div>
-                                    <!--
+                                            </wb-multiinput>
+
+                                            <!--
                                     <div class="divider-text">Состав</div>
                                     <wb-multiinput name="components">
                                         <div class="col-md-9">
@@ -199,14 +213,16 @@
                                             <input class="form-control" type="text" name="c_weight" placeholder="Вес" />
                                         </div>
                                     </wb-multiinput>
-                                    -->
-                                    <div class="divider-text">Изображения</div>
-                                    <div class="form-group row">
-                                        <div class="col-12">
-                                            <wb-module wb="{'module':'filepicker'}" name="images" />
+-->
+                                            <div class="divider-text">Изображения</div>
+                                            <div class="form-group row">
+                                                <div class="col-12">
+                                                    <wb-module wb="{'module':'filepicker'}" name="{{_var.day}}.{{_key}}_images" />
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </wb-multilang>
+                                    </wb-foreach>
+                                </div>
                             </div>
                         </wb-foreach>
                     </div>

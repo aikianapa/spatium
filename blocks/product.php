@@ -3,13 +3,13 @@
         Смотри в /blocks/product.php
     </div>
     <div>
-<wb-module wb="module=yonger&mode=edit&block=common.inc" />
+        <wb-module wb="module=yonger&mode=edit&block=common.inc" />
     </div>
 </edit>
 
 
 <view>
-    <div class="product-item mg-b-50" >
+    <div class="product-item mg-b-50">
         <div class="row" wb-if="'{{_route.form}}' == 'pages'">
             <div class="col-lg-8 offset-lg-2 text-center px-5">
                 <h2 class="tx-light py-4 tx-40">
@@ -19,8 +19,7 @@
             </div>
         </div>
 
-        <div class="parallax d-flex ht-sm-50v mg-b-50" data-img="{{_var.product.images.0.img}}"
-            wb-if="'{{_route.form}}' == 'products'">
+        <div class="parallax d-flex ht-sm-50v mg-b-50" data-img="{{_var.product.images.0.img}}" wb-if="'{{_route.form}}' == 'products'">
             <div class="position-absolute d-block wd-100v ht-100v op-7 bg-black-8">&nbsp;</div>
             <div class="parallax-overlay row justify-content-center">
                 <div class="col-sm-8 text-center text-center text-white">
@@ -39,9 +38,10 @@
         </div>
 
         <div class="container text-center pb-3">
-            <p>Рационы здорового питания составлены на каждый день недели, изготавливаются и доставляются ежедневно.
-            В зависимости от дня доставки вы получите рацион дня, следующего за  датой доставки.  Например, во вторник вечером мы развозим рационы на среду.
-            Изменить день доставки после заказа вы можете в личном кабинете, отменив доставки на ненужные дни.</p>
+            <p>Рационы здорового питания составлены на каждый день недели, изготавливаются и доставляются ежедневно. В зависимости
+                от дня доставки вы получите рацион дня, следующего за датой доставки. Например, во вторник вечером мы развозим
+                рационы на среду. Изменить день доставки после заказа вы можете в личном кабинете, отменив доставки на ненужные
+                дни.</p>
         </div>
 
         <div wb-if="'{{_var.product.category}}'=='main'">
@@ -54,35 +54,41 @@
                     </li>
                 </wb-foreach>
             </ul>
+
             <div class="tab-content mt-5">
-                <wb-var tmp="{'Zavtrak':'Завтрак','Obed':'Обед','Poldnik':'Полдник','Ujin':'Ужин'}" />
-                <wb-foreach wb-json='["пн","вт","ср", "чт","пт","сб","вс"]' wb-tpl="false">
+                <wb-var tmp="{{getMealsJson()}}" />
+                <wb-foreach wb-json='["пн","вт","ср", "чт","пт","сб","вс"]' wb-tpl="false" wb-parent="true">
+                    <wb-var day="{{wbTranslit({{_val}})}}" />
                     <wb-var wb-if="'{{_idx}}'=='0'" active="active" else="" />
                     <div id="{{_var.wid}}-{{_idx}}" class="container tab-pane {{_var.active}}">
                         <wb-var total_kcal="0" />
                         <wb-var total_prot="0" />
                         <wb-var total_fats="0" />
                         <wb-var total_carb="0" />
+                        <wb-var menu="{{_parent.{{_var.day}}}}" />
                         <div class="row justify-content-center">
-                            <wb-foreach wb="from=_parent._var.product.{{wbTranslit({{_val}})}}" wb-tpl="false"
-                                wb-filter="{'food':{'$gt':''}}">
-                                <div class="col-md-3 bd-0">
-                                    <div class="card ht-100p bd-0">
-                                        <img data-src="/thumbc/400x300/src{{images.0.img}}" width="400" height="300" class="wd-100p img-fluid rounded-top"
-                                            width="400" height="300" alt="{{food}}">
-                                        <div class="card-body pb-0">
-                                            <div class="tx-12 tx-success tx-semibold tx-spacing-4 pb-2">
-                                                {{_var.tmp.{{_key}}}}</div>
-                                            <h6 class="card-title tx-semibold">{{food}}</h6>
-                                            <p class="card-text tx-gray-400 tx-12">{{kcal}} Ккал,
-                                                {{weight}} г.</p>
-                                        </div>
-                                        <div class="card-footer bd-0">
-                                        <a href="javascript:void(0)" class="btn btn-success tx-semibold rounded-20"
-                                            data-ajax="{'url':'/products/info/{{_var.product.id}}/{{wbTranslit({{_parent._val}})}}/{{_key}}','html':'modal'}">Подробнее</a>
+                            <wb-foreach wb="from=_var.tmp" wb-tpl="false" wb-parent="true">
+                                <wb-var meals="{{_key}}" />
+                                <wb-var images="{{_key}}_images" />
+                                <wb-var prod="{{_var.menu.{{_key}}}}" />
+                                <wb-foreach wb="from=_var.prod" wb-tpl="false">
+                                    <wb-var img="{{_var.menu.{{_var.images}}.0.img}}" />
+                                     <div class="col-md-3 bd-0" wb-if="'{{food}}'>''">
+                                        <div class="card ht-100p bd-0">
+                                            <img data-src="/thumbc/400x300/src{{_var.img}}" width="400" height="300" class="wd-100p img-fluid rounded-top" width="400"
+                                                height="300" alt="{{food}}">
+                                            <div class="card-body pb-0">
+                                                <div class="tx-12 tx-success tx-semibold tx-spacing-4 pb-2">
+                                                    {{_var.tmp.{{_var.meals}}}}</div>
+                                                <h6 class="card-title tx-semibold">{{food}}</h6>
+                                                <p class="card-text tx-gray-400 tx-12">{{kcal}} Ккал, {{weight}} г.</p>
+                                            </div>
+                                            <div class="card-footer bd-0">
+                                                <a href="javascript:void(0)" class="btn btn-success tx-semibold rounded-20" data-ajax="{'url':'/products/info/{{_var.product.id}}/{{wbTranslit({{_var.day}})}}/{{_var.meals}}','html':'modal'}">Подробнее</a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </wb-foreach>
                                 <wb-var total_kcal="{{_var.total_kcal*1+kcal*1}}" />
                                 <wb-var total_prot="{{_var.total_prot*1+proteins*1}}" />
                                 <wb-var total_fats="{{_var.total_fats*1+fats*1}}" />
@@ -91,7 +97,8 @@
                             <div class="col-12">
                                 <div class="row text-center tx-semibold py-4">
                                     <div class="col-sm-6 offset-sm-3">
-                                        <wb-var week="{'пн':'в понедельник','вт':'во вторник','ср':'в среду','чт':'в четверг','пт':'в пятницу','сб':'в субботу','вс':'в воскресенье'}" />
+                                        <wb-var week="{'пн':'в понедельник','вт':'во вторник','ср':'в среду','чт':'в четверг','пт':'в пятницу','сб':'в субботу','вс':'в воскресенье'}"
+                                        />
                                         <div class="tx-18">Всего {{_var.week.{{_val}}}}
                                         </div>
                                         <div class="tx-30 tx-success">

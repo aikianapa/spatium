@@ -12,6 +12,19 @@
         return $res;
     }
 
+
+    function getMealsJson()
+    {
+        $meals = wbItemRead('catalogs', 'meals');
+        $meals = $meals['tree']['data'];
+        $res = [];
+        foreach ($meals as $item) {
+            $item['active'] == 'on' ? $res[$item['id']] = $item['name'] : null;
+        }
+        return json_encode($res,JSON_UNESCAPED_UNICODE);
+    }
+
+
     function getDiscounts() {
         $tree = wbTreeread('discount');
         $tree = $tree['tree']['data'];

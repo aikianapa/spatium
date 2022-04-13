@@ -13,6 +13,24 @@ class productsClass extends cmsFormsClass
         return $item;
     }
 
+
+
+    function beforeItemEdit(&$item)
+    {
+        $days = ['pn','vt','sr','cht','pt','sb','vs'];
+        foreach ($days as $day) {
+            if (isset($item[$day]) && !isset($item[$day]['Zavtrak_images'])) {
+                // определяюм старую версию и запускаем перенос данных
+                foreach($item[$day] as $key => $data) {
+                    $item[$day][$key.'_images'] = $data['images'];
+                    unset($data['images']);
+                    $data = [0=>$data];
+                    $item[$day][$key] = $data;
+                }
+            }
+        }
+    }
+
     function afterItemRead(&$item) {
         $app = &$this->app;
         $item = (array)$item;
