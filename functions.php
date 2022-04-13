@@ -40,22 +40,59 @@
         return json_encode($discounts);
     }
 
-    function customRoute($route = []) {
+    function customRoute(&$route = [])
+    {
         $app = &$_ENV['app'];
-        $pages = $app->itemList('pages',['filter'=>[
-            "_site"=>$app->vars('_sett.site'),
-            "_login"=>$app->vars('_sett.login'),
-            "url" => $app->route->uri
-        ]]);
-        foreach($pages['list'] as $page) {
-            if ($page['url'] == $app->route->uri) {
+        $map = $app->vars('_env.dba').'/_yonmap.json';
+        $app->route->uri == '/' ? $uri = '/home' : $uri = $app->route->uri;
+        if (is_file($map)) {
+            $map = (array)json_decode(file_get_contents($map), true);
+            $idx = md5($uri);
+            if (isset($map[$idx])) {
                 $app->route->controller = 'form';
                 $app->route->mode = 'show';
-                $app->route->table = 'pages';
-                $app->route->item = $page['_id'];
-                $app->route->tpl = "page.php";
-                $app->vars('_route',$app->objToArray($app->route));
-                break;
+                $app->route->table = $map[$idx]['f'];
+                $app->route->item = $map[$idx]['i'];
+                isset($app->route->tpl) ? null : $app->route->tpl = $map[$idx]['f'].".php";
+                $app->vars('_route', $app->objToArray($app->route));
+                $route = $app->route;
+                return $route;
+            }
+        }
+
+        if ($app->vars('_route.controller') == 'form' && $app->vars('_route.mode') == 'show') {
+            $path = explode('/', $uri);
+            $name = array_pop($path);
+            $path = implode('/', $path);
+
+            $uri == '/' && $name == '' ? $name = 'home' : null;
+            if (isset($app->route->item) && $app->route->item !== $name) {
+                $app->route->alias = $name;
+                $name = $app->route->item;
+                $uri = $path.'/'.$name;
+            };
+            $uri == '/home' ? $uri = '/' : null;
+
+            $pages = $app->itemList('pages', ['filter'=>[
+            '_site' => [
+                '$in'=> [null,'{{_sett.site}}']
+            ],
+            'name'=>$name,
+            'active'=>'on',
+            'path' => $path
+        ]]);
+            foreach ($pages['list'] as $page) {
+                if ($page['url'] == $uri) {
+                    $app->route->controller = 'form';
+                    $app->route->mode = 'show';
+                    $app->route->table = 'pages';
+                    $app->route->item = $page['_id'];
+                    isset($app->route->tpl) ? null : $app->route->tpl = "page.php";
+                    $app->vars('_route', $app->objToArray($app->route));
+                    $route = $app->route;
+                    return $route;
+                    break;
+                }
             }
         }
     }
