@@ -7,7 +7,7 @@
     <wb-module wb="module=yonger&mode=render&view=header"  wb-if="'{{_route.params.ajax}}'==''" />
     <wb-var wid="{{wbNewId()}}" />
     <wb-var product="{{_current}}" />
-    <wb-var class="mg-t-50" wb-if="'{{_route.params.ajax}}'==''" />
+    <!--wb-var class="mg-t-50" wb-if="'{{_route.params.ajax}}'==''" /-->
     <div class="{{_var.class}}">
         <wb-module wb="module=yonger&mode=render&view=product" />
     </div>

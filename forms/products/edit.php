@@ -27,6 +27,16 @@
                             <input type="text" name="name" class="form-control" placeholder="Наименование" required>
                         </div>
                     </div>
+                    <div class="form-group row">
+                                <div class="input-group col-4">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Категория</span>
+                                    </div>
+                                    <select name="category" class="form-control" required wb-tree="dict=menu-categories">
+                                        <option value="{{id}}">{{name}}</option>
+                                    </select>
+                                </div>
+                    </div>
 
 
                     <!-- required bootstrap js -->
@@ -46,17 +56,15 @@
                             <div class="form-group row">
                                 <div class="input-group col-4">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text">Кат-я</span>
-                                    </div>
-                                    <select name="category" class="form-control" required wb-tree="dict=menu-categories">
-                                        <option value="{{id}}">{{name}}</option>
-                                    </select>
-                                </div>
-                                <div class="input-group col-4">
-                                    <div class="input-group-prepend">
                                         <span class="input-group-text">Артикул</span>
                                     </div>
                                     <input type="text" name="articul" class="form-control" placeholder="Артикул" >
+                                </div>
+                                <div class="input-group col-4">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Цена ₽</span>
+                                    </div>
+                                    <input type="text" name="price" class="form-control" placeholder="Цена ₽" required>
                                 </div>
                                 <div class="input-group col-4">
                                     <div class="input-group-prepend">
@@ -66,12 +74,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <div class="input-group col-4">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">Цена ₽</span>
-                                    </div>
-                                    <input type="text" name="price" class="form-control" placeholder="Цена ₽" required>
-                                </div>
+
                                 <div class="input-group col-sm-4">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">Вес</span>
@@ -84,28 +87,6 @@
                                         <span class="input-group-text">Калорийность</span>
                                     </div>
                                     <input type="number" name="kcal" class="form-control" placeholder="Калорийность (ккал.)">
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <div class="input-group col-4">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">Белки</span>
-                                    </div>
-                                    <input type="text" name="proteins" class="form-control" placeholder="Белки">
-                                </div>
-                                <div class="input-group col-sm-4">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">Жиры</span>
-                                    </div>
-                                    <input type="number" name="fats" class="form-control" placeholder="Жиры">
-                                </div>
-                                <p class="d-block d-sm-none p-1"></p>
-                                <div class="input-group col-sm-4">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">Углеводы</span>
-                                    </div>
-                                    <input type="number" name="carbs" class="form-control" placeholder="Углеводы">
                                 </div>
                             </div>
 

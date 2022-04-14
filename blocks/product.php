@@ -101,10 +101,10 @@
                                         />
                                         <div class="tx-18">Всего {{_var.week.{{_val}}}}
                                         </div>
-                                        <div class="tx-30 tx-success">
+                                        <div class="tx-30 tx-success" wb-if="'{{_var.total_kcal}}'>''">
                                             {{_var.total_kcal}} Ккал
                                         </div>
-                                        <div class="row tx-normal mb-3">
+                                        <div class="row tx-normal mb-3" wb-if="'{{_var.product.category}}'!=='main'">
                                             <div class="col">
                                                 <div class="tx-22">{{_var.total_prot}}</div>
                                                 <div class="tx-14 tx-gray-600">белки</div>
