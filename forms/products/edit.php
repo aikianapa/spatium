@@ -1,7 +1,7 @@
 <html>
 <div class="modal fade effect-scale show removable" id="{{_form}}ModalEdit" data-backdrop="static" tabindex="-1" role="dialog"
     aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <i class="fa fa-close wd-20" data-dismiss="modal" aria-label="Close"></i>
@@ -28,14 +28,14 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                                <div class="input-group col-4">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">Категория</span>
-                                    </div>
-                                    <select name="category" class="form-control" required wb-tree="dict=menu-categories">
-                                        <option value="{{id}}">{{name}}</option>
-                                    </select>
-                                </div>
+                        <div class="input-group col-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Категория</span>
+                            </div>
+                            <select name="category" class="form-control" required wb-tree="dict=menu-categories">
+                                <option value="{{id}}">{{name}}</option>
+                            </select>
+                        </div>
                     </div>
 
 
@@ -58,7 +58,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">Артикул</span>
                                     </div>
-                                    <input type="text" name="articul" class="form-control" placeholder="Артикул" >
+                                    <input type="text" name="articul" class="form-control" placeholder="Артикул">
                                 </div>
                                 <div class="input-group col-4">
                                     <div class="input-group-prepend">
@@ -70,7 +70,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text bg-danger tx-white">Промо ₽</span>
                                     </div>
-                                    <input type="text" name="promoprice" class="form-control" placeholder="Цена ₽" >
+                                    <input type="text" name="promoprice" class="form-control" placeholder="Цена ₽">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -121,7 +121,7 @@
 
                                 <ul class="nav nav-tabs mb-2">
                                     <wb-foreach wb-tpl="false" wb-from="_var.meals">
-                                        <wb-var active="active" wb-if="'{{_idx}}'=='0'" else=""/>
+                                        <wb-var active="active" wb-if="'{{_idx}}'=='0'" else="" />
                                         <li class="nav-item">
                                             <a data-toggle="tab" class="nav-link {{_var.active}}" href="#Panel_{{_var.day}}_{{_key}}">{{_val}}</a>
                                         </li>
@@ -132,7 +132,14 @@
                                         <wb-var active="active show" wb-if="'{{_idx}}'=='0'" else="" />
                                         <div class="container tab-pane {{_var.active}}" id="Panel_{{_var.day}}_{{_key}}">
                                             <wb-multiinput name="{{_var.day}}.{{_key}}">
-                                                <div class="col-12">
+                                                <div class="col-sm-4">
+                                                    <div class="form-group row">
+                                                        <div class="col-12">
+                                                            <wb-module wb="{'module':'filepicker','mode':'single'}" name="image" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-8">
                                                     <div class="form-group row">
                                                         <div class="input-group col-12">
                                                             <div class="input-group-prepend">

@@ -22,7 +22,7 @@
                     <div class="container">
                         <h3 class="text-center">{{_var.meals.{{_route.pos}}}}</h3>
 
-                        <wb-foreach wb-from="_var.prod">
+                        <wb-foreach wb-from="_var.prod" wb-tpl="false">
                             <div class="row pb-3">
                                 <div class="col-lg-8 offset-lg-2 px-5">
 
@@ -48,15 +48,17 @@
                                 </div>
                             </div>
                         </wb-foreach>
+
+
                         <div class="row pb-3">
                             <div class="col-lg-8 offset-lg-2 px-5">
 
-                                <wb-var imgs="{{_current.{{_route.day}}.{{_var.imgfld}}}}" /> 
-                                
+                                <wb-var imgs="{{_current.{{_route.day}}.{{_var.imgfld}}}}" />
+
 
                                 <div id="carouselProd" class="carousel slide" data-ride="carousel">
                                     <ol class="carousel-indicators">
-                                        <wb-foreach wb-from="_var.imgs">
+                                        <wb-foreach wb-from="_var.prod" wb-tpl="false">
                                             <wb-var wb-if="'{{_idx}}'=='0'" active="active" else="" />
                                             <li data-target="#carouselProd" data-slide-to="{{_idx}}" class="{{_var.active}}">
                                             </li>
@@ -64,13 +66,17 @@
                                     </ol>
 
                                     <div class="carousel-inner pd-md-x-40">
-                                        <wb-foreach wb-from="_var.imgs">
+                                        <wb-foreach wb-from="_var.prod" wb-tpl="false">
                                             <wb-var wb-if="'{{_idx}}'=='0'" active="active" else="" />
-                                            <div class="carousel-item {{_var.active}}">
-                                                <img data-src="/thumb/1200x700/src{{img}}" width="1200" height="700" alt="{{ _var.prod.food }}" class="img-fluid wd-100p">
+                                            <div class="carousel-item {{_var.active}} b-0">
+                                                <img data-src="/thumb/1200x700/src{{image.0.img}}" width="1200" height="700" alt="{{ _var.prod.food }}" class="img-fluid wd-100p">
+                                                <div class="carousel-caption d-none d-md-block">
+                                                    <span class="h3 tx-white px-2 py-0 rounded-20" style="background-color: #7a9f5788;">{{_var.meals.{{_route.pos}}}}</span>
+                                                    <br>
+                                                    <span class="tx-white px-2 py-0 rounded-10" style="background-color: #7a9f5788;">{{food}}</span>
+                                                </div>
                                             </div>
                                         </wb-foreach>
-
                                     </div>
 
                                     <a class="carousel-control-prev" href="#carouselProd" role="button" data-slide="prev" wb-if="'{{count({{_var.imgs}})}}'>'1'">
@@ -88,8 +94,6 @@
                                 </div>
                             </div>
                         </div>
-
-
 
                         <div class="row mg-t-20">
                             <div class="col-sm-6 offset-sm-3">
