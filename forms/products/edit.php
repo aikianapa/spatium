@@ -190,24 +190,6 @@
                                                 </div>
                                             </wb-multiinput>
 
-                                            <!--
-                                    <div class="divider-text">Состав</div>
-                                    <wb-multiinput name="components">
-                                        <div class="col-md-9">
-                                            <input class="form-control" type="text" name="c_name"
-                                                placeholder="Наименование" />
-                                        </div>
-                                        <div class="col-md-3">
-                                            <input class="form-control" type="text" name="c_weight" placeholder="Вес" />
-                                        </div>
-                                    </wb-multiinput>
--->
-                                            <div class="divider-text">Изображения</div>
-                                            <div class="form-group row">
-                                                <div class="col-12">
-                                                    <wb-module wb="{'module':'filepicker'}" name="{{_var.day}}.{{_key}}_images" />
-                                                </div>
-                                            </div>
                                         </div>
                                     </wb-foreach>
                                 </div>
