@@ -32,7 +32,7 @@
                                         </a>
                                         <div class="media-body">
                                             <h5 class="mg-b-15 tx-success">{{food}}</h5>
-                                            <p wb-if="'{{text}}'>''">{{text}}</p>
+                                            <div class="tx-gray-700" wb-if="'{{descr}}'>''">{{descr}}</div>
                                             <div class="tx-12 tx-success">
                                                 <span wb-if="'{{weight}}'>''">
                                                     <b class="tx-gray-600">Вес:</b> {{weight}}гр. </span>
