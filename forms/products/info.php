@@ -8,7 +8,7 @@
         <wb-var prod="{{ _current.{{_route.day}}.{{_route.pos}} }}" />
         <wb-var imgfld="{{_route.pos}}_images" />
         <!-- Отображение основного блюда по дням -->
-        <div class="modal-dialog modal-fullscreen" role="document" wb-if="'{{_route.day}}'>''">
+        <div class="modal-dialog modal-xl" role="document" wb-if="'{{_route.day}}'>''">
             <div class="modal-content">
                 <div class="modal-header align-items-center">
                     <h6 class="modal-title tx-semibold tx-success w-100 tx-center">
@@ -20,36 +20,37 @@
                 </div>
                 <div class="modal-body">
                     <div class="container">
-                        <h3 class="text-center">{{_var.meals.{{_route.pos}}}}</h3>
+                        <h3 class="text-center mb-5 tx-success">{{_var.meals.{{_route.pos}}}}</h3>
 
                         <wb-foreach wb-from="_var.prod" wb-tpl="false">
                             <div class="row pb-3">
                                 <div class="col-lg-8 offset-lg-2 px-5">
 
-                                    <div class="mg-b-0">
-                                        <div class="">
-                                            <b>{{_ndx}}. {{food}}</b>
-                                            <span wb-if="'{{text}}'>''">{{text}}</span>
-                                        </div>
-                                        <div class="tx-10">
-                                            <span wb-if="'{{weight}}'>''">
-                                                <b>Вес:</b> {{weight}}</span>
-                                            <span wb-if="'{{kcal}}'>''">
-                                                <b>Ккал:</b> {{kcal}}</span>
-                                            <span wb-if="'{{proteins}}'>''">
-                                                <b>Белки:</b> {{proteins}}</span>
-                                            <span wb-if="'{{fats}}'>''">
-                                                <b>Жиры:</b> {{fats}}</span>
-                                            <span wb-if="'{{carbs}}'>''">
-                                                <b>Углеводы:</b> {{carbs}}</span>
-
+                                    <div class="media">
+                                        <img src="/thumbc/400x300/src{{image.0.img}}" class="wd-200 rounded mg-r-20" alt="">
+                                        <div class="media-body">
+                                            <h5 class="mg-b-15 tx-success">{{food}}</h5>
+                                            <p wb-if="'{{text}}'>''">{{text}}</p>
+                                            <div class="tx-12 tx-success">
+                                                <span wb-if="'{{weight}}'>''">
+                                                    <b class="tx-gray-600">Вес:</b> {{weight}}гр. </span>
+                                                <span wb-if="'{{kcal}}'>''">
+                                                    <b class="tx-gray-600">Ккал:</b> {{kcal}} </span>
+                                                <span wb-if="'{{proteins}}'>''">
+                                                    <b class="tx-gray-600">Белки:</b> {{proteins}}гр. </span>
+                                                <span wb-if="'{{fats}}'>''">
+                                                    <b class="tx-gray-600">Жиры:</b> {{fats}}гр. </span>
+                                                <span wb-if="'{{carbs}}'>''">
+                                                    <b class="tx-gray-600">Углеводы:</b> {{carbs}}гр. </span>
+                                            </div>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
                         </wb-foreach>
 
-
+<!--
                         <div class="row pb-3">
                             <div class="col-lg-8 offset-lg-2 px-5">
 
@@ -69,7 +70,7 @@
                                         <wb-foreach wb-from="_var.prod" wb-tpl="false">
                                             <wb-var wb-if="'{{_idx}}'=='0'" active="active" else="" />
                                             <div class="carousel-item {{_var.active}} b-0">
-                                                <img data-src="/thumb/1200x700/src{{image.0.img}}" width="1200" height="700" alt="{{ _var.prod.food }}" class="img-fluid wd-100p">
+                                                <img data-src="/thumbc/1200x700/src{{image.0.img}}" width="1200" height="700" alt="{{ _var.prod.food }}" class="img-fluid wd-100p">
                                                 <div class="carousel-caption d-none d-md-block">
                                                     <span class="h3 tx-white px-2 py-0 rounded-20" style="background-color: #7a9f5788;">{{_var.meals.{{_route.pos}}}}</span>
                                                     <br>
@@ -94,7 +95,7 @@
                                 </div>
                             </div>
                         </div>
-
+-->
                         <div class="row mg-t-20">
                             <div class="col-sm-6 offset-sm-3">
                                 <div class="row tx-normal tx-center">
@@ -157,7 +158,7 @@
                             </div>
                         </div>
 -->
-                        <div class="row mg-b-100 mg-t-50">
+                        <div class="row mg-b-100 mg-t-20">
                             <div class="col-lg-8 offset-lg-2 px-5 tx-center">
                                 <h3 class="tx-gray-700">Добавить в корзину</h3>
                                 <p class="tx-semibold tx-16 tx-gray-700">{{name}}</p>

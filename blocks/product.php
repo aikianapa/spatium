@@ -41,7 +41,8 @@
             <p>Рационы здорового питания составлены на каждый день недели, изготавливаются и доставляются ежедневно. В зависимости
                 от дня доставки вы получите рацион дня, следующего за датой доставки. Например, во вторник вечером мы развозим
                 рационы на среду. Изменить день доставки после заказа вы можете в личном кабинете, отменив доставки на ненужные
-                дни.</p>
+                дни.
+            </p>
         </div>
 
         <div wb-if="'{{_var.product.category}}'=='main'">
@@ -69,32 +70,27 @@
                         <div class="row justify-content-center">
                             <wb-foreach wb="from=_var.tmp" wb-tpl="false" wb-parent="true">
                                 <wb-var meals="{{_key}}" />
-                                <wb-var images="{{_key}}_images" />
+                                <wb-var image="{{_var.day}}.{{_key}}_images" />
                                 <wb-var prod="{{_var.menu.{{_key}}}}" />
-                                <wb-foreach wb="from=_var.prod" wb-tpl="false">
-                                    <wb-var img="{{_var.menu.{{_var.images}}.0.img}}" />
-                                     <div class="col-md-3 bd-0" wb-if="'{{food}}'>''">
-                                        <div class="card ht-100p bd-0 text-center">
-                                            <img wb-if="'{{image.0.img}}'==''" data-src="/thumbc/400x300/src{{_var.img}}" width="400" height="300" class="wd-100p img-fluid rounded-top" width="400"
-                                                height="300" alt="{{food}}">
-                                            <img wb-if="'{{image.0.img}}'>''" data-src="/thumbc/400x300/src{{image.0.img}}" width="400" height="300" class="wd-100p img-fluid rounded-top" width="400"
-                                                height="300" alt="{{food}}">
-                                            <div class="card-body pb-0">
-                                                <div class="tx-12 tx-success tx-semibold tx-spacing-4 pb-2">
-                                                    {{_var.tmp.{{_var.meals}}}}</div>
-                                                <h6 class="card-title tx-semibold">{{food}}</h6>
-                                                <p class="card-text tx-gray-400 tx-12">{{kcal}} Ккал, {{weight}} г.</p>
-                                            </div>
-                                            <div class="card-footer bd-0">
-                                                <a href="javascript:void(0)" class="btn btn-success tx-semibold rounded-20" data-ajax="{'url':'/products/info/{{_var.product.id}}/{{wbTranslit({{_var.day}})}}/{{_var.meals}}','html':'modal'}">Подробнее</a>
-                                            </div>
-                                        </div>
+                            <div class="col-md-3 bd-0" wb-if="'{{_var.prod.0.food}}'>''">
+                                <div class="card ht-100p bd-0 text-center">
+                                    <img wb-if="'{{ _parent.{{_var.image}}.0.img }}'>''" data-src="/thumbc/400x300/src{{_parent.{{_var.image}}.0.img}}" width="400" height="300" class="wd-100p img-fluid rounded-top"
+                                        width="400" height="300" alt="{{food}}">
+                                    <div class="card-body pb-0">
+                                        <div class="tx-12 tx-success tx-semibold tx-spacing-4 pb-2">
+                                            {{_var.tmp.{{_var.meals}}}}</div>
                                     </div>
-                                </wb-foreach>
+                                    <div class="card-footer bd-0">
+                                        <a href="javascript:void(0)" class="btn btn-success tx-semibold rounded-20" data-ajax="{'url':'/products/info/{{_var.product.id}}/{{wbTranslit({{_var.day}})}}/{{_var.meals}}','html':'modal'}">Подробнее</a>
+                                    </div>
+                                </div>
+
                                 <wb-var total_kcal="{{_var.total_kcal*1+kcal*1}}" />
                                 <wb-var total_prot="{{_var.total_prot*1+proteins*1}}" />
                                 <wb-var total_fats="{{_var.total_fats*1+fats*1}}" />
                                 <wb-var total_carb="{{_var.total_carb*1+carbs*1}}" />
+
+                            </div>
                             </wb-foreach>
                             <div class="col-12">
                                 <div class="row text-center tx-semibold py-4">

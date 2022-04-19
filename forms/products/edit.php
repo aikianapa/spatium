@@ -131,6 +131,14 @@
                                     <wb-foreach wb-tpl="false" wb-from="_var.meals" wb-parent="true">
                                         <wb-var active="active show" wb-if="'{{_idx}}'=='0'" else="" />
                                         <div class="container tab-pane {{_var.active}}" id="Panel_{{_var.day}}_{{_key}}">
+
+                                            <div class="divider-text">Общие изображения</div>
+                                            <div class="form-group row">
+                                                <div class="col-12">
+                                                    <wb-module wb="{'module':'filepicker'}" name="{{_var.day}}.{{_key}}_images" />
+                                                </div>
+                                            </div>
+                                            <div class="divider-text">Блюда</div>
                                             <wb-multiinput name="{{_var.day}}.{{_key}}">
                                                 <div class="col-sm-4">
                                                     <div class="form-group row">
@@ -189,7 +197,6 @@
                                                     <wb-module wb="{'module':'editor'}" name="descr" />
                                                 </div>
                                             </wb-multiinput>
-
                                         </div>
                                     </wb-foreach>
                                 </div>
