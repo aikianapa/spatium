@@ -26,8 +26,10 @@
                             <div class="row pb-3">
                                 <div class="col-lg-8 offset-lg-2 px-5">
 
-                                    <div class="media">
-                                        <img src="/thumbc/400x300/src{{image.0.img}}" class="wd-200 rounded mg-r-20" alt="">
+                                    <div class="media" wb-module="photoswipe" wb-imgset="img{{_key}}">
+                                        <a href="{{image.0.img}}">
+                                        <img src="/thumbc/400x300/src{{image.0.img}}" class="wd-200 rounded mg-r-20" alt="{{food}}">
+                                        </a>
                                         <div class="media-body">
                                             <h5 class="mg-b-15 tx-success">{{food}}</h5>
                                             <p wb-if="'{{text}}'>''">{{text}}</p>

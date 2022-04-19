@@ -22,7 +22,7 @@
         <div class="parallax d-flex ht-sm-50v mg-b-50" data-img="{{_var.product.images.0.img}}" wb-if="'{{_route.form}}' == 'products'">
             <div class="position-absolute d-block wd-100v ht-100v op-7 bg-black-8">&nbsp;</div>
             <div class="parallax-overlay row justify-content-center">
-                <div class="col-sm-8 text-center text-center text-white mg-t-50">
+                <div class="col-sm-8 text-center text-center text-white mg-t-100">
                     <h1 class="text-white tx-semibold py-4 tx-md-50">
                         {{_var.product.name}}
                     </h1>
