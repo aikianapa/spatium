@@ -22,7 +22,7 @@
         <div class="parallax d-flex ht-sm-50v mg-b-50" data-img="{{_var.product.images.0.img}}" wb-if="'{{_route.form}}' == 'products'">
             <div class="position-absolute d-block wd-100v ht-100v op-7 bg-black-8">&nbsp;</div>
             <div class="parallax-overlay row justify-content-center">
-                <div class="col-sm-8 text-center text-center text-white">
+                <div class="col-sm-8 text-center text-center text-white mg-t-50">
                     <h1 class="text-white tx-semibold py-4 tx-md-50">
                         {{_var.product.name}}
                     </h1>
@@ -72,9 +72,10 @@
                                 <wb-var meals="{{_key}}" />
                                 <wb-var image="{{_var.day}}.{{_key}}_images" />
                                 <wb-var prod="{{_var.menu.{{_key}}}}" />
+                                <wb-var wb-if="'{{ _parent.{{_var.image}}.0.img }}'>''" img="{{ _parent.{{_var.image}}.0.img }}" else="{{_var.prod.0.image.0.img}}" />
                             <div class="col-md-3 bd-0" wb-if="'{{_var.prod.0.food}}'>''">
                                 <div class="card ht-100p bd-0 text-center">
-                                    <img wb-if="'{{ _parent.{{_var.image}}.0.img }}'>''" data-src="/thumbc/400x300/src{{_parent.{{_var.image}}.0.img}}" width="400" height="300" class="wd-100p img-fluid rounded-top"
+                                    <img data-src="/thumbc/400x300/src{{_var.img}}" width="400" height="300" class="wd-100p img-fluid rounded-top"
                                         width="400" height="300" alt="{{food}}">
                                     <div class="card-body pb-0">
                                         <div class="tx-12 tx-success tx-semibold tx-spacing-4 pb-2">
