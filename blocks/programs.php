@@ -42,7 +42,7 @@
                         <a href="javascript:$.redirectPost('/products/{{id}}/{{wbUrlOnly({{name}})}}', { 'days':'{{_var.days}}' });">
                         <wb-var imgcnt="{{count({{images}})}}" />
                         <wb-var cicle="{{ceil({{_ndx}} / {{_var.imgcnt}})}}" />
-                        <img data-src="/thumbc/350x300/src/{{images.0.img}}" class="card-img-top object-cover" width="350" height="300"
+                        <img data-src="/thumbc/530x398/src/{{images.0.img}}" class="card-img-top object-cover" width="530" height="398"
                             alt="{{name}}">
                         <h6 class="pos-absolute t-20 l-20 tx-white tx-shadow tx-semibold mg-b-20">{{name}}</h6>
                         <figcaption
