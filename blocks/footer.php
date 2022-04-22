@@ -155,7 +155,7 @@
 
     <modal></modal>
     <wb-snippet name="wbapp" />
-  <wb-scripts src="main.jsgz" trigger="ready">
+  <wb-scripts src="main" trigger="ready">
                 [
                   "/engine/lib/bootstrap/js/bootstrap.bundle.min.js",
                   "/engine/modules/yonger/tpl/assets/js/dashforge.js",

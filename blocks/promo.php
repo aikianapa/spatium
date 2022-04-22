@@ -32,9 +32,9 @@
 </edit>
 
 <view>
-    <section>
         <wb-var uspr="{{_sess.user.promo}}" wb-if="'{{_sess.user.promo}}'>' '" else='[]' />
         <wb-var bkg="{{bkg.0.img}}" />
+        <section>
         <wb-foreach wb="{
                 'ajax':'/api/v2/list/products',
                 'tpl':'false',
