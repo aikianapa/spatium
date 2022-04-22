@@ -23,39 +23,54 @@
         <div class="col-lg-4">
             <label class="form-control-label">Цвет</label>
             <select name="color" class="form-control">
-                <wb-foreach wb="render=server" wb-tpl="false"
-                    wb-json='["success","primary","secondary","danger","warning"]'>
+                <wb-foreach wb="render=server" wb-tpl="false" wb-json='["success","primary","secondary","danger","warning"]'>
                     <option value="{{_val}}">{{_val}}</option>
                 </wb-foreach>
             </select>
         </div>
         <div class="col-12">
             <label class="form-control-label">Фоновое изображение</label>
-            <wb-module wb="module=filepicker&amp;mode=single" name="bkg" wb-path="/assets/images/backgrounds/"
-                wb-ext="webp,jpg,png,jpeg,svg"></wb-module>
+            <wb-module wb="module=filepicker" name="bkg" wb-path="/assets/images/backgrounds" wb-ext="webp,jpg,png,jpeg,svg"></wb-module>
         </div>
     </div>
 </edit>
 <view header="Обложка на главной">
     <section>
-        <div class="parallax d-flex" data-img='{{str_replace("//","/",{{bkg.0.img}})}}'>
-            <div class="position-absolute d-block wd-100v ht-100v op-7 bg-black-8"> </div>
-            <div class="parallax-overlay row justify-content-center">
-                <div class="col-sm-8 text-center text-center text-white">
-                    <!--img data-src="/assets/img/logo.svg" width="300" height="209" class="wd-300 px-4 pt-5 img-fluid animated hiding" data-animation="flipInY" data-delay="200"-->
-                    <h1 class="text-white tx-light py-4 tx-30 tx-sm-50 animated hiding" data-animation="bounceInDown"
-                        data-delay="0">
-                        {{header}}
-                    </h1>
-                    <p class="pb-5 tx-16 tx-sm-20 animated hiding text" data-animation="bounceInUp" data-delay="600">
-                        {{text}}
-                    </p>
-                    <a href="%7B%7Blink%7D%7D" wb-if="button &gt; ''"
-                        class="btn btn-{{color}} rounded-30 tx-light pd-x-40 pd-y-15 ">
-                        {{button}}
-                    </a>
-                </div>
+        <div id="HeroCarousel" class="carousel slide" data-ride="carousel" data-touch="true">
+            <ol class="carousel-indicators">
+                <wb-foreach wb="from=bkg&tpl=false">
+                    <wb-var active="active" wb-if="'{{_idx}}'=='0'" else="" />
+                    <li class="{{_var.active}}" data-target="#HeroCarousel" data-slide-to="{{_idx}}" aria-current="location"></li>
+                </wb-foreach>
+            </ol>
+            <div class="carousel-inner">
+                <wb-foreach wb="from=bkg&tpl=false">
+                    <wb-var active="active" wb-if="'{{_idx}}'=='0'" else="" />
+                    <div class="carousel-item wd-100v ht-100v {{_var.active}}" style="background:url({{img}});background-size:cover;background-position: 50% 50%;">
+                        <div class="carousel-caption d-md-block text-center text-white">
+                            <h1 class="text-white tx-light py-4 tx-30 tx-sm-50">
+                                {{_parent.header}}
+                            </h1>
+                            <p class="pb-5 tx-16 tx-sm-20 text">
+                                {{_parent.text}}
+                            </p>
+                            <a href="{{link}}" wb-if="'{{button}}' > ''" class="btn btn-{{color}} rounded-30 tx-light pd-x-40 pd-y-15 ">
+                                {{_parent.button}}
+                            </a>
+                        </div>
+                    </div>
+                </wb-foreach>
             </div>
+            <a class="carousel-control-prev" href="#HeroCarousel" data-slide="prev" role="button">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#HeroCarousel" data-slide="next" role="button">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
         </div>
+
+
     </section>
 </view>

@@ -25,40 +25,40 @@
             </select>
         </div>
     </div>
-
-    <div class="alert alert-info">
-        Смотри в /blocks/promo.php
+    <div class="col-12">
+        <label class="form-control-label">Фоновое изображение</label>
+        <wb-module wb="module=filepicker&mode=single" name="bkg" wb-path="/assets/images/backgrounds/" wb-ext="webp,jpg,png,jpeg,svg" />
     </div>
 </edit>
 
 <view>
     <section>
-        <wb-var uspr="{{_sess.user.promo}}" wb-if="'{{_sess.user.promo}}'>' '" else='[]'/>
+        <wb-var uspr="{{_sess.user.promo}}" wb-if="'{{_sess.user.promo}}'>' '" else='[]' />
+        <wb-var bkg="{{bkg.0.img}}"/>
         <wb-foreach wb="table=products&tpl=false&rand=true&limit=1" wb-filter="{
             'active':'on',
             'category':'main',
             'promoprice':{'$gt':'0'},
             'id':{'$nin':{{_var.uspr}}}
         }">
-        <div class="parallax d-flex ht-sm-50v" data-img="{{images.0.img}}">
-            <div class="position-absolute d-block wd-100v ht-100v op-7 bg-black-8">&nbsp;</div>
-            <div class="parallax-overlay row justify-content-center">
-                <div class="col-sm-8 text-center text-center text-white">
-                    <h1 class="text-white tx-light py-4 tx-50">
-                        {{_parent.header}}
-                    </h1>
-                    <p class="tx-20">
-                        {{_parent.text}}
-                    </p>
+            <div class="parallax d-flex ht-sm-50v" data-img="{{_var.bkg}}">
+                <div class="position-absolute d-block wd-100v ht-100v op-7 bg-black-8">&nbsp;</div>
+                <div class="parallax-overlay row justify-content-center">
+                    <div class="col-sm-8 text-center text-center text-white">
+                        <h1 class="text-white tx-light py-4 tx-50">
+                            {{_parent.header}}
+                        </h1>
+                        <p class="tx-20">
+                            {{_parent.text}}
+                        </p>
                         <h6 class="text-white tx-light py-4 tx-20">{{name}} — <span class="tx-semibold">{{promoprice}}₽</span></h6>
-                        <a href="javascript:void(0);" data-id="{{id}}" data-name="{{name}}" data-price="{{promoprice}}" data-image="{{images.0.img}}" data-days="1" data-promo="1" data-discounts="{}" data-promo="1" data-link="/products/{{id}}/{{wbUrlOnly({{name}})}}"
-                            class="__mod-cart-add mod-cart-data btn btn-promo btn-{{_parent.color}}  rounded-30 tx-light pd-x-40 pd-y-15">
+                        <a href="javascript:void(0);" data-id="{{id}}" data-name="{{name}}" data-price="{{promoprice}}" data-image="{{_var.bkg}}" data-days="1" data-promo="1" data-discounts="{}" data-promo="1" data-link="/products/{{id}}/{{wbUrlOnly({{name}})}}" class="__mod-cart-add mod-cart-data btn btn-promo btn-{{_parent.color}}  rounded-30 tx-light pd-x-40 pd-y-15">
                             {{_parent.button}}
                             <img src="/module/myicons/shopping-cart.svg?size=26&stroke=FFFFFF" width="26" height="26">
                         </a>
+                    </div>
                 </div>
             </div>
-        </div>
         </wb-foreach>
     </section>
 </view>
@@ -113,8 +113,7 @@
         </div>
         <div class="col-12">
             <label class="form-control-label">Фоновое изображение</label>
-            <wb-module wb="module=filepicker&mode=single" name="bkg" wb-path="/assets/images/backgrounds/" wb-ext="webp,jpg,png,jpeg,svg"
-            />
+            <wb-module wb="module=filepicker&mode=single" name="bkg" wb-path="/assets/images/backgrounds/" wb-ext="webp,jpg,png,jpeg,svg" />
         </div>
     </div>
 
@@ -136,9 +135,7 @@
                         {{text}}
                     </p>
                     <wb-data wb="table=products&item={{product}}">
-                        <a href="javascript:void(0);" data-id="{{id}}" data-name="{{name}}" data-price="{{_parent.price}}" data-image="{{images.0.img}}"
-                            data-days="{{_parent.days}}" data-discounts="{}" data-promo="1" data-link="/products/{{id}}/{{wbUrlOnly({{name}})}}"
-                            class="mod-cart-add mod-cart-data btn btn-{{_parent.color}}  rounded-30 tx-light pd-x-40 pd-y-15">
+                        <a href="javascript:void(0);" data-id="{{id}}" data-name="{{name}}" data-price="{{_parent.price}}" data-image="{{images.0.img}}" data-days="{{_parent.days}}" data-discounts="{}" data-promo="1" data-link="/products/{{id}}/{{wbUrlOnly({{name}})}}" class="mod-cart-add mod-cart-data btn btn-{{_parent.color}}  rounded-30 tx-light pd-x-40 pd-y-15">
                             {{_parent.button}}
                             <img src="/module/myicons/shopping-cart.svg?size=26&stroke=FFFFFF" width="26" height="26">
                         </a>
