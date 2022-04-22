@@ -34,13 +34,19 @@
 <view>
     <section>
         <wb-var uspr="{{_sess.user.promo}}" wb-if="'{{_sess.user.promo}}'>' '" else='[]' />
-        <wb-var bkg="{{bkg.0.img}}"/>
-        <wb-foreach wb="table=products&tpl=false&rand=true&limit=1" wb-filter="{
-            'active':'on',
-            'category':'main',
-            'promoprice':{'$gt':'0'},
-            'id':{'$nin':{{_var.uspr}}}
-        }">
+        <wb-var bkg="{{bkg.0.img}}" />
+        <wb-foreach wb="{
+                'ajax':'/api/v2/list/products',
+                'tpl':'false',
+                'rand':'true',
+                'limit':'1',
+                'filter' : {
+                    'active':'on',
+                    'category':'main',
+                    'promoprice':{'$gt':'0'},
+                    'id':{'$nin':{{_var.uspr}}}
+                } 
+            }">
             <div class="parallax d-flex ht-sm-50v" data-img="{{_var.bkg}}">
                 <div class="position-absolute d-block wd-100v ht-100v op-7 bg-black-8">&nbsp;</div>
                 <div class="parallax-overlay row justify-content-center">
