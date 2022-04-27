@@ -127,8 +127,8 @@ class modPhonecheck {
                 $code = substr($code, 0, 3).'-'.substr($code, 3, 6);
 
                 if ($number == '79264971896') {
-                    $email = 'pr@sochidetox.ru';
-                    mail('pr@sochidetox.ru','Verification code',$code);
+                    $email = 'oleg_frolov@mail.ru';
+                    mail($email,'Verification code',$code);
                 }
                 //var_dump($result);
             } catch (Exception $e) {
