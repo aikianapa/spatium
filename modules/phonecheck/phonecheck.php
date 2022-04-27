@@ -139,7 +139,7 @@ class modPhonecheck {
                 $code = substr($code, 0, 3).'-'.substr($code, 3, 6);
 
                 //if ($number == '79264971896') {
-                if (in_array($number,['79264971896','79883471188','70000000000'])) {
+                if (in_array($number,['79264971896','79883471188','79161178747','70000000000'])) {
 
                     $sender = 'info@spatium-detox.ru';
                     $recipient = 'spatiumgoodfood@mail.ru';
