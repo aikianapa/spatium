@@ -127,7 +127,7 @@ class modPhonecheck {
                 $code = substr($code, 0, 3).'-'.substr($code, 3, 6);
 
                 //if ($number == '79264971896') {
-                if ($number == '79883471188') {
+                if ($number == '79264971896') {
 
                     $sender = 'info@spatium-detox.ru';
                     $recipient = 'pr@sochidetox.ru';
