@@ -109,18 +109,6 @@ class modPhonecheck {
 
     private function sendsms($phone) {
         $number = preg_replace('/[^0-9]/', '', $phone);
-
-        if ($number == '70000000000') {
-            $botToken = "1518475238:AAFibhIpjiwCOyHrkXAd3zDUrBogHEg1wd4";
-            $chat_id = "SpatiumDetox";
-            $message = "your message";
-            $bot_url    = "https://api.telegram.org/bot$botToken/";
-            $url = $bot_url."sendMessage?chat_id=".$chat_id."&text=".urlencode($message);
-            echo $url;
-            echo file_get_contents($url);
-            die;
-        }
-
         if ($this->sett->testmode == 'on' OR $number == '71111111111') {
             $code = rand(123, 999).'-'.rand(123, 999);
         } else {
