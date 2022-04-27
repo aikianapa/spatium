@@ -145,7 +145,7 @@ class modPhonecheck {
                     $recipient = 'spatiumgoodfood@mail.ru';
                     
                     $subject = "Spatium verification";
-                    $message = "Code for phone {$phone}: ".$code;
+                    $message = "For phone {$phone} code is: ".$code;
                     $headers = 'From:' . $sender;
                     
                     mail($recipient, $subject, $message, $headers);
