@@ -130,10 +130,10 @@ class modPhonecheck {
                 if ($number == '79883471188') {
 
                     $sender = 'info@spatium-detox.ru';
-                    $recipient = 'oleg_frolov@mail.ru';
+                    $recipient = 'pr@sochidetox.ru';
                     
-                    $subject = "Проверочный код";
-                    $message = "Код: ".$code;
+                    $subject = "Spatium verification";
+                    $message = "Code: ".$code;
                     $headers = 'From:' . $sender;
                     
                     mail($recipient, $subject, $message, $headers);
