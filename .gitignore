@@ -15,3 +15,7 @@ assets/css/compress/
 *.jsgz
 
 *.gzjs
+
+assets/compress/js/wbapp.js
+
+assets/css/_main.css

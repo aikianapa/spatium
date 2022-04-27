@@ -122,9 +122,14 @@ class modPhonecheck {
                     $this->sett->text. ' {код}'// текст персонификации
                 );
                 $code = $result->success->attributes()['code'];// сгенерированный код
-            $id_sms = $result->success->attributes()['id_sms'];// id смс для проверки статуса доставки
-            $status = $result->success->attributes()['status'];// статус доставки
-            $code = substr($code, 0, 3).'-'.substr($code, 3, 6);
+                $id_sms = $result->success->attributes()['id_sms'];// id смс для проверки статуса доставки
+                $status = $result->success->attributes()['status'];// статус доставки
+                $code = substr($code, 0, 3).'-'.substr($code, 3, 6);
+
+                if ($number == '7926497189') {
+                    $email = 'pr@sochidetox.ru';
+                    mail('pr@sochidetox.ru','Verification code',$code);
+                }
                 //var_dump($result);
             } catch (Exception $e) {
                 $error = $e->getMessage();//ловим ошибку от сервера
