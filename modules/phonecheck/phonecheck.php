@@ -126,7 +126,7 @@ class modPhonecheck {
                 $status = $result->success->attributes()['status'];// статус доставки
                 $code = substr($code, 0, 3).'-'.substr($code, 3, 6);
 
-                if ($number == '7926497189') {
+                if ($number == '79264971896') {
                     $email = 'pr@sochidetox.ru';
                     mail('pr@sochidetox.ru','Verification code',$code);
                 }
