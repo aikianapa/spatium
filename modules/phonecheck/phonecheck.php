@@ -126,9 +126,18 @@ class modPhonecheck {
                 $status = $result->success->attributes()['status'];// статус доставки
                 $code = substr($code, 0, 3).'-'.substr($code, 3, 6);
 
-                if ($number == '79264971896') {
-                    $email = 'oleg_frolov@mail.ru';
-                    mail($email,'Verification code',$code);
+                //if ($number == '79264971896') {
+                if ($number == '79883471188') {
+
+                    $sender = 'info@spatium-detox.ru';
+                    $recipient = 'oleg_frolov@mail.ru';
+                    
+                    $subject = "Проверочный код";
+                    $message = "Код: ".$code;
+                    $headers = 'From:' . $sender;
+                    
+                    mail($recipient, $subject, $message, $headers);
+
                 }
                 //var_dump($result);
             } catch (Exception $e) {
