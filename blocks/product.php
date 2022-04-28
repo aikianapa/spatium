@@ -98,7 +98,7 @@
                                     <div class="col-sm-6 offset-sm-3">
                                         <wb-var week="{'пн':'в понедельник','вт':'во вторник','ср':'в среду','чт':'в четверг','пт':'в пятницу','сб':'в субботу','вс':'в воскресенье'}"
                                         />
-                                        <div class="tx-18">Всего {{_var.week.{{_val}}}}
+                                        <div class="tx-18" wb-if="'{{_var.total_kcal}}'>''">Всего {{_var.week.{{_val}}}}
                                         </div>
                                         <div class="tx-30 tx-success" wb-if="'{{_var.total_kcal}}'>''">
                                             {{_var.total_kcal}} Ккал

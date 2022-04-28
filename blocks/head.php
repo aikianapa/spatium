@@ -12,13 +12,11 @@
         <meta name="description" content="Spatium Detox">
         <title></title>
         <!--script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.0.1/dist/alpine.js" defer></script-->
-
+        <link href="/assets/css/dashforge.css" rel="stylesheet">
+        <link href="/assets/css/custom.less" rel="stylesheet">
 <wb-styles src="/assets/css/main.css">
-    [
-         "/engine/lib/fonts/roboto/roboto.css"
-        ,"/assets/css/dashforge.css"
+    [   "/engine/lib/fonts/roboto/roboto.css"
         ,"/assets/css/animate.css"
-        ,"/assets/css/custom.less"
         ,"/engine/modules/datetimepicker/datetimepicker/bootstrap-datetimepicker.min.css"
         ,"/engine/modules/datetimepicker/datetimepicker.less"
     ]

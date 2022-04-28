@@ -4,7 +4,7 @@
 <wb-foreach wb-from="_var.disc" wb-tpl="false">
     <div class="row bd-b tx-normal">
         <wb-var discount="{{percent}}" wb-if="'{{percent}}'>'0'" else="1" />
-        <div class="col tx-left nobr">{{name}}1
+        <div class="col tx-left nobr">{{name}}
             <div class="badge badge-warning" wb-if="'{{_var.discount}}'<'1'">
                 -{{(1-{{_var.discount}})*100}}%
             </div>

@@ -1,5 +1,5 @@
 <html>
-<div class="modal fade show" tabindex="-1" role="dialog">
+<div class="modal fade show removable" tabindex="-1" role="dialog">
     <wb-var week="{'pn':'понедельник','vt':'вторник','sr':'среда','cht':'четверг','pt':'пятница','sb':'суббота','vs':'воскресенье'}"
     />
     <wb-var meals="{{getMealsJson()}}" />
