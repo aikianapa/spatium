@@ -157,7 +157,7 @@
                         </div>
 -->
                         <div class="row mg-b-100 mg-t-20">
-                            <div class="col-lg-8 offset-lg-2 px-5 tx-center">
+                            <div class="col-lg-8 offset-lg-2 tx-center">
                                 <h3 class="tx-gray-700">Добавить в корзину</h3>
                                 <p class="tx-semibold tx-16 tx-gray-700">{{name}}</p>
                                 <wb-include wb-tpl="price_table.php" />
