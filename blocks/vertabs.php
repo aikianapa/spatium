@@ -37,7 +37,7 @@
 </edit>
 
 <view>
-
+      
     <section>
     <wb-var wid="{{wbNewId()}}" />
         <div class="content container">
@@ -49,7 +49,39 @@
                     <p class="pb-4 tx-16">{{text}}</p>
                 </div>
             </div>
-            <div class="row">
+            
+              <div class="row">
+<div id="sliderPr" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+  <wb-foreach wb-from="tabs" wb-tpl="false">
+    <wb-var wb-if="'{{_idx}}'=='0'" active="active" else="" />
+    <div class="carousel-item {{_var.active}}">
+        <div class="d-flex flex-sm-row flex-column align-items-center pl-lg-5">
+            <div  class="p-5 mr-lg-5">
+                <div class="tx-normal tx-20 tx-black pb-3">{{title}}</div>
+                 <p class="tx-gray-500 tx-16 text-justify pb-0">{{text}}</p>
+            </div>
+            <div class="wrap-img p-0 p-sm-3 p-lg-0">
+                <img data-src="{{bkg.0.img}}" height="400" alt="{{title}}"/>
+            </div>
+        </div>
+    </div>
+  </wb-foreach>
+  </div>
+ <button class="carousel-control-prev" type="button" data-target="#sliderPr" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-target="#sliderPr" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </button>
+    
+</div>
+                </div>
+            </div>          
+            
+            <!--<div class="row">
                 <div class="col-md-5">
                     <ul class="nav nav-tabs nav-vertical" role="tablist">
                         <li class="nav-item d-none"></li>
@@ -76,7 +108,10 @@
                         </wb-foreach>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div>-->
+            
+
+
     </section>
 </view>
+

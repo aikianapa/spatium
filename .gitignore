@@ -8,14 +8,14 @@ engine
 
 *.log
 
-assets/css/compress/
+assets/css/compress
+assets/compress
+assets/images
 
 *.cssgz
 
 *.jsgz
 
 *.gzjs
-
-assets/compress/js/wbapp.js
 
 assets/css/_main.css

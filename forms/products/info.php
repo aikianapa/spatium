@@ -20,15 +20,13 @@
                 </div>
                 <div class="modal-body">
                     <div class="container">
-                        <h3 class="text-center mb-5 tx-success">{{_var.meals.{{_route.pos}}}}</h3>
+                        <h3 class="text-center mb-3 mb-lg-5 tx-success">{{_var.meals.{{_route.pos}}}}</h3>
 
                         <wb-foreach wb-from="_var.prod" wb-tpl="false">
-                            <div class="row pb-3">
-                                <div class="col-lg-8 offset-lg-2 px-5">
 
-                                    <div class="media" wb-module="photoswipe" wb-imgset="img{{_key}}">
+                                    <div class="d-flex flex-sm-row flex-column media mb-3" wb-module="photoswipe" wb-imgset="img{{_key}}">
                                         <a href="{{image.0.img}}">
-                                        <img src="/thumbc/400x300/src{{image.0.img}}" class="wd-200 rounded mg-r-20" alt="{{food}}">
+                                        <img src="/thumbc/400x300/src{{image.0.img}}" class="wd-200 rounded mg-r-20 mb-3" alt="{{food}}">
                                         </a>
                                         <div class="media-body">
                                             <h5 class="mg-b-15 tx-success">{{food}}</h5>
@@ -48,8 +46,6 @@
                                         </div>
                                     </div>
 
-                                </div>
-                            </div>
                         </wb-foreach>
 
 <!--
