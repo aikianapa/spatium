@@ -56,10 +56,10 @@
   <wb-foreach wb-from="tabs" wb-tpl="false">
     <wb-var wb-if="'{{_idx}}'=='0'" active="active" else="" />
     <div class="carousel-item {{_var.active}}">
-        <div class="d-flex flex-sm-row flex-column align-items-center pl-lg-5">
+        <div class="d-flex flex-sm-row align-items-center pl-lg-5">
             <div  class="p-5 mr-lg-5">
                 <div class="tx-normal tx-20 tx-black pb-3">{{title}}</div>
-                 <p class="tx-gray-500 tx-16 pb-0">{{text}}</p>
+                 <p class="tx-gray-500 tx-16 pb-0 text-justify">{{text}}</p>
             </div>
             <div class="wrap-img p-0 p-sm-3 p-lg-0">
                 <img src="{{bkg.0.img}}" height="400" loading="lazy" alt="{{title}}"/>
