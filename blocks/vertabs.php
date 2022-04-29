@@ -1,4 +1,4 @@
-<edit header="Блок вертикальных табов">
+<edit header="Слайдер с текстом">
     <div class="alert alert-info">
         Смотри в /blocks/vertabs.php
     </div>
@@ -59,7 +59,7 @@
         <div class="d-flex flex-sm-row flex-column align-items-center pl-lg-5">
             <div  class="p-5 mr-lg-5">
                 <div class="tx-normal tx-20 tx-black pb-3">{{title}}</div>
-                 <p class="tx-gray-500 tx-16 text-justify pb-0">{{text}}</p>
+                 <p class="tx-gray-500 tx-16 pb-0">{{text}}</p>
             </div>
             <div class="wrap-img p-0 p-sm-3 p-lg-0">
                 <img src="{{bkg.0.img}}" height="400" loading="lazy" alt="{{title}}"/>
