@@ -62,7 +62,7 @@
                  <p class="tx-gray-500 tx-16 text-justify pb-0">{{text}}</p>
             </div>
             <div class="wrap-img p-0 p-sm-3 p-lg-0">
-                <img data-src="{{bkg.0.img}}" height="400" alt="{{title}}"/>
+                <img src="{{bkg.0.img}}" height="400" loading="lazy" alt="{{title}}"/>
             </div>
         </div>
     </div>

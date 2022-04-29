@@ -49,7 +49,7 @@
                 <div class="col-md tx-center tx-md-left">
                     <p class="tx-white">
                         <small>
-                            <span class="current-year">2021</span> Создано для Spatium Detox.
+                            <span class="current-year">&copy; {{date("Y")}}</span> Создано для Spatium Detox.
                         </small>
                     </p>
 
