@@ -26,6 +26,11 @@
             <wb-var status="{{data}}" />
         </wb-data>
 
+        <wb-foreach wb="from=_var.status&tpl=false">
+            <div class="py-2 px-3 d-inline-block">
+                <img data-src="/module/myicons/{{data.icon}}.svg?size=30&stroke={{substr({{data.color}},1,6)}}"> {{name}}
+            </div>
+        </wb-foreach>
 
 
         <table class="table table-striped table-hover tx-15">
@@ -42,8 +47,7 @@
                 </tr>
             </thead>
             <tbody id="ordersList">
-                <wb-foreach wb="table=orders&sort=_created:d&bind=cms.list.orders&size={{_sett.page_size}}"
-                    wb-filter="{'login':'{{_sess.user.login}}' }">
+                <wb-foreach wb="table=orders&sort=_created:d&bind=cms.list.orders&size={{_sett.page_size}}">
                     <tr>
                         <td>{{number}}</td>
                         <td>{{wbDate("d.m.Y",{{date}})}} - {{wbDate("d.m.Y",{{expired}})}}</td>
