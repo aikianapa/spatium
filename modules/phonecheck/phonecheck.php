@@ -10,7 +10,7 @@ require_once __DIR__ .'/sms.auth.class.php';
 class modPhonecheck {
     public function __construct($app)
     {
-        $this->test = ['71111111111','72222222222','73333333333','74444444444','75555555555','79883471188','79264971896','79161178747','79182094593'];
+        $this->test = ['70000000000','71111111111','72222222222','73333333333','74444444444','75555555555','79883471188','79264971896','79161178747','79182094593'];
         $this->checkRequires(['curl']);
         $mode = $app->route->mode;
         if (isset(($app->route->params))) $param = $app->route->params[0];
