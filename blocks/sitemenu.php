@@ -30,6 +30,9 @@
                         <a class="nav-link" href="{{link}}">{{label}}</a>
                     </li>
                     </wb-foreach>
+                    <li class="d-md-none">
+                        <a href="/signin" class="nav-link">Вход</a>
+                    </li>
                 </ul>
 
 </view>
