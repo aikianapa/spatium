@@ -75,7 +75,7 @@ class modPhonecheck {
                 'password'  =>  $this->check
             ]);
         } else {
-            ($this->sett->testmode == 'on' or $this->number == '71111111111') ? $code = $this->code : $code = '';
+            ($this->sett->testmode == 'on' or in_array($this->number,['71111111111','72222222222','73333333333','74444444444','75555555555','79883471188'])) ? $code = $this->code : $code = '';
             header('Content-Type: application/json');
             $msg = "<p class='tx-12 tx-dark'>Пожалуйста, проверьте правильность введённого номера телефона:<br>
             <b class='tx-danger'>{$this->phone}</b><br>
@@ -127,7 +127,7 @@ class modPhonecheck {
                 $code = substr($code, 0, 3).'-'.substr($code, 3, 6);
 
                 //if ($number == '79264971896') {
-                if (in_array($number,['79264971896','79883471188','79161178747','70000000000'])) {
+                if (in_array($number,['79264971896','79161178747'])) {
 
                     $sender = 'info@spatium-detox.ru';
                     $recipient = 'spatiumgoodfood@mail.ru';
