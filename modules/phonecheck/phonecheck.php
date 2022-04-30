@@ -6,6 +6,7 @@ sdetox
 aassaDDG3
 */
 require_once __DIR__ .'/sms.auth.class.php';
+require_once __DIR__ .'/sms.class.php';
 
 class modPhonecheck {
     public function __construct($app)
@@ -147,6 +148,14 @@ class modPhonecheck {
             }
         }
         return $code;
+    }
+
+    function orderAlert() {
+        $order = $this->app->vars('_route.params.0');
+        if ($order > '') {
+            $number = preg_replace('/[^0-9]/', '', $this->app->vars('_sett->orderAlertPhone'));
+            echo file_get_contents("https://sms.targetsms.ru/sendsms.php?user={$this->sett->login}&pwd={$this->sett->pass}&name_delivery=order&sadr={$this->sett->sender}&dadr={$number}&text=Заказ: {$order}");
+        }
     }
 
     private function reg() {

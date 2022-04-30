@@ -84,7 +84,9 @@ class ordersClass extends cmsFormsClass
         $order['user'] = $user['id'];
         //$order['number'] = $_POST['number'];
         $this->createDelivery($order);
-        $app->itemSave('orders', $order);
+        if ($app->itemSave('orders', $order)) {
+            wbAuthGetContents($app->route->host.'/module/phonecheck/orderAlert/'.$order['number']);
+        }
         if ($app->vars('_post.token') !== 'courier') {
             $cloudpay = $app->module('cloudpaywidget');
             $cloudpay->kassa($order, $user);
