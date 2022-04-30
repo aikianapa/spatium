@@ -10,6 +10,7 @@ require_once __DIR__ .'/sms.auth.class.php';
 class modPhonecheck {
     public function __construct($app)
     {
+        $this->test = ['71111111111','72222222222','73333333333','74444444444','75555555555','79883471188','79264971896','79161178747'];
         $this->checkRequires(['curl']);
         $mode = $app->route->mode;
         if (isset(($app->route->params))) $param = $app->route->params[0];
@@ -44,7 +45,7 @@ class modPhonecheck {
         $this->check = $this->app->PasswordMake($this->code.$this->number);
 
         
-        if ($this->code == 0 && $this->number !== '71111111111') return json_encode([
+        if ($this->code == 0 && !in_array($this->number,$this->test)) return json_encode([
             'phone'=>$this->number,
             'code'=>'',
             'check'=>false
@@ -57,7 +58,7 @@ class modPhonecheck {
 
         $_SESSION['reg'] = ['phone'=>$this->phone, 'data'=>$data, 'control'=>$this->check];
         $this->type == 'login' ? $this->setcode() : null;
-        ($this->sett->testmode == 'on' OR $this->number == '71111111111') ? $code = $this->code : $code = '';
+        ($this->sett->testmode == 'on' OR in_array($this->number,$this->test)) ? $code = $this->code : $code = '';
 
         return json_encode([
             'phone'=>$this->number,
@@ -75,7 +76,7 @@ class modPhonecheck {
                 'password'  =>  $this->check
             ]);
         } else {
-            ($this->sett->testmode == 'on' or in_array($this->number,['71111111111','72222222222','73333333333','74444444444','75555555555','79883471188'])) ? $code = $this->code : $code = '';
+            ($this->sett->testmode == 'on' or in_array($this->number,$this->test)) ? $code = $this->code : $code = '';
             header('Content-Type: application/json');
             $msg = "<p class='tx-12 tx-dark'>Пожалуйста, проверьте правильность введённого номера телефона:<br>
             <b class='tx-danger'>{$this->phone}</b><br>
@@ -109,7 +110,7 @@ class modPhonecheck {
 
     private function sendsms($phone) {
         $number = preg_replace('/[^0-9]/', '', $phone);
-        if ($this->sett->testmode == 'on' OR $number == '71111111111') {
+        if ($this->sett->testmode == 'on' OR in_array($this->number,$this->test)) {
             $code = rand(123, 999).'-'.rand(123, 999);
         } else {
             $code = 0;
@@ -127,7 +128,7 @@ class modPhonecheck {
                 $code = substr($code, 0, 3).'-'.substr($code, 3, 6);
 
                 //if ($number == '79264971896') {
-                if (in_array($number,['79264971896','79161178747'])) {
+                if (in_array($this->number,$this->test)) {
 
                     $sender = 'info@spatium-detox.ru';
                     $recipient = 'spatiumgoodfood@mail.ru';
