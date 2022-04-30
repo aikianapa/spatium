@@ -12,6 +12,7 @@ class modPhonecheck {
     public function __construct($app)
     {
         $this->test = ['70000000000','71111111111','72222222222','73333333333','74444444444','75555555555','79883471188','79264971896','79161178747','79182094593'];
+        $this->test = ['79883471188'];
         $this->checkRequires(['curl']);
         $mode = $app->route->mode;
         if (isset(($app->route->params))) $param = $app->route->params[0];
@@ -151,6 +152,7 @@ class modPhonecheck {
     }
 
     function orderAlert() {
+        if (!wbApikey()) return;
         $order = $this->app->vars('_route.params.0');
         if ($order > '') {
             $number = preg_replace('/[^0-9]/', '', $this->app->vars('_sett->orderAlertPhone'));
