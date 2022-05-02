@@ -341,8 +341,9 @@ var cartLogin = function() {
     })
 }
 
-$(document).delegate('*','touchstart',function(){
+$(document).delegate('*','touchstart',function(ev){
     $(this.currentTarget).trigger('click')
+    ev.stopPropagation()
 })
 
 $.extend({
