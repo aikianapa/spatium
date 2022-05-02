@@ -339,6 +339,10 @@ var cartLogin = function() {
     })
 }
 
+$(document).delegate('*','touchstart',function(){
+    $(this.currentTarget).trigger('click')
+})
+
 $.extend({
     redirectPost: function(location, args) {
         var form = '';
