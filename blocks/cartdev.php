@@ -125,7 +125,7 @@
 
             <div class="row" id="cartButtons">
                 <div class="col-sm-12 py-1">
-                    <a href="javascript:void(0)" class="wd-100p checkout-btn btn btn-success rounded-20">Оплата
+                    <a href="javascript:void(0)" onclick class="wd-100p cursor-pointer checkout-btn btn btn-success rounded-20">Оплата
                         картой</a>
                 </div>
                 <!--
