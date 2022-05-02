@@ -340,12 +340,6 @@ var cartLogin = function() {
         }
     })
 }
-
-$(document).delegate('*','touchstart',function(ev){
-    $(ev.currentTarget).trigger('click')
-    ev.stopPropagation()
-})
-
 $.extend({
     redirectPost: function(location, args) {
         var form = '';
