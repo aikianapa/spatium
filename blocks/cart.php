@@ -89,10 +89,8 @@
                         </div>
                         <!-- end of cart floating box -->
                         <h6 class="delivery cursor-pointer" onclick>Доставка и оплата</h6>
-                        <div class="p-2" id="cartdev">
-                            <div auto onclick data-ajax="{'url':'/module/yonger/block/cartdev','html':'#cartdev'}"></div>
+                        <div class="p-2 cursor-pointer" id="cartdev" auto onclick data-ajax="{'url':'/module/yonger/block/cartdev','html':'#cartdev'}">
                         </div>
-
                     </div>
                 </div>
             </div>
