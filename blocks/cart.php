@@ -19,7 +19,7 @@
             <div class="off-canvas-body p-2">
                 <div class="position-relative scroll-y" id="shopping-cart">
                     <div class="accordion">
-                        <h6 class="cart">Покупки</h6>
+                        <h6 class="cart cursor-pointer" onclick>Покупки</h6>
                         <!-- cart floating box -->
                         <div class="cart-floating-box p-0" id="cart-floating-box">
                             <ul class="list-group cart-items" data-discounts="{{_var.discounts}}">
@@ -88,7 +88,7 @@
                                 Итого: <span class="mod-cart-total-sum tx-primary"></span><span class="tx-primary">₽</span></p>
                         </div>
                         <!-- end of cart floating box -->
-                        <h6 class="delivery">Доставка и оплата</h6>
+                        <h6 class="delivery cursor-pointer" onclick>Доставка и оплата</h6>
                         <div class="p-2" id="cartdev">
                             <div auto data-ajax="{'url':'/module/yonger/block/cartdev','html':'#cartdev'}"></div>
                         </div>
