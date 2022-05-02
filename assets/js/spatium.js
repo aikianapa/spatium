@@ -183,6 +183,7 @@ $(document).delegate('#deliveryCalendar .day .btn-delivery', wbapp.evClick, func
 wbapp.on('mod-cart-add', function() {
     $('#cart #ui-id-1.cart').trigger('click');
     $('.modal:visible').modal('hide');
+    wbapp.cartRefresh();
     setTimeout(() => { $('#cart').addClass('show') });
 })
 
@@ -335,6 +336,7 @@ var cartLogin = function() {
             $('#cart #cartdev').html(data.cart);
             wbapp.ajaxAuto();
             cartAfterLogin();
+            wbapp.cartRefresh();
         }
     })
 }
