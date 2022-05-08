@@ -73,16 +73,12 @@
                                 <wb-var image="{{_var.day}}.{{_key}}_images" />
                                 <wb-var prod="{{_var.menu.{{_key}}}}" />
                                 <wb-var wb-if="'{{ _parent.{{_var.image}}.0.img }}'>''" img="{{ _parent.{{_var.image}}.0.img }}" else="{{_var.prod.0.image.0.img}}" />
-                                <wb-foreach wb="from=_var.prod" wb-tpl="false" wb-if="'{{_var.prod.0.food}}'>''">
-                                <div class="col-md-3 bd-0">
+                                <div class="col-md-3 bd-0" wb-if="'{{_var.prod.0.food}}'>''">
                                     <div class="card ht-100p bd-0 text-center">
-                                        <img data-src="/thumbc/240x180/src{{image.0.img}}" width="240" height="180" class="wd-100p img-fluid rounded-top" width="240" height="180" alt="{{food}}">
+                                        <img data-src="/thumbc/240x180/src{{_var.img}}" width="240" height="180" class="wd-100p img-fluid rounded-top" width="240" height="180" alt="{{food}}">
                                         <div class="card-body pb-0">
                                             <div class="tx-12 tx-success tx-semibold tx-spacing-4 pb-2">
                                                 {{_var.tmp.{{_var.meals}}}}
-                                            </div>
-                                            <div class="tx-12 pb-2">
-                                                {{food}}
                                             </div>
                                         </div>
                                         <div class="card-footer bd-0">
@@ -96,7 +92,6 @@
                                     <wb-var total_carb="{{_var.total_carb*1+carbs*1}}" />
 
                                 </div>
-                                </wb-foreach>
                             </wb-foreach>
                             <div class="col-12">
                                 <div class="row text-center tx-semibold py-4">
