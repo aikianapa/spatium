@@ -76,7 +76,7 @@
                                 <wb-foreach wb="from=_var.prod" wb-tpl="false" wb-if="'{{_var.prod.0.food}}'>''">
                                 <div class="col-md-4 bd-0">
                                     <div class="card ht-100p bd-0 text-center">
-                                        <img data-src="/thumbc/240x180/src{{image.0.img}}" width="240" height="180" class="wd-100p img-fluid rounded-top" width="240" height="180" alt="{{food}}">
+                                        <img data-src="/thumbc/480x360/src{{image.0.img}}" width="480" height="360" class="wd-100p img-fluid rounded-top" width="240" height="180" alt="{{food}}">
                                         <div class="card-body pb-0">
                                             <div class="tx-12 tx-success tx-semibold tx-spacing-4 pb-2">
                                                 {{_var.tmp.{{_var.meals}}}}
