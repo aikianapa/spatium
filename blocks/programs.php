@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div id="programsList">
-            <div class="card-columns pt-4">
+            <div class="card-columns columns-sm-3 pt-4">
             <wb-foreach wb="{'table':'products',
                             'render':'server',
                             'tpl':'false',
