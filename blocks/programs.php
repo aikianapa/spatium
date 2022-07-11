@@ -31,7 +31,6 @@
             <div class="card-columns pt-4">
             <wb-foreach wb="{'table':'products',
                             'render':'server',
-                            'limit':'2',
                             'minimal':'2',
                             'tpl':'false',
                             'rand':true,
