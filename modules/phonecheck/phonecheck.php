@@ -166,9 +166,12 @@ class modPhonecheck {
         $phone = $_SESSION['reg']['phone'];
         $number = preg_replace('/[^0-9]/','',$phone);
         $code = $this->app->vars('_post.check');
-        $check = $this->app->PasswordMake($code.$number);
+        //$check = $this->app->PasswordMake($code.$number);
         //$demo = '79883471188';
-        if ($check == $control) {
+        $check = $code.$number;
+
+        //if ($check == $control) {
+        if (password_verify($check, $control)) {
             $user = $this->app->checkUser($number, 'phone');
 
             if ($user && $number !== $demo) {
