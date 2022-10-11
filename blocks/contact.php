@@ -104,7 +104,7 @@
 
             </div>
             <div class="col-sm-6">
-                <form class="tx-16">
+                <form class="tx-16" method="post">
                     <wb-data wb="form=pages&item=_null">
                         <div class="divider-text">Обратная связь</div>
                         <input type="hidden" name="_subject" placeholder="Сообщение с сайта"/>
