@@ -125,12 +125,13 @@
 
             <div class="row" id="cartButtons">
                 <div class="col-sm-12 py-1">
-                    <a href="javascript:void(0)" onclick class="wd-100p cursor-pointer checkout-btn btn btn-success rounded-20">Оплата
-                        картой</a>
+                    <!--a href="javascript:void(0)" onclick class="wd-100p cursor-pointer checkout-btn btn btn-success rounded-20">Оплата
+                        картой</a-->
+                        <p class="alert alert-info">Оплата временно не доступна. Приносим извинения.</p>
                 </div>
                 <!--
                 <div class="col-sm-12 py-1">
-                    <a href="javascript:void(0)" class="wd-100p checkin-btn btn btn-primary rounded-20">Оплата
+                    <a href="javascript:void(0)" onclick  class="wd-100p checkin-btn btn btn-primary rounded-20">Оплата
                         курьеру наличными</a>
                 </div>
 -->
