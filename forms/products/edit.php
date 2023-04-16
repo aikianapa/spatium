@@ -1,6 +1,5 @@
 <html>
-<div class="modal fade effect-scale show removable" id="{{_form}}ModalEdit" data-backdrop="static" tabindex="-1" role="dialog"
-    aria-hidden="true">
+<div class="modal fade effect-scale show removable" id="{{_form}}ModalEdit" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -14,7 +13,8 @@
 
             </div>
             <div class="modal-body pd-20">
-
+                <wb-var days='["пн","вт","ср", "чт","пт","сб","вс"]' />
+                <wb-var meals="{{getMealsJson()}}" />
                 <form id="{{_form}}EditForm" autocomplete="off">
                     <input type="checkbox" class="custom-control-input" name="active" id="{{_form}}ValueItemActive">
                     <input type="hidden" name="_id" class="form-control" readonly placeholder="Идентификатор">
@@ -40,11 +40,11 @@
 
 
                     <!-- required bootstrap js -->
-                    <ul class="nav nav-tabs mb-2" role="tablist">
+                    <ul class="mb-2 nav nav-tabs" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active" data-toggle="tab" href="#main">Описание</a>
                         </li>
-                        <wb-foreach wb-json='["пн","вт","ср", "чт","пт","сб","вс"]' wb-tpl="false">
+                        <wb-foreach wb="from=_var.days&tpl=false">
                             <li class="nav-item d-none">
                                 <a class="nav-link" data-toggle="tab" href="#{{wbTranslit({{_val}})}}">{{_val}}</a>
                             </li>
@@ -81,7 +81,7 @@
                                     </div>
                                     <input type="number" name="weight" class="form-control" placeholder="Вес (гр.)">
                                 </div>
-                                <p class="d-block d-sm-none p-1" />
+                                <p class="p-1 d-block d-sm-none"></p>
                                 <div class="input-group col-sm-4">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">Калорийность</span>
@@ -114,12 +114,11 @@
                             </div>
                         </div>
 
-                        <wb-var meals="{{getMealsJson()}}" />
-                        <wb-foreach wb-json='["пн","вт","ср", "чт","пт","сб","вс"]' wb-tpl="false" wb-parent="true">
+                        <wb-foreach wb="from=_var.days&tpl=false" wb-parent="true">
                             <wb-var day="{{wbTranslit({{_val}})}}" />
                             <div id="{{_var.day}}" class="container tab-pane fade">
 
-                                <ul class="nav nav-tabs mb-2">
+                                <ul class="mb-2 nav nav-tabs">
                                     <wb-foreach wb-tpl="false" wb-from="_var.meals">
                                         <wb-var active="active" wb-if="'{{_idx}}'=='0'" else="" />
                                         <li class="nav-item">
@@ -164,7 +163,7 @@
                                                             </div>
                                                             <input type="number" name="weight" class="form-control" placeholder="Вес (гр.)">
                                                         </div>
-                                                        <p class="d-block d-sm-none p-1"></p>
+                                                        <p class="p-1 d-block d-sm-none"></p>
                                                         <div class="input-group col-sm-6">
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text">Калорийность</span>
@@ -185,7 +184,7 @@
                                                             </div>
                                                             <input type="number" name="fats" class="form-control" placeholder="Жиры">
                                                         </div>
-                                                        <p class="d-block d-sm-none p-1"></p>
+                                                        <p class="p-1 d-block d-sm-none"></p>
                                                         <div class="input-group col-sm-4">
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text">Углеводы</span>
