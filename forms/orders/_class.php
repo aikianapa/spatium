@@ -67,11 +67,13 @@ class ordersClass extends cmsFormsClass
             $flag = isset($prod->promo) && intval($prod->promo) == 1 ? true : false;
             $flag && !in_array($prod->id, $promo) ? $promo[] = $prod->id : null;
             // здесь сверка проверка цены в заказе и цены в товаре
+            /*
             if (($flag && intval($prod->price) !== intval($product->promoprice)) OR (!$flag && intval($prod->price) !== intval($product->price)))
             {
                 echo json_encode(['error'=>true,'msg'=>'Что-то пошло не так.','note'=>'Invalid price']);
                 die;
             }
+            */
         }
 
         if ($user['promo'] !== $promo) {
