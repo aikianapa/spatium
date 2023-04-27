@@ -25,14 +25,10 @@ class ordersClass extends cmsFormsClass
         $app = $this->app;
         $order = json_decode($_POST['data'], true);
         @$sum = intval($order['total']['sum']);
-        
-        /*
         if ($sum == 0) {
             echo json_encode(['error'=>true,'msg'=>'Что-то пошло не так.']);
             die;
         }
-        */
-
         $ai = $app->module('autoinc');
         $order['number'] = $ai->inc('orders', 'number', 1500);
         $order['id'] = 'z'.$order['number'];
@@ -53,12 +49,12 @@ class ordersClass extends cmsFormsClass
             }
         }
         $uid = $user['id'];
-
+/*
         if ($app->vars('_post.token') !== 'courier' && $_COOKIE['carttoken'] !== $app->vars('_post.token')) {
             echo json_encode(['error'=>true,'msg'=>'Что-то пошло не так.']);
             die;
         }
-
+*/
 
         // ======= Проверка промо-заказов и цен
         $products = $app->itemList('products', ['active'=>'on']);
